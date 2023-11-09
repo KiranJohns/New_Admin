@@ -55,7 +55,7 @@ class ApexLine3 extends React.Component {
             "Dec",
           ],
         },
-        colors: ["#4D44B5"],
+        colors: ["#212a50"],
         markers: {
           size: [6],
           strokeWidth: [4],

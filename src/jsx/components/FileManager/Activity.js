@@ -28,7 +28,7 @@ const Activity = () => {
                                         <li className="d-flex align-items-baseline timeline-list">                                           
                                             <div className="dz-media">
                                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="2" y="2" width="12" height="12" rx="6" fill="white" stroke="#4D44B5" strokeWidth="4"/>
+                                                    <rect x="2" y="2" width="12" height="12" rx="6" fill="white" stroke="#212a50" strokeWidth="4"/>
                                                 </svg>
                                             </div>
                                             <div className="panel">
@@ -42,7 +42,7 @@ const Activity = () => {
                                         <li className="d-flex align-items-baseline timeline-list">                                           
                                             <div className="dz-media">
                                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="2" y="2" width="12" height="12" rx="6" fill="white" stroke="#4D44B5" strokeWidth="4"/>
+                                                    <rect x="2" y="2" width="12" height="12" rx="6" fill="white" stroke="#212a50" strokeWidth="4"/>
                                                 </svg>
                                             </div>
                                             <div className="panel">
@@ -56,7 +56,7 @@ const Activity = () => {
                                         <li className="d-flex align-items-baseline timeline-list">                                           
                                             <div className="dz-media">
                                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="2" y="2" width="12" height="12" rx="6" fill="white" stroke="#4D44B5" strokeWidth="4"/>
+                                                    <rect x="2" y="2" width="12" height="12" rx="6" fill="white" stroke="#212a50" strokeWidth="4"/>
                                                 </svg>
                                             </div>
                                             <div className="panel">
@@ -69,7 +69,7 @@ const Activity = () => {
                                         <li className="d-flex align-items-baseline timeline-list">                                           
                                             <div className="dz-media">
                                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="2" y="2" width="12" height="12" rx="6" fill="white" stroke="#4D44B5" strokeWidth="4"/>
+                                                    <rect x="2" y="2" width="12" height="12" rx="6" fill="white" stroke="#212a50" strokeWidth="4"/>
                                                 </svg>
                                             </div>
                                             <div className="panel">
@@ -88,7 +88,7 @@ const Activity = () => {
                                         <li className="d-flex align-items-baseline last-timeline">
 												<div className="dz-media">
 													<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-														<rect x="2" y="2" width="12" height="12" rx="6" fill="white" stroke="#4D44B5" strokeWidth="4"/>
+														<rect x="2" y="2" width="12" height="12" rx="6" fill="white" stroke="#212a50" strokeWidth="4"/>
 													</svg>
 												</div>
 												<div className="panel">
@@ -104,7 +104,7 @@ const Activity = () => {
                                         <li className="d-flex align-items-baseline timeline-list">
                                             <div className="dz-media">
                                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="2" y="2" width="12" height="12" rx="6" fill="white" stroke="#4D44B5" strokeWidth="4"/>
+                                                    <rect x="2" y="2" width="12" height="12" rx="6" fill="white" stroke="#212a50" strokeWidth="4"/>
                                                 </svg>
                                             </div>
                                             <div className="panel">
@@ -117,7 +117,7 @@ const Activity = () => {
                                         <li className="d-flex align-items-baseline last-timeline">
                                             <div className="dz-media">
                                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="2" y="2" width="12" height="12" rx="6" fill="white" stroke="#4D44B5" strokeWidth="4"/>
+                                                    <rect x="2" y="2" width="12" height="12" rx="6" fill="white" stroke="#212a50" strokeWidth="4"/>
                                                 </svg>
                                             </div>
                                             <div className="panel">

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { navtoggle } from "../../../store/actions/AuthActions";
 import { ThemeContext } from "../../../context/ThemeContext";
 import { useDispatch , useSelector} from "react-redux";
+import imgg from '../../../images/learnLogo.png'
 // import logo1 from "../../../images/activity-img/logo7.png";
 
 const NavHader = () => {
@@ -19,12 +20,9 @@ const NavHader = () => {
   return (
     <div className="nav-header">
       <Link to="/dashboard" className="brand-logo"> 
-         <svg className="logo-abbr" width="40" height="40" viewBox="0 0 48 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect y="3" width="48" height="48" rx="16" fill="#FB7D5B"/>
-            <path d="M28.964 35.536H19.532L18.02 40H11.576L20.72 14.728H27.848L36.992 40H30.476L28.964 35.536ZM27.38 30.784L24.248 21.532L21.152 30.784H27.38Z" fill="white"/>
-          </svg>
+        {/* <img src={imgg} style={{width:'15rem'}} alt="image" /> */}
           <div className="brand-title">
-         <h2 style={{color:'white', marginTop:'1rem'}}>Admin</h2>
+         <h4 style={{color:'white', marginTop:'1rem'}}>Learn For Care</h4>
          
           </div>       
       </Link>

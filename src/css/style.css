@@ -74,7 +74,7 @@
 @import url(./../other/perfect-scrollbar/css/perfect-scrollbar.css);
 @import url(./../other/metismenu/css/metisMenu.min.css);
 :root {
-  --primary: #4D44B5;
+  --primary: #212a50;
   --secondary: #FB7D5B;
   --primary-hover: #3d3690;
   --primary-dark: #1e1a46;
@@ -270,7 +270,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   --bs-gray-700: #495057;
   --bs-gray-800: #343a40;
   --bs-gray-900: #212529;
-  --bs-primary: #4D44B5;
+  --bs-primary: #212a50;
   --bs-secondary: #FB7D5B;
   --bs-success: #1EBA62;
   --bs-info: #00ADA3;
@@ -431,7 +431,7 @@ sup {
   top: -.5em; }
 
 a {
-  color: #4D44B5;
+  color: #212a50;
   text-decoration: underline; }
   a:hover {
     color: #3e3691; }
@@ -1994,15 +1994,15 @@ textarea.form-control-lg {
     outline: 0;
     box-shadow: 0 0 0 0.25rem rgba(77, 68, 181, 0.25); }
   .form-check-input:checked {
-    background-color: #4D44B5;
-    border-color: #4D44B5; }
+    background-color: #212a50;
+    border-color: #212a50; }
     .form-check-input:checked[type="checkbox"] {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e"); }
     .form-check-input:checked[type="radio"] {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e"); }
   .form-check-input[type="checkbox"]:indeterminate {
-    background-color: #4D44B5;
-    border-color: #4D44B5;
+    background-color: #212a50;
+    border-color: #212a50;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e"); }
   .form-check-input:disabled {
     pointer-events: none;
@@ -2060,7 +2060,7 @@ textarea.form-control-lg {
     width: 1rem;
     height: 1rem;
     margin-top: -0.25rem;
-    background-color: #4D44B5;
+    background-color: #212a50;
     border: 0;
     border-radius: 1rem;
     transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -2081,7 +2081,7 @@ textarea.form-control-lg {
   .form-range::-moz-range-thumb {
     width: 1rem;
     height: 1rem;
-    background-color: #4D44B5;
+    background-color: #212a50;
     border: 0;
     border-radius: 1rem;
     transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -2406,8 +2406,8 @@ textarea.form-control-lg {
 
 .btn-primary {
   color: #fff;
-  background-color: #4D44B5;
-  border-color: #4D44B5; }
+  background-color: #212a50;
+  border-color: #212a50; }
   .btn-primary:hover {
     color: #fff;
     background-color: #413a9a;
@@ -2429,8 +2429,8 @@ textarea.form-control-lg {
       box-shadow: 0 0 0 0.25rem rgba(104, 96, 192, 0.5); }
   .btn-primary:disabled, .btn-primary.disabled {
     color: #fff;
-    background-color: #4D44B5;
-    border-color: #4D44B5; }
+    background-color: #212a50;
+    border-color: #212a50; }
 
 .btn-secondary {
   color: #000;
@@ -2629,24 +2629,24 @@ textarea.form-control-lg {
     border-color: #303972; }
 
 .btn-outline-primary {
-  color: #4D44B5;
-  border-color: #4D44B5; }
+  color: #212a50;
+  border-color: #212a50; }
   .btn-outline-primary:hover {
     color: #fff;
-    background-color: #4D44B5;
-    border-color: #4D44B5; }
+    background-color: #212a50;
+    border-color: #212a50; }
   .btn-check:focus + .btn-outline-primary, .btn-outline-primary:focus {
     box-shadow: 0 0 0 0.25rem rgba(77, 68, 181, 0.5); }
   .btn-check:checked + .btn-outline-primary,
   .btn-check:active + .btn-outline-primary, .btn-outline-primary:active, .btn-outline-primary.active, .btn-outline-primary.dropdown-toggle.show {
     color: #fff;
-    background-color: #4D44B5;
-    border-color: #4D44B5; }
+    background-color: #212a50;
+    border-color: #212a50; }
     .btn-check:checked + .btn-outline-primary:focus,
     .btn-check:active + .btn-outline-primary:focus, .btn-outline-primary:active:focus, .btn-outline-primary.active:focus, .btn-outline-primary.dropdown-toggle.show:focus {
       box-shadow: 0 0 0 0.25rem rgba(77, 68, 181, 0.5); }
   .btn-outline-primary:disabled, .btn-outline-primary.disabled {
-    color: #4D44B5;
+    color: #212a50;
     background-color: transparent; }
 
 .btn-outline-secondary {
@@ -2798,7 +2798,7 @@ textarea.form-control-lg {
 
 .btn-link {
   font-weight: 400;
-  color: #4D44B5;
+  color: #212a50;
   text-decoration: underline; }
   .btn-link:hover {
     color: #3e3691; }
@@ -3053,7 +3053,7 @@ textarea.form-control-lg {
   .dropdown-item.active, .dropdown-item:active {
     color: #fff;
     text-decoration: none;
-    background-color: #4D44B5; }
+    background-color: #212a50; }
   .dropdown-item.disabled, .dropdown-item:disabled {
     color: #adb5bd;
     pointer-events: none;
@@ -3089,7 +3089,7 @@ textarea.form-control-lg {
       background-color: rgba(255, 255, 255, 0.15); }
     .dropdown-menu-dark .dropdown-item.active, .dropdown-menu-dark .dropdown-item:active {
       color: #fff;
-      background-color: #4D44B5; }
+      background-color: #212a50; }
     .dropdown-menu-dark .dropdown-item.disabled, .dropdown-menu-dark .dropdown-item:disabled {
       color: #adb5bd; }
   .dropdown-menu-dark .dropdown-divider {
@@ -3191,7 +3191,7 @@ textarea.form-control-lg {
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
-  color: #4D44B5;
+  color: #212a50;
   text-decoration: none;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out; }
   @media (prefers-reduced-motion: reduce) {
@@ -3237,7 +3237,7 @@ textarea.form-control-lg {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: #4D44B5; }
+  background-color: #212a50; }
 
 .nav-fill > .nav-link,
 .nav-fill .nav-item {
@@ -3887,7 +3887,7 @@ textarea.form-control-lg {
 .page-link {
   position: relative;
   display: block;
-  color: #4D44B5;
+  color: #212a50;
   text-decoration: none;
   background-color: #fff;
   border: 1px solid #dee2e6;
@@ -3913,8 +3913,8 @@ textarea.form-control-lg {
 .page-item.active .page-link {
   z-index: 3;
   color: #fff;
-  background-color: #4D44B5;
-  border-color: #4D44B5; }
+  background-color: #212a50;
+  border-color: #212a50; }
 
 .page-item.disabled .page-link {
   color: #6c757d;
@@ -4076,7 +4076,7 @@ textarea.form-control-lg {
   color: #fff;
   text-align: center;
   white-space: nowrap;
-  background-color: #4D44B5;
+  background-color: #212a50;
   transition: width 0.6s ease; }
   @media (prefers-reduced-motion: reduce) {
     .progress-bar {
@@ -4140,8 +4140,8 @@ textarea.form-control-lg {
   .list-group-item.active {
     z-index: 2;
     color: #fff;
-    background-color: #4D44B5;
-    border-color: #4D44B5; }
+    background-color: #212a50;
+    border-color: #212a50; }
   .list-group-item + .list-group-item {
     border-top-width: 0; }
     .list-group-item + .list-group-item.active {
@@ -5187,7 +5187,7 @@ textarea.form-control-lg {
   content: ""; }
 
 .link-primary {
-  color: #4D44B5; }
+  color: #212a50; }
   .link-primary:hover, .link-primary:focus {
     color: #3e3691; }
 
@@ -5534,7 +5534,7 @@ textarea.form-control-lg {
   border-left: 0 !important; }
 
 .border-primary {
-  border-color: #4D44B5 !important; }
+  border-color: #212a50 !important; }
 
 .border-secondary {
   border-color: #FB7D5B !important; }
@@ -10183,7 +10183,7 @@ svg.pulse-svg {
     display: none; } }
 
 .header-profile .profile_title {
-  background: #4D44B5;
+  background: #212a50;
   color: #fff;
   padding: 0.625rem 1.25rem; }
   .header-profile .profile_title h5, .header-profile .profile_title .h5 {
@@ -10998,7 +10998,7 @@ svg.pulse-svg {
   width: 50vw; }
 
 :root {
-  --primary: #4D44B5;
+  --primary: #212a50;
   --secondary: #FB7D5B;
   --primary-hover: #3d3690;
   --primary-dark: #1e1a46;
@@ -11238,7 +11238,7 @@ The smaller device rules always should write below the bigger device rules
 Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Component
 */
 :root {
-  --primary: #4D44B5;
+  --primary: #212a50;
   --secondary: #FB7D5B;
   --primary-hover: #3d3690;
   --primary-dark: #1e1a46;
@@ -11502,7 +11502,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     transform: rotate(-225deg) translateY(-50%); } }
 
 :root {
-  --primary: #4D44B5;
+  --primary: #212a50;
   --secondary: #FB7D5B;
   --primary-hover: #3d3690;
   --primary-dark: #1e1a46;
@@ -12644,7 +12644,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   .sidebar-right #header_color_2 + label,
   .sidebar-right #sidebar_color_2 + label,
   .sidebar-right #primary_color_2 + label {
-    background-color: #4D44B5; }
+    background-color: #212a50; }
   .sidebar-right #nav_header_color_3 + label,
   .sidebar-right #header_color_3 + label,
   .sidebar-right #sidebar_color_3 + label,
@@ -13308,7 +13308,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-nav-headerbg="color_2"][data-theme-version="dark"],
 [data-nav-headerbg="color_2"] {
-  --nav-headbg: #4D44B5; }
+  --nav-headbg: #212a50; }
   [data-nav-headerbg="color_2"][data-theme-version="dark"] .nav-header .brand-logo .logo-abbr path,
   [data-nav-headerbg="color_2"] .nav-header .brand-logo .logo-abbr path {
     fill: #fff; }
@@ -13490,7 +13490,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-sidebarbg="color_2"][data-theme-version="dark"],
 [data-sidebarbg="color_2"] {
-  --sidebar-bg: #4D44B5;
+  --sidebar-bg: #212a50;
   /* &[data-sidebar-style="full"][data-layout="vertical"]{
 				.dlabnav .metismenu > li.mm-active > a,
 				.dlabnav .metismenu > li:hover > a{
@@ -13499,13 +13499,13 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 			} */ }
   [data-sidebarbg="color_2"][data-theme-version="dark"] .dlabnav,
   [data-sidebarbg="color_2"] .dlabnav {
-    border-color: #4D44B5; }
+    border-color: #212a50; }
   [data-sidebarbg="color_2"][data-theme-version="dark"] .dlabnav .metismenu > li:after,
   [data-sidebarbg="color_2"] .dlabnav .metismenu > li:after {
     background: #fff !important; }
   [data-sidebarbg="color_2"][data-theme-version="dark"] .menu-toggle .dlabnav .metismenu li > ul,
   [data-sidebarbg="color_2"] .menu-toggle .dlabnav .metismenu li > ul {
-    background: #4D44B5 !important; }
+    background: #212a50 !important; }
   [data-sidebarbg="color_2"][data-theme-version="dark"] .dlabnav .metismenu ul a:before,
   [data-sidebarbg="color_2"] .dlabnav .metismenu ul a:before {
     background: rgba(255, 255, 255, 0.5); }
@@ -15142,7 +15142,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-headerbg="color_2"][data-theme-version="dark"],
 [data-headerbg="color_2"] {
-  --headerbg: #4D44B5; }
+  --headerbg: #212a50; }
   [data-headerbg="color_2"][data-theme-version="dark"] .header.is-fixed,
   [data-headerbg="color_2"] .header.is-fixed {
     border-color: #6e66c6 !important; }
@@ -16379,7 +16379,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   padding-top: 12rem; }
 
 [data-primary="color_2"] {
-  --primary: #4D44B5;
+  --primary: #212a50;
   --secondary: #FB7D5B;
   --primary-hover: #3d3690;
   --primary-dark: #1e1a46;
@@ -16604,7 +16604,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   font-family: 'HelveticaNeue'; }
 
 :root {
-  --primary: #4D44B5;
+  --primary: #212a50;
   --secondary: #FB7D5B;
   --primary-hover: #3d3690;
   --primary-dark: #1e1a46;
@@ -16751,7 +16751,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     border-color: transparent transparent rgba(0, 0, 0, 0.15) transparent; }
 
 :root {
-  --primary: #4D44B5;
+  --primary: #212a50;
   --secondary: #FB7D5B;
   --primary-hover: #3d3690;
   --primary-dark: #1e1a46;
@@ -20009,7 +20009,7 @@ input#checkAll.form-check-input:checked {
   border-bottom-left-radius: 0 !important; }
 
 :root {
-  --primary: #4D44B5;
+  --primary: #212a50;
   --secondary: #FB7D5B;
   --primary-hover: #3d3690;
   --primary-dark: #1e1a46;
@@ -20546,7 +20546,7 @@ input#checkAll.form-check-input:checked {
     color: #7e7e7e;
     appearance: none; }
   .picker-data .color-time-picker .react-time-picker__wrapper .react-time-picker__clock-button {
-    background: #4D44B5;
+    background: #212a50;
     color: #b7b7b7;
     padding: .532rem .75rem;
     border-radius: 0 0.75rem 0.75rem 0;
@@ -20563,7 +20563,7 @@ input#checkAll.form-check-input:checked {
   border: 0.625rem solid #ededed; }
 
 .picker-data .color-time-picker .react-clock__hand__body {
-  background-color: #4D44B5; }
+  background-color: #212a50; }
 
 .picker-data .color-time-picker .react-time-picker__clock {
   box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
@@ -20684,7 +20684,7 @@ input#checkAll.form-check-input:checked {
   color: #A098AE; }
 
 :root {
-  --primary: #4D44B5;
+  --primary: #212a50;
   --secondary: #FB7D5B;
   --primary-hover: #3d3690;
   --primary-dark: #1e1a46;
@@ -20926,7 +20926,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   border-bottom-right-radius: 0; }
 
 :root {
-  --primary: #4D44B5;
+  --primary: #212a50;
   --secondary: #FB7D5B;
   --primary-hover: #3d3690;
   --primary-dark: #1e1a46;
@@ -20961,7 +20961,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     color: #fff; }
 
 :root {
-  --primary: #4D44B5;
+  --primary: #212a50;
   --secondary: #FB7D5B;
   --primary-hover: #3d3690;
   --primary-dark: #1e1a46;
@@ -21012,7 +21012,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     margin-bottom: .5rem; }
 
 :root {
-  --primary: #4D44B5;
+  --primary: #212a50;
   --secondary: #FB7D5B;
   --primary-hover: #3d3690;
   --primary-dark: #1e1a46;
@@ -21080,7 +21080,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   font-size: 2rem; }
 
 :root {
-  --primary: #4D44B5;
+  --primary: #212a50;
   --secondary: #FB7D5B;
   --primary-hover: #3d3690;
   --primary-dark: #1e1a46;
@@ -27373,7 +27373,7 @@ body > * {
       border-radius: 25px;
       top: 50%;
       left: 50%;
-      background-color: #4D44B5;
+      background-color: #212a50;
       transform: translate(-50%, -50%);
       border: 0;
       opacity: 0; }
@@ -29168,7 +29168,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
       border-top-right-radius: 0.375rem; }
 
 :root {
-  --primary: #4D44B5;
+  --primary: #212a50;
   --secondary: #FB7D5B;
   --primary-hover: #3d3690;
   --primary-dark: #1e1a46;
