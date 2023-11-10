@@ -30,6 +30,7 @@ const tabledata = [
 const FoodDetails = () => {
     return (
         <div className="row">
+            
             {/* <div className="col-xl-9">
                 <div className="card">
                     <div className="card-body">

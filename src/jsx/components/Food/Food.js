@@ -91,7 +91,7 @@ const Food = () => {
                     <td>
                       <Badge bg="" className="light badge-success">Active</Badge>
                     </td>
-                    <td>$21.56</td>
+                    <td>study,uk,2024</td>
                     <td>
                       <Dropdown>
                         <Dropdown.Toggle
@@ -117,7 +117,7 @@ const Food = () => {
                     <td>
                     <Badge bg="" className="light badge-success">Active</Badge>
                     </td>
-                    <td>$21.56</td>
+                    <td>study,uk,2024</td>
                     <td>
                       <Dropdown>
                         <Dropdown.Toggle
@@ -143,7 +143,7 @@ const Food = () => {
                     <td>
                     <Badge bg="" className="light badge-success">Active</Badge>
                     </td>
-                    <td>$21.56</td>
+                    <td>study,uk,2024</td>
                     <td>
                       <Dropdown>
                         <Dropdown.Toggle
