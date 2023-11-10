@@ -32,7 +32,7 @@ const Food = () => {
         <div className="card">
             <Tab.Container defaultActiveKey={'All'}>
                 <div className="card-header border-0 pb-0 flex-wrap">
-                    <h4 className="mb-0">Food Menu</h4>
+                    <h4 className="mb-0">Blog Menu</h4>
                     <Nav as="ul" className="nav nav-tabs food-tabs">
                         <Nav.Item as="li">
                             <Nav.Link eventKey={'All'} id="home-tab">All Means</Nav.Link>

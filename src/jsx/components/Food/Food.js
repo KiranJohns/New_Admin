@@ -3,6 +3,26 @@ import {Link} from 'react-router-dom';
 import {Nav, Tab, Dropdown} from 'react-bootstrap';
 import { IMAGES, SVGICON } from '../Dashboard/Content';
 import circle from './../../../images/circle.svg';
+import PageTitle from "../../layouts/PageTitle";
+import {
+    Row,
+    Col,
+    Card,
+    Table,
+    Badge,
+    ProgressBar,
+  } from "react-bootstrap";
+  
+  const svg1 = (
+    <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1">
+      <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <rect x="0" y="0" width="24" height="24"></rect>
+        <circle fill="#000000" cx="5" cy="12" r="2"></circle>
+        <circle fill="#000000" cx="12" cy="12" r="2"></circle>
+        <circle fill="#000000" cx="19" cy="12" r="2"></circle>
+      </g>
+    </svg>
+  );
 
 const tabledata = [
     { image: IMAGES.food1, title:'Beef Steak with Fried Potato', subtitle:'Dinner', rating:'5.0', sales:'1,210', intrest:'20%' },
@@ -30,9 +50,123 @@ const tabledata4 = [
 const Food = () => {
     return (
         <div className="card">
-            <Tab.Container defaultActiveKey={'All'}>
+                 <Col lg={12}>
+          <Card>
+            <Card.Header>
+              <Card.Title>All Blogs</Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <Table responsive>
+                <thead>
+                  <tr>
+                    <th className="width80">
+                      <strong>ID</strong>
+                    </th>
+                    <th>
+                      <strong>Heading</strong>
+                    </th>
+                    <th>
+                      <strong>Author Name</strong>
+                    </th>
+                    <th>
+                      <strong>Date</strong>
+                    </th>
+                    <th>
+                      <strong>Status</strong>
+                    </th>
+                    <th>
+                      <strong>Tags</strong>
+                    </th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <strong>01</strong>
+                    </td>
+                    <td>I have access to world-leading research and a welcoming global community</td>
+                    <td>Dr. Jackson</td>
+                    <td>01 August 2022</td>
+                    <td>
+                      <Badge bg="" className="light badge-success">Active</Badge>
+                    </td>
+                    <td>$21.56</td>
+                    <td>
+                      <Dropdown>
+                        <Dropdown.Toggle
+                          variant="success"
+                          className="light sharp i-false"
+                        >
+                          {svg1}
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                          <Dropdown.Item>Edit</Dropdown.Item>
+                          <Dropdown.Item>Delete</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>02</strong>
+                    </td>
+                    <td>10 reasons why you should study in Wales</td>
+                    <td>Dr. Jackson</td>
+                    <td>01 August 2022</td>
+                    <td>
+                    <Badge bg="" className="light badge-success">Active</Badge>
+                    </td>
+                    <td>$21.56</td>
+                    <td>
+                      <Dropdown>
+                        <Dropdown.Toggle
+                          variant="danger"
+                          className="light sharp i-false"
+                        >
+                          {svg1}
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                          <Dropdown.Item>Edit</Dropdown.Item>
+                          <Dropdown.Item>Delete</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>03</strong>
+                    </td>
+                    <td>10 reasons why you should study in Wales</td>
+                    <td>Mr. Bobby</td>
+                    <td>01 August 2022</td>
+                    <td>
+                    <Badge bg="" className="light badge-success">Active</Badge>
+                    </td>
+                    <td>$21.56</td>
+                    <td>
+                      <Dropdown>
+                        <Dropdown.Toggle
+                          variant="warning"
+                          className="light sharp i-false"
+                        >
+                          {svg1}
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                          <Dropdown.Item>Edit</Dropdown.Item>
+                          <Dropdown.Item>Delete</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+            </Card.Body>
+          </Card>
+        </Col>
+            {/* <Tab.Container defaultActiveKey={'All'}>
                 <div className="card-header border-0 pb-0 flex-wrap">
-                    <h4 className="mb-0">Food Menu</h4>
+                    <h4 className="mb-0">Blog Menu</h4>
                     <Nav as="ul" className="nav nav-tabs food-tabs">
                         <Nav.Item as="li">
                             <Nav.Link eventKey={'All'} id="home-tab">All Means</Nav.Link>
@@ -337,7 +471,7 @@ const Food = () => {
                         </Tab.Pane>
                     </Tab.Content>    
                 </div>    
-            </Tab.Container>
+            </Tab.Container> */}
         
         </div>
     );

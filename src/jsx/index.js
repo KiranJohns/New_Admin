@@ -120,14 +120,14 @@ import { ThemeContext } from "../context/ThemeContext";
 const Markup = () => {
   const routhPath = [
     {url: "finance", component: <Finance/>},
-    {url: "student", component: <Students/>},
-    {url: "student-detail", component: <StudentDetails/>},
-    {url: "add-student", component: <AddNewStudent/>},
-    {url: "teacher", component: <Teachers/>},
+    {url: "user", component: <Students/>},
+    {url: "user-detail", component: <StudentDetails/>},
+    {url: "add-user", component: <AddNewStudent/>},
+    {url: "admins", component: <Teachers/>},
     {url: "teacher-detail", component: <TeachersDetail/>},
     {url: "add-teacher", component: <AddNewTeacher/>},
-    {url: "food", component: <Food/>},    
-    {url: "food-details", component: <FoodDetails/>},
+    {url: "view-blog", component: <Food/>},    
+    {url: "add-blog", component: <FoodDetails/>},
     {url: "user", component: <User/>},
     {url: "activity", component: <Activity/>},
     {url: "calendar", component: <HomeCalendar/>},
@@ -255,7 +255,7 @@ function Layout2(){
   const {  sidebariconHover } = useContext(ThemeContext);
   return(    
     <div id="main-wrapper" className={`show ${sidebariconHover ? "iconhover-toggle": ""} ${ sideMenu ? "menu-toggle" : ""}`}>           
-        <Nav />
+        <Nav2 />
         <div className="content-body" style={{ minHeight: window.screen.height + 20 }}>
           <div className="container-fluid">							        
             <Outlet />							        

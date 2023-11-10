@@ -8,17 +8,18 @@ import profile from './../../../images/profile.svg';
 import location from './../../../images/svg/location.svg';
 import phone from './../../../images/svg/phone.svg';
 import email from './../../../images/svg/email.svg';
+import WalletBar from '../../layouts/WalletBar';
 
 const scheduleBlog = [
-    {title:'Basic Algorithm', subtitle:'Algorithm', image:IMAGES.avat1, color:'schedule-card'},
-    {title:'Basic Art', subtitle:'Art', image:IMAGES.avat2, color:'schedule-card-1'},
-    {title:'React & Scss', subtitle:'Programming', image:IMAGES.avat3, color:'schedule-card-2'},
-    {title:'Simple Past Tense', subtitle:'English', image:IMAGES.avat4, color:'schedule-card-3'}
+    {title:'Number of Courses',  image:IMAGES.avat1, color:'schedule-card'},
+    {title:'Number of certificates', image:IMAGES.avat2, color:'schedule-card-1'},
+    {title:'Date of Join', image:IMAGES.avat3, color:'schedule-card-2'},
+   
 ];
 
 const basicDetail = [
-    {title:'Parents', subtitle:'Justin Hope', image:profile},
-    {title:'Address', subtitle:'Jakarta, Indonesia', image:location},
+    {title:'ID', subtitle:'222333', image:profile},
+    {title:'City', subtitle:'London', image:location},
     {title:'Phone', subtitle:'+12 345 6789 0', image:phone},
     {title:'Email', subtitle:'Historia@mail.com', image:email},
 ];
@@ -53,7 +54,7 @@ const StudentDetails = () => {
                                 </div>
                                 <div>
                                     <h2 className="mb-0">Karen Hope</h2>
-                                    <p className="text-primary font-w600">Student</p>
+                                    <p className="text-primary font-w600">Type of User</p>
                                 </div>
                             </div>
                             <Dropdown className="custom-dropdown">
@@ -61,9 +62,8 @@ const StudentDetails = () => {
                                     {SVGICON.dots}
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu className="dropdown-menu-end" align="end">
-                                    <Dropdown.Item>Option 1</Dropdown.Item>
-                                    <Dropdown.Item>Option 2</Dropdown.Item>
-                                    <Dropdown.Item>Option 3</Dropdown.Item>
+                                    <Dropdown.Item>Disable</Dropdown.Item>
+                                   
                                 </Dropdown.Menu>
                             </Dropdown>
                         </div>
@@ -88,7 +88,7 @@ const StudentDetails = () => {
                 </div>
                 <div className="card h-auto">
                     <div className="card-header border-0 p-3">
-                        <h4 className="heading mb-0">Payment History</h4>
+                        <h4 className="heading mb-0">Courses</h4>
                     </div>
                     <div className="card-body p-0">
                         <PaymentHistoryTable />
@@ -98,12 +98,7 @@ const StudentDetails = () => {
             <div className='col-xl-3'>
                 <div className="row">
                     <div className="col-xl-12">
-                        <div className="card h-auto">
-                            <div className="card-body">
-                                <h3 className="heading">Schedule Details</h3>
-                                <p className="mb-0">Thursday, 10th April , 2022</p>
-                            </div>
-                        </div>
+                       
                     </div>
                     {scheduleBlog.map((data, index)=>(
                         <div className="col-xl-12 col-sm-6" key={index}>
@@ -115,26 +110,26 @@ const StudentDetails = () => {
                                         <div>
                                             <ul>
                                                 <li className="mb-2">
-                                                    {SVGICON.calndar}
-                                                    {" "}July 20, 2023
+                                                    {/* {SVGICON.calndar} */}
+                                                    {" "}Purchased Courses
                                                 </li>
                                                 <li>
-                                                    {SVGICON.watch}
-                                                    {" "}09.00 - 10.00 AM
+                                                    {/* {SVGICON.watch} */}
+                                                    {" "}22
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div>
+                                        {/* <div>
                                             <img src={data.image} className="avatar avatar-lg" alt="" />
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     ))}                   
-                    <div className="col-xl-12">
+                    {/* <div className="col-xl-12">
                         <Link to={"#"} className="btn btn-primary btn-block light btn-rounded mb-5">View More</Link>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>    

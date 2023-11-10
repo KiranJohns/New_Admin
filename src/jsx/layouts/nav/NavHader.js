@@ -20,10 +20,10 @@ const NavHader = () => {
   return (
     <div className="nav-header">
       <Link to="/dashboard" className="brand-logo"> 
-        {/* <img src={imgg} style={{width:'15rem'}} alt="image" /> */}
+        
           <div className="brand-title">
-         <h4 style={{color:'white', marginTop:'1rem'}}>Learn For Care</h4>
-         
+         {/* <h4 style={{color:'white', marginTop:'1rem'}}>Learn For Care</h4> */}
+         <img src={imgg} style={{width:'13.5rem',marginRight:"2rem"}} alt="image" />
           </div>       
       </Link>
 

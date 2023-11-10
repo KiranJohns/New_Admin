@@ -7,39 +7,39 @@ import { IMAGES } from '../Dashboard/Content';
 
 const CardListBlog = [
 	{ 
-		id:1, image: IMAGES.contact1,  Post:"Teacher", 
+		id:1, image: IMAGES.contact1,  Post:"Admin", 
 		Cust_Name: "Munaroh Steffani", Subject:"Mathematics"
 	},
 	{ 
-		id:2, image: IMAGES.contact2,  Post:"Teacher", 
+		id:2, image: IMAGES.contact2,  Post:"Admin", 
 		Cust_Name: "Geovanny Anderson", 	Subject:"Science " 
 	},
 	{ 
-		id:3, image: IMAGES.contact3, Post:"Teacher", 
-		Cust_Name: "Louis Ali", Subject:"English" 
+		id:3, image: IMAGES.contact3, Post:"Admin", 
+		Cust_Name: "Louis Ali", Subject:"Admin" 
 	},
 	{ 
-		id:4, image: IMAGES.contact4, Post:"Teacher", 
+		id:4, image: IMAGES.contact4, Post:"Admin", 
 		Cust_Name: "Marquezz", Subject:"History" 
 	},
 	{ 
-		id:5, image: IMAGES.contact5, Post:"Teacher", 
+		id:5, image: IMAGES.contact5, Post:"Admin", 
 		Cust_Name: "Richard ", Subject:"Biology" 
 	},
 	{ 
-		id:6, image: IMAGES.contact6, Post:"Teacher", 
+		id:6, image: IMAGES.contact6, Post:"Admin", 
 		Cust_Name: "Andrew Stevano",  Subject:"Music"
 	},
 	{ 
-		id:7, image: IMAGES.contact7, Post:"Teacher", 
+		id:7, image: IMAGES.contact7, Post:"Admin", 
 		Cust_Name: "Cathenna ",  Subject:"Literature"
 	},
 	{ 
-		id:8, image: IMAGES.contact8, Post:"Teacher", 
+		id:8, image: IMAGES.contact8, Post:"Admin", 
 		Cust_Name: "Hrisovalantis ",  	Subject:"Psychology"
 	},
     { 
-		id:9, image: IMAGES.contact9, Post:"Teacher", 
+		id:9, image: IMAGES.contact9, Post:"Admin", 
 		Cust_Name: "Louis Ali", Subject:"English" 
 	},
 	{ 
@@ -213,7 +213,7 @@ const Teachers = () => {
                         <button type="button" className="btn btn-primary" 
                             onClick={()=> setPostModal(true)}
                         >
-                            + New Teacher
+                            + New Admin
                         </button>
                     </div>
                 </div>
@@ -226,9 +226,9 @@ const Teachers = () => {
                                 <div className="card-body">
                                     <div className="user-content">
                                         <div className="user-info">
-                                            <div className="user-img">
+                                            {/* <div className="user-img">
                                                 <img src={contact.image} alt="" className="avatar avatar-xl" />
-                                            </div>
+                                            </div> */}
                                             <div className="user-details">
                                                 <h4 className="user-name mb-0">{contact.Cust_Name}</h4>
                                                 <p>{contact.Post}</p>
@@ -241,22 +241,22 @@ const Teachers = () => {
                                                 </svg>
                                             </Dropdown.Toggle>
                                             <Dropdown.Menu className="dropdown-menu dropdown-menu-end" align={'end'}>
-                                                <Dropdown.Item onClick={(event) => handleEditClick(event, contact)}>Edit</Dropdown.Item>
+                                            
                                                 <Dropdown.Item className='text-danger'
                                                     onClick={()=>handleDeleteClick(contact.id)}
                                                 >Delete</Dropdown.Item>
                                             </Dropdown.Menu>
                                         </Dropdown>
                                     </div>
-                                    <div className="contact-icon">
+                                    {/* <div className="contact-icon">
                                         <span className="badge badge-success light">{contact.Subject}</span>
                                         <span className="badge badge-secondary light mx-2">Science</span> 
                                         <span className="badge badge-danger light">Art</span>
-                                    </div>
-                                    <div className="d-flex align-items-center">
+                                    </div> */}
+                                    {/* <div className="d-flex align-items-center">
                                         <Link to={"/app-profile"} className="btn  btn-primary btn-sm w-50 me-2"><i className="fa-solid fa-user me-2"></i>Profile</Link>
                                         <Link to={"/chat"} className="btn  btn-secondary btn-sm w-50"><i className="fa-sharp fa-regular fa-envelope me-2"></i>Chat</Link>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>
@@ -284,7 +284,7 @@ const Teachers = () => {
             <Modal className="modal fade"  show={postModal} onHide={setPostModal} centered>
                 <form>
                     <div className="modal-header">
-                        <h4 className="modal-title fs-20">Add Task</h4>
+                        <h4 className="modal-title fs-20">Add Admin</h4>
                         <button type="button" className="btn-close" onClick={()=> setPostModal(false)} data-dismiss="modal"></button>
                     </div>
                     <div className="modal-body">                        
@@ -314,23 +314,23 @@ const Teachers = () => {
                                     </div>
                                 </div>
                                 <div className="form-group mb-3">
-                                    <label className="text-black font-w500">Post</label>
+                                    <label className="text-black font-w500">Email</label>
                                     <div className="contact-name">
                                         <input type="text"  className="form-control"  autocomplete="off"
                                             name="Post" required="required"
                                             onChange={handleAddFormChange}
-                                            placeholder="post"
+                                            placeholder="email"
                                         />
                                         <span className="validation-text"></span>
                                     </div>
                                 </div> 
                                 <div className="form-group mb-3">
-                                    <label className="text-black font-w500">Subject</label>
+                                    <label className="text-black font-w500">Password</label>
                                     <div className="contact-occupation">
-                                        <input type="text"  autocomplete="off"
-                                            name="Subject" required="required"
+                                        <input type="password"  autocomplete="off"
+                                            name="Password" required="required"
                                             onChange={handleAddFormChange}
-                                            className="form-control" placeholder="subject" 
+                                            className="form-control" placeholder="password" 
                                         />
                                     </div>
                                 </div> 

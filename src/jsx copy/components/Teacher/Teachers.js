@@ -213,7 +213,7 @@ const Teachers = () => {
                         <button type="button" className="btn btn-primary" 
                             onClick={()=> setPostModal(true)}
                         >
-                            + New Teacher
+                            + New Admin
                         </button>
                     </div>
                 </div>

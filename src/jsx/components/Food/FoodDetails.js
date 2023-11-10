@@ -30,7 +30,7 @@ const tabledata = [
 const FoodDetails = () => {
     return (
         <div className="row">
-            <div className="col-xl-9">
+            {/* <div className="col-xl-9">
                 <div className="card">
                     <div className="card-body">
                         <ul className="d-sm-flex d-block align-items-start justify-content-between mb-5">
@@ -470,7 +470,7 @@ const FoodDetails = () => {
                         </div>    
                     </Tab.Container>
                 </div>    
-            </div>    
+            </div>     */}
         </div>
     );
 };
