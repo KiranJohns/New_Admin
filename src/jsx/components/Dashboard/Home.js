@@ -126,7 +126,7 @@ const Home = () => {
 				<div className="col-xl-8">
 					<div className="card">
 						<div className="card-header py-3 border-0 px-3">
-							<h4 className="heading m-0">Company Details</h4>
+							<h4 className="heading m-0">New Companies</h4>
 						</div>
 						<div className="card-body p-0">
 							<TeacherDetails />

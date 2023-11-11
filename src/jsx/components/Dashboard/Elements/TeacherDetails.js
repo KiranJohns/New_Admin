@@ -47,11 +47,11 @@ export const TeacherDetails = () => {
                 <table id="teacher-table" className="tech-data dataTable no-footer" style={{ minWidth: "798px"}}>
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Name</th>
-                            <th>Subject</th>
-                            <th>Qulification</th>
-                            <th>Fee</th>
-                            <th className="text-end">Performance</th>
+                            <th>Date</th>
+                            <th>City</th>
+                            {/* <th className="text-end">Performance</th> */}
                         </tr>
                     </thead>
                     <tbody>
@@ -61,7 +61,7 @@ export const TeacherDetails = () => {
                                 <td>{item.subject}</td>
                                 <td>{item.qualification}</td>
                                 <td>${item.fee}</td>
-                                <td className="text-end"><span className={`badge badge-sm light badge-${item.status === "Good" ?  'success' : 'danger' }`}>{item.status}</span></td>
+                                {/* <td className="text-end"><span className={`badge badge-sm light badge-${item.status === "Good" ?  'success' : 'danger' }`}>{item.status}</span></td> */}
                             </tr>
                         ))}
                         

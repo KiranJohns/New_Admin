@@ -6,7 +6,11 @@ import { useSelector } from "react-redux";
 import "./index.css";
 import "./chart.css";
 import "./step.css";
-
+import ViewCourse from "./components/viewCourse.";
+import AddCourse from "./components/Food/addCourse"; 
+import AddExam from "./components/Food/addExam";
+import ViewExam from "./components/viewExam";
+import ViewCertificates from "../jsx copy/components/Student/Certificates";
 /// Layout
 import Nav from "./layouts/nav";
 import Nav2 from "./layouts/nav/index2";
@@ -119,6 +123,11 @@ import { ThemeContext } from "../context/ThemeContext";
 
 const Markup = () => {
   const routhPath = [
+    {url:'view-cetificate', component: <ViewCertificates /> },
+      {url:'view-exam', component: <ViewExam /> },
+    { url: "add-exam", component: <AddExam /> },
+    {url:"add-course", component:<AddCourse/>},
+    {url:"view-course",component:<ViewCourse/>},
     {url: "finance", component: <Finance/>},
     {url: "user", component: <Students/>},
     {url: "user-detail", component: <StudentDetails/>},

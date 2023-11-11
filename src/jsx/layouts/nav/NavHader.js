@@ -23,7 +23,7 @@ const NavHader = () => {
         
           <div className="brand-title">
          {/* <h4 style={{color:'white', marginTop:'1rem'}}>Learn For Care</h4> */}
-         <img src={imgg} style={{width:'13.5rem',marginRight:"2rem"}} alt="image" />
+         <img src={imgg} style={{width:'13.3rem',marginRight:"2rem", marginTop:'1rem'}} alt="image" />
           </div>       
       </Link>
 
@@ -34,6 +34,7 @@ const NavHader = () => {
                openMenuToggle();
               
           }}
+         
       >
         <div className={`hamburger ${sideMenu ? "is-active" : ""}`}>
             <span className="line"></span><span className="line"></span><span className="line"></span>

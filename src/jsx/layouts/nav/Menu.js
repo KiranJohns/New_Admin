@@ -1,24 +1,29 @@
 export const MenuList = [
     //Dashboard
-    {
-        title: 'Dashboard',	
-        classsChange: 'mm-collapse',		
-        iconStyle: <i className="material-symbols-outlined">home</i>,
-        content: [
-            {
-                title: 'Dashboard Light',
-                to: 'dashboard',					
-            },
-            // {
-            //     title: 'Dashboard Dark',
-            //     to: 'dashboard-dark',
-            // },
-            // {
-            //     title: 'Finance',
-            //     to: 'finance',
-            // },
+    // {
+    //     title: 'Dashboard',	
+    //     classsChange: 'mm-collapse',		
+    //     iconStyle: <i className="material-symbols-outlined">home</i>,
+    //     content: [
+    //         {
+    //             title: 'Dashboard Light',
+    //             to: 'dashboard',					
+    //         },
+    //         {
+    //             title: 'Dashboard Dark',
+    //             to: 'dashboard-dark',
+    //         },
+    //         {
+    //             title: 'Finance',
+    //             to: 'finance',
+    //         },
            
-        ],
+    //     ],
+    // },
+    {   
+        title:'Dashboard',        
+        iconStyle: <i className="material-icons">home</i>,
+        to: 'dashboard',
     },
     {
         title: 'User',	
@@ -74,6 +79,31 @@ export const MenuList = [
             },
             
         ],
+    },
+    {   
+        title:'View Course',        
+        iconStyle: <i className="material-icons">widgets</i>,
+        to: 'view-course',
+    },
+    {   
+        title:'Add Course',        
+        iconStyle: <i className="material-icons">widgets</i>,
+        to: 'add-course',
+    },
+    {   
+        title:'Add Exam',        
+        iconStyle: <i className="material-icons">insert_drive_file</i>,
+        to: 'add-exam',
+    },
+    {   
+        title:'View Exam',        
+        iconStyle: <i className="material-icons">insert_drive_file</i>,
+        to: 'view-exam',
+    },
+    {   
+        title:'View Certificate',        
+        iconStyle: <i className="material-icons">assessment</i>,
+        to: 'view-cetificate',
     },
     // {
     //     title: 'File Manager',	
@@ -205,6 +235,7 @@ export const MenuList = [
     //         },
     //     ]
     // },
+    
     //Boosttrap
     // {
     //     title: 'Bootstrap',	
@@ -278,94 +309,94 @@ export const MenuList = [
     //     ]
     // },
     //plugins
-    {
-        title:'Plugins',
-        classsChange: 'mm-collapse',
-        iconStyle : <i className="material-icons">extension </i>,
-        content : [
-            {
-                title:'Select 2',
-                to: 'uc-select2',
-            },
-            // {
-            //     title:'Noui Slider',
-            //     to: 'uc-noui-slider',
-            // },
-            {
-                title:'Sweet Alert',
-                to: 'uc-sweetalert',
-            },
-            {
-                title:'Toastr',
-                to: 'uc-toastr',
-            },
-            // {
-            //     title:'Jqv Map',
-            //     to: 'map-jqvmap',
-            // },
-            {
-                title:'Light Gallery',
-                to: 'uc-lightgallery',
-            },
-        ]
-    },
+    // {
+    //     title:'Plugins',
+    //     classsChange: 'mm-collapse',
+    //     iconStyle : <i className="material-icons">extension </i>,
+    //     content : [
+    //         {
+    //             title:'Select 2',
+    //             to: 'uc-select2',
+    //         },
+    //         {
+    //             title:'Noui Slider',
+    //             to: 'uc-noui-slider',
+    //         },
+    //         {
+    //             title:'Sweet Alert',
+    //             to: 'uc-sweetalert',
+    //         },
+    //         {
+    //             title:'Toastr',
+    //             to: 'uc-toastr',
+    //         },
+    //         {
+    //             title:'Jqv Map',
+    //             to: 'map-jqvmap',
+    //         },
+    //         {
+    //             title:'Light Gallery',
+    //             to: 'uc-lightgallery',
+    //         },
+    //     ]
+    // },
     //Widget
-    {   
-        title:'Widget',        
-        iconStyle: <i className="material-icons">widgets</i>,
-        to: 'widget',
-    },
+    // {   
+    //     title:'Widget',        
+    //     iconStyle: <i className="material-icons">widgets</i>,
+    //     to: 'widget',
+    // },
     //Forms
-    {
-        title:'Forms',
-        classsChange: 'mm-collapse',
-        iconStyle: <i className="material-icons">insert_drive_file</i>,
-        content : [
-            {
-                title:'Form Elements',
-                to: 'form-element',
-            },
-            {
-                title:'Wizard',
-                to: 'form-wizard',
-            },
-            {
-                title:'CkEditor',
-                to: 'form-ckeditor',
-            },
-            {
-                title:'Pickers',
-                to: 'form-pickers',
-            },
-            {
-                title:'Form Validate',
-                to: 'form-validation',
-            },
+    // {
+    //     title:'Forms',
+    //     classsChange: 'mm-collapse',
+    //     iconStyle: <i className="material-icons">insert_drive_file</i>,
+    //     content : [
+    //         {
+    //             title:'Form Elements',
+    //             to: 'form-element',
+    //         },
+    //         {
+    //             title:'Wizard',
+    //             to: 'form-wizard',
+    //         },
+    //         {
+    //             title:'CkEditor',
+    //             to: 'form-ckeditor',
+    //         },
+    //         {
+    //             title:'Pickers',
+    //             to: 'form-pickers',
+    //         },
+    //         {
+    //             title:'Form Validate',
+    //             to: 'form-validation',
+    //         },
 
-        ]
-    },
-    //Table
-    {
-        title:'Table',
-        classsChange: 'mm-collapse',
-        iconStyle: <i className="material-icons">table_chart</i>,
-        content : [
-            {
-                title:'Table Filtering',
-                to: 'table-filtering',
-            },
-            {
-                title:'Table Sorting',
-                to: 'table-sorting',
-            },
-            {
-                title:'Bootstrap',
-                to: 'table-bootstrap-basic',
-            },
+    //     ]
+    // },
+    // //Table
+    // {
+    //     title:'Table',
+    //     classsChange: 'mm-collapse',
+    //     iconStyle: <i className="material-icons">table_chart</i>,
+    //     content : [
+    //         {
+    //             title:'Table Filtering',
+    //             to: 'table-filtering',
+    //         },
+    //         {
+    //             title:'Table Sorting',
+    //             to: 'table-sorting',
+    //         },
+    //         {
+    //             title:'Bootstrap',
+    //             to: 'table-bootstrap-basic',
+    //         },
            
 
-        ]
-    },
+    //     ]
+    // },
     //Pages
     // {
     //     title:'Pages',

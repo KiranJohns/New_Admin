@@ -33,7 +33,8 @@ const tableData = [
     
 ];
 
-const Students = () => {
+
+const ViewCertificates = () => {
     const childRef = useRef();
     const [currentPage , setCurrentPage] = useState(1);
     const [checked, setChecked] = useState(tableData);
@@ -104,7 +105,7 @@ const Students = () => {
                                     <button type="button" className="btn btn-primary" 
                                         onClick={() => childRef.current.openModal()}
                                     >
-                                        + New User
+                                        + New Certificate
                                     </button>
                                 </div>
                             </div>
@@ -123,7 +124,7 @@ const Students = () => {
                                                 <th>Name</th>
                                                 <th>ID</th>
                                                 <th>email</th>
-                                                <th>Certificate Id</th>
+                                                <th>Certificate ID</th>
                                                 <th>City</th>
                                                 <th>Type</th>
                                                 
@@ -229,4 +230,4 @@ const Students = () => {
     )
 }
 
-export default Students
+export default ViewCertificates
