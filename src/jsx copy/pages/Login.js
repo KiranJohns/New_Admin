@@ -116,6 +116,7 @@ function Login (props) {
 														<label className="form-check-label" htmlFor="basic_checkbox_1">Remember my preference</label>
 													</div>
 												</div>
+												
 												<div className="mb-3">
 													<Link  to="/page-register">Sign up</Link>
 												</div>
