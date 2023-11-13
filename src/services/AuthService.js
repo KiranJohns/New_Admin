@@ -1,10 +1,11 @@
 import axios from 'axios';
 import swal from "sweetalert";
+import fetchData from "../axios/index";
 import {
     loginConfirmedAction,
     Logout,
 } from '../store/actions/AuthActions';
-
+const makeRequest = fetchData()
 export function signUp(email, password) {
     //axios call
     const postData = {
@@ -18,14 +19,14 @@ export function signUp(email, password) {
     );
 }
 
-export function login(email, password) {
+export function login(url,email, password) {
     const postData = {
         email,
         password,
         returnSecureToken: true,
     };
     return axios.post(
-        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD3RPAp3nuETDn9OQimqn_YF6zdzqWITII`,
+        `https://www.testkiran.online/api/admin${url}`,
         postData,
     );
 }
