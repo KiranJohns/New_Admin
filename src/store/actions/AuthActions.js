@@ -51,22 +51,23 @@ export function loginAction(url, email, password, navigate) {
       .then((res) => {
         console.log(res);
         localStorage.setItem(
-          `admin_learnforcare_access`,
-          res.data.jwt_access_token
+          'admin_learnforcare_access',
+          res.data.data.jwt_access_token
         );
         localStorage.setItem(
-          `admin-learnforcare_refresh`,
-          res.data.jwt_re_fresh_token
+          'admin-learnforcare_refresh',
+          res.data.data.jwt_re_fresh_token
         );
+
         let response = {
           data: {
             displayName: "learnforcare",
             email: email,
             expiresIn: 86400,
-            idToken: res.data.jwt_access_token,
-            kind: "",
+            idToken: res.data.data.jwt_access_token,
+            kind: "identitytoolkit#VerifyPasswordResponse",
             localId: "qmt6dRyipIad8UCc0QpMV2MENSy1",
-            refreshToken: res.data.jwt_access_token,
+            refreshToken: res.data.data.jwt_access_token,
             registered: true,
           },
         };
@@ -76,8 +77,21 @@ export function loginAction(url, email, password, navigate) {
         navigate("/dashboard");
       })
       .catch((error) => {
-        const errorMessage = formatError(error.response.data);
+        let err = error.response.data;
+        let data = {
+          error: {
+            code: err.errors[0]?.code,
+            errors: {
+              domain: "",
+              reason: err.errors[0]?.error,
+              message: err.errors[0]?.message,
+            },
+            message: "",
+          },
+        };
+        const errorMessage = formatError(data);
         dispatch(loginFailedAction(errorMessage));
+      
       });
   };
 }
