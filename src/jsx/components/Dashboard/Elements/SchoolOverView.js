@@ -6,7 +6,6 @@ const chartHeaderData = [
   { title: 'Week', type:'week'},
   { title: 'Month', type:'month'},
   { title: 'Year', type:'year'},
-  { title: 'All', type:'all'},
 ];
 
 const  SchoolOverView = () =>{

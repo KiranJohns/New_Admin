@@ -12,7 +12,7 @@ import { UnpaidStudentTable } from './Elements/UnpaidStudentTable';
 
 
 const SchoolPerformance = loadable(() =>
- 	pMinDelay(import("./Elements/SchoolPerformance"), 500)
+ 	pMinDelay(import("./Elements/SchoolPerformance"), 2000)
 );
 const SchoolOverView = loadable(() =>
  	pMinDelay(import("./Elements/SchoolOverView"), 1000)

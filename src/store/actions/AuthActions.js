@@ -49,13 +49,12 @@ export function loginAction(url, email, password, navigate) {
   return (dispatch) => {
     login(url, email, password)
       .then((res) => {
-        console.log(res);
         localStorage.setItem(
-          'admin_learnforcare_access',
+          `admin_learnforcare_access`,
           res.data.data.jwt_access_token
         );
         localStorage.setItem(
-          'admin-learnforcare_refresh',
+          `admin-learnforcare_refresh`,
           res.data.data.jwt_re_fresh_token
         );
 
@@ -77,6 +76,7 @@ export function loginAction(url, email, password, navigate) {
         navigate("/dashboard");
       })
       .catch((error) => {
+        console.log(error.response.data);
         let err = error.response.data;
         let data = {
           error: {
@@ -91,7 +91,6 @@ export function loginAction(url, email, password, navigate) {
         };
         const errorMessage = formatError(data);
         dispatch(loginFailedAction(errorMessage));
-      
       });
   };
 }
