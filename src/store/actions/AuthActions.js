@@ -49,7 +49,7 @@ export function loginAction(url, email, password, navigate) {
   return (dispatch) => {
     login(url, email, password)
       .then((res) => {
-        console.log();
+        console.log(res);
         localStorage.setItem(
           `admin_learnforcare_access`,
           res.data.jwt_access_token
