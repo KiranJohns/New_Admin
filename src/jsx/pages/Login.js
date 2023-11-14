@@ -39,6 +39,7 @@ function Login(props) {
     if (error) {
       return;
     }
+
     let url = "";
     if (!superAdmin) {
       url = "/auth/login";
