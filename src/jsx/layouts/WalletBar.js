@@ -50,7 +50,7 @@ const WalletBar = () => {
 							<div className="card-header  border-0 px-3">
 								<div>
 									<h2 className="heading mb-0">New Users</h2>
-									<span>You have <span className="font-w600">456</span> Students</span>
+									<span>You have<span className="font-w600">456</span> Students</span>
 								</div>
 								<div >
 									<Link to={"#"} className="add icon-box bg-primary" 
