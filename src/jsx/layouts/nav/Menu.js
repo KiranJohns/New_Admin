@@ -242,77 +242,77 @@ export const MenuList = [
     // },
     
     //Boosttrap
-    // {
-    //     title: 'Bootstrap',	
-    //     classsChange: 'mm-collapse',
-    //     iconStyle: <i className="material-icons">favorite</i>,	
-    //     content: [
-    //         {
-    //             title: 'Accordion',
-    //             to: 'ui-accordion',					
-    //         },
-    //         {
-    //             title: 'Alert',
-    //             to: 'ui-alert',					
-    //         },
-    //         {
-    //             title: 'Badge',
-    //             to: 'ui-badge',					
-    //         },
-    //         {
-    //             title: 'Button',
-    //             to: 'ui-button',					
-    //         },
-    //         {
-    //             title: 'Modal',
-    //             to: 'ui-modal',					
-    //         },
-    //         {
-    //             title: 'Button Group',
-    //             to: 'ui-button-group',					
-    //         },
-    //         {
-    //             title: 'List Group',
-    //             to: 'ui-list-group',					
-    //         },
-    //         {
-    //             title: 'Cards',
-    //             to: 'ui-card',					
-    //         },
-    //         {
-    //             title: 'Carousel',
-    //             to: 'ui-carousel',					
-    //         },
-    //         {
-    //             title: 'Dropdown',
-    //             to: 'ui-dropdown',					
-    //         },
-    //         {
-    //             title: 'Popover',
-    //             to: 'ui-popover',					
-    //         },
-    //         {
-    //             title: 'Progressbar',
-    //             to: 'ui-progressbar',					
-    //         },
-    //         {
-    //             title: 'Tab',
-    //             to: 'ui-tab',					
-    //         },
-    //         {
-    //             title: 'Typography',
-    //             to: 'ui-typography',					
-    //         },
-    //         {
-    //             title: 'Pagination',
-    //             to: 'ui-pagination',					
-    //         },
-    //         {
-    //             title: 'Grid',
-    //             to: 'ui-grid',					
-    //         },
-    //     ]
-    // },
+    {
+        title: 'Bootstrap',	
+        classsChange: 'mm-collapse',
+        iconStyle: <i className="material-icons">favorite</i>,	
+        content: [
+            {
+                title: 'Accordion',
+                to: 'ui-accordion',					
+            },
+            {
+                title: 'Alert',
+                to: 'ui-alert',					
+            },
+            {
+                title: 'Badge',
+                to: 'ui-badge',					
+            },
+            {
+                title: 'Button',
+                to: 'ui-button',					
+            },
+            {
+                title: 'Modal',
+                to: 'ui-modal',					
+            },
+            {
+                title: 'Button Group',
+                to: 'ui-button-group',					
+            },
+            {
+                title: 'List Group',
+                to: 'ui-list-group',					
+            },
+            {
+                title: 'Cards',
+                to: 'ui-card',					
+            },
+            {
+                title: 'Carousel',
+                to: 'ui-carousel',					
+            },
+            {
+                title: 'Dropdown',
+                to: 'ui-dropdown',					
+            },
+            {
+                title: 'Popover',
+                to: 'ui-popover',					
+            },
+            {
+                title: 'Progressbar',
+                to: 'ui-progressbar',					
+            },
+            {
+                title: 'Tab',
+                to: 'ui-tab',					
+            },
+            {
+                title: 'Typography',
+                to: 'ui-typography',					
+            },
+            {
+                title: 'Pagination',
+                to: 'ui-pagination',					
+            },
+            {
+                title: 'Grid',
+                to: 'ui-grid',					
+            },
+        ]
+    },
     //plugins
     // {
     //     title:'Plugins',
