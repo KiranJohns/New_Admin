@@ -20,10 +20,10 @@ const SchoolOverView = loadable(() =>
 
 
 const cardBlog = [
-	{title:'Individuals', svg: SVGICON.user, number:'24K', change:'std-data'},
-	{title:'Companies', svg: SVGICON.user2, number:'2k', change:'teach-data'},
-	{title:'Courses', svg: SVGICON.event, number:'40K', change:'event-data'},
-	{title:'Certificates', svg: SVGICON.message, number:'20k', change:'food-data bg-dark'},
+	{title:'Individuals', svg: SVGICON.user, number:'24', change:'std-data'},
+	{title:'Companies', svg: SVGICON.user2, number:'200', change:'teach-data'},
+	{title:'Courses', svg: SVGICON.event, number:'55', change:'event-data'},
+	{title:'Certificates', svg: SVGICON.message, number:'20', change:'food-data'},
 ];
 
 const Home = () => {
@@ -104,7 +104,7 @@ const Home = () => {
 				</div>
 			</div>
 			<div className="row">
-				<div className="col-xl-4 wow fadeInUp" data-wow-delay="1.5s">
+				{/* <div className="col-xl-4 wow fadeInUp" data-wow-delay="1.5s">
 					<div className="card">
 						<div className="card-header pb-0 border-0 flex-wrap">
 							<div>
@@ -122,8 +122,8 @@ const Home = () => {
 							/>
 						</div>
 					</div>
-				</div>
-				<div className="col-xl-8">
+				</div> */}
+				<div className="col-xl-12">
 					<div className="card">
 						<div className="card-header py-3 border-0 px-3">
 							<h4 className="heading m-0">New Companies</h4>

@@ -80,7 +80,7 @@ const StudentDetails = () => {
                     width="263.592"
                     height="275.13"
                     rx="20"
-                    fill="#FB7D5B"
+                    fill="#e07051"
                   />
                 </svg>
               </div>

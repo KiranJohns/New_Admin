@@ -44,13 +44,15 @@ export const TeacherDetails = () => {
     return (
         <div className="table-responsive basic-tbl">
             <div id="teacher-table_wrapper" className="dataTables_wrapper no-footer">
-                <table id="teacher-table" className="tech-data dataTable no-footer" style={{ minWidth: "798px"}}>
+                <table id="teacher-table" className="tech-data dataTable no-footer" style={{ width:'100%'}}>
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Date</th>
                             <th>City</th>
+                            <th>Courses</th>
+                            <th>Individuals</th>
                             {/* <th className="text-end">Performance</th> */}
                         </tr>
                     </thead>
@@ -60,6 +62,8 @@ export const TeacherDetails = () => {
                                 <td>{item.name}</td>
                                 <td>{item.subject}</td>
                                 <td>{item.qualification}</td>
+                                <td>${item.fee}</td>
+                                <td>${item.fee}</td>
                                 <td>${item.fee}</td>
                                 {/* <td className="text-end"><span className={`badge badge-sm light badge-${item.status === "Good" ?  'success' : 'danger' }`}>{item.status}</span></td> */}
                             </tr>
