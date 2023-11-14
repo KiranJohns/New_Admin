@@ -9,6 +9,9 @@ import { ThemeContext } from "../../../context/ThemeContext";
 import { SVGICON } from './Content';
 import { TeacherDetails } from './Elements/TeacherDetails';
 import { UnpaidStudentTable } from './Elements/UnpaidStudentTable';
+import fetchData from '../../../axios';
+// import SchoolPerformance from './Elements/SchoolPerformance';
+// import SchoolOverView from './Elements/SchoolOverView';
 
 
 const SchoolPerformance = loadable(() =>
@@ -28,8 +31,14 @@ const cardBlog = [
 
 const Home = () => {
 	const { changeBackground } = useContext(ThemeContext);
+	const makeRequest = fetchData()
 	useEffect(() => {
 		changeBackground({ value: "light", label: "Light" });
+		makeRequest("GET","/info/super-admin-dashboard-data").then(res => {
+			console.log(res);
+		}).catch(err => {
+			console.log(err);
+		})
 	}, []);
 
 	const [startDate, setStartDate] = useState(null);	
@@ -99,7 +108,7 @@ const Home = () => {
 				</div>
 				<div className="col-xl-6">
 					<div className="card h-auto">
-						<SchoolOverView />
+						<SchoolOverView data={true} />
 					</div>
 				</div>
 			</div>
