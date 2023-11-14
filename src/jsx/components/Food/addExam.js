@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, Dropdown, Tab } from 'react-bootstrap';
 import { IMAGES, SVGICON } from '../Dashboard/Content';
 import circle from './../../../images/circle.svg';
 import { Row, Col, Card, Button, ButtonGroup } from "react-bootstrap";
 import quotes from './../../../images/quotes.svg';
+import {Editor} from '@tinymce/tinymce-react'
+
+
+
 
 const inputBlog = [
     { inputid: '1234', lable: 'Calories: 217.', inputid2: '23456', lable2: '2 tablespoons butter, softened, divided' },
@@ -28,15 +32,22 @@ const tabledata = [
 ];
 
 const AddExam = () => {
+
+    const [text, setText]= useState('')
+const [value, setValue] = useState('<p>TinyMCE editor text</p>')
+
+console.log(value);
+console.log(text)
+
     return (
         <div className="row">
             <div className='col-xl-11'>
-                <div className='card' style={{ boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px', background: '#ebf9fc' }}>
+                <div className='card' style={{ boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px', background: '#fff' }}>
                     <div style={{ display: '', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                         <form type="button" onSubmit={(e) => e.preventDefault()}>
 
 
-
+                                
 
                             <div style={{ display: 'flex', justifyContent: 'center' }}>
                                 <div className='card-body'>
@@ -74,7 +85,7 @@ const AddExam = () => {
                                     </div>
                                 </div>
                             </div>
-
+                      
                             <div style={{ padding: '1rem' }}>
                                 <div style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px", paddingBottom: '.5rem', borderRadius: '.7rem', }}>
                                     <div style={{ display: 'flex', justifyContent: 'center', }}>
@@ -83,11 +94,10 @@ const AddExam = () => {
                                                 Question 1:
                                             </h4>
                                             <div className="  ">
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="question"
-                                                />
+                                            <Editor apiKey="enk9sksvp1tt5f2u075ef5jfjrff9e37ahpv80zdk3734qh4" onEditorChange={(newValue, editor)=>{
+                                                setValue(newValue);
+                                               setText(editor.getContent({format:'text'}))
+                                            }}/>
                                             </div>
                                         </div>
                                     </div>

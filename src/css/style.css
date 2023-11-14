@@ -30595,3 +30595,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
       color: #fff; }
 
 /*# sourceMappingURL=style.css.map */
+
+.tox-statusbar__branding {
+	display: none !important;
+}
+
+.tox-statusbar__path-item {
+	display: none !important;
+}

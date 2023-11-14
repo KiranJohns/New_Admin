@@ -25,6 +25,11 @@ export const MenuList = [
         iconStyle: <i className="material-icons">home</i>,
         to: 'dashboard',
     },
+    {   
+        title:'Profile',        
+        iconStyle: <i className="material-icons">person</i>,
+        to: 'employee',
+    },
     {
         title: 'User',	
         classsChange: 'mm-collapse',		

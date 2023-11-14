@@ -11,6 +11,8 @@ import AddCourse from "./components/Food/addCourse";
 import AddExam from "./components/Food/addExam";
 import ViewExam from "./components/viewExam";
 import ViewCertificates from "../jsx copy/components/Student/Certificates";
+import SingleProfile from "../jsx copy/components/AppsMenu/AppProfile/SingleProfile";
+
 /// Layout
 import Nav from "./layouts/nav";
 import Nav2 from "./layouts/nav/index2";
@@ -123,7 +125,8 @@ import { ThemeContext } from "../context/ThemeContext";
 
 const Markup = () => {
   const routhPath = [
-    {url:'view-cetificate', component: <ViewCertificates /> },
+    {url:'employee',component: <SingleProfile />},
+    {url:'view-certificate', component: <ViewCertificates /> },
       {url:'view-exam', component: <ViewExam /> },
     { url: "add-exam", component: <AddExam /> },
     {url:"add-course", component:<AddCourse/>},
