@@ -56,7 +56,7 @@ const User = () => {
                                 </div>
                                 <div className="user-svg-1">
                                     <svg width="261" height="63" viewBox="0 0 261 63" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect width="261" height="275.13" rx="130.5" fill="#FB7D5B"/>
+                                        <rect width="261" height="275.13" rx="130.5" fill="#e07051"/>
                                     </svg>
                                 </div>
                             </div>
@@ -217,7 +217,7 @@ const User = () => {
                                 </li>
                                 <li className="plan-svg-1">
                                     <svg width="100" height="180" viewBox="0 0 100 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect width="100" height="294" rx="50" fill="#FB7D5B"/>
+                                        <rect width="100" height="294" rx="50" fill="#e07051"/>
                                         </svg>
 
                                 </li>

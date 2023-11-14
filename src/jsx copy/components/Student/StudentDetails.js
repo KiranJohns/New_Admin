@@ -39,7 +39,7 @@ const StudentDetails = () => {
                             </div>
                             <div className="user-svg-1">
                                 <svg width="264" height="59" viewBox="0 0 264 59" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect y="0.564056" width="263.592" height="275.13" rx="20" fill="#FB7D5B"/>
+                                <rect y="0.564056" width="263.592" height="275.13" rx="20" fill="#e07051"/>
                                 </svg>
 
                             </div>

@@ -34,10 +34,10 @@ export const MenuList = [
                 title: 'User',
                 to: 'user',					
             },
-            {
-                title: 'User Details',
-                to: 'user-detail',
-            },
+            // {
+            //     title: 'User Details',
+            //     to: 'user-detail',
+            // },
             {
                 title: 'Add New User',
                 to: 'add-user',
@@ -103,7 +103,7 @@ export const MenuList = [
     {   
         title:'View Certificate',        
         iconStyle: <i className="material-icons">assessment</i>,
-        to: 'view-cetificate',
+        to: 'view-certificate',
     },
     // {
     //     title: 'File Manager',	

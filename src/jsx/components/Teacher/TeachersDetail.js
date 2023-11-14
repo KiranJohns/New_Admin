@@ -36,7 +36,7 @@ const TeachersDetail = () => {
                             </div>
                             <div className="user-svg-1">
                                 <svg width="264" height="59" viewBox="0 0 264 59" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="8" y="8.56406" width="247.592" height="259.13" rx="123.796" stroke="#FB7D5B" stroke-width="16"/>
+                                    <rect x="8" y="8.56406" width="247.592" height="259.13" rx="123.796" stroke="#e07051" stroke-width="16"/>
                                 </svg>
                             </div>
                         </div>
