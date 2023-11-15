@@ -28,7 +28,7 @@ export const MenuList = [
     {   
         title:'Profile',        
         iconStyle: <i className="material-icons">person</i>,
-        to: 'employee',
+        to: 'profile',
     },
     {
         title:'Revenue',
@@ -51,9 +51,14 @@ export const MenuList = [
         classsChange: 'mm-collapse',		
         iconStyle: <i className="material-symbols-outlined">school</i>,
         content: [
+          
             {
-                title: 'User',
-                to: 'user',					
+                title: 'Company',
+                to: 'company',					
+            },
+            {
+                title: 'Individual',
+                to: 'individual',					
             },
             // {
             //     title: 'User Details',
@@ -66,23 +71,59 @@ export const MenuList = [
            
         ],
     },
+    // {
+    //     title:'Admin',
+    //     classsChange: 'mm-collapse',		
+    //     iconStyle: <i className="material-symbols-outlined">person</i>,
+    //     content: [
+    //         {
+    //             title: 'Company',
+    //             to: 'company',					
+    //         },
+    //         {
+    //             title: 'Individual',
+    //             to: 'admins',					
+    //         },
+    //         {
+    //             title: 'Teacher Detail',
+    //             to: 'teacher-detail',					
+    //         },
+    //         {
+    //             title: 'Add New Teacher',
+    //             to: 'add-teacher',					
+    //         },
+    //     ],
+    // },
     {
-        title:'Admin',
+        title:'Courses',
         classsChange: 'mm-collapse',		
-        iconStyle: <i className="material-symbols-outlined">person</i>,
+        iconStyle: <i className="material-symbols-outlined">widgets</i>,
         content: [
-            {
-                title: 'Admins',
-                to: 'admins',					
+            {   
+                title:'Add Course',        
+                iconStyle: <i className="material-icons">widgets</i>,
+                to: 'add-course',
             },
-            // {
-            //     title: 'Teacher Detail',
-            //     to: 'teacher-detail',					
-            // },
-            // {
-            //     title: 'Add New Teacher',
-            //     to: 'add-teacher',					
-            // },
+            {   
+                title:'View Course',        
+                iconStyle: <i className="material-icons">widgets</i>,
+                to: 'view-course',
+            },
+            {
+                title: 'Discount Coupon',
+                to: 'discount-coupon',					
+            },
+            {   
+                title:'Add Exam',        
+                iconStyle: <i className="material-icons">insert_drive_file</i>,
+                to: 'add-exam',
+            },
+            {   
+                title:'View Exam',        
+                iconStyle: <i className="material-icons">insert_drive_file</i>,
+                to: 'view-exam',
+            },
+            
         ],
     },
     {
@@ -101,31 +142,21 @@ export const MenuList = [
             
         ],
     },
-    {   
-        title:'View Course',        
-        iconStyle: <i className="material-icons">widgets</i>,
-        to: 'view-course',
+    {
+        title:'Certificate',
+        classsChange: 'mm-collapse',		
+        iconStyle: <i className="material-symbols-outlined">assessment</i>,
+        content: [
+            {   
+                title:'View Certificate',        
+                iconStyle: <i className="material-icons">assessment</i>,
+                to: 'view-certificate',
+            },
+        ],
     },
-    {   
-        title:'Add Course',        
-        iconStyle: <i className="material-icons">widgets</i>,
-        to: 'add-course',
-    },
-    {   
-        title:'Add Exam',        
-        iconStyle: <i className="material-icons">insert_drive_file</i>,
-        to: 'add-exam',
-    },
-    {   
-        title:'View Exam',        
-        iconStyle: <i className="material-icons">insert_drive_file</i>,
-        to: 'view-exam',
-    },
-    {   
-        title:'View Certificate',        
-        iconStyle: <i className="material-icons">assessment</i>,
-        to: 'view-certificate',
-    },
+  
+
+
     // {
     //     title: 'File Manager',	
     //     classsChange: 'mm-collapse',		

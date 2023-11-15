@@ -151,82 +151,82 @@ const SingleProfile = () => {
                         <tr>
 
                           <td style={{ fontWeight: 'bold' }}>Employee ID</td>
-                          <td style={{ fontWeight: 'bold' }}>Otto</td>
+                          <td style={{ fontWeight: '' }}>Otto</td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Employee Name</td>
-                          <td style={{ fontWeight: 'bold' }}>Thornton</td>
+                          <td style={{ fontWeight: '' }}>Thornton</td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Designation</td>
-                          <td style={{ fontWeight: 'bold' }}>Thornton</td>
+                          <td style={{ fontWeight: '' }}>Thornton</td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Department</td>
-                          <td style={{ fontWeight: 'bold' }}></td>
+                          <td style={{ fontWeight: '' }}></td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Phone</td>
-                          <td style={{ fontWeight: 'bold' }}>356566222421</td>
+                          <td style={{ fontWeight: '' }}>356566222421</td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Email</td>
-                          <td style={{ fontWeight: 'bold' }}>thorton@gmail.com</td>
+                          <td style={{ fontWeight: '' }}>thorton@gmail.com</td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Contact No</td>
-                          <td style={{ fontWeight: 'bold' }}></td>
+                          <td style={{ fontWeight: '' }}></td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Gender</td>
-                          <td style={{ fontWeight: 'bold' }}></td>
+                          <td style={{ fontWeight: '' }}></td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Date of Birth</td>
-                          <td style={{ fontWeight: 'bold' }}></td>
+                          <td style={{ fontWeight: '' }}></td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Next to kin</td>
-                          <td style={{ fontWeight: 'bold' }}></td>
+                          <td style={{ fontWeight: '' }}></td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Payroll Reference number</td>
-                          <td style={{ fontWeight: 'bold' }}></td>
+                          <td style={{ fontWeight: '' }}></td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Medical Details</td>
-                          <td style={{ fontWeight: 'bold' }}></td>
+                          <td style={{ fontWeight: '' }}></td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>National insurance number</td>
-                          <td style={{ fontWeight: 'bold' }}></td>
+                          <td style={{ fontWeight: '' }}></td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Contract type</td>
-                          <td style={{ fontWeight: 'bold' }}></td>
+                          <td style={{ fontWeight: '' }}></td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Date of joining</td>
-                          <td style={{ fontWeight: 'bold' }}></td>
+                          <td style={{ fontWeight: '' }}></td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Correspondence Address</td>
-                          <td style={{ fontWeight: 'bold' }}></td>
+                          <td style={{ fontWeight: '' }}></td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Brief Profile</td>
-                          <td style={{ fontWeight: 'bold' }}></td>
+                          <td style={{ fontWeight: '' }}></td>
                         </tr>
                       </tbody>
                     </Table>
                   </Tab>
 
                   <Tab eventKey="qualification" title="Qualification">
-                    {/* <div style={{display:'flex', justifyContent:'flex-end'}}>
+                    <div style={{display:'flex', justifyContent:'flex-end'}}>
                       <Button style={{marginTop:"3rem", marginRight:'1rem'}} variant="primary" size="md" active>
                         Upload Document
                       </Button>
-                    </div> */}
+                    </div>
                     <Table striped style={{ marginTop: "5rem" }}>
                       <thead>
                         <tr>
@@ -242,10 +242,10 @@ const SingleProfile = () => {
                           <td>Mark</td>
                           <td>90%</td>
                           <td>
-                            <Button variant="success" size="sm" style={{ marginRight: '.3rem' }} disabled>
+                            <Button variant="success" size="sm" style={{ marginRight: '.3rem' }} >
                               <FaDownload style={{ fontSize: '1rem' }} />
                             </Button>
-                            <Button variant="secondary" size="sm" disabled>
+                            <Button variant="secondary" size="sm" >
                               <ImCross style={{ fontSize: '1rem' }} />
                             </Button>
 
@@ -264,11 +264,11 @@ const SingleProfile = () => {
                   </Tab>
 
                   <Tab eventKey="Work" title="Work Experience">
-                        {/* <div style={{display:'flex', justifyContent:'flex-end'}}>
+                        <div style={{display:'flex', justifyContent:'flex-end'}}>
                       <Button style={{marginTop:"3rem", marginRight:'1rem'}} variant="primary" size="md" active>
                         Upload Document
                       </Button>
-                    </div> */}
+                    </div>
                     <Table striped style={{ marginTop: "5rem" }}>
                       <thead>
                         <tr>
@@ -286,10 +286,10 @@ const SingleProfile = () => {
                           <td>7</td>
                           <td>Developer</td>
                           <td>
-                            <Button variant="success" size="sm" style={{ marginRight: '.3rem' }} disabled>
+                            <Button variant="success" size="sm" style={{ marginRight: '.3rem' }} >
                               <FaDownload style={{ fontSize: '1rem' }} />
                             </Button>
-                            <Button variant="secondary" size="sm" disabled>
+                            <Button variant="secondary" size="sm" >
                               <ImCross style={{ fontSize: '1rem' }} />
                             </Button>
 
@@ -301,10 +301,10 @@ const SingleProfile = () => {
                           <td>7</td>
                           <td>Developer</td>
                           <td>
-                            <Button variant="success" size="sm" style={{ marginRight: '.3rem' }} disabled>
+                            <Button variant="success" size="sm" style={{ marginRight: '.3rem' }} >
                               <FaDownload style={{ fontSize: '1rem' }} />
                             </Button>
-                            <Button variant="secondary" size="sm" disabled>
+                            <Button variant="secondary" size="sm">
                               <ImCross style={{ fontSize: '1rem' }} />
                             </Button>
 

@@ -17,6 +17,9 @@ import EmployeeView from "../jsx copy/components/AppsMenu/AppProfile/EmployeeVie
 import AddDetails from "./components/Student/AddDetails";
 import ViewInvoice from "./components/viewInvoices";
 import ViewReports from "./components/viewReports";
+import CompanyAdmin from "./components/Teacher/Company";
+import CouponCreate from "../jsx copy/components/Student/Coupons";
+import CompanyTable from "./components/Student/Company";
 /// Layout
 import Nav from "./layouts/nav";
 import Nav2 from "./layouts/nav/index2";
@@ -132,14 +135,14 @@ const Markup = () => {
 
     {url:'course-details',component: <SingleCourse />},
     {url:'add-details',component: <AddDetails />},
-    {url:'employee',component: <SingleProfile />},
+    {url:'profile',component: <SingleProfile />},
     {url:'view-certificate', component: <ViewCertificates /> },
      {url:'view-exam', component: <ViewExam /> },
     { url: "add-exam", component: <AddExam /> },
     {url:"add-course", component:<AddCourse/>},
     {url:"view-course",component:<ViewCourse/>},
     {url: "finance", component: <Finance/>},
-    {url: "user", component: <Students/>},
+    {url: "individual", component: <Students/>},
     {url: "user-detail", component: <StudentDetails/>},
     {url: "add-user", component: <AddNewStudent/>},
     {url: "admins", component: <Teachers/>},
@@ -149,6 +152,10 @@ const Markup = () => {
     {url: "add-blog", component: <FoodDetails/>},
     {url:'invoices',component: <ViewInvoice />},
     {url:'reports',component: <ViewReports />},
+    // {url:'company',component: <CompanyAdmin />},
+   
+    {url:'discount-coupon',component: <CouponCreate/>},
+    {url:'company',component: <CompanyTable/>},
     // {url: "user", component: <User/>},
     {url: "activity", component: <Activity/>},
     {url: "calendar", component: <HomeCalendar/>},

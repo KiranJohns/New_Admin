@@ -118,7 +118,7 @@ const FoodDetails = () => {
           className="card"
           style={{
             boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
-            background: "#ebf9fc",
+            background: "#f5f5f7",
           }}
         >
           <div
