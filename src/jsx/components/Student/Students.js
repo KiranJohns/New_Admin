@@ -377,7 +377,7 @@ const Students = () => {
                         <th>City</th>
                         <th>Type</th>
 
-                        <th className="text-end">Action</th>
+                        <th >Action</th>
                       </tr>
                     </thead>
                     <tbody>

@@ -12,7 +12,8 @@ import AddExam from "./components/Food/addExam";
 import ViewExam from "./components/viewExam";
 import ViewCertificates from "../jsx copy/components/Student/Certificates";
 import SingleProfile from "../jsx copy/components/AppsMenu/AppProfile/SingleProfile";
-
+import EmployeeView from "../jsx copy/components/AppsMenu/AppProfile/EmployeeView";
+import AddDetails from "./components/Student/AddDetails";
 /// Layout
 import Nav from "./layouts/nav";
 import Nav2 from "./layouts/nav/index2";
@@ -125,6 +126,7 @@ import { ThemeContext } from "../context/ThemeContext";
 
 const Markup = () => {
   const routhPath = [
+    {url:'add-details',component: <AddDetails />},
     {url:'employee',component: <SingleProfile />},
     {url:'view-certificate', component: <ViewCertificates /> },
       {url:'view-exam', component: <ViewExam /> },
@@ -140,9 +142,10 @@ const Markup = () => {
     {url: "add-teacher", component: <AddNewTeacher/>},
     {url: "view-blog", component: <Food/>},    
     {url: "add-blog", component: <FoodDetails/>},
-    {url: "user", component: <User/>},
+    // {url: "user", component: <User/>},
     {url: "activity", component: <Activity/>},
     {url: "calendar", component: <HomeCalendar/>},
+    {url: "view-employee", component: <EmployeeView/>},
     //App Profile
     {url: "app-profile", component: <AppProfile/>},
     {url: "post-details", component: <PostDetails/>},

@@ -352,6 +352,18 @@ const Teachers = () => {
                             align={"end"}
                           >
                             <Dropdown.Item
+                              className="text-success"
+                              onClick={() => {window.location.pathname='/view-employee'}}
+                            >
+                              View
+                            </Dropdown.Item>
+                            <Dropdown.Item
+                              className="text-success"
+                              onClick={() => {window.location.pathname='/add-details'}}
+                            >
+                              Details
+                            </Dropdown.Item>
+                            <Dropdown.Item
                               className="text-danger"
                               onClick={() => handleDeleteClick(contact.id)}
                             >

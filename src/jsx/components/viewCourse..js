@@ -127,6 +127,7 @@ const ViewCourse = () => {
                           {svg1}
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
+                        <Dropdown.Item>View</Dropdown.Item>
                           <Dropdown.Item>Edit</Dropdown.Item>
                           <Dropdown.Item>Delete</Dropdown.Item>
                         </Dropdown.Menu>
