@@ -125,7 +125,6 @@ const Home = () => {
                     </div>
                     <div>
                       <span className="fs-14">This Week</span>
-                      <h4 className="fs-5 font-w700 mb-0">1.245</h4>
                     </div>
                   </div>
                   <div className="round" id="dzNewSeries">
@@ -140,7 +139,6 @@ const Home = () => {
                     </div>
                     <div>
                       <span className="fs-14">Last Week</span>
-                      <h4 className="fs-5 font-w700 mb-0">1.356</h4>
                     </div>
                   </div>
                 </div>

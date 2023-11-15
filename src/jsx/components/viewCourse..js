@@ -1,33 +1,27 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 import { RiChatDeleteFill } from "react-icons/ri";
-import {Nav, Tab, Dropdown} from 'react-bootstrap';
-import { IMAGES, SVGICON } from './Dashboard/Content';
+import { Nav, Tab, Dropdown } from "react-bootstrap";
+import { IMAGES, SVGICON } from "./Dashboard/Content";
 import { FaEye } from "react-icons/fa";
-import {  Button,  ButtonGroup,  } from "react-bootstrap";
+import { Button, ButtonGroup } from "react-bootstrap";
 import { BiSolidEdit } from "react-icons/bi";
-import { FaTrashRestore } from "react-icons/fa";
-import { FaDeleteLeft } from "react-icons/fa6";
-import PageTitle from '../layouts/PageTitle';
-import {
-    Row,
-    Col,
-    Card,
-    Table,
-    Badge,
-    ProgressBar,
-  } from "react-bootstrap";
-  
-  const svg1 = (
-    <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1">
-      <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-        <rect x="0" y="0" width="24" height="24"></rect>
-        <circle fill="#000000" cx="5" cy="12" r="2"></circle>
-        <circle fill="#000000" cx="12" cy="12" r="2"></circle>
-        <circle fill="#000000" cx="19" cy="12" r="2"></circle>
-      </g>
-    </svg>
-  );
+import PageTitle from "../layouts/PageTitle";
+import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
+import fetchData from "../../axios";
+import { useState } from "react";
+import swal from "sweetalert";
+
+// const svg1 = (
+//   <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1">
+//     <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+//       <rect x="0" y="0" width="24" height="24"></rect>
+//       <circle fill="#000000" cx="5" cy="12" r="2"></circle>
+//       <circle fill="#000000" cx="12" cy="12" r="2"></circle>
+//       <circle fill="#000000" cx="19" cy="12" r="2"></circle>
+//     </g>
+//   </svg>
+// );
 
 const tabledata = [
     { image: IMAGES.food1, title:'Beef Steak with Fried Potato', subtitle:'Dinner', rating:'5.0', sales:'1,210', intrest:'20%' },
@@ -82,7 +76,7 @@ const ViewCourse = () => {
                     <th>
                       <strong>Category</strong>
                     </th>
-                    <th>Action</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -105,7 +99,7 @@ const ViewCourse = () => {
                     <BiSolidEdit />
                   </Button>
                   <Button className="me-2"  variant="danger btn-icon-xxs">
-                  <FaDeleteLeft />
+                  <RiChatDeleteFill />
                   </Button>
                     </td>
                   </tr>
@@ -128,7 +122,7 @@ const ViewCourse = () => {
                     <BiSolidEdit />
                   </Button>
                   <Button className="me-2"  variant="danger btn-icon-xxs">
-                  <FaDeleteLeft />
+                  <RiChatDeleteFill />
                   </Button>
                     </td>
                   </tr>
@@ -151,7 +145,7 @@ const ViewCourse = () => {
                     <BiSolidEdit />
                   </Button>
                   <Button className="me-2"  variant="danger btn-icon-xxs">
-                  <FaDeleteLeft />
+                  <RiChatDeleteFill />
                   </Button>
                     </td>
                   </tr>
