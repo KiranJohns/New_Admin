@@ -39,7 +39,7 @@ const SchoolPerformance = () => {
         let arr2 = [0, 0, 0, 0, 0, 0];
         console.log(today.toLocaleDateString());
         let j = 0;
-        for (let i = 0; i < course.length; i++) {
+        for (let i = 0; i < course?.length; i++) {
           let date = new Date(course[i].date);
           if (date.toLocaleDateString() == today.toLocaleDateString()) {
             total += Number(course[i].amount);

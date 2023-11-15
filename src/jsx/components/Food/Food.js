@@ -1,170 +1,244 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
-import {Nav, Tab, Dropdown} from 'react-bootstrap';
-import { IMAGES, SVGICON } from '../Dashboard/Content';
-import circle from './../../../images/circle.svg';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Nav, Tab, Dropdown } from "react-bootstrap";
+import { IMAGES, SVGICON } from "../Dashboard/Content";
+import circle from "./../../../images/circle.svg";
 import PageTitle from "../../layouts/PageTitle";
-import {
-    Row,
-    Col,
-    Card,
-    Table,
-    Badge,
-    ProgressBar,
-  } from "react-bootstrap";
-  
-  const svg1 = (
-    <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1">
-      <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-        <rect x="0" y="0" width="24" height="24"></rect>
-        <circle fill="#000000" cx="5" cy="12" r="2"></circle>
-        <circle fill="#000000" cx="12" cy="12" r="2"></circle>
-        <circle fill="#000000" cx="19" cy="12" r="2"></circle>
-      </g>
-    </svg>
-  );
+import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
+import fetchData from "../../../axios";
+import { MdDelete } from "react-icons/md";
+import swal from "sweetalert";
+
+const svg1 = (
+  <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+      <rect x="0" y="0" width="24" height="24"></rect>
+      <circle fill="#000000" cx="5" cy="12" r="2"></circle>
+      <circle fill="#000000" cx="12" cy="12" r="2"></circle>
+      <circle fill="#000000" cx="19" cy="12" r="2"></circle>
+    </g>
+  </svg>
+);
 
 const tabledata = [
-    { image: IMAGES.food1, title:'Beef Steak with Fried Potato', subtitle:'Dinner', rating:'5.0', sales:'1,210', intrest:'20%' },
-    { image: IMAGES.food2, title:'Pancake with Honey', subtitle:'Breakfast', rating:'4.9', sales:'1,110', intrest:'13&' },
-    { image: IMAGES.food3, title:'Japanese Beef Ramen', subtitle:'Lunch', rating:'4.8', sales:'1,050', intrest:'18%' },
-    { image: IMAGES.food4, title:'Mixed Salad', subtitle:'Lunch', rating:'5.0', sales:'1,400', intrest:'17%' },
-    { image: IMAGES.food5, title:'Snack Beef Meatball with Vegetable', subtitle:'Snack', rating:'4.8', sales:'1,456', intrest:'15%' },
+  {
+    image: IMAGES.food1,
+    title: "Beef Steak with Fried Potato",
+    subtitle: "Dinner",
+    rating: "5.0",
+    sales: "1,210",
+    intrest: "20%",
+  },
+  {
+    image: IMAGES.food2,
+    title: "Pancake with Honey",
+    subtitle: "Breakfast",
+    rating: "4.9",
+    sales: "1,110",
+    intrest: "13&",
+  },
+  {
+    image: IMAGES.food3,
+    title: "Japanese Beef Ramen",
+    subtitle: "Lunch",
+    rating: "4.8",
+    sales: "1,050",
+    intrest: "18%",
+  },
+  {
+    image: IMAGES.food4,
+    title: "Mixed Salad",
+    subtitle: "Lunch",
+    rating: "5.0",
+    sales: "1,400",
+    intrest: "17%",
+  },
+  {
+    image: IMAGES.food5,
+    title: "Snack Beef Meatball with Vegetable",
+    subtitle: "Snack",
+    rating: "4.8",
+    sales: "1,456",
+    intrest: "15%",
+  },
 ];
 const tabledata2 = [
-    { image: IMAGES.food5, title:'Beef Steak with Fried Potato', subtitle:'Breakfast', rating:'5.0', sales:'1,210', intrest:'20%' },
-    { image: IMAGES.food2, title:'Pancake with Honey', subtitle:'Breakfast', rating:'4.9', sales:'1,110', intrest:'13&' },
-    { image: IMAGES.food3, title:'Japanese Beef Ramen', subtitle:'Breakfast', rating:'4.8', sales:'1,050', intrest:'18%' }
+  {
+    image: IMAGES.food5,
+    title: "Beef Steak with Fried Potato",
+    subtitle: "Breakfast",
+    rating: "5.0",
+    sales: "1,210",
+    intrest: "20%",
+  },
+  {
+    image: IMAGES.food2,
+    title: "Pancake with Honey",
+    subtitle: "Breakfast",
+    rating: "4.9",
+    sales: "1,110",
+    intrest: "13&",
+  },
+  {
+    image: IMAGES.food3,
+    title: "Japanese Beef Ramen",
+    subtitle: "Breakfast",
+    rating: "4.8",
+    sales: "1,050",
+    intrest: "18%",
+  },
 ];
 const tabledata3 = [
-    { image: IMAGES.food2, title:'Beef Steak with Fried Potato', subtitle:'Lunch', rating:'5.0', sales:'1,210', intrest:'20%' },
-    { image: IMAGES.food2, title:'Pancake with Honey', subtitle:'Lunch', rating:'4.9', sales:'1,110', intrest:'13&' },
-    { image: IMAGES.food3, title:'Japanese Beef Ramen', subtitle:'Lunch', rating:'4.8', sales:'1,050', intrest:'18%' },
-    { image: IMAGES.food4, title:'Mixed Salad', subtitle:'Lunch', rating:'5.0', sales:'1,400', intrest:'17%' }
+  {
+    image: IMAGES.food2,
+    title: "Beef Steak with Fried Potato",
+    subtitle: "Lunch",
+    rating: "5.0",
+    sales: "1,210",
+    intrest: "20%",
+  },
+  {
+    image: IMAGES.food2,
+    title: "Pancake with Honey",
+    subtitle: "Lunch",
+    rating: "4.9",
+    sales: "1,110",
+    intrest: "13&",
+  },
+  {
+    image: IMAGES.food3,
+    title: "Japanese Beef Ramen",
+    subtitle: "Lunch",
+    rating: "4.8",
+    sales: "1,050",
+    intrest: "18%",
+  },
+  {
+    image: IMAGES.food4,
+    title: "Mixed Salad",
+    subtitle: "Lunch",
+    rating: "5.0",
+    sales: "1,400",
+    intrest: "17%",
+  },
 ];
 const tabledata4 = [
-    { image: IMAGES.food3, title:'Mixed Salad', subtitle:'Snack', rating:'5.0', sales:'1,400', intrest:'17%' },
-    { image: IMAGES.food5, title:'Snack Beef Meatball with Vegetable', subtitle:'Snack', rating:'4.8', sales:'1,456', intrest:'15%' },
+  {
+    image: IMAGES.food3,
+    title: "Mixed Salad",
+    subtitle: "Snack",
+    rating: "5.0",
+    sales: "1,400",
+    intrest: "17%",
+  },
+  {
+    image: IMAGES.food5,
+    title: "Snack Beef Meatball with Vegetable",
+    subtitle: "Snack",
+    rating: "4.8",
+    sales: "1,456",
+    intrest: "15%",
+  },
 ];
 
 const Food = () => {
-    return (
-        <div className="card">
-                 <Col lg={12}>
-          <Card>
-            <Card.Header>
-              <Card.Title>All Blogs</Card.Title>
-            </Card.Header>
-            <Card.Body>
-              <Table responsive>
-                <thead>
-                  <tr>
-                    <th className="width80">
-                      <strong>ID</strong>
-                    </th>
-                    <th>
-                      <strong>Heading</strong>
-                    </th>
-                    <th>
-                      <strong>Author Name</strong>
-                    </th>
-                    <th>
-                      <strong>Date</strong>
-                    </th>
-                    <th>
-                      <strong>Status</strong>
-                    </th>
-                    <th>
-                      <strong>Tags</strong>
-                    </th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <strong>01</strong>
-                    </td>
-                    <td>I have access to world-leading research and a welcoming global community</td>
-                    <td>Dr. Jackson</td>
-                    <td>01 August 2022</td>
-                    <td>
-                      <Badge bg="" className="light badge-success">Active</Badge>
-                    </td>
-                    <td>study,uk,2024</td>
-                    <td>
-                      <Dropdown>
-                        <Dropdown.Toggle
-                          variant="success"
-                          className="light sharp i-false"
-                        >
-                          {svg1}
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                          <Dropdown.Item>Edit</Dropdown.Item>
-                          <Dropdown.Item>Delete</Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong>02</strong>
-                    </td>
-                    <td>10 reasons why you should study in Wales</td>
-                    <td>Dr. Jackson</td>
-                    <td>01 August 2022</td>
-                    <td>
-                    <Badge bg="" className="light badge-success">Active</Badge>
-                    </td>
-                    <td>study,uk,2024</td>
-                    <td>
-                      <Dropdown>
-                        <Dropdown.Toggle
-                          variant="danger"
-                          className="light sharp i-false"
-                        >
-                          {svg1}
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                          <Dropdown.Item>Edit</Dropdown.Item>
-                          <Dropdown.Item>Delete</Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong>03</strong>
-                    </td>
-                    <td>10 reasons why you should study in Wales</td>
-                    <td>Mr. Bobby</td>
-                    <td>01 August 2022</td>
-                    <td>
-                    <Badge bg="" className="light badge-success">Active</Badge>
-                    </td>
-                    <td>study,uk,2024</td>
-                    <td>
-                      <Dropdown>
-                        <Dropdown.Toggle
-                          variant="warning"
-                          className="light sharp i-false"
-                        >
-                          {svg1}
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                          <Dropdown.Item>Edit</Dropdown.Item>
-                          <Dropdown.Item>Delete</Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    </td>
-                  </tr>
-                </tbody>
-              </Table>
-            </Card.Body>
-          </Card>
-        </Col>
-            {/* <Tab.Container defaultActiveKey={'All'}>
+  const makeRequest = fetchData();
+
+  const [blogs, setBlogs] = useState([]);
+  makeRequest("GET", "/blog/get-all-blog")
+    .then((res) => {
+      setBlogs(res.data.response);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  function deleteHandler(id) {
+    console.log(id);
+    makeRequest("DELETE", "/blog/delete-blog", {
+      blog_id: id,
+    })
+      .then((res) => {
+        console.log(res);
+        setBlogs((prev) => {
+          return prev.filter((item) => item.id != id);
+        });
+        swal("Done!", "blog deleted", "success");
+      })
+      .catch((err) => {
+        swal("Done!", err?.errors[0]?.error, "success");
+        console.log(err);
+      });
+  }
+  return (
+    <div className="card">
+      <Col lg={12}>
+        <Card>
+          <Card.Header>
+            <Card.Title>All Blogs</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <Table responsive>
+              <thead>
+                <tr>
+                  <th className="width80">
+                    <strong>ID</strong>
+                  </th>
+                  <th>
+                    <strong>Heading</strong>
+                  </th>
+                  <th>
+                    <strong>Author Name</strong>
+                  </th>
+                  <th>
+                    <strong>Date</strong>
+                  </th>
+                  <th>
+                    <strong>Tags</strong>
+                  </th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {blogs &&
+                  blogs.map((item) => {
+                    let date = new Date(item.date)
+                      .toLocaleDateString()
+                      .split("/")
+                      .map((d) => (d.length <= 1 ? "0" + d : d));
+                    date = date[1] + "-" + date[0] + "-" + date[2];
+                    return (
+                      <tr>
+                        <td>
+                          <strong>01</strong>
+                        </td>
+                        <td>{item.header}</td>
+                        <td>{item.author}</td>
+                        <td>{date}</td>
+                        <td>
+                          {item?.tags ? JSON.parse(item.tags).join(",") : ""}
+                        </td>
+                        <td>
+                          <a
+                            className="btn btn-danger"
+                            onClick={() => deleteHandler(item.id)}
+                          >
+                            delete
+                            {/* <MdDelete
+                              onClick={() => deleteHandler(item.id)}
+                              title="Delete"
+                            /> */}
+                          </a>
+                        </td>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </Table>
+          </Card.Body>
+        </Card>
+      </Col>
+      {/* <Tab.Container defaultActiveKey={'All'}>
                 <div className="card-header border-0 pb-0 flex-wrap">
                     <h4 className="mb-0">Blog Menu</h4>
                     <Nav as="ul" className="nav nav-tabs food-tabs">
@@ -472,9 +546,8 @@ const Food = () => {
                     </Tab.Content>    
                 </div>    
             </Tab.Container> */}
-        
-        </div>
-    );
+    </div>
+  );
 };
 
 export default Food;
