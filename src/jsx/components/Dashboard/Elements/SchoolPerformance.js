@@ -72,8 +72,8 @@ const SchoolPerformance = () => {
         setSeries(prev => {
           return [
             ...prev,
-            prev[0].data = arr1,
-            prev[1].data = arr2
+            prev[0].data = arr2,
+            prev[1].data = arr1
           ]
         })
       })
@@ -116,8 +116,8 @@ const SchoolPerformance = () => {
           fontWeight: 400,
         },
         formatter: function (value) {
-          if(value >= 10000) {
-            return value / 10000 + "K";
+          if(value >= 1000) {
+            return value / 1000 + "K";
           } else {
             return value + "";
           }
