@@ -36,6 +36,10 @@ export const MenuList = [
         iconStyle: <i className="material-symbols-outlined">app_registration</i>,
         content: [
             {
+                title: 'Sales',
+                to: 'sales',					
+            },
+            {
                 title: 'Invoices',
                 to: 'invoices',					
             },

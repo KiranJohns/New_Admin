@@ -55,7 +55,7 @@ const ViewReports = () => {
                  <Col lg={12}>
           <Card>
             <Card.Header>
-              <Card.Title>All Invoices</Card.Title>
+              <Card.Title>All Reports</Card.Title>
             </Card.Header>
             <Card.Body>
               <Table responsive>

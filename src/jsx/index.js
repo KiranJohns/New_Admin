@@ -20,6 +20,7 @@ import ViewReports from "./components/viewReports";
 import CompanyAdmin from "./components/Teacher/Company";
 import CouponCreate from "../jsx copy/components/Student/Coupons";
 import CompanyTable from "./components/Student/Company";
+import SalesTab from "./components/SalesTab";
 /// Layout
 import Nav from "./layouts/nav";
 import Nav2 from "./layouts/nav/index2";
@@ -152,10 +153,13 @@ const Markup = () => {
     {url: "add-blog", component: <FoodDetails/>},
     {url:'invoices',component: <ViewInvoice />},
     {url:'reports',component: <ViewReports />},
-    // {url:'company',component: <CompanyAdmin />},
+    {url:'sales',component: <SalesTab />},
+    
    
     {url:'discount-coupon',component: <CouponCreate/>},
     {url:'company',component: <CompanyTable/>},
+
+     // {url:'company',component: <CompanyAdmin />},
     // {url: "user", component: <User/>},
     {url: "activity", component: <Activity/>},
     {url: "calendar", component: <HomeCalendar/>},
