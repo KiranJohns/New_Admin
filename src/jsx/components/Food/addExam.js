@@ -42,7 +42,7 @@ console.log(text)
     return (
         <div className="row">
             <div className='col-xl-11'>
-                <div className='card' style={{ boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px', background: '#fff' }}>
+                <div className='card' style={{ boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px', background: '#f5f5f7' }}>
                     <div style={{ display: '', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                         <form type="button" onSubmit={(e) => e.preventDefault()}>
 
@@ -93,7 +93,7 @@ console.log(text)
                                             <h4 className='' style={{ textAlign: 'center' }}>
                                                 Question 1:
                                             </h4>
-                                            <div className="  ">
+                                            <div className="">
                                             <Editor apiKey="enk9sksvp1tt5f2u075ef5jfjrff9e37ahpv80zdk3734qh4" onEditorChange={(newValue, editor)=>{
                                                 setValue(newValue);
                                                setText(editor.getContent({format:'text'}))
@@ -102,488 +102,83 @@ console.log(text)
                                         </div>
                                     </div>
                                     <div className='p-3'>
-                                        <div className='row d-flex  justify-content-center '>
-                                            <div className="form-group col-2 ">
-                                                <label>option a</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="a"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2 ">
-                                                <label>option b</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="b"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2 ">
-                                                <label>option c</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="c"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2">
-                                                <label>option d</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="d"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div style={{ padding: '1rem' }}>
-                                <div style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px", paddingBottom: '.5rem', borderRadius: '.7rem', }}>
-                                    <div style={{ display: 'flex', justifyContent: 'center', }}>
-                                        <div className='card-body'>
-                                            <h4 className='' style={{ textAlign: 'center' }}>
-                                                Question 2:
+                                    <h4 className='' style={{ textAlign: 'center' }}>
+                                               option 1
                                             </h4>
-                                            <div className="  ">
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="question"
-                                                />
-                                            </div>
-                                        </div>
+                                    <Editor  style={{height:'100px !important'}}
+                                    apiKey="enk9sksvp1tt5f2u075ef5jfjrff9e37ahpv80zdk3734qh4" onEditorChange={(newValue, editor)=>{
+                                                setValue(newValue);
+                                               setText(editor.getContent({format:'text'}))
+                                            }}/>
                                     </div>
                                     <div className='p-3'>
-                                        <div className='row d-flex  justify-content-center '>
-                                            <div className="form-group col-2 ">
-                                                <label>option a</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="a"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2 ">
-                                                <label>option b</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="b"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2 ">
-                                                <label>option c</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="c"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2">
-                                                <label>option d</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="d"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div style={{ padding: '1rem' }}>
-                                <div style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px", paddingBottom: '.5rem', borderRadius: '.7rem', }}>
-                                    <div style={{ display: 'flex', justifyContent: 'center', }}>
-                                        <div className='card-body'>
-                                            <h4 className='' style={{ textAlign: 'center' }}>
-                                                Question 3:
+                                    <h4 className='' style={{ textAlign: 'center' }}>
+                                               option 1
                                             </h4>
-                                            <div className="  ">
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="question"
-                                                />
-                                            </div>
-                                        </div>
+                                    <Editor  style={{height:'100px !important'}}
+                                    apiKey="enk9sksvp1tt5f2u075ef5jfjrff9e37ahpv80zdk3734qh4" onEditorChange={(newValue, editor)=>{
+                                                setValue(newValue);
+                                               setText(editor.getContent({format:'text'}))
+                                            }}/>
                                     </div>
                                     <div className='p-3'>
-                                        <div className='row d-flex  justify-content-center '>
-                                            <div className="form-group col-2 ">
-                                                <label>option a</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="a"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2 ">
-                                                <label>option b</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="b"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2 ">
-                                                <label>option c</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="c"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2">
-                                                <label>option d</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="d"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div style={{ padding: '1rem' }}>
-                                <div style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px", paddingBottom: '.5rem', borderRadius: '.7rem', }}>
-                                    <div style={{ display: 'flex', justifyContent: 'center', }}>
-                                        <div className='card-body'>
-                                            <h4 className='' style={{ textAlign: 'center' }}>
-                                                Question 4:
+                                    <h4 className='' style={{ textAlign: 'center' }}>
+                                               option 2
                                             </h4>
-                                            <div className="  ">
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="question"
-                                                />
-                                            </div>
-                                        </div>
+                                    <Editor  style={{height:'100px !important'}}
+                                    apiKey="enk9sksvp1tt5f2u075ef5jfjrff9e37ahpv80zdk3734qh4" onEditorChange={(newValue, editor)=>{
+                                                setValue(newValue);
+                                               setText(editor.getContent({format:'text'}))
+                                            }}/>
                                     </div>
                                     <div className='p-3'>
-                                        <div className='row d-flex  justify-content-center '>
-                                            <div className="form-group col-2 ">
-                                                <label>option a</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="a"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2 ">
-                                                <label>option b</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="b"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2 ">
-                                                <label>option c</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="c"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2">
-                                                <label>option d</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="d"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div style={{ padding: '1rem' }}>
-                                <div style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px", paddingBottom: '.5rem', borderRadius: '.7rem', }}>
-                                    <div style={{ display: 'flex', justifyContent: 'center', }}>
-                                        <div className='card-body'>
-                                            <h4 className='' style={{ textAlign: 'center' }}>
-                                                Question 5:
+                                    <h4 className='' style={{ textAlign: 'center' }}>
+                                               option 3
                                             </h4>
-                                            <div className="  ">
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="question"
-                                                />
-                                            </div>
-                                        </div>
+                                    <Editor  style={{height:'100px !important'}}
+                                    apiKey="enk9sksvp1tt5f2u075ef5jfjrff9e37ahpv80zdk3734qh4" onEditorChange={(newValue, editor)=>{
+                                                setValue(newValue);
+                                               setText(editor.getContent({format:'text'}))
+                                            }}/>
                                     </div>
                                     <div className='p-3'>
-                                        <div className='row d-flex  justify-content-center '>
-                                            <div className="form-group col-2 ">
-                                                <label>option a</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="a"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2 ">
-                                                <label>option b</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="b"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2 ">
-                                                <label>option c</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="c"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2">
-                                                <label>option d</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="d"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div style={{ padding: '1rem' }}>
-                                <div style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px", paddingBottom: '.5rem', borderRadius: '.7rem', }}>
-                                    <div style={{ display: 'flex', justifyContent: 'center', }}>
-                                        <div className='card-body'>
-                                            <h4 className='' style={{ textAlign: 'center' }}>
-                                                Question 6:
+                                    <h4 className='' style={{ textAlign: 'center' }}>
+                                               option 4
                                             </h4>
-                                            <div className="  ">
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="question"
-                                                />
-                                            </div>
-                                        </div>
+                                    <Editor  style={{height:'100px !important'}}
+                                    apiKey="enk9sksvp1tt5f2u075ef5jfjrff9e37ahpv80zdk3734qh4" onEditorChange={(newValue, editor)=>{
+                                                setValue(newValue);
+                                               setText(editor.getContent({format:'text'}))
+                                            }}/>
                                     </div>
                                     <div className='p-3'>
-                                        <div className='row d-flex  justify-content-center '>
-                                            <div className="form-group col-2 ">
-                                                <label>option a</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="a"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2 ">
-                                                <label>option b</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="b"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2 ">
-                                                <label>option c</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="c"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2">
-                                                <label>option d</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="d"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div style={{ padding: '1rem' }}>
-                                <div style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px", paddingBottom: '.5rem', borderRadius: '.7rem', }}>
-                                    <div style={{ display: 'flex', justifyContent: 'center', }}>
-                                        <div className='card-body'>
-                                            <h4 className='' style={{ textAlign: 'center' }}>
-                                                Question 7:
+                                    <h4 className='' style={{ textAlign: 'center' }}>
+                                               Answer
                                             </h4>
-                                            <div className="  ">
-                                                <input                                           
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="question"
-                                                />
-                                            </div>
-                                        </div>
+                                    <Editor  style={{height:'100px !important'}}
+                                    apiKey="enk9sksvp1tt5f2u075ef5jfjrff9e37ahpv80zdk3734qh4" onEditorChange={(newValue, editor)=>{
+                                                setValue(newValue);
+                                               setText(editor.getContent({format:'text'}))
+                                            }}/>
                                     </div>
-                                    <div className='p-3'>
-                                        <div className='row d-flex  justify-content-center '>
-                                            <div className="form-group col-2 ">
-                                                <label>option a</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="a"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2 ">
-                                                <label>option b</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="b"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2 ">
-                                                <label>option c</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="c"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2">
-                                                <label>option d</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="d"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                <div className='m-2 p-2 '>
+                                    <Button className="" variant="primary">
+                                        Add question
+                                    </Button>
                                 </div>
                             </div>
 
-                            <div style={{ padding: '1rem' }}>
-                                <div style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px", paddingBottom: '.5rem', borderRadius: '.7rem', }}>
-                                    <div style={{ display: 'flex', justifyContent: 'center', }}>
-                                        <div className='card-body'>
-                                            <h4 className='' style={{ textAlign: 'center' }}>
-                                                Question 8:
-                                            </h4>
-                                            <div className="  ">
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="question"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='p-3'>
-                                        <div className='row d-flex  justify-content-center '>
-                                            <div className="form-group col-2 ">
-                                                <label>option a</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="a"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2 ">
-                                                <label>option b</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="b"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2 ">
-                                                <label>option c</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="c"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2">
-                                                <label>option d</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="d"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
 
+                            
 
-                            <div style={{ padding: '1rem' }}>
-                                <div style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px", paddingBottom: '.5rem', borderRadius: '.7rem', }}>
-                                    <div style={{ display: 'flex', justifyContent: 'center', }}>
-                                        <div className='card-body'>
-                                            <h4 className='' style={{ textAlign: 'center' }}>
-                                                Question 9:
-                                            </h4>
-                                            <div className="  ">
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="question"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='p-3'>
-                                        <div className='row d-flex  justify-content-center '>
-                                            <div className="form-group col-2 ">
-                                                <label>option a</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="a"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2 ">
-                                                <label>option b</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="b"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2 ">
-                                                <label>option c</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="c"
-                                                />
-                                            </div>
-                                            <div className="form-group col-2">
-                                                <label>option d</label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control input-default "
-                                                    placeholder="d"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        
 
-                            <div style={{ padding: '1rem' }}>
+                      
+
+                            {/* <div style={{ padding: '1rem' }}>
                                 <div style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px", paddingBottom: '.5rem', borderRadius: '.7rem', }}>
                                     <div style={{ display: 'flex', justifyContent: 'center', }}>
                                         <div className='card-body'>
@@ -636,7 +231,7 @@ console.log(text)
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
 
 
 

@@ -31,7 +31,7 @@ const AddCourse = () => {
     return (
         <div className="row">
             <div className='col-xl-11'>
-                <div className='card' style={{ boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px', background: '#ebf9fc' }}>
+                <div className='card' style={{ boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px', background: '#f5f5f7' }}>
                     <div style={{ display: '', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                         <form type="button" onSubmit={(e) => e.preventDefault()}>
 

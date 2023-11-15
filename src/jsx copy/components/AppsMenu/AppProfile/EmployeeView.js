@@ -92,7 +92,7 @@ const reducer = (state, action) => {
   }
 }
 
-const SingleProfile = () => {
+const EmployeeView = () => {
   const [activeLink, setActiveLink] = useState(0);
   const onInit = () => {
     //console.log('lightGallery has been initialized');
@@ -151,35 +151,35 @@ const SingleProfile = () => {
                         <tr>
 
                           <td style={{ fontWeight: 'bold' }}>Employee ID</td>
-                          <td style={{ fontWeight: 'bold' }}>Otto</td>
+                          <td style={{  }}>Otto</td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Employee Name</td>
-                          <td style={{ fontWeight: 'bold' }}>Thornton</td>
+                          <td style={{  }}>Thornton</td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Designation</td>
-                          <td style={{ fontWeight: 'bold' }}>Thornton</td>
+                          <td style={{ }}>Thornton</td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Department</td>
-                          <td style={{ fontWeight: 'bold' }}></td>
+                          <td style={{ }}></td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Phone</td>
-                          <td style={{ fontWeight: 'bold' }}>356566222421</td>
+                          <td style={{  }}>356566222421</td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Email</td>
-                          <td style={{ fontWeight: 'bold' }}>thorton@gmail.com</td>
+                          <td style={{  }}>thorton@gmail.com</td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Contact No</td>
-                          <td style={{ fontWeight: 'bold' }}></td>
+                          <td style={{ }}></td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Gender</td>
-                          <td style={{ fontWeight: 'bold' }}></td>
+                          <td style={{  }}></td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Date of Birth</td>
@@ -222,11 +222,11 @@ const SingleProfile = () => {
                   </Tab>
 
                   <Tab eventKey="qualification" title="Qualification">
-                    {/* <div style={{display:'flex', justifyContent:'flex-end'}}>
+                    <div style={{display:'flex', justifyContent:'flex-end'}}>
                       <Button style={{marginTop:"3rem", marginRight:'1rem'}} variant="primary" size="md" active>
                         Upload Document
                       </Button>
-                    </div> */}
+                    </div>
                     <Table striped style={{ marginTop: "5rem" }}>
                       <thead>
                         <tr>
@@ -242,10 +242,10 @@ const SingleProfile = () => {
                           <td>Mark</td>
                           <td>90%</td>
                           <td>
-                            <Button variant="success" size="sm" style={{ marginRight: '.3rem' }} disabled>
+                            <Button variant="success" size="sm" style={{ marginRight: '.3rem' }}>
                               <FaDownload style={{ fontSize: '1rem' }} />
                             </Button>
-                            <Button variant="secondary" size="sm" disabled>
+                            <Button variant="secondary" size="sm" >
                               <ImCross style={{ fontSize: '1rem' }} />
                             </Button>
 
@@ -264,11 +264,11 @@ const SingleProfile = () => {
                   </Tab>
 
                   <Tab eventKey="Work" title="Work Experience">
-                        {/* <div style={{display:'flex', justifyContent:'flex-end'}}>
+                        <div style={{display:'flex', justifyContent:'flex-end'}}>
                       <Button style={{marginTop:"3rem", marginRight:'1rem'}} variant="primary" size="md" active>
                         Upload Document
                       </Button>
-                    </div> */}
+                    </div>
                     <Table striped style={{ marginTop: "5rem" }}>
                       <thead>
                         <tr>
@@ -286,10 +286,10 @@ const SingleProfile = () => {
                           <td>7</td>
                           <td>Developer</td>
                           <td>
-                            <Button variant="success" size="sm" style={{ marginRight: '.3rem' }} disabled>
+                            <Button variant="success" size="sm" style={{ marginRight: '.3rem' }} >
                               <FaDownload style={{ fontSize: '1rem' }} />
                             </Button>
-                            <Button variant="secondary" size="sm" disabled>
+                            <Button variant="secondary" size="sm" >
                               <ImCross style={{ fontSize: '1rem' }} />
                             </Button>
 
@@ -301,7 +301,7 @@ const SingleProfile = () => {
                           <td>7</td>
                           <td>Developer</td>
                           <td>
-                            <Button variant="success" size="sm" style={{ marginRight: '.3rem' }} disabled>
+                            <Button variant="success" size="sm" style={{ marginRight: '.3rem' }}>
                               <FaDownload style={{ fontSize: '1rem' }} />
                             </Button>
                             <Button variant="secondary" size="sm" disabled>
@@ -316,9 +316,61 @@ const SingleProfile = () => {
                     </Table>
                   </Tab>
 
-                  {/* <Tab eventKey="documents" title="Documents" disabled >
+                  <Tab eventKey="documents" title="Documents"  >
+                  <div style={{display:'flex', justifyContent:'flex-end'}}>
+                      <Button style={{marginTop:"3rem", marginRight:'1rem'}} variant="primary" size="md" active>
+                        Upload Document
+                      </Button>
+                    </div>
+                    <Table striped style={{ marginTop: "5rem" }}>
+                      <thead>
+                        <tr>
+                          <th> Name</th>
+                          <th>Document No</th>
+                          <th>Issue Date</th>
+                          <th>Expiry Date</th>
+                          <th> Date</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Mark</td>
+                          <td></td>
+                          <td>7</td>
+                          <td>7</td>
+                          <td>Developer</td>
+                          <td>
+                            <Button variant="success" size="sm" style={{ marginRight: '.3rem' }} >
+                              <FaDownload style={{ fontSize: '1rem' }} />
+                            </Button>
+                            <Button variant="secondary" size="sm" disabled>
+                              <ImCross style={{ fontSize: '1rem' }} />
+                            </Button>
 
-                  </Tab> */}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Amazon</td>
+                          <td>Mark</td>
+                          <td>7</td>
+                          <td>7</td>
+                          <td>Developer</td>
+                          <td>
+                            <Button variant="success" size="sm" style={{ marginRight: '.3rem' }} >
+                              <FaDownload style={{ fontSize: '1rem' }} />
+                            </Button>
+                            <Button variant="secondary" size="sm" disabled>
+                              <ImCross style={{ fontSize: '1rem' }} />
+                            </Button>
+
+                          </td>
+                        </tr>
+                       
+
+                      </tbody>
+                    </Table>
+                  </Tab>
                 </Tabs>
 
               </Col>
@@ -372,4 +424,4 @@ const SingleProfile = () => {
   );
 };
 
-export default SingleProfile;
+export default EmployeeView;
