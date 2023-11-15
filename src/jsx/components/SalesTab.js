@@ -256,7 +256,7 @@ const SalesTab = () => {
         </Col>
                   </Tab>
 
-                  <Tab eventKey="Work" title="Work Experience">
+                  <Tab eventKey="Work" title="Yearly">
                   <Col lg={12}>
           <Card>
             <Card.Header>
