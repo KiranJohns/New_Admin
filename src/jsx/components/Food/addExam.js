@@ -106,7 +106,17 @@ const AddExam = () => {
       };
     });
   }
-  function handleEdit(id) {}
+  function handleEdit(id) {
+    let data = exam.find((item, idx) => idx == id);
+    console.log(data);
+    setData({
+      question: data.question,
+      option1: data.options[0],
+      option2: data.options[1],
+      option3: data.options[2],
+      option4: data.options[3],
+    });
+  }
   function handleDelete(id) {}
 
   function add() {
@@ -289,18 +299,18 @@ const AddExam = () => {
                             <Button
                               className="me-2"
                               variant="primary btn-icon-xxs"
-                              onClick={() => handleEdit(item.id)}
+                              onClick={() => handleEdit(id)}
                             >
                               <BiSolidEdit />
                             </Button>
-                            <Button
+                            {/* <Button
                               className="me-2"
                               variant="danger btn-icon-xxs"
                             >
                               <RiChatDeleteFill
                                 onClick={() => handleDelete(item.id)}
                               />
-                            </Button>
+                            </Button> */}
                           </td>
                         </tr>
                       ))}
