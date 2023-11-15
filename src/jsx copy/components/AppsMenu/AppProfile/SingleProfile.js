@@ -1,20 +1,20 @@
 import React, { Fragment, useReducer, useState } from "react";
 import { Button, Dropdown, Modal, Nav } from "react-bootstrap";
-import Table from 'react-bootstrap/Table';
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
+import Table from "react-bootstrap/Table";
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
 import { ImCross } from "react-icons/im";
 import { FaDownload } from "react-icons/fa";
 
 import { Link } from "react-router-dom";
-import LightGallery from 'lightgallery/react';
+import LightGallery from "lightgallery/react";
 import Highlight from "react-highlight";
 // import styles
-import 'lightgallery/css/lightgallery.css';
-import 'lightgallery/css/lg-zoom.css';
-import 'lightgallery/css/lg-thumbnail.css';
-import lgThumbnail from 'lightgallery/plugins/thumbnail';
-import lgZoom from 'lightgallery/plugins/zoom';
+import "lightgallery/css/lightgallery.css";
+import "lightgallery/css/lg-zoom.css";
+import "lightgallery/css/lg-thumbnail.css";
+import lgThumbnail from "lightgallery/plugins/thumbnail";
+import lgZoom from "lightgallery/plugins/zoom";
 
 //** Import Image */
 //** Import Image */
@@ -29,17 +29,16 @@ import profile08 from "../../../../images/profile/8.jpg";
 import profile09 from "../../../../images/profile/9.jpg";
 import profile from "../../../../images/profile/profile.png";
 import PageTitle from "../../../layouts/PageTitle";
-import { Row, Col, Card, } from "react-bootstrap";
+import { Row, Col, Card } from "react-bootstrap";
 const sidebarLink = [
-  { to: 'default-tab', title: 'Default Tab' },
-  { to: 'custom-tab', title: 'Custom Tab' },
-  { to: 'nav-pills', title: 'Nav Pills Tabs' },
-  { to: 'nav-pills-tabs', title: 'Nav Pills Tabs-2' },
-  { to: 'vertical-nav', title: 'Vertical Nav Pill' },
-  { to: 'vertical-nav-pill', title: 'Vertical Nav Pill-2' },
-  { to: 'tab-icon', title: 'Tab with Icon' }
+  { to: "default-tab", title: "Default Tab" },
+  { to: "custom-tab", title: "Custom Tab" },
+  { to: "nav-pills", title: "Nav Pills Tabs" },
+  { to: "nav-pills-tabs", title: "Nav Pills Tabs-2" },
+  { to: "vertical-nav", title: "Vertical Nav Pill" },
+  { to: "vertical-nav-pill", title: "Vertical Nav Pill-2" },
+  { to: "tab-icon", title: "Tab with Icon" },
 ];
-
 
 const tabData = [
   {
@@ -70,27 +69,30 @@ const tabData = [
 ];
 
 const galleryBlog = [
-  { image: profile03 }, { image: profile04 },
-  { image: profile02 }, { image: profile04 },
-  { image: profile03 }, { image: profile02 },
+  { image: profile03 },
+  { image: profile04 },
+  { image: profile02 },
+  { image: profile04 },
+  { image: profile03 },
+  { image: profile02 },
 ];
 const initialState = false;
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'sendMessage':
-      return { ...state, sendMessage: !state.sendMessage }
-    case 'postModal':
-      return { ...state, post: !state.post }
-    case 'linkModal':
-      return { ...state, link: !state.link }
-    case 'cameraModal':
-      return { ...state, camera: !state.camera }
-    case 'replyModal':
-      return { ...state, reply: !state.reply }
+    case "sendMessage":
+      return { ...state, sendMessage: !state.sendMessage };
+    case "postModal":
+      return { ...state, post: !state.post };
+    case "linkModal":
+      return { ...state, link: !state.link };
+    case "cameraModal":
+      return { ...state, camera: !state.camera };
+    case "replyModal":
+      return { ...state, reply: !state.reply };
     default:
-      return state
+      return state;
   }
-}
+};
 
 const SingleProfile = () => {
   const [activeLink, setActiveLink] = useState(0);
@@ -115,7 +117,11 @@ const SingleProfile = () => {
               </div>
               <div className="profile-info">
                 <div className="profile-photo">
-                  <img src={profile} className="img-fluid rounded-circle" alt="profile" />
+                  <img
+                    src={profile}
+                    className="img-fluid rounded-circle"
+                    alt="profile"
+                  />
                 </div>
                 <div className="profile-details">
                   <div className="profile-name px-3 pt-2">
@@ -126,9 +132,10 @@ const SingleProfile = () => {
                     <h4 className="text-muted mb-0">hello@email.com</h4>
                     <p>Email</p>
                   </div>
-
+                  <div className="px-2 pt">
+                    <i class="bi bi-pen"></i>
+                  </div>
                 </div>
-
               </div>
               <Col xl={12}>
                 <Tabs
@@ -138,7 +145,7 @@ const SingleProfile = () => {
                   fill
                 >
                   <Tab eventKey="profile" title="Profile">
-                    <Table striped bordered hover >
+                    <Table striped bordered hover>
                       <thead>
                         {/* <tr>
           <th>#</th>
@@ -149,81 +156,97 @@ const SingleProfile = () => {
                       </thead>
                       <tbody>
                         <tr>
-
-                          <td style={{ fontWeight: 'bold' }}>Employee ID</td>
-                          <td style={{ fontWeight: '' }}>Otto</td>
+                          <td style={{ fontWeight: "bold" }}>Employee ID</td>
+                          <td style={{ fontWeight: "" }}>Otto</td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Employee Name</td>
-                          <td style={{ fontWeight: '' }}>Thornton</td>
+                          <td style={{ fontWeight: "bold" }}>Employee Name</td>
+                          <td style={{ fontWeight: "" }}>Thornton</td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Designation</td>
-                          <td style={{ fontWeight: '' }}>Thornton</td>
+                          <td style={{ fontWeight: "bold" }}>Designation</td>
+                          <td style={{ fontWeight: "" }}>Thornton</td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Department</td>
-                          <td style={{ fontWeight: '' }}></td>
+                          <td style={{ fontWeight: "bold" }}>Department</td>
+                          <td style={{ fontWeight: "" }}></td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Phone</td>
-                          <td style={{ fontWeight: '' }}>356566222421</td>
+                          <td style={{ fontWeight: "bold" }}>Phone</td>
+                          <td style={{ fontWeight: "" }}>356566222421</td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Email</td>
-                          <td style={{ fontWeight: '' }}>thorton@gmail.com</td>
+                          <td style={{ fontWeight: "bold" }}>Email</td>
+                          <td style={{ fontWeight: "" }}>thorton@gmail.com</td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Contact No</td>
-                          <td style={{ fontWeight: '' }}></td>
+                          <td style={{ fontWeight: "bold" }}>Contact No</td>
+                          <td style={{ fontWeight: "" }}></td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Gender</td>
-                          <td style={{ fontWeight: '' }}></td>
+                          <td style={{ fontWeight: "bold" }}>Gender</td>
+                          <td style={{ fontWeight: "" }}></td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Date of Birth</td>
-                          <td style={{ fontWeight: '' }}></td>
+                          <td style={{ fontWeight: "bold" }}>Date of Birth</td>
+                          <td style={{ fontWeight: "" }}></td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Next to kin</td>
-                          <td style={{ fontWeight: '' }}></td>
+                          <td style={{ fontWeight: "bold" }}>Next to kin</td>
+                          <td style={{ fontWeight: "" }}></td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Payroll Reference number</td>
-                          <td style={{ fontWeight: '' }}></td>
+                          <td style={{ fontWeight: "bold" }}>
+                            Payroll Reference number
+                          </td>
+                          <td style={{ fontWeight: "" }}></td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Medical Details</td>
-                          <td style={{ fontWeight: '' }}></td>
+                          <td style={{ fontWeight: "bold" }}>
+                            Medical Details
+                          </td>
+                          <td style={{ fontWeight: "" }}></td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>National insurance number</td>
-                          <td style={{ fontWeight: '' }}></td>
+                          <td style={{ fontWeight: "bold" }}>
+                            National insurance number
+                          </td>
+                          <td style={{ fontWeight: "" }}></td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Contract type</td>
-                          <td style={{ fontWeight: '' }}></td>
+                          <td style={{ fontWeight: "bold" }}>Contract type</td>
+                          <td style={{ fontWeight: "" }}></td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Date of joining</td>
-                          <td style={{ fontWeight: '' }}></td>
+                          <td style={{ fontWeight: "bold" }}>
+                            Date of joining
+                          </td>
+                          <td style={{ fontWeight: "" }}></td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Correspondence Address</td>
-                          <td style={{ fontWeight: '' }}></td>
+                          <td style={{ fontWeight: "bold" }}>
+                            Correspondence Address
+                          </td>
+                          <td style={{ fontWeight: "" }}></td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Brief Profile</td>
-                          <td style={{ fontWeight: '' }}></td>
+                          <td style={{ fontWeight: "bold" }}>Brief Profile</td>
+                          <td style={{ fontWeight: "" }}></td>
                         </tr>
                       </tbody>
                     </Table>
                   </Tab>
 
                   <Tab eventKey="qualification" title="Qualification">
-                    <div style={{display:'flex', justifyContent:'flex-end'}}>
-                      <Button style={{marginTop:"3rem", marginRight:'1rem'}} variant="primary" size="md" active>
+                    <div
+                      style={{ display: "flex", justifyContent: "flex-end" }}
+                    >
+                      <Button
+                        style={{ marginTop: "3rem", marginRight: "1rem" }}
+                        variant="primary"
+                        size="md"
+                        active
+                      >
                         Upload Document
                       </Button>
                     </div>
@@ -242,13 +265,16 @@ const SingleProfile = () => {
                           <td>Mark</td>
                           <td>90%</td>
                           <td>
-                            <Button variant="success" size="sm" style={{ marginRight: '.3rem' }} >
-                              <FaDownload style={{ fontSize: '1rem' }} />
+                            <Button
+                              variant="success"
+                              size="sm"
+                              style={{ marginRight: ".3rem" }}
+                            >
+                              <FaDownload style={{ fontSize: "1rem" }} />
                             </Button>
-                            <Button variant="secondary" size="sm" >
-                              <ImCross style={{ fontSize: '1rem' }} />
+                            <Button variant="secondary" size="sm">
+                              <ImCross style={{ fontSize: "1rem" }} />
                             </Button>
-
                           </td>
                         </tr>
 
@@ -258,14 +284,20 @@ const SingleProfile = () => {
                           <td>note</td>
                           <td></td>
                         </tr>
-
                       </tbody>
                     </Table>
                   </Tab>
 
                   <Tab eventKey="Work" title="Work Experience">
-                        <div style={{display:'flex', justifyContent:'flex-end'}}>
-                      <Button style={{marginTop:"3rem", marginRight:'1rem'}} variant="primary" size="md" active>
+                    <div
+                      style={{ display: "flex", justifyContent: "flex-end" }}
+                    >
+                      <Button
+                        style={{ marginTop: "3rem", marginRight: "1rem" }}
+                        variant="primary"
+                        size="md"
+                        active
+                      >
                         Upload Document
                       </Button>
                     </div>
@@ -286,13 +318,16 @@ const SingleProfile = () => {
                           <td>7</td>
                           <td>Developer</td>
                           <td>
-                            <Button variant="success" size="sm" style={{ marginRight: '.3rem' }} >
-                              <FaDownload style={{ fontSize: '1rem' }} />
+                            <Button
+                              variant="success"
+                              size="sm"
+                              style={{ marginRight: ".3rem" }}
+                            >
+                              <FaDownload style={{ fontSize: "1rem" }} />
                             </Button>
-                            <Button variant="secondary" size="sm" >
-                              <ImCross style={{ fontSize: '1rem' }} />
+                            <Button variant="secondary" size="sm">
+                              <ImCross style={{ fontSize: "1rem" }} />
                             </Button>
-
                           </td>
                         </tr>
                         <tr>
@@ -301,17 +336,18 @@ const SingleProfile = () => {
                           <td>7</td>
                           <td>Developer</td>
                           <td>
-                            <Button variant="success" size="sm" style={{ marginRight: '.3rem' }} >
-                              <FaDownload style={{ fontSize: '1rem' }} />
+                            <Button
+                              variant="success"
+                              size="sm"
+                              style={{ marginRight: ".3rem" }}
+                            >
+                              <FaDownload style={{ fontSize: "1rem" }} />
                             </Button>
                             <Button variant="secondary" size="sm">
-                              <ImCross style={{ fontSize: '1rem' }} />
+                              <ImCross style={{ fontSize: "1rem" }} />
                             </Button>
-
                           </td>
                         </tr>
-                       
-
                       </tbody>
                     </Table>
                   </Tab>
@@ -320,42 +356,74 @@ const SingleProfile = () => {
 
                   </Tab> */}
                 </Tabs>
-
               </Col>
             </div>
           </div>
-
         </div>
       </div>
 
-
-
       {/* Link Modal */}
-      <Modal show={state.link} className="modal fade post-input" id="linkModal" onHide={() => dispatch({ type: 'linkModal' })} centered>
+      <Modal
+        show={state.link}
+        className="modal fade post-input"
+        id="linkModal"
+        onHide={() => dispatch({ type: "linkModal" })}
+        centered
+      >
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">Social Links</h5>
-            <button type="button" className="btn-close" data-dismiss="modal" onClick={() => dispatch({ type: 'linkModal' })}>
-            </button>
+            <button
+              type="button"
+              className="btn-close"
+              data-dismiss="modal"
+              onClick={() => dispatch({ type: "linkModal" })}
+            ></button>
           </div>
           <div className="modal-body">
-            <Link className="btn-social me-1 facebook" to="/app-profile"><i className="fab fa-facebook-f" /></Link>
-            <Link className="btn-social me-1 google-plus" to="/app-profile"> <i className="fab fa-google-plus" /></Link>
-            <Link className="btn-social me-1 linkedin" to="/app-profile"><i className="fab fa-linkedin" /></Link>
-            <Link className="btn-social me-1 instagram" to="/app-profile"> <i className="fab fa-instagram" /></Link>
-            <Link className="btn-social me-1 twitter" to="/app-profile"><i className="fab fa-twitter" /></Link>
-            <Link className="btn-social me-1 youtube" to="/app-profile"><i className="fab fa-youtube" /></Link>
-            <Link className="btn-social whatsapp" to="/app-profile"><i className="fab fa-whatsapp" /></Link>
+            <Link className="btn-social me-1 facebook" to="/app-profile">
+              <i className="fab fa-facebook-f" />
+            </Link>
+            <Link className="btn-social me-1 google-plus" to="/app-profile">
+              {" "}
+              <i className="fab fa-google-plus" />
+            </Link>
+            <Link className="btn-social me-1 linkedin" to="/app-profile">
+              <i className="fab fa-linkedin" />
+            </Link>
+            <Link className="btn-social me-1 instagram" to="/app-profile">
+              {" "}
+              <i className="fab fa-instagram" />
+            </Link>
+            <Link className="btn-social me-1 twitter" to="/app-profile">
+              <i className="fab fa-twitter" />
+            </Link>
+            <Link className="btn-social me-1 youtube" to="/app-profile">
+              <i className="fab fa-youtube" />
+            </Link>
+            <Link className="btn-social whatsapp" to="/app-profile">
+              <i className="fab fa-whatsapp" />
+            </Link>
           </div>
         </div>
       </Modal>
       {/* Camera Modal */}
-      <Modal show={state.camera} className="modal fade" id="cameraModal" onHide={() => dispatch({ type: 'cameraModal' })} centered>
+      <Modal
+        show={state.camera}
+        className="modal fade"
+        id="cameraModal"
+        onHide={() => dispatch({ type: "cameraModal" })}
+        centered
+      >
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">Upload images</h5>
-            <button type="button" className="btn-close" data-dismiss="modal" onClick={() => dispatch({ type: 'cameraModal' })}>
-            </button>
+            <button
+              type="button"
+              className="btn-close"
+              data-dismiss="modal"
+              onClick={() => dispatch({ type: "cameraModal" })}
+            ></button>
           </div>
           <div className="modal-body">
             <div className="input-group custom_file_input mb-3">
@@ -367,7 +435,6 @@ const SingleProfile = () => {
           </div>
         </div>
       </Modal>
-
     </Fragment>
   );
 };
