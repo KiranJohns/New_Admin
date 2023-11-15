@@ -15,6 +15,12 @@ import ViewCertificates from "../jsx copy/components/Student/Certificates";
 import SingleProfile from "../jsx copy/components/AppsMenu/AppProfile/SingleProfile";
 import EmployeeView from "../jsx copy/components/AppsMenu/AppProfile/EmployeeView";
 import AddDetails from "./components/Student/AddDetails";
+import ViewInvoice from "./components/viewInvoices";
+import ViewReports from "./components/viewReports";
+import CompanyAdmin from "./components/Teacher/Company";
+import CouponCreate from "../jsx copy/components/Student/Coupons";
+import CompanyTable from "./components/Student/Company";
+import SalesTab from "./components/SalesTab";
 /// Layout
 import Nav from "./layouts/nav";
 import Nav2 from "./layouts/nav/index2";
@@ -127,16 +133,17 @@ import { ThemeContext } from "../context/ThemeContext";
 
 const Markup = () => {
   const routhPath = [
-    {url:'Course Details',component: <SingleCourse />},
+
+    {url:'course-details',component: <SingleCourse />},
     {url:'add-details',component: <AddDetails />},
-    {url:'employee',component: <SingleProfile />},
+    {url:'profile',component: <SingleProfile />},
     {url:'view-certificate', component: <ViewCertificates /> },
-      {url:'view-exam', component: <ViewExam /> },
+     {url:'view-exam', component: <ViewExam /> },
     { url: "add-exam", component: <AddExam /> },
     {url:"add-course", component:<AddCourse/>},
     {url:"view-course",component:<ViewCourse/>},
     {url: "finance", component: <Finance/>},
-    {url: "user", component: <Students/>},
+    {url: "individual", component: <Students/>},
     {url: "user-detail", component: <StudentDetails/>},
     {url: "add-user", component: <AddNewStudent/>},
     {url: "admins", component: <Teachers/>},
@@ -144,6 +151,15 @@ const Markup = () => {
     {url: "add-teacher", component: <AddNewTeacher/>},
     {url: "view-blog", component: <Food/>},    
     {url: "add-blog", component: <FoodDetails/>},
+    {url:'invoices',component: <ViewInvoice />},
+    {url:'reports',component: <ViewReports />},
+    {url:'sales',component: <SalesTab />},
+    
+   
+    {url:'discount-coupon',component: <CouponCreate/>},
+    {url:'company',component: <CompanyTable/>},
+
+     // {url:'company',component: <CompanyAdmin />},
     // {url: "user", component: <User/>},
     {url: "activity", component: <Activity/>},
     {url: "calendar", component: <HomeCalendar/>},

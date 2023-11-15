@@ -28,16 +28,41 @@ export const MenuList = [
     {   
         title:'Profile',        
         iconStyle: <i className="material-icons">person</i>,
-        to: 'employee',
+        to: 'profile',
+    },
+    {
+        title:'Revenue',
+        classsChange: 'mm-collapse',		
+        iconStyle: <i className="material-symbols-outlined">app_registration</i>,
+        content: [
+            {
+                title: 'Sales',
+                to: 'sales',					
+            },
+            {
+                title: 'Invoices',
+                to: 'invoices',					
+            },
+            {
+                title: 'Reports',
+                to: 'reports',					
+            },
+            
+        ],
     },
     {
         title: 'User',	
         classsChange: 'mm-collapse',		
         iconStyle: <i className="material-symbols-outlined">school</i>,
         content: [
+          
             {
-                title: 'User',
-                to: 'user',					
+                title: 'Company',
+                to: 'company',					
+            },
+            {
+                title: 'Individual',
+                to: 'individual',					
             },
             // {
             //     title: 'User Details',
@@ -50,23 +75,59 @@ export const MenuList = [
            
         ],
     },
+    // {
+    //     title:'Admin',
+    //     classsChange: 'mm-collapse',		
+    //     iconStyle: <i className="material-symbols-outlined">person</i>,
+    //     content: [
+    //         {
+    //             title: 'Company',
+    //             to: 'company',					
+    //         },
+    //         {
+    //             title: 'Individual',
+    //             to: 'admins',					
+    //         },
+    //         {
+    //             title: 'Teacher Detail',
+    //             to: 'teacher-detail',					
+    //         },
+    //         {
+    //             title: 'Add New Teacher',
+    //             to: 'add-teacher',					
+    //         },
+    //     ],
+    // },
     {
-        title:'Admin',
+        title:'Courses',
         classsChange: 'mm-collapse',		
-        iconStyle: <i className="material-symbols-outlined">person</i>,
+        iconStyle: <i className="material-symbols-outlined">widgets</i>,
         content: [
-            {
-                title: 'Admins',
-                to: 'admins',					
+            {   
+                title:'Add Course',        
+                iconStyle: <i className="material-icons">widgets</i>,
+                to: 'add-course',
             },
-            // {
-            //     title: 'Teacher Detail',
-            //     to: 'teacher-detail',					
-            // },
-            // {
-            //     title: 'Add New Teacher',
-            //     to: 'add-teacher',					
-            // },
+            {   
+                title:'View Course',        
+                iconStyle: <i className="material-icons">widgets</i>,
+                to: 'view-course',
+            },
+            {
+                title: 'Discount Coupon',
+                to: 'discount-coupon',					
+            },
+            {   
+                title:'Add Exam',        
+                iconStyle: <i className="material-icons">insert_drive_file</i>,
+                to: 'add-exam',
+            },
+            {   
+                title:'View Exam',        
+                iconStyle: <i className="material-icons">insert_drive_file</i>,
+                to: 'view-exam',
+            },
+            
         ],
     },
     {
@@ -85,31 +146,21 @@ export const MenuList = [
             
         ],
     },
-    {   
-        title:'View Course',        
-        iconStyle: <i className="material-icons">widgets</i>,
-        to: 'view-course',
+    {
+        title:'Certificate',
+        classsChange: 'mm-collapse',		
+        iconStyle: <i className="material-symbols-outlined">assessment</i>,
+        content: [
+            {   
+                title:'View Certificate',        
+                iconStyle: <i className="material-icons">assessment</i>,
+                to: 'view-certificate',
+            },
+        ],
     },
-    {   
-        title:'Add Course',        
-        iconStyle: <i className="material-icons">widgets</i>,
-        to: 'add-course',
-    },
-    {   
-        title:'Add Exam',        
-        iconStyle: <i className="material-icons">insert_drive_file</i>,
-        to: 'add-exam',
-    },
-    {   
-        title:'View Exam',        
-        iconStyle: <i className="material-icons">insert_drive_file</i>,
-        to: 'view-exam',
-    },
-    {   
-        title:'View Certificate',        
-        iconStyle: <i className="material-icons">assessment</i>,
-        to: 'view-certificate',
-    },
+  
+
+
     // {
     //     title: 'File Manager',	
     //     classsChange: 'mm-collapse',		
@@ -242,77 +293,77 @@ export const MenuList = [
     // },
     
     //Boosttrap
-    {
-        title: 'Bootstrap',	
-        classsChange: 'mm-collapse',
-        iconStyle: <i className="material-icons">favorite</i>,	
-        content: [
-            {
-                title: 'Accordion',
-                to: 'ui-accordion',					
-            },
-            {
-                title: 'Alert',
-                to: 'ui-alert',					
-            },
-            {
-                title: 'Badge',
-                to: 'ui-badge',					
-            },
-            {
-                title: 'Button',
-                to: 'ui-button',					
-            },
-            {
-                title: 'Modal',
-                to: 'ui-modal',					
-            },
-            {
-                title: 'Button Group',
-                to: 'ui-button-group',					
-            },
-            {
-                title: 'List Group',
-                to: 'ui-list-group',					
-            },
-            {
-                title: 'Cards',
-                to: 'ui-card',					
-            },
-            {
-                title: 'Carousel',
-                to: 'ui-carousel',					
-            },
-            {
-                title: 'Dropdown',
-                to: 'ui-dropdown',					
-            },
-            {
-                title: 'Popover',
-                to: 'ui-popover',					
-            },
-            {
-                title: 'Progressbar',
-                to: 'ui-progressbar',					
-            },
-            {
-                title: 'Tab',
-                to: 'ui-tab',					
-            },
-            {
-                title: 'Typography',
-                to: 'ui-typography',					
-            },
-            {
-                title: 'Pagination',
-                to: 'ui-pagination',					
-            },
-            {
-                title: 'Grid',
-                to: 'ui-grid',					
-            },
-        ]
-    },
+    // {
+    //     title: 'Bootstrap',	
+    //     classsChange: 'mm-collapse',
+    //     iconStyle: <i className="material-icons">favorite</i>,	
+    //     content: [
+    //         {
+    //             title: 'Accordion',
+    //             to: 'ui-accordion',					
+    //         },
+    //         {
+    //             title: 'Alert',
+    //             to: 'ui-alert',					
+    //         },
+    //         {
+    //             title: 'Badge',
+    //             to: 'ui-badge',					
+    //         },
+    //         {
+    //             title: 'Button',
+    //             to: 'ui-button',					
+    //         },
+    //         {
+    //             title: 'Modal',
+    //             to: 'ui-modal',					
+    //         },
+    //         {
+    //             title: 'Button Group',
+    //             to: 'ui-button-group',					
+    //         },
+    //         {
+    //             title: 'List Group',
+    //             to: 'ui-list-group',					
+    //         },
+    //         {
+    //             title: 'Cards',
+    //             to: 'ui-card',					
+    //         },
+    //         {
+    //             title: 'Carousel',
+    //             to: 'ui-carousel',					
+    //         },
+    //         {
+    //             title: 'Dropdown',
+    //             to: 'ui-dropdown',					
+    //         },
+    //         {
+    //             title: 'Popover',
+    //             to: 'ui-popover',					
+    //         },
+    //         {
+    //             title: 'Progressbar',
+    //             to: 'ui-progressbar',					
+    //         },
+    //         {
+    //             title: 'Tab',
+    //             to: 'ui-tab',					
+    //         },
+    //         {
+    //             title: 'Typography',
+    //             to: 'ui-typography',					
+    //         },
+    //         {
+    //             title: 'Pagination',
+    //             to: 'ui-pagination',					
+    //         },
+    //         {
+    //             title: 'Grid',
+    //             to: 'ui-grid',					
+    //         },
+    //     ]
+    // },
     //plugins
     // {
     //     title:'Plugins',
@@ -352,34 +403,34 @@ export const MenuList = [
     //     to: 'widget',
     // },
     //Forms
-    {
-        title:'Forms',
-        classsChange: 'mm-collapse',
-        iconStyle: <i className="material-icons">insert_drive_file</i>,
-        content : [
-            {
-                title:'Form Elements',
-                to: 'form-element',
-            },
-            {
-                title:'Wizard',
-                to: 'form-wizard',
-            },
-            {
-                title:'CkEditor',
-                to: 'form-ckeditor',
-            },
-            {
-                title:'Pickers',
-                to: 'form-pickers',
-            },
-            {
-                title:'Form Validate',
-                to: 'form-validation',
-            },
+    // {
+    //     title:'Forms',
+    //     classsChange: 'mm-collapse',
+    //     iconStyle: <i className="material-icons">insert_drive_file</i>,
+    //     content : [
+    //         {
+    //             title:'Form Elements',
+    //             to: 'form-element',
+    //         },
+    //         {
+    //             title:'Wizard',
+    //             to: 'form-wizard',
+    //         },
+    //         {
+    //             title:'CkEditor',
+    //             to: 'form-ckeditor',
+    //         },
+    //         {
+    //             title:'Pickers',
+    //             to: 'form-pickers',
+    //         },
+    //         {
+    //             title:'Form Validate',
+    //             to: 'form-validation',
+    //         },
 
-        ]
-    },
+    //     ]
+    // },
     // //Table
     // {
     //     title:'Table',
