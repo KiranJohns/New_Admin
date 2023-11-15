@@ -20,12 +20,12 @@ const tableData = [
 	{id:'16', name:'Kohni Pandye', subject:'Sanskrit', qualification:'B.Tech', fee:'150.50', status:'Good'}	
 ];
 
-export const TeacherDetails = () => {
+export const TeacherDetails = ({companies}) => {
     const [currentPage , setCurrentPage] = useState(1);  
     const recordsPage = 8;
     const lastIndex = currentPage * recordsPage;
     const firstIndex = lastIndex - recordsPage;   
-    const records = tableData.slice(firstIndex, lastIndex);
+    const records = companies?.slice(firstIndex, lastIndex);
     const npage = Math.ceil(tableData.length / recordsPage)
     const number = [...Array(npage + 1).keys()].slice(1)
     function prePage (){
@@ -49,22 +49,24 @@ export const TeacherDetails = () => {
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Date</th>
+                            <th>Email</th>
                             <th>City</th>
-                            <th>Courses</th>
-                            <th>Individuals</th>
+                            <th>Phone</th>
+                            {/* <th>Individuals</th> */}
                             {/* <th className="text-end">Performance</th> */}
                         </tr>
                     </thead>
                     <tbody>
-                        {records.map((item, ind)=>(
+                        {records && records.map((item, ind)=>(
                             <tr key={ind}>
-                                <td>{item.name}</td>
-                                <td>{item.subject}</td>
-                                <td>{item.qualification}</td>
+                                <td>{item.id}</td>
+                                <td>{item.first_name + " " + item.last_name}</td>
+                                <td>{item.email}</td>
+                                <td>{item.city}</td>
+                                <td>{item.phone}</td>
+                                {/* <td>${item.fee}</td>
                                 <td>${item.fee}</td>
-                                <td>${item.fee}</td>
-                                <td>${item.fee}</td>
+                                <td>${item.fee}</td> */}
                                 {/* <td className="text-end"><span className={`badge badge-sm light badge-${item.status === "Good" ?  'success' : 'danger' }`}>{item.status}</span></td> */}
                             </tr>
                         ))}
