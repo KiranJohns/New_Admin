@@ -8,10 +8,6 @@ import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
 import fetchData from "../../../axios";
 import { MdDelete } from "react-icons/md";
 import swal from "sweetalert";
-import { RiChatDeleteFill } from "react-icons/ri";
-import { BiSolidEdit } from "react-icons/bi";
-import {  Button,  ButtonGroup,  } from "react-bootstrap";
-import { FaEye } from "react-icons/fa";
 
 const svg1 = (
   <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1">
@@ -223,20 +219,16 @@ const Food = () => {
                           {item?.tags ? JSON.parse(item.tags).join(",") : ""}
                         </td>
                         <td>
-                        <Button className="me-2" variant="primary btn-icon-xxs">
-                    <BiSolidEdit />
-                  </Button>
                           <a
-                            
+                            className="btn btn-danger"
                             onClick={() => deleteHandler(item.id)}
-                          ><Button className="me-2" variant="danger btn-icon-xxs">
-                             <RiChatDeleteFill />
+                          >
+                            delete
                             {/* <MdDelete
                               onClick={() => deleteHandler(item.id)}
                               title="Delete"
                             /> */}
-                          </Button>  </a>
-                  
+                          </a>
                         </td>
                       </tr>
                     );
