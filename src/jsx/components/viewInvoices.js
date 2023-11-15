@@ -4,6 +4,8 @@ import {Nav, Tab, Dropdown} from 'react-bootstrap';
 import { IMAGES, SVGICON } from './Dashboard/Content';
 import { FaEye } from "react-icons/fa";
 import {  Button,  ButtonGroup,  } from "react-bootstrap";
+import { FaDeleteLeft } from "react-icons/fa6";
+import { BiSolidEdit } from "react-icons/bi";
 
 import PageTitle from '../layouts/PageTitle';
 import {
@@ -79,7 +81,7 @@ const ViewInvoice = () => {
                     <th>
                       <strong>Customer Type</strong>
                     </th>
-                    <th></th>
+                    <th> <strong>Action</strong></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -99,6 +101,12 @@ const ViewInvoice = () => {
                     <Button className="me-2" variant="success btn-icon-xxs">
                     <FaEye />
                   </Button>
+                    <Button className="me-2" variant="primary btn-icon-xxs">
+                    <BiSolidEdit />
+                  </Button>
+                  <Button className="me-2"  variant="danger btn-icon-xxs">
+                  <FaDeleteLeft />
+                  </Button>
                     </td>
                   </tr>
                   <tr>
@@ -113,11 +121,15 @@ const ViewInvoice = () => {
                     </td>
                     <td>Company</td>
                     <td>
-                      <Dropdown>
-                      <Button className="me-2" variant="success btn-icon-xxs">
+                    <Button className="me-2" variant="success btn-icon-xxs">
                     <FaEye />
                   </Button>
-                      </Dropdown>
+                    <Button className="me-2" variant="primary btn-icon-xxs">
+                    <BiSolidEdit />
+                  </Button>
+                  <Button className="me-2"  variant="danger btn-icon-xxs">
+                  <FaDeleteLeft />
+                  </Button>
                     </td>
                   </tr>
                   <tr>
@@ -132,11 +144,15 @@ const ViewInvoice = () => {
                     </td>
                     <td>Individual</td>
                     <td>
-                      <Dropdown>
-                      <Button className="me-2" variant="success btn-icon-xxs">
+                    <Button className="me-2" variant="success btn-icon-xxs">
                     <FaEye />
                   </Button>
-                      </Dropdown>
+                    <Button className="me-2" variant="primary btn-icon-xxs">
+                    <BiSolidEdit />
+                  </Button>
+                  <Button className="me-2"  variant="danger btn-icon-xxs">
+                  <FaDeleteLeft />
+                  </Button>
                     </td>
                   </tr>
                 </tbody>

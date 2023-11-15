@@ -31,7 +31,7 @@ export const MenuList = [
         to: 'profile',
     },
     {
-        title:'Revenue',
+        title:'Sales/Revenue',
         classsChange: 'mm-collapse',		
         iconStyle: <i className="material-symbols-outlined">app_registration</i>,
         content: [

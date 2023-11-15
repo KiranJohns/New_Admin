@@ -6,6 +6,8 @@ import { IMAGES, SVGICON } from './Dashboard/Content';
 import { FaEye } from "react-icons/fa";
 import {  Button,  ButtonGroup,  } from "react-bootstrap";
 import { BiSolidEdit } from "react-icons/bi";
+import { FaTrashRestore } from "react-icons/fa";
+import { FaDeleteLeft } from "react-icons/fa6";
 import PageTitle from '../layouts/PageTitle';
 import {
     Row,
@@ -80,7 +82,7 @@ const ViewCourse = () => {
                     <th>
                       <strong>Category</strong>
                     </th>
-                    <th></th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -103,7 +105,7 @@ const ViewCourse = () => {
                     <BiSolidEdit />
                   </Button>
                   <Button className="me-2"  variant="danger btn-icon-xxs">
-                  <RiChatDeleteFill />
+                  <FaDeleteLeft />
                   </Button>
                     </td>
                   </tr>
@@ -126,7 +128,7 @@ const ViewCourse = () => {
                     <BiSolidEdit />
                   </Button>
                   <Button className="me-2"  variant="danger btn-icon-xxs">
-                  <RiChatDeleteFill />
+                  <FaDeleteLeft />
                   </Button>
                     </td>
                   </tr>
@@ -149,7 +151,7 @@ const ViewCourse = () => {
                     <BiSolidEdit />
                   </Button>
                   <Button className="me-2"  variant="danger btn-icon-xxs">
-                  <RiChatDeleteFill />
+                  <FaDeleteLeft />
                   </Button>
                     </td>
                   </tr>
