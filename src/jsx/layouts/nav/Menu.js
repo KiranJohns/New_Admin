@@ -352,34 +352,34 @@ export const MenuList = [
     //     to: 'widget',
     // },
     //Forms
-    // {
-    //     title:'Forms',
-    //     classsChange: 'mm-collapse',
-    //     iconStyle: <i className="material-icons">insert_drive_file</i>,
-    //     content : [
-    //         {
-    //             title:'Form Elements',
-    //             to: 'form-element',
-    //         },
-    //         {
-    //             title:'Wizard',
-    //             to: 'form-wizard',
-    //         },
-    //         {
-    //             title:'CkEditor',
-    //             to: 'form-ckeditor',
-    //         },
-    //         {
-    //             title:'Pickers',
-    //             to: 'form-pickers',
-    //         },
-    //         {
-    //             title:'Form Validate',
-    //             to: 'form-validation',
-    //         },
+    {
+        title:'Forms',
+        classsChange: 'mm-collapse',
+        iconStyle: <i className="material-icons">insert_drive_file</i>,
+        content : [
+            {
+                title:'Form Elements',
+                to: 'form-element',
+            },
+            {
+                title:'Wizard',
+                to: 'form-wizard',
+            },
+            {
+                title:'CkEditor',
+                to: 'form-ckeditor',
+            },
+            {
+                title:'Pickers',
+                to: 'form-pickers',
+            },
+            {
+                title:'Form Validate',
+                to: 'form-validation',
+            },
 
-    //     ]
-    // },
+        ]
+    },
     // //Table
     // {
     //     title:'Table',

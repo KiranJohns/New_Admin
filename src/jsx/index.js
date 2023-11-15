@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import "./index.css";
 import "./chart.css";
 import "./step.css";
+import SingleCourse from "./components/Food/SingleCoursePage";
 import ViewCourse from "./components/viewCourse.";
 import AddCourse from "./components/Food/addCourse"; 
 import AddExam from "./components/Food/addExam";
@@ -126,6 +127,7 @@ import { ThemeContext } from "../context/ThemeContext";
 
 const Markup = () => {
   const routhPath = [
+    {url:'Course Details',component: <SingleCourse />},
     {url:'add-details',component: <AddDetails />},
     {url:'employee',component: <SingleProfile />},
     {url:'view-certificate', component: <ViewCertificates /> },

@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, Dropdown, Tab } from 'react-bootstrap';
 import { IMAGES, SVGICON } from '../Dashboard/Content';
 import circle from './../../../images/circle.svg';
 import { Row, Col, Card, Button, ButtonGroup } from "react-bootstrap";
 import quotes from './../../../images/quotes.svg';
-import {Editor} from '@tinymce/tinymce-react'
+import { Editor } from '@tinymce/tinymce-react'
 
 
 
@@ -33,11 +33,11 @@ const tabledata = [
 
 const AddExam = () => {
 
-    const [text, setText]= useState('')
-const [value, setValue] = useState('<p>TinyMCE editor text</p>')
+    const [text, setText] = useState('')
+    const [value, setValue] = useState('<p>TinyMCE editor text</p>')
 
-console.log(value);
-console.log(text)
+    console.log(value);
+    console.log(text)
 
     return (
         <div className="row">
@@ -47,7 +47,7 @@ console.log(text)
                         <form type="button" onSubmit={(e) => e.preventDefault()}>
 
 
-                                
+
 
                             <div style={{ display: 'flex', justifyContent: 'center' }}>
                                 <div className='card-body'>
@@ -85,7 +85,7 @@ console.log(text)
                                     </div>
                                 </div>
                             </div>
-                      
+
                             <div style={{ padding: '1rem' }}>
                                 <div style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px", paddingBottom: '.5rem', borderRadius: '.7rem', }}>
                                     <div style={{ display: 'flex', justifyContent: 'center', }}>
@@ -94,89 +94,109 @@ console.log(text)
                                                 Question 1:
                                             </h4>
                                             <div className="">
-                                            <Editor apiKey="enk9sksvp1tt5f2u075ef5jfjrff9e37ahpv80zdk3734qh4" onEditorChange={(newValue, editor)=>{
-                                                setValue(newValue);
-                                               setText(editor.getContent({format:'text'}))
-                                            }}/>
+                                                <textarea
+                                                    className="form-control"
+                                                    rows="4"
+                                                    id="comment"
+                                                ></textarea>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className='p-3'>
-                                    <h4 className='' style={{ textAlign: 'center' }}>
-                                               option 1
-                                            </h4>
-                                    <Editor  style={{height:'100px !important'}}
-                                    apiKey="enk9sksvp1tt5f2u075ef5jfjrff9e37ahpv80zdk3734qh4" onEditorChange={(newValue, editor)=>{
-                                                setValue(newValue);
-                                               setText(editor.getContent({format:'text'}))
-                                            }}/>
-                                    </div>
-                                    <div className='p-3'>
-                                    <h4 className='' style={{ textAlign: 'center' }}>
-                                               option 1
-                                            </h4>
-                                    <Editor  style={{height:'100px !important'}}
-                                    apiKey="enk9sksvp1tt5f2u075ef5jfjrff9e37ahpv80zdk3734qh4" onEditorChange={(newValue, editor)=>{
-                                                setValue(newValue);
-                                               setText(editor.getContent({format:'text'}))
-                                            }}/>
-                                    </div>
-                                    <div className='p-3'>
-                                    <h4 className='' style={{ textAlign: 'center' }}>
-                                               option 2
-                                            </h4>
-                                    <Editor  style={{height:'100px !important'}}
-                                    apiKey="enk9sksvp1tt5f2u075ef5jfjrff9e37ahpv80zdk3734qh4" onEditorChange={(newValue, editor)=>{
-                                                setValue(newValue);
-                                               setText(editor.getContent({format:'text'}))
-                                            }}/>
-                                    </div>
-                                    <div className='p-3'>
-                                    <h4 className='' style={{ textAlign: 'center' }}>
-                                               option 3
-                                            </h4>
-                                    <Editor  style={{height:'100px !important'}}
-                                    apiKey="enk9sksvp1tt5f2u075ef5jfjrff9e37ahpv80zdk3734qh4" onEditorChange={(newValue, editor)=>{
-                                                setValue(newValue);
-                                               setText(editor.getContent({format:'text'}))
-                                            }}/>
-                                    </div>
-                                    <div className='p-3'>
-                                    <h4 className='' style={{ textAlign: 'center' }}>
-                                               option 4
-                                            </h4>
-                                    <Editor  style={{height:'100px !important'}}
-                                    apiKey="enk9sksvp1tt5f2u075ef5jfjrff9e37ahpv80zdk3734qh4" onEditorChange={(newValue, editor)=>{
-                                                setValue(newValue);
-                                               setText(editor.getContent({format:'text'}))
-                                            }}/>
-                                    </div>
-                                    <div className='p-3'>
-                                    <h4 className='' style={{ textAlign: 'center' }}>
-                                               Answer
-                                            </h4>
-                                    <Editor  style={{height:'100px !important'}}
-                                    apiKey="enk9sksvp1tt5f2u075ef5jfjrff9e37ahpv80zdk3734qh4" onEditorChange={(newValue, editor)=>{
-                                                setValue(newValue);
-                                               setText(editor.getContent({format:'text'}))
-                                            }}/>
-                                    </div>
-                                    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                <div className='m-2 p-2 '>
-                                    <Button className="" variant="primary">
-                                        Add question
-                                    </Button>
-                                </div>
-                            </div>
 
-                                </div>
-                            </div>
+                                    <div className='p-3'>
+                                        <h4 className='' style={{ textAlign: 'center' }}>
+                                            option 1
+                                        </h4>
+                                        <div style={{ display: 'flex', alignItems: "center", justifyContent: 'center' }}>
+                                            <input style={{ marginRight: '1.5rem' }}
+                                                type="checkbox"
+                                                className="form-check-input"
+                                                id="customCheckBox8"
+                                                required
+                                            />
+                                            <input style={{ width: "80%" }}
+                                                className="form-control"
+                                                type="text"
+                                                placeholder="option 1"
+                                            />
+                                        </div>
+                                    </div>
 
+                                    <div className='p-3'>
+                                        <h4 className='' style={{ textAlign: 'center' }}>
+                                            option 2
+                                        </h4>
+                                        <div style={{ display: 'flex', alignItems: "center", justifyContent: 'center' }}>
+                                            <input style={{ marginRight: '1.5rem' }}
+                                                type="checkbox"
+                                                className="form-check-input"
+                                                id="customCheckBox8"
+                                                required
+                                            />
+                                            <input style={{ width: "80%" }}
+                                                className="form-control"
+                                                type="text"
+                                                placeholder="option 2"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className='p-3'>
+                                        <h4 className='' style={{ textAlign: 'center' }}>
+                                            option 3
+                                        </h4>
+                                        <div style={{ display: 'flex', alignItems: "center", justifyContent: 'center' }}>
+                                            <input style={{ marginRight: '1.5rem' }}
+                                                type="checkbox"
+                                                className="form-check-input"
+                                                id="customCheckBox8"
+                                                required
+                                            />
+                                            <input style={{ width: "80%" }}
+                                                className="form-control"
+                                                type="text"
+                                                placeholder="option 3"
+                                            />
+                                        </div>
+                                    </div>
+
+                                 <div className='p-3'>
+                                        <h4 className='' style={{ textAlign: 'center' }}>
+                                            option 4
+                                        </h4>
+                                        <div style={{ display: 'flex', alignItems: "center", justifyContent: 'center' }}>
+                                            <input style={{ marginRight: '1.5rem' }}
+                                                type="checkbox"
+                                                className="form-check-input"
+                                                id="customCheckBox8"
+                                                required
+                                            />
+                                            <input style={{ width: "80%" }}
+                                                className="form-control"
+                                                type="text"
+                                                placeholder="option 4"
+                                            />
+                                        </div>
+                                    </div>
                             
+                                    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                        <div className='m-2 p-2 '>
+                                            <Button className="" variant="primary">
+                                                Add question
+                                            </Button>
+                                        </div>
+                                    </div>
 
-                        
+                                </div>
+                            </div>
 
-                      
+
+
+                            {/*                         
+                            <Editor apiKey="enk9sksvp1tt5f2u075ef5jfjrff9e37ahpv80zdk3734qh4" onEditorChange={(newValue, editor)=>{
+                                                setValue(newValue);
+                                               setText(editor.getContent({format:'text'}))
+                                            }}/> */}
+
 
                             {/* <div style={{ padding: '1rem' }}>
                                 <div style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px", paddingBottom: '.5rem', borderRadius: '.7rem', }}>
