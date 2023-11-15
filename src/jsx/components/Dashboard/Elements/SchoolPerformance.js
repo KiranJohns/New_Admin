@@ -29,7 +29,7 @@ const SchoolPerformance = () => {
 
     makeRequest("GET", "/info/super-admin-dashboard-data")
       .then((res) => {
-        const course = res.data.response.purchasedCourse;
+        const course = res.data.response.purchasedCourse || [];
 
         // console.log(course);
 
@@ -67,6 +67,8 @@ const SchoolPerformance = () => {
             }
           }
         }
+        arr1.reverse()
+        arr2.reverse()
         setSeries(prev => {
           return [
             ...prev,
@@ -114,7 +116,11 @@ const SchoolPerformance = () => {
           fontWeight: 400,
         },
         formatter: function (value) {
-          return value + "k";
+          if(value >= 10000) {
+            return value / 10000 + "K";
+          } else {
+            return value + "";
+          }
         },
       },
     },
