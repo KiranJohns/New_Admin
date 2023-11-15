@@ -19,7 +19,7 @@ export default function fetchData() {
           url: `${BASEURL}${url}`,
           data: data,
           headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
           withCredentials: true,
