@@ -41,11 +41,9 @@ const SingleCourse = () => {
                                         Course Name:
                                     </h4>
                                     <div className=" mb-3 ">
-                                        <input
-                                            type="text"
-                                            className="form-control input-default "
-                                            placeholder="course name"
-                                        />
+                                       <h5 style={{color:'black', textAlign:'center'}}>
+                                        ADHD Awareness
+                                       </h5>
                                     </div>
                                 </div>
                             </div>
@@ -56,11 +54,9 @@ const SingleCourse = () => {
                                         Course Price:
                                     </h4>
                                     <div className=" mb-3 ">
-                                        <input
-                                            type="text"
-                                            className="form-control input-default "
-                                            placeholder="course price"
-                                        />
+                                    <h5 style={{color:'black', textAlign:'center'}}>
+                                        7
+                                       </h5>
                                     </div>
                                 </div>
                             </div>
@@ -70,19 +66,11 @@ const SingleCourse = () => {
                                     <h4 className='' style={{textAlign:'center'}}>
                                        Course Category:
                                     </h4>
-                                    <div className="form-group mb-3">
-                    <select
-                      defaultValue={"option"}
-                      className="form-control form-control-lg"
-                    >
-                      <option>Select</option>
-                      <option>Care Course</option>
-                      <option>Mandatory Care Course</option>   
-                      <option>Specialised Care Course</option>
-                      <option>Recovery Care Course</option>
-                      <option>Child Care Course</option>
-                    </select>
-                  </div>
+                                    <div className=" mb-3 ">
+                                    <h5 style={{color:'black', textAlign:'center'}}>
+                                       Care Course
+                                       </h5>
+                                    </div>
                                 </div>
                             </div>
 
@@ -91,13 +79,9 @@ const SingleCourse = () => {
                                     <h4 className='' style={{textAlign:'center'}}>
                                         Course Introduction:
                                     </h4>
-                                    <div className="form-group ">
-                                        <textarea
-                                            className="form-control"
-                                            rows="4"
-                                            id="comment"
-                                            placeholder="Content"
-                                        ></textarea>
+                                    <div className="form-group p-4">
+                                        <p style={{textAlign:'center'}}>This online first-aid course is appropriate for individuals and businesses who want to learn new first-aid skills or refresh their existing first-aid skills. No previous qualifications are required 
+                                            to take this course as all the essential first aid techniques are covered throughout the training.</p>
                                     </div>
                                 </div>
                             </div>
@@ -110,8 +94,7 @@ const SingleCourse = () => {
                                         Upload Course Image:
                                     </h4>
                                     <div className="">
-                                        <label htmlFor="formFile" className="form-label"></label>
-                                        <input className="form-control" type="file" id="formFile" />
+                                   <img src="" alt="" />
                                     </div>
                                 </div>
                             </div>
@@ -122,8 +105,7 @@ const SingleCourse = () => {
                                         Upload Course Video:
                                     </h4>
                                     <div className="">
-                                        <label htmlFor="formFile" className="form-label"></label>
-                                        <input className="form-control" type="file" id="formFile" />
+                                       <video ></video>
                                     </div>
                                 </div>
                             </div>
@@ -135,7 +117,7 @@ const SingleCourse = () => {
                                     </h4>
                                     <div className="">
                                         <label htmlFor="formFile" className="form-label"></label>
-                                        <input className="form-control" type="file" id="formFile" />
+                                        <input className="form-control" type="file" id="formFile"  disabled/>
                                     </div>
                                 </div>
                             </div>
@@ -147,18 +129,18 @@ const SingleCourse = () => {
                                     </h4>
                                     <div className="">
 				  <label htmlFor="formFileMultiple" className="form-label"></label>
-				  <input className="form-control" type="file" id="formFileMultiple" multiple />
+                  <div style={{display:"flex", justifyContent:"center"}}>  <a href="#">course.pdf</a></div>		
 				</div>
                                 </div>
                             </div>
 
-                            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                            {/* <div style={{ display: 'flex', justifyContent: 'center' }}>
                                 <div className='m-2 p-2 '>
                                     <Button className="" variant="primary">
                                       Submit
                                     </Button>
                                 </div>
-                            </div>
+                            </div> */}
 
                         </form>
                     </div>
