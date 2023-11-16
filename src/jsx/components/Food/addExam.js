@@ -9,6 +9,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import { BiSolidEdit } from "react-icons/bi";
 import { RiChatDeleteFill } from "react-icons/ri";
 import swal from "sweetalert";
+import { FaPlus } from "react-icons/fa6";
 import fetchData from "../../../axios";
 
 const inputBlog = [
@@ -205,7 +206,11 @@ const AddExam = () => {
             }}
           >
             <form type="button" onSubmit={(e) => e.preventDefault()}>
-              <div style={{ display: "flex", justifyContent: "center" }}>
+
+              <div className="row">
+
+              <div className="col-4" style={{ }}>
+                
                 <div className="card-body">
                   <h4 className="" style={{ textAlign: "center" }}>
                     Course Category:
@@ -243,7 +248,7 @@ const AddExam = () => {
                 </div>
               </div>
 
-              <div style={{ display: "flex", justifyContent: "center" }}>
+              <div className="col-4" style={{  }}>
                 <div className="card-body">
                   <h4 className="" style={{ textAlign: "center" }}>
                     Course Name:
@@ -266,12 +271,29 @@ const AddExam = () => {
                 </div>
               </div>
 
+              <div className="col-4">
+              <div className="card-body">
+                  <h4 className="" style={{ textAlign: "center" }}>
+                    Course ID:
+                  </h4>
+                  <div className="form-group mb-3">
+                    <input
+                      className="form-control form-control-lg"
+                      type="text"
+                      placeholder=""
+                    disabled/>
+                  </div>
+                </div>
+              </div>
+
+              </div>
+
               <Card.Body>
                 <Table responsive>
                   <thead>
                     <tr>
                       <th className="width80">
-                        <strong>ID</strong>
+                        <strong>No</strong>
                       </th>
                       <th>
                         <strong>Question</strong>
@@ -282,7 +304,7 @@ const AddExam = () => {
                       <th>
                         <strong>Answer</strong>
                       </th>
-                      <th></th>
+                      <th><strong>Action</strong></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -354,13 +376,13 @@ const AddExam = () => {
                         justifyContent: "center",
                       }}
                     >
-                      <input
+                      {/* <input
                         style={{ marginRight: "1.5rem" }}
                         type="checkbox"
                         className="form-check-input"
                         onChange={() => setAnswer("option1")}
                         id="customCheckBox8"
-                      />
+                      /> */}
                       <input
                         value={data.option1}
                         onChange={handleOnchange}
@@ -384,13 +406,13 @@ const AddExam = () => {
                         justifyContent: "center",
                       }}
                     >
-                      <input
+                      {/* <input
                         style={{ marginRight: "1.5rem" }}
                         type="checkbox"
                         className="form-check-input"
                         id="customCheckBox8"
                         onChange={() => setAnswer("option2")}
-                      />
+                      /> */}
                       <input
                         value={data.option2}
                         onChange={handleOnchange}
@@ -413,13 +435,13 @@ const AddExam = () => {
                         justifyContent: "center",
                       }}
                     >
-                      <input
+                      {/* <input
                         style={{ marginRight: "1.5rem" }}
                         type="checkbox"
                         onChange={() => setAnswer("option3")}
                         className="form-check-input"
                         id="customCheckBox8"
-                      />
+                      /> */}
                       <input
                         value={data.option3}
                         onChange={handleOnchange}
@@ -443,13 +465,13 @@ const AddExam = () => {
                         justifyContent: "center",
                       }}
                     >
-                      <input
+                      {/* <input
                         style={{ marginRight: "1.5rem" }}
                         type="checkbox"
                         className="form-check-input"
                         id="customCheckBox8"
                         onChange={() => setAnswer("option4")}
-                      />
+                      /> */}
                       <input
                         value={data.option4}
                         onChange={handleOnchange}
@@ -460,12 +482,33 @@ const AddExam = () => {
                         placeholder="option 4"
                       />
                     </div>
+                    <Button className="me-2" variant="primary btn-icon-xxs">
+                    <FaPlus /> option
+                  </Button>
+                  </div>
+
+                    <div className="p-3">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                     Select Answer
+                    </h4>
+                  <div style={{display:'flex', justifyContent:'center'}} className="form-group mb-3">
+                    <select defaultValue={"option"} 
+                    className="form-control"style={{ width: "80%" }} >
+
+                      <option>Option 1</option>
+                      <option>Option 2</option>
+                      <option>Option 3</option>
+                      <option>Option 4</option>
+                      <option>Option 5</option>
+                      <option>Option 6</option>
+                    </select>
+                  </div>
                   </div>
 
                   <div style={{ display: "flex", justifyContent: "flex-end" }}>
                     <div className="m-2 p-2 ">
                       <Button className="" variant="primary" onClick={add}>
-                        Add question
+                        Next question
                       </Button>
                     </div>
                   </div>

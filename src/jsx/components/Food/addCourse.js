@@ -131,7 +131,9 @@ const AddCourse = () => {
             }}
           >
             <form type="button" onSubmit={(e) => e.preventDefault()}>
-              <div style={{ display: "flex", justifyContent: "center" }}>
+ 
+             <div className="row">
+              <div className="col-4" style={{  }}>
                 <div className="card-body">
                   <h4 className="" style={{ textAlign: "center" }}>
                     Course Name:
@@ -149,7 +151,7 @@ const AddCourse = () => {
                 </div>
               </div>
 
-              <div style={{ display: "flex", justifyContent: "center" }}>
+              <div className="col-4" style={{ }}>
                 <div className="card-body">
                   <h4 className="" style={{ textAlign: "center" }}>
                     Course Price:
@@ -167,7 +169,7 @@ const AddCourse = () => {
                 </div>
               </div>
 
-              <div style={{ display: "flex", justifyContent: "center" }}>
+              <div className="col-4" style={{  }}>
                 <div className="card-body">
                   <h4 className="" style={{ textAlign: "center" }}>
                     Course Category:
@@ -177,7 +179,7 @@ const AddCourse = () => {
                       onChange={handleChange}
                       defaultValue={"option"}
                       name="category"
-                      className="form-control form-control-lg"
+                      className="form-control form-control"
                     >
                       <option>Select</option>
                       <option value="Care Course">Care Course</option>
@@ -198,6 +200,10 @@ const AddCourse = () => {
                 </div>
               </div>
 
+              </div>
+
+            
+
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <div className="card-body">
                   <h4 className="" style={{ textAlign: "center" }}>
@@ -217,7 +223,10 @@ const AddCourse = () => {
                 </div>
               </div>
 
-              <div style={{ display: "flex", justifyContent: "center" }}>
+              <div className="row">
+              
+              <div className="col-6">
+              <div  style={{ }}>
                 <div className="card-body">
                   <h4 className="" style={{ textAlign: "center" }}>
                     Upload Course Image:
@@ -254,7 +263,9 @@ const AddCourse = () => {
                   </div>
                 </div>
               </div>
-
+              </div>
+             
+             <div className="col-6">
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <div className="card-body">
                   <h4 className="" style={{ textAlign: "center" }}>
@@ -296,6 +307,10 @@ const AddCourse = () => {
                   </div>
                 </div>
               </div>
+
+              </div>
+
+            </div>
 
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <div className="m-2 p-2 ">
