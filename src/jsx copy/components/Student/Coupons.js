@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IMAGES } from "../Dashboard/Content";
-import { Dropdown } from "react-bootstrap";
+import { Dropdown, Modal } from "react-bootstrap";
 import BasicModal from "../Dashboard/BasicModal";
 import { FaEye } from "react-icons/fa";
 import { Button, ButtonGroup } from "react-bootstrap";
@@ -104,11 +104,13 @@ const tableData = [
 ];
 
 const CouponList = () => {
+  const [showModal, setShowModal] = useState(false);
   const childRef = useRef();
   const [currentPage, setCurrentPage] = useState(1);
   const [checked, setChecked] = useState(tableData);
   const [unchecked, setUnChecked] = useState(true);
   const [coupons, setCoupons] = useState([]);
+  const navigate = useNavigate();
   const makeRequest = fetchData();
 
   const handleChecked = (id) => {
@@ -213,6 +215,9 @@ const CouponList = () => {
               </div>
             </div>
             <div className="col-xl-12 wow fadeInUp" data-wow-delay="1.5s">
+              <Modal show={showModal} onHide={() => setShowModal(false)}>
+                hi
+              </Modal>
               <div className="table-responsive full-data">
                 <div
                   id="example-student_wrapper"
@@ -308,6 +313,9 @@ const CouponList = () => {
                                 <Button
                                   className="me-2"
                                   variant="primary btn-icon-xxs"
+                                  onClick={() =>
+                                    setShowModal(true)
+                                  }
                                 >
                                   <BiSolidEdit />
                                 </Button>
