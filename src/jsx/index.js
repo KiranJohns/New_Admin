@@ -18,10 +18,13 @@ import AddDetails from "./components/Student/AddDetails";
 import ViewInvoice from "./components/viewInvoices";
 import ViewReports from "./components/viewReports";
 import CompanyAdmin from "./components/Teacher/Company";
-import CouponCreate from "../jsx copy/components/Student/Coupons";
+import CouponList from "../jsx copy/components/Student/Coupons";
 import CompanyTable from "./components/Student/Company";
 import SalesTab from "./components/SalesTab";
 import ProfileEdit from "./components/Student/ProfileEdit";
+import CreateCoupon from "./components/Food/CreateCoupon";
+import VolumeDiscount from "./components/Food/VolumeDiscount";
+import OfferText from "./components/Food/OfferText";
 /// Layout
 import Nav from "./layouts/nav";
 import Nav2 from "./layouts/nav/index2";
@@ -156,11 +159,13 @@ const Markup = () => {
     {url:'reports',component: <ViewReports />},
     {url:'sales',component: <SalesTab />},
     {url:'edit-profile',component: <ProfileEdit />},
-   
-    {url:'discount-coupon',component: <CouponCreate/>},
+    {url:'create-coupon',component: <CreateCoupon/>},
+    {url:'coupon-list',component: <CouponList/>},
+    {url:'volume-discount',component: <VolumeDiscount/>},
     {url:'company',component: <CompanyTable/>},
+    {url:'offer-text',component: <OfferText/>},
 
-     // {url:'company',component: <CompanyAdmin />},
+     //OfferText {url:'company',component: <CompanyAdmin />},
     // {url: "user", component: <User/>},
     {url: "activity", component: <Activity/>},
     {url: "calendar", component: <HomeCalendar/>},

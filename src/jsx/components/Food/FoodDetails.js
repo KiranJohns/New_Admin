@@ -155,12 +155,12 @@ const FoodDetails = () => {
        
               <div style={{  }} className="">
                 <div className="card-body">
-                  <h4 className="">Blog Heading:</h4>
+                  <h4 className="">Blog Title:</h4>
                   <div className=" mb-3 ">
                     <input
                       type="text"
                       className="form-control  input-default "
-                      placeholder="Heading"
+                      placeholder="Title"
                       name="header"
                       value={blog.header}
                       onChange={handleChange}

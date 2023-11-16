@@ -133,7 +133,9 @@ const SingleProfile = () => {
   const makeRequest = fetchData();
   makeRequest("GET", "/info/get-admin-info")
     .then((res) => {
+      if(res.data.response[0]){
       setUserData(res.data.response[0]);
+      }
     })
     .catch((err) => {
       console.log(err.data);
@@ -158,7 +160,7 @@ const SingleProfile = () => {
                 </div>
                 <div className="profile-details">
                   <div className="profile-name px-3 pt-2">
-                    <h4 className="text-primary mb-0">{userData.employee_name}</h4>
+                    <h4 className="text-primary mb-0">{userData?.employee_name}</h4>
                     {/* <p style={{ visibility: "hidden" }}>{userData.designation}</p> */}
                   </div>
                   <div className="profile-email px-2 pt-2">
@@ -203,7 +205,7 @@ const SingleProfile = () => {
                         </tr>
                         <tr>
                           <td style={{ fontWeight: "700" }}>Employee Name</td>
-                          <td style={{ fontWeight: "600" }}>{userData.employee_name}</td>
+                          <td style={{ fontWeight: "600" }}>{userData?.employee_name}</td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: "700" }}>Designation</td>
