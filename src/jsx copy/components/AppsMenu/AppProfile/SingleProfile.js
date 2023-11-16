@@ -133,12 +133,12 @@ const SingleProfile = () => {
   const makeRequest = fetchData();
   makeRequest("GET", "/info/get-admin-info")
     .then((res) => {
-      if(res.data.response[0]){
-      setUserData(res.data.response[0]);
+      if (res?.data?.response[0]) {
+        setUserData(res.data.response[0]);
       }
     })
     .catch((err) => {
-      console.log(err.data);
+      console.log(err);
     });
   return (
     <Fragment>
@@ -253,12 +253,12 @@ const SingleProfile = () => {
                         </tr>
                         <tr>
                           <td style={{ fontWeight: "700" }}>
-                            National insurance number
+                            National Insurance Number
                           </td>
                           <td style={{ fontWeight: "600" }}>{userData.national_insurance_number}</td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>Contract type</td>
+                          <td style={{ fontWeight: "700" }}>Contract Type</td>
                           <td style={{ fontWeight: "600" }}>{userData.contract_type}</td>
                         </tr>
                         <tr>
@@ -286,7 +286,67 @@ const SingleProfile = () => {
                       onHide={() => setOpenModalForQualification(false)}
                       show={openModalForQualification}
                     >
-                      openModalForWorkExp
+                      <div className="">
+                        <div style={{ background: "#212A50" }} className="">
+                          <h4 style={{ color: "#fff", padding: ".6rem" }}>Add Qualification</h4>
+                        </div>
+                        <form type="button" action="">
+                        <div className="row p-2" style={{display:'flex'}}>
+                          <div className="col-6 form-group mb-3 ">
+                         
+                            <input
+                              className="form-control "
+                              name="course_name"
+                              type="text"
+                              placeholder="Course Name"
+                              />
+                          </div>
+                          <div className="col-6 form-group mb-3 ">
+                       
+                         <input
+                           className="form-control "
+                           name="course_name"
+                           type="text"
+                           placeholder="University/Institute Name"
+                           />
+                       </div>
+                    
+                       <div className="col-12 form-group mb-3 ">
+                       <label htmlFor="">Select Document</label>
+                       <input
+                      className="form-control"
+                      // onChange={}   
+                      type="file"
+                      id="formFile"                 
+                    />     
+                       </div>
+
+                       <div className="col-12 form-group mb-3 mt-3">
+                       <textarea
+                      // value={}
+                      // onChange={}
+                      name="q_note"
+                      className="form-control"
+                      rows="2"
+                      id="qnote"
+                      placeholder="Content"
+                    ></textarea>
+                       </div>
+                      <div>
+                      <Button
+                    className=""
+                    variant="primary"
+                    type="button"
+                    // onClick={submit}
+                  >
+                    Submit
+                  </Button>
+                      </div>
+
+                        </div>
+                        </form>
+
+                      </div>
                     </Modal>
                     <div
                       style={{ display: "flex", justifyContent: "flex-end" }}
@@ -344,7 +404,67 @@ const SingleProfile = () => {
                       onHide={() => setOpenModalForWorkExp(false)}
                       show={openModalForWorkExp}
                     >
-                      openModalForWorkExp
+                            <div className="">
+                        <div style={{ background: "#212A50" }} className="">
+                          <h4 style={{ color: "#fff", padding: ".6rem" }}>Add Experience</h4>
+                        </div>
+                        <form type="button" action="">
+                        <div className="row p-2" style={{display:'flex'}}>
+                          <div className="col-6 form-group mb-3 ">
+                         
+                            <input
+                              className="form-control "
+                              name="course_name"
+                              type="text"
+                              placeholder="Course Name"
+                              />
+                          </div>
+                          <div className="col-6 form-group mb-3 ">
+                       
+                         <input
+                           className="form-control "
+                           name="course_name"
+                           type="text"
+                           placeholder="University/Institute Name"
+                           />
+                       </div>
+                    
+                       <div className="col-6 form-group mb-3 ">
+                       <label htmlFor="">Select Document</label>
+                       <input
+                      className="form-control"
+                      // onChange={}   
+                      type="file"
+                      id="formFile"                 
+                    />     
+                       </div>
+
+                       <div className="col-12 form-group mb-3 mt-3">
+                       <textarea
+                      // value={}
+                      // onChange={}
+                      name="q_note"
+                      className="form-control"
+                      rows="2"
+                      id="qnote"
+                      placeholder="Content"
+                    ></textarea>
+                       </div>
+                      <div>
+                      <Button
+                    className=""
+                    variant="primary"
+                    type="button"
+                    // onClick={submit}
+                  >
+                    Submit
+                  </Button>
+                      </div>
+
+                        </div>
+                        </form>
+
+                      </div>
                     </Modal>
                     <div
                       style={{ display: "flex", justifyContent: "flex-end" }}

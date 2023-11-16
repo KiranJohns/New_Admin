@@ -8,6 +8,11 @@ import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
 import fetchData from "../../../axios";
 import { MdDelete } from "react-icons/md";
 import swal from "sweetalert";
+import { RiChatDeleteFill } from "react-icons/ri";
+import { Button, ButtonGroup } from "react-bootstrap";
+import { FaEye } from "react-icons/fa";
+import { BiSolidEdit } from "react-icons/bi";
+import { FaDownload } from "react-icons/fa";
 
 const svg1 = (
   <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1">
@@ -194,9 +199,12 @@ const Food = () => {
                     <strong>Date</strong>
                   </th>
                   <th>
+                    <strong>Views</strong>
+                  </th>
+                  <th>
                     <strong>Tags</strong>
                   </th>
-                  <th>Action</th>
+                  <th>  <strong>Action</strong></th>
                 </tr>
               </thead>
               <tbody>
@@ -215,20 +223,31 @@ const Food = () => {
                         <td>{item.header}</td>
                         <td>{item.author}</td>
                         <td>{date}</td>
+                        <td>0</td>
                         <td>
                           {item?.tags ? JSON.parse(item.tags).join(",") : ""}
                         </td>
                         <td>
-                          <a
+                        <Button className="me-2" variant="success btn-icon-xxs">
+                    <FaEye />
+                  </Button>
+                  <Button className="me-2" variant="primary btn-icon-xxs">
+                    <BiSolidEdit />
+                  </Button>
+                  <Button className="me-2" variant="primary btn-icon-xxs">
+                  <FaDownload />
+                  </Button>
+                          <Button
                             className="btn btn-danger"
                             onClick={() => deleteHandler(item.id)}
+                            variant="danger btn-icon-xxs"
                           >
-                            delete
+                            <RiChatDeleteFill />
                             {/* <MdDelete
                               onClick={() => deleteHandler(item.id)}
                               title="Delete"
                             /> */}
-                          </a>
+                          </Button>
                         </td>
                       </tr>
                     );

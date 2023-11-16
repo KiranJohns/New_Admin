@@ -76,7 +76,7 @@ const ViewCourse = () => {
                     <th>
                       <strong>Category</strong>
                     </th>
-                    <th></th>
+                    <th><strong>Action</strong></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -138,6 +138,7 @@ const ViewCourse = () => {
                     </td>
                     <td>Care course</td>
                     <td>
+
                     <Button className="me-2" variant="success btn-icon-xxs">
                     <FaEye />
                   </Button>
@@ -147,6 +148,7 @@ const ViewCourse = () => {
                   <Button className="me-2"  variant="danger btn-icon-xxs">
                   <RiChatDeleteFill />
                   </Button>
+
                     </td>
                   </tr>
                 </tbody>
