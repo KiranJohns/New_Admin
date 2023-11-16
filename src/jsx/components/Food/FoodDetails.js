@@ -130,13 +130,17 @@ const FoodDetails = () => {
             }}
           >
             <form type="button" onSubmit={(e) => e.preventDefault()}>
-              <div style={{ display: "flex", justifyContent: "center" }}>
+              <div  style={{}}>
+               
+                  <div className="row">
+                    <div className="col-6">
+                        
+              <div style={{  }}>
                 <div className="card-body">
                   <h4 className="">Add Blog Image:</h4>
-                  <div className="">
-                    <label htmlFor="formFile" className="form-label"></label>
+                  <div className="mb-3 ">
                     <input
-                      className="form-control"
+                      className="form-control input-default "
                       type="file"
                       id="formFile"
                       onChange={(e) =>
@@ -144,16 +148,18 @@ const FoodDetails = () => {
                       }
                     />
                   </div>
-                </div>
-              </div>
-
-              <div style={{ display: "flex", justifyContent: "center" }}>
+                  </div>
+               </div>
+                  
+          
+       
+              <div style={{  }} className="">
                 <div className="card-body">
                   <h4 className="">Blog Heading:</h4>
                   <div className=" mb-3 ">
                     <input
                       type="text"
-                      className="form-control input-default "
+                      className="form-control  input-default "
                       placeholder="Heading"
                       name="header"
                       value={blog.header}
@@ -162,8 +168,9 @@ const FoodDetails = () => {
                   </div>
                 </div>
               </div>
-
-              <div style={{ display: "flex", justifyContent: "center" }}>
+              </div>
+             
+              <div className="col-6" style={{  }}>
                 <div className="card-body">
                   <h4 className="">Blog Author:</h4>
                   <div className=" mb-3 ">
@@ -177,12 +184,12 @@ const FoodDetails = () => {
                     />
                   </div>
                 </div>
-              </div>
+           
 
-              <div style={{ display: "flex", justifyContent: "center" }}>
+              <div style={{ }}>
                 <div className="card-body">
                   <h4 className="">Blog Tags:</h4>
-                  <div className=" mb-3 ">
+                  <div className=" mb-3">
                     <input
                       name="tags"
                       value={blog.tags}
@@ -193,6 +200,10 @@ const FoodDetails = () => {
                     />
                   </div>
                 </div>
+                </div>
+              </div>
+              </div>
+             
               </div>
 
               <div style={{ display: "flex", justifyContent: "center" }}>
