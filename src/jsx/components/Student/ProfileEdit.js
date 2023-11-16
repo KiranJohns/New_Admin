@@ -20,13 +20,23 @@ import fetchData from "../../../axios";
 const ProfileEdit = () => {
   const makeRequest = fetchData();
   const [userData, setUserData] = useState({
+    employee_id: "",
+    employee_name: "",
     email: "",
-    first_name: "",
-    last_name: "",
-    password: "",
+    designation: "",
+    department: "",
     phone: "",
-    country: "",
-    city: "",
+    contact_no: "",
+    gender: "",
+    date_of_birth: "",
+    next_to_kin: "",
+    payroll_reference_number: "",
+    medical_details: "",
+    national_insurance_number: "",
+    contract_type: "",
+    date_of_joining: "",
+    correspondence_address: "",
+    brief_profile: "",
   });
   function handleOnchange(e) {
     setUserData((prev) => {
@@ -39,12 +49,24 @@ const ProfileEdit = () => {
 
   function submit(e) {
     e.preventDefault();
-    makeRequest("POST","/info/create-user",userData).then(res => {
-        swal("Done!","user successfully created","success")
-    }).catch(err => {
-        swal("Oops!",err.data.errors[0].error,"error")
-        console.log(err);
+    let employee_id = Number(userData.employee_id);
+    let contact_no = Number(userData.contact_no);
+    let payroll_reference_number = Number(userData.payroll_reference_number);
+    let national_insurance_number = Number(userData.national_insurance_number);
+    makeRequest("PUT", "/info/set-admin-info", {
+      ...userData,
+      employee_id,
+      contact_no,
+      payroll_reference_number,
+      national_insurance_number,
     })
+      .then((res) => {
+        swal("Done!", "user successfully created", "success");
+      })
+      .catch((err) => {
+        swal("Oops!", err.data.errors[0].error, "error");
+        console.log(err);
+      });
     console.log(userData);
   }
 
@@ -61,9 +83,7 @@ const ProfileEdit = () => {
                 <div className="col-xl-9 col-lg-8">
                   <div className="row">
                     <div className="col-xl-6 col-sm-6">
-
-                      
-                    <div className="mb-3">
+                      <div className="mb-3">
                         <label
                           htmlFor="exampleFormControlInput1"
                           className="form-label text-primary"
@@ -72,15 +92,15 @@ const ProfileEdit = () => {
                         </label>
                         <input
                           type="text"
-                          name="employee"
-                        //   value={userData.employee}
+                          name="employee_name"
+                          value={userData.employee_name}
                           onChange={handleOnchange}
                           className="form-control"
                           id="exampleFormControlInput1"
                           placeholder="First Name"
                         />
                       </div>
-                     
+
                       <div className="mb-3">
                         <label
                           htmlFor="exampleFormControlInput1"
@@ -90,8 +110,8 @@ const ProfileEdit = () => {
                         </label>
                         <input
                           type="text"
-                          name="first_name"
-                        //   value={}
+                          name="email"
+                          value={userData.email}
                           onChange={handleOnchange}
                           className="form-control"
                           id="exampleFormControlInput1"
@@ -99,19 +119,17 @@ const ProfileEdit = () => {
                         />
                       </div>
 
-           
-
                       <div className="mb-3">
                         <label
                           htmlFor="exampleFormControlInput1"
                           className="form-label text-primary"
                         >
-                         Employee Id<span className="required">*</span>
+                          Employee Id<span className="required">*</span>
                         </label>
                         <input
-                          type="text"
-                          name="employee"
-                        //   value={userData.employee}
+                          type="number"
+                          name="employee_id"
+                          value={userData.employee_id}
                           onChange={handleOnchange}
                           className="form-control"
                           id="exampleFormControlInput1"
@@ -128,8 +146,8 @@ const ProfileEdit = () => {
                         </label>
                         <input
                           type="text"
-                          name="desination"
-                        //   value={}
+                          name="designation"
+                          value={userData.designation}
                           onChange={handleOnchange}
                           className="form-control"
                           id="exampleFormControlInput1"
@@ -146,8 +164,8 @@ const ProfileEdit = () => {
                         </label>
                         <input
                           type="text"
-                          name="desination"
-                        //   value={}
+                          name="department"
+                          value={userData.department}
                           onChange={handleOnchange}
                           className="form-control"
                           id="exampleFormControlInput1"
@@ -160,12 +178,12 @@ const ProfileEdit = () => {
                           htmlFor="exampleFormControlInput1"
                           className="form-label text-primary"
                         >
-                        Gender  <span className="required">*</span>
+                          Gender <span className="required">*</span>
                         </label>
                         <input
                           type="text"
                           name="gender"
-                        //   value={}
+                          value={userData.gender}
                           onChange={handleOnchange}
                           className="form-control"
                           id="exampleFormControlInput1"
@@ -178,17 +196,17 @@ const ProfileEdit = () => {
                             htmlFor="exampleFormControlInput1"
                             className="form-label text-primary"
                           >
-                           Date of Birth<span className="required">*</span>
+                            Date of Birth<span className="required">*</span>
                           </label>
                           <input
-                          type="text"
-                          name="gender"
-                        //   value={}
-                          onChange={handleOnchange}
-                          className="form-control"
-                          id="exampleFormControlInput1"
-                          placeholder="dd/mm/yy"
-                        />
+                            type="text"
+                            name="date_of_birth"
+                            value={userData.date_of_birth}
+                            onChange={handleOnchange}
+                            className="form-control"
+                            id="exampleFormControlInput1"
+                            placeholder="dd/mm/yy"
+                          />
                         </div>
                       </div>
                       <div className="mb-3">
@@ -200,8 +218,8 @@ const ProfileEdit = () => {
                         </label>
                         <input
                           type="text"
-                          name="city"
-                        //   value={}
+                          name="next_to_kin"
+                          value={userData.next_to_kin}
                           onChange={handleOnchange}
                           className="form-control"
                           id="exampleFormControlInput6"
@@ -217,8 +235,8 @@ const ProfileEdit = () => {
                         </label>
                         <input
                           type="text"
-                          name=""
-                        //   value={}
+                          name="brief_profile"
+                          value={userData.brief_profile}
                           onChange={handleOnchange}
                           className="form-control"
                           id="exampleFormControlInput4"
@@ -232,15 +250,15 @@ const ProfileEdit = () => {
                           htmlFor="exampleFormControlInput5"
                           className="form-label text-primary"
                         >
-                        Phone <span className="required">*</span>
+                          Phone <span className="required">*</span>
                         </label>
                         <input
-                          type="text"
+                          type="number"
                           className="form-control"
                           id="exampleFormControlInput5"
                           placeholder="Phone"
                           name="phone"
-                          value={userData.last_name}
+                          value={userData.phone}
                           onChange={handleOnchange}
                         />
                       </div>
@@ -249,15 +267,15 @@ const ProfileEdit = () => {
                           htmlFor="exampleFormControlInput5"
                           className="form-label text-primary"
                         >
-                         Contact No<span className="required">*</span>
+                          Contact No<span className="required">*</span>
                         </label>
                         <input
-                          type="text"
+                          type="number"
                           className="form-control"
                           id="exampleFormControlInput5"
                           placeholder="Contact No"
-                          name="contact"
-                          value={userData.last_name}
+                          name="contact_no"
+                          value={userData.contact_no}
                           onChange={handleOnchange}
                         />
                       </div>
@@ -266,15 +284,16 @@ const ProfileEdit = () => {
                           htmlFor="exampleFormControlInput5"
                           className="form-label text-primary"
                         >
-                          Correspondence Address<span className="required">*</span>
+                          Correspondence Address
+                          <span className="required">*</span>
                         </label>
                         <input
                           type="text"
                           className="form-control"
                           id="exampleFormControlInput5"
-                          placeholder=" Correspondence Address"
-                          name=" correspondence_address"
-                          // value={}
+                          placeholder="Correspondence Address"
+                          name="correspondence_address"
+                          value={userData.correspondence_address}
                           onChange={handleOnchange}
                         />
                       </div>
@@ -283,15 +302,16 @@ const ProfileEdit = () => {
                           htmlFor="exampleFormControlInput5"
                           className="form-label text-primary"
                         >
-                         Payroll Reference Number<span className="required">*</span>
+                          Payroll Reference Number
+                          <span className="required">*</span>
                         </label>
                         <input
-                          type="text"
+                          type="number"
                           className="form-control"
                           id="exampleFormControlInput5"
                           placeholder="Payroll Reference number"
-                          name="last_name"
-                          value={userData.last_name}
+                          name="payroll_reference_number"
+                          value={userData.payroll_reference_number}
                           onChange={handleOnchange}
                         />
                       </div>
@@ -303,12 +323,12 @@ const ProfileEdit = () => {
                           Date of Joining<span className="required">*</span>
                         </label>
                         <input
-                          type="text"
+                          type="date"
                           className="form-control"
                           id="exampleFormControlInput5"
                           placeholder="dd/mm/yy"
-                          name="last_name"
-                          value={userData.last_name}
+                          name="date_of_joining"
+                          value={userData.date_of_joining}
                           onChange={handleOnchange}
                         />
                       </div>
@@ -325,7 +345,7 @@ const ProfileEdit = () => {
                           id="exampleFormControlInput5"
                           placeholder="Medical Details"
                           name="medical_details"
-                          value={userData.last_name}
+                          value={userData.medical_details}
                           onChange={handleOnchange}
                         />
                       </div>
@@ -335,15 +355,16 @@ const ProfileEdit = () => {
                           htmlFor="exampleFormControlInput5"
                           className="form-label text-primary"
                         >
-                          National Insurance Number<span className="required">*</span>
+                          National Insurance Number
+                          <span className="required">*</span>
                         </label>
                         <input
-                          type="text"
+                          type="number"
                           className="form-control"
                           id="exampleFormControlInput5"
                           placeholder="National Insurance Number"
-                          name="last_name"
-                          // value={}
+                          name="national_insurance_number"
+                          value={userData.national_insurance_number}
                           onChange={handleOnchange}
                         />
                       </div>
@@ -357,14 +378,14 @@ const ProfileEdit = () => {
                         <input
                           type="text"
                           name="contract_type"
-                          // value={}
+                          value={userData.contract_type}
                           onChange={handleOnchange}
                           className="form-control"
                           id="exampleFormControlInput4"
                           placeholder="Contract Type"
                         />
                       </div>
-               
+
                       <div className="mb-3 d-flex justify-content-center mt-5 ml-4">
                         <Button
                           className=""
@@ -372,7 +393,7 @@ const ProfileEdit = () => {
                           type="button"
                           onClick={submit}
                         >
-                        Update
+                          Update
                         </Button>
                       </div>
                     </div>
