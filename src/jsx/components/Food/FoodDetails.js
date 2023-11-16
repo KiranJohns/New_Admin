@@ -206,9 +206,9 @@ const FoodDetails = () => {
              
               </div>
 
-              <div style={{ display: "flex", justifyContent: "center" }}>
+              <div style={{  }}>
                 <div className="card-body">
-                  <h4 className="">Blog Content:</h4>
+                  <h4 style={{textAlign:"center"}} className="">Blog Content:</h4>
                   <div className="form-group ">
                     <textarea
                       className="form-control"
