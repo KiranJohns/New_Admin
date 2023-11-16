@@ -416,7 +416,7 @@ const SingleProfile = () => {
                               className="form-control "
                               name="course_name"
                               type="text"
-                              placeholder="Course Name"
+                              placeholder="Organisation"
                               />
                           </div>
                           <div className="col-6 form-group mb-3 ">
@@ -425,7 +425,7 @@ const SingleProfile = () => {
                            className="form-control "
                            name="course_name"
                            type="text"
-                           placeholder="University/Institute Name"
+                           placeholder="Designation"
                            />
                        </div>
                     
@@ -438,6 +438,16 @@ const SingleProfile = () => {
                       id="formFile"                 
                     />     
                        </div>
+
+                       <div className="col-6 form-group mb-3 ">
+                       <label style={{visibility:"hidden"}} htmlFor="">No. of Years</label>
+                       <input
+                         className="form-control "
+                         name="course_name"
+                         type="text"
+                         placeholder="Designation"
+                         />
+                     </div>
 
                        <div className="col-12 form-group mb-3 mt-3">
                        <textarea
@@ -457,7 +467,7 @@ const SingleProfile = () => {
                     type="button"
                     // onClick={submit}
                   >
-                    Submit
+                    Upload
                   </Button>
                       </div>
 

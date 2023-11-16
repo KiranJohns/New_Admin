@@ -288,7 +288,192 @@ const AddExam = () => {
 
               </div>
 
-              <Card.Body>
+
+              <div style={{ padding: "1rem" }}>
+                <div
+                  style={{
+                    boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+                    paddingBottom: ".5rem",
+                    borderRadius: ".7rem",
+                  }}
+                >
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <div className="card-body">
+                      <h4 className="" style={{ textAlign: "center" }}>
+                        Question :
+                      </h4>
+                      <div className="">
+                        <textarea
+                          value={data.question}
+                          onChange={handleOnchange}
+                          name="question"
+                          className="form-control"
+                          rows="4"
+                          id="comment"
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
+               
+               <div className="row">
+
+                <div className="col-6">
+                  <div className="p-3">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      option a
+                    </h4>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      {/* <input
+                        style={{ marginRight: "1.5rem" }}
+                        type="checkbox"
+                        className="form-check-input"
+                        onChange={() => setAnswer("option1")}
+                        id="customCheckBox8"
+                      /> */}
+                      <input
+                        value={data.option1}
+                        onChange={handleOnchange}
+                        name="option1"
+                        style={{ width: "80%" }}
+                        className="form-control"
+                        type="text"
+                        placeholder="option 1"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="p-3">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      option b
+                    </h4>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      {/* <input
+                        style={{ marginRight: "1.5rem" }}
+                        type="checkbox"
+                        className="form-check-input"
+                        id="customCheckBox8"
+                        onChange={() => setAnswer("option2")}
+                      /> */}
+                      <input
+                        value={data.option2}
+                        onChange={handleOnchange}
+                        name="option2"
+                        style={{ width: "80%" }}
+                        className="form-control"
+                        type="text"
+                        placeholder="option 2"
+                      />
+                    </div>
+                  </div>
+                  </div>
+                  <div className="col-6">
+                  <div className="p-3">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      option c
+                    </h4>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      {/* <input
+                        style={{ marginRight: "1.5rem" }}
+                        type="checkbox"
+                        onChange={() => setAnswer("option3")}
+                        className="form-check-input"
+                        id="customCheckBox8"
+                      /> */}
+                      <input
+                        value={data.option3}
+                        onChange={handleOnchange}
+                        name="option3"
+                        style={{ width: "80%" }}
+                        className="form-control"
+                        type="text"
+                        placeholder="option 3"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="p-3">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      option d
+                    </h4>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      {/* <input
+                        style={{ marginRight: "1.5rem" }}
+                        type="checkbox"
+                        className="form-check-input"
+                        id="customCheckBox8"
+                        onChange={() => setAnswer("option4")}
+                      /> */}
+                      <input
+                        value={data.option4}
+                        onChange={handleOnchange}
+                        name="option4"
+                        style={{ width: "80%" }}
+                        className="form-control"
+                        type="text"
+                        placeholder="option 4"
+                      />
+                    </div>
+                    </div>
+ 
+                  </div>
+                  </div>
+                  <div style={{display:'flex', justifyContent:'center',margin:'1rem 0'}}>
+                    <Button className="me-2" variant="primary btn-icon-xxs">
+                    add option
+                  </Button>
+                  </div>
+
+                    <div className="p-3">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                     Select Answer
+                    </h4>
+                  <div style={{display:'flex', justifyContent:'center'}} className="form-group mb-3">
+                    <select defaultValue={"option"} 
+                    className="form-control"style={{ width: "50%" }} >
+
+                      <option>Option a</option>
+                      <option>Option b</option>
+                      <option>Option c</option>
+                      <option>Option d</option>
+                      <option>Option e</option>
+                      <option>Option f</option>
+                    </select>
+                  </div>
+                  </div>
+
+                  <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                    <div className="m-2 p-2 ">
+                      <Button className="" variant="primary" onClick={add}>
+                        Next question
+                      </Button>
+                    </div>
+                  </div>
+
+                  <Card.Body>
                 <Table responsive>
                   <thead>
                     <tr>
@@ -339,179 +524,7 @@ const AddExam = () => {
                   </tbody>
                 </Table>
               </Card.Body>
-              <div style={{ padding: "1rem" }}>
-                <div
-                  style={{
-                    boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-                    paddingBottom: ".5rem",
-                    borderRadius: ".7rem",
-                  }}
-                >
-                  <div style={{ display: "flex", justifyContent: "center" }}>
-                    <div className="card-body">
-                      <h4 className="" style={{ textAlign: "center" }}>
-                        Question :
-                      </h4>
-                      <div className="">
-                        <textarea
-                          value={data.question}
-                          onChange={handleOnchange}
-                          name="question"
-                          className="form-control"
-                          rows="4"
-                          id="comment"
-                        ></textarea>
-                      </div>
-                    </div>
-                  </div>
 
-                  <div className="p-3">
-                    <h4 className="" style={{ textAlign: "center" }}>
-                      option 1
-                    </h4>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      {/* <input
-                        style={{ marginRight: "1.5rem" }}
-                        type="checkbox"
-                        className="form-check-input"
-                        onChange={() => setAnswer("option1")}
-                        id="customCheckBox8"
-                      /> */}
-                      <input
-                        value={data.option1}
-                        onChange={handleOnchange}
-                        name="option1"
-                        style={{ width: "80%" }}
-                        className="form-control"
-                        type="text"
-                        placeholder="option 1"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="p-3">
-                    <h4 className="" style={{ textAlign: "center" }}>
-                      option 2
-                    </h4>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      {/* <input
-                        style={{ marginRight: "1.5rem" }}
-                        type="checkbox"
-                        className="form-check-input"
-                        id="customCheckBox8"
-                        onChange={() => setAnswer("option2")}
-                      /> */}
-                      <input
-                        value={data.option2}
-                        onChange={handleOnchange}
-                        name="option2"
-                        style={{ width: "80%" }}
-                        className="form-control"
-                        type="text"
-                        placeholder="option 2"
-                      />
-                    </div>
-                  </div>
-                  <div className="p-3">
-                    <h4 className="" style={{ textAlign: "center" }}>
-                      option 3
-                    </h4>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      {/* <input
-                        style={{ marginRight: "1.5rem" }}
-                        type="checkbox"
-                        onChange={() => setAnswer("option3")}
-                        className="form-check-input"
-                        id="customCheckBox8"
-                      /> */}
-                      <input
-                        value={data.option3}
-                        onChange={handleOnchange}
-                        name="option3"
-                        style={{ width: "80%" }}
-                        className="form-control"
-                        type="text"
-                        placeholder="option 3"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="p-3">
-                    <h4 className="" style={{ textAlign: "center" }}>
-                      option 4
-                    </h4>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      {/* <input
-                        style={{ marginRight: "1.5rem" }}
-                        type="checkbox"
-                        className="form-check-input"
-                        id="customCheckBox8"
-                        onChange={() => setAnswer("option4")}
-                      /> */}
-                      <input
-                        value={data.option4}
-                        onChange={handleOnchange}
-                        name="option4"
-                        style={{ width: "80%" }}
-                        className="form-control"
-                        type="text"
-                        placeholder="option 4"
-                      />
-                    </div>
-                    <Button className="me-2" variant="primary btn-icon-xxs">
-                    <FaPlus /> option
-                  </Button>
-                  </div>
-
-                    <div className="p-3">
-                    <h4 className="" style={{ textAlign: "center" }}>
-                     Select Answer
-                    </h4>
-                  <div style={{display:'flex', justifyContent:'center'}} className="form-group mb-3">
-                    <select defaultValue={"option"} 
-                    className="form-control"style={{ width: "80%" }} >
-
-                      <option>Option 1</option>
-                      <option>Option 2</option>
-                      <option>Option 3</option>
-                      <option>Option 4</option>
-                      <option>Option 5</option>
-                      <option>Option 6</option>
-                    </select>
-                  </div>
-                  </div>
-
-                  <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                    <div className="m-2 p-2 ">
-                      <Button className="" variant="primary" onClick={add}>
-                        Next question
-                      </Button>
-                    </div>
-                  </div>
                 </div>
               </div>
 
