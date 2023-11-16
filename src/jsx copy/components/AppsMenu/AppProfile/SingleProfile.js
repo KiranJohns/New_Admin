@@ -5,7 +5,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { ImCross } from "react-icons/im";
 import { FaDownload } from "react-icons/fa";
-
+import { MdEditSquare } from "react-icons/md";
 import { Link } from "react-router-dom";
 import LightGallery from 'lightgallery/react';
 import Highlight from "react-highlight";
@@ -15,7 +15,7 @@ import 'lightgallery/css/lg-zoom.css';
 import 'lightgallery/css/lg-thumbnail.css';
 import lgThumbnail from 'lightgallery/plugins/thumbnail';
 import lgZoom from 'lightgallery/plugins/zoom';
-
+import { BiSolidEdit } from "react-icons/bi";
 //** Import Image */
 //** Import Image */
 import profile01 from "../../../../images/profile/1.jpg";
@@ -120,15 +120,21 @@ const SingleProfile = () => {
                 <div className="profile-details">
                   <div className="profile-name px-3 pt-2">
                     <h4 className="text-primary mb-0">Mitchell C. Shay</h4>
-                    <p>UX / UI Designer</p>
+                    <p style={{visibility:"hidden"}}>UX / UI Designer</p>
                   </div>
                   <div className="profile-email px-2 pt-2">
                     <h4 className="text-muted mb-0">hello@email.com</h4>
-                    <p>Email</p>
+                    <p style={{visibility:"hidden"}}>Email</p>
                   </div>
-
+                 
                 </div>
-
+                <div style={{display:'flex', justifyContent:"flex-end"}}>
+                    <div>
+                  <Button className="me-2" variant="primary btn-icon-xxs">
+                    <BiSolidEdit />
+                  </Button>
+                  </div>
+                  </div>
               </div>
               <Col xl={12}>
                 <Tabs
@@ -138,7 +144,7 @@ const SingleProfile = () => {
                   fill
                 >
                   <Tab eventKey="profile" title="Profile">
-                    <Table striped bordered hover >
+                    <Table  bordered hover >
                       <thead>
                         {/* <tr>
           <th>#</th>
@@ -150,72 +156,72 @@ const SingleProfile = () => {
                       <tbody>
                         <tr>
 
-                          <td style={{ fontWeight: 'bold' }}>Employee ID</td>
-                          <td style={{ fontWeight: '' }}>Otto</td>
+                          <td style={{ fontWeight: '700' }} className="col-5">Employee ID</td>
+                          <td style={{ fontWeight: '600' }}>Otto</td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Employee Name</td>
-                          <td style={{ fontWeight: '' }}>Thornton</td>
+                          <td style={{ fontWeight: '700' }}>Employee Name</td>
+                          <td style={{ fontWeight: '600' }}>Thornton</td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Designation</td>
-                          <td style={{ fontWeight: '' }}>Thornton</td>
+                          <td style={{ fontWeight: '700' }}>Designation</td>
+                          <td style={{ fontWeight: '600' }}>Thornton</td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Department</td>
-                          <td style={{ fontWeight: '' }}></td>
+                          <td style={{ fontWeight: '700' }}>Department</td>
+                          <td style={{ fontWeight: '600' }}></td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Phone</td>
-                          <td style={{ fontWeight: '' }}>356566222421</td>
+                          <td style={{ fontWeight: '700' }}>Phone</td>
+                          <td style={{ fontWeight: '600' }}>356566222421</td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Email</td>
-                          <td style={{ fontWeight: '' }}>thorton@gmail.com</td>
+                          <td style={{ fontWeight: '700' }}>Email</td>
+                          <td style={{ fontWeight: '600' }}>thorton@gmail.com</td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Contact No</td>
-                          <td style={{ fontWeight: '' }}></td>
+                          <td style={{ fontWeight: '700' }}>Contact No</td>
+                          <td style={{ fontWeight: '600' }}></td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Gender</td>
-                          <td style={{ fontWeight: '' }}></td>
+                          <td style={{ fontWeight: '600' }}></td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Date of Birth</td>
-                          <td style={{ fontWeight: '' }}></td>
+                          <td style={{ fontWeight: '700' }}>Date of Birth</td>
+                          <td style={{ fontWeight: '600' }}></td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Next to kin</td>
-                          <td style={{ fontWeight: '' }}></td>
+                          <td style={{ fontWeight: '700' }}>Next to kin</td>
+                          <td style={{ fontWeight: '600' }}></td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Payroll Reference number</td>
-                          <td style={{ fontWeight: '' }}></td>
+                          <td style={{ fontWeight: '700' }}>Payroll Reference number</td>
+                          <td style={{ fontWeight: '600' }}></td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Medical Details</td>
-                          <td style={{ fontWeight: '' }}></td>
+                          <td style={{ fontWeight: '700' }}>Medical Details</td>
+                          <td style={{ fontWeight: '600' }}></td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>National insurance number</td>
-                          <td style={{ fontWeight: '' }}></td>
+                          <td style={{ fontWeight: '700'}}>National insurance number</td>
+                          <td style={{ fontWeight: '600' }}></td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Contract type</td>
-                          <td style={{ fontWeight: '' }}></td>
+                          <td style={{ fontWeight: '700' }}>Contract type</td>
+                          <td style={{ fontWeight: '600' }}></td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: 'bold' }}>Date of joining</td>
-                          <td style={{ fontWeight: '' }}></td>
+                          <td style={{ fontWeight: '600' }}></td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Correspondence Address</td>
-                          <td style={{ fontWeight: '' }}></td>
+                          <td style={{ fontWeight: '700' }}>Correspondence Address</td>
+                          <td style={{ fontWeight: '600' }}></td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: 'bold' }}>Brief Profile</td>
-                          <td style={{ fontWeight: '' }}></td>
+                          <td style={{ fontWeight: '700' }}>Brief Profile</td>
+                          <td style={{ fontWeight: '600' }}></td>
                         </tr>
                       </tbody>
                     </Table>

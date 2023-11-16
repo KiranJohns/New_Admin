@@ -22,12 +22,12 @@ export const MenuList = [
     // },
     {   
         title:'Dashboard',        
-        iconStyle: <i className="material-icons">home</i>,
+        iconStyle: <i className="material-symbols-outlined">home</i>,
         to: 'dashboard',
     },
     {   
         title:'Profile',        
-        iconStyle: <i className="material-icons">person</i>,
+        iconStyle: <i className="material-symbols-outlined">person</i>,
         to: 'profile',
     },
     {

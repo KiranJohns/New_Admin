@@ -21,6 +21,7 @@ import CompanyAdmin from "./components/Teacher/Company";
 import CouponCreate from "../jsx copy/components/Student/Coupons";
 import CompanyTable from "./components/Student/Company";
 import SalesTab from "./components/SalesTab";
+import ProfileEdit from "./components/Student/ProfileEdit";
 /// Layout
 import Nav from "./layouts/nav";
 import Nav2 from "./layouts/nav/index2";
@@ -154,7 +155,7 @@ const Markup = () => {
     {url:'invoices',component: <ViewInvoice />},
     {url:'reports',component: <ViewReports />},
     {url:'sales',component: <SalesTab />},
-    
+    {url:'edit-profile',component: <ProfileEdit />},
    
     {url:'discount-coupon',component: <CouponCreate/>},
     {url:'company',component: <CompanyTable/>},
