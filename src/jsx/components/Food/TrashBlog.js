@@ -148,7 +148,7 @@ const tabledata4 = [
   },
 ];
 
-const Food = () => {
+const BlogTrash = () => {
   const makeRequest = fetchData();
 
   const [blogs, setBlogs] = useState([]);
@@ -225,7 +225,7 @@ const Food = () => {
                         <td>
                           <strong>01</strong>
                         </td>
-                        <td> <a target="_blank" href={`https://test.learnforcare.co.uk/blog/${item.id}`}>{item.header} </a></td>
+                        <td>{item.header}</td>
                         <td>{item.author}</td>
                         <td>{date}</td>
                         <td>0</td>
@@ -249,7 +249,7 @@ const Food = () => {
                           </Button>
                           <Button
                             className=""
-                            variant="dark btn-icon-xxs"
+                            variant="warning btn-icon-xxs"
                           >
                             <FaDownload />
                           </Button>
@@ -594,4 +594,4 @@ const Food = () => {
   );
 };
 
-export default Food;
+export default BlogTrash;
