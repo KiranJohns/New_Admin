@@ -86,7 +86,7 @@ const VolumeDiscount = () => {
 
                                     <div style={{}}>
                                         <div className="card-body">
-                                            <h4 className="">Minimum Number of Test</h4>
+                                            <h4 className="">Minimum Number of Course</h4>
                                             <div className="mb-3 ">
                                                 <input
                                                     type="number"
@@ -104,7 +104,7 @@ const VolumeDiscount = () => {
 
                                     <div style={{}} className="">
                                         <div className="card-body">
-                                            <h4 className="">Maximum Number of test</h4>
+                                            <h4 className="">Maximum Number of Course</h4>
                                             <div className="mb-3 ">
                                                 <input
                                                     type="number"
