@@ -25,6 +25,7 @@ import ProfileEdit from "./components/Student/ProfileEdit";
 import CreateCoupon from "./components/Food/CreateCoupon";
 import VolumeDiscount from "./components/Food/VolumeDiscount";
 import OfferText from "./components/Food/OfferText";
+import EditBlog from "./components/Food/EditBlog";
 /// Layout
 import Nav from "./layouts/nav";
 import Nav2 from "./layouts/nav/index2";
@@ -164,6 +165,7 @@ const Markup = () => {
     {url:'volume-discount',component: <VolumeDiscount/>},
     {url:'company',component: <CompanyTable/>},
     {url:'offer-text',component: <OfferText/>},
+    {url:'edit-blog',component: <EditBlog/>},
 
      //OfferText {url:'company',component: <CompanyAdmin />},
     // {url: "user", component: <User/>},
