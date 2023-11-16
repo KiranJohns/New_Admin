@@ -61,6 +61,25 @@ const ProfileEdit = () => {
                 <div className="col-xl-9 col-lg-8">
                   <div className="row">
                     <div className="col-xl-6 col-sm-6">
+
+                      
+                    <div className="mb-3">
+                        <label
+                          htmlFor="exampleFormControlInput1"
+                          className="form-label text-primary"
+                        >
+                          Name<span className="required">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          name="employee"
+                        //   value={userData.employee}
+                          onChange={handleOnchange}
+                          className="form-control"
+                          id="exampleFormControlInput1"
+                          placeholder="First Name"
+                        />
+                      </div>
                      
                       <div className="mb-3">
                         <label
@@ -80,23 +99,7 @@ const ProfileEdit = () => {
                         />
                       </div>
 
-                      <div className="mb-3">
-                        <label
-                          htmlFor="exampleFormControlInput1"
-                          className="form-label text-primary"
-                        >
-                         Employee Name<span className="required">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          name="employee"
-                        //   value={userData.employee}
-                          onChange={handleOnchange}
-                          className="form-control"
-                          id="exampleFormControlInput1"
-                          placeholder="First Name"
-                        />
-                      </div>
+           
 
                       <div className="mb-3">
                         <label
@@ -112,7 +115,7 @@ const ProfileEdit = () => {
                           onChange={handleOnchange}
                           className="form-control"
                           id="exampleFormControlInput1"
-                          placeholder="First Name"
+                          placeholder="Employee Id"
                         />
                       </div>
 
@@ -130,7 +133,7 @@ const ProfileEdit = () => {
                           onChange={handleOnchange}
                           className="form-control"
                           id="exampleFormControlInput1"
-                          placeholder="First Name"
+                          placeholder="Designation"
                         />
                       </div>
 
@@ -148,7 +151,7 @@ const ProfileEdit = () => {
                           onChange={handleOnchange}
                           className="form-control"
                           id="exampleFormControlInput1"
-                          placeholder="First Name"
+                          placeholder="Department"
                         />
                       </div>
 
@@ -166,7 +169,7 @@ const ProfileEdit = () => {
                           onChange={handleOnchange}
                           className="form-control"
                           id="exampleFormControlInput1"
-                          placeholder="Email"
+                          placeholder="Gender "
                         />
                       </div>
                       <div className="mb-3">
@@ -184,7 +187,7 @@ const ProfileEdit = () => {
                           onChange={handleOnchange}
                           className="form-control"
                           id="exampleFormControlInput1"
-                          placeholder="Email"
+                          placeholder="dd/mm/yy"
                         />
                         </div>
                       </div>
@@ -193,7 +196,7 @@ const ProfileEdit = () => {
                           htmlFor="exampleFormControlInput6"
                           className="form-label text-primary"
                         >
-                          Next to kin<span className="required">*</span>
+                          Next to Kin<span className="required">*</span>
                         </label>
                         <input
                           type="text"
@@ -202,7 +205,7 @@ const ProfileEdit = () => {
                           onChange={handleOnchange}
                           className="form-control"
                           id="exampleFormControlInput6"
-                          placeholder="City"
+                          placeholder="Next to Kin"
                         />
                       </div>
                       <div className="mb-3">
@@ -219,7 +222,7 @@ const ProfileEdit = () => {
                           onChange={handleOnchange}
                           className="form-control"
                           id="exampleFormControlInput4"
-                          placeholder="Password"
+                          placeholder="Brief Profile"
                         />
                       </div>
                     </div>
@@ -235,8 +238,8 @@ const ProfileEdit = () => {
                           type="text"
                           className="form-control"
                           id="exampleFormControlInput5"
-                          placeholder="Last Name"
-                          name="last_name"
+                          placeholder="Phone"
+                          name="phone"
                           value={userData.last_name}
                           onChange={handleOnchange}
                         />
@@ -252,7 +255,41 @@ const ProfileEdit = () => {
                           type="text"
                           className="form-control"
                           id="exampleFormControlInput5"
-                          placeholder="Last Name"
+                          placeholder="Contact No"
+                          name="contact"
+                          value={userData.last_name}
+                          onChange={handleOnchange}
+                        />
+                      </div>
+                      <div className="mb-3">
+                        <label
+                          htmlFor="exampleFormControlInput5"
+                          className="form-label text-primary"
+                        >
+                          Correspondence Address<span className="required">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="exampleFormControlInput5"
+                          placeholder=" Correspondence Address"
+                          name=" correspondence_address"
+                          // value={}
+                          onChange={handleOnchange}
+                        />
+                      </div>
+                      <div className="mb-3">
+                        <label
+                          htmlFor="exampleFormControlInput5"
+                          className="form-label text-primary"
+                        >
+                         Payroll Reference Number<span className="required">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="exampleFormControlInput5"
+                          placeholder="Payroll Reference number"
                           name="last_name"
                           value={userData.last_name}
                           onChange={handleOnchange}
@@ -263,47 +300,13 @@ const ProfileEdit = () => {
                           htmlFor="exampleFormControlInput5"
                           className="form-label text-primary"
                         >
-                          Date of Birth<span className="required">*</span>
+                          Date of Joining<span className="required">*</span>
                         </label>
                         <input
                           type="text"
                           className="form-control"
                           id="exampleFormControlInput5"
-                          placeholder="Last Name"
-                          name="last_name"
-                          value={userData.last_name}
-                          onChange={handleOnchange}
-                        />
-                      </div>
-                      <div className="mb-3">
-                        <label
-                          htmlFor="exampleFormControlInput5"
-                          className="form-label text-primary"
-                        >
-                         Payroll Reference number<span className="required">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="exampleFormControlInput5"
-                          placeholder="Last Name"
-                          name="last_name"
-                          value={userData.last_name}
-                          onChange={handleOnchange}
-                        />
-                      </div>
-                      <div className="mb-3">
-                        <label
-                          htmlFor="exampleFormControlInput5"
-                          className="form-label text-primary"
-                        >
-                          Date of joining<span className="required">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="exampleFormControlInput5"
-                          placeholder="Last Name"
+                          placeholder="dd/mm/yy"
                           name="last_name"
                           value={userData.last_name}
                           onChange={handleOnchange}
@@ -320,8 +323,8 @@ const ProfileEdit = () => {
                           type="text"
                           className="form-control"
                           id="exampleFormControlInput5"
-                          placeholder="Last Name"
-                          name="last_name"
+                          placeholder="Medical Details"
+                          name="medical_details"
                           value={userData.last_name}
                           onChange={handleOnchange}
                         />
@@ -332,15 +335,15 @@ const ProfileEdit = () => {
                           htmlFor="exampleFormControlInput5"
                           className="form-label text-primary"
                         >
-                          National insurance number<span className="required">*</span>
+                          National Insurance Number<span className="required">*</span>
                         </label>
                         <input
                           type="text"
                           className="form-control"
                           id="exampleFormControlInput5"
-                          placeholder="Last Name"
+                          placeholder="National Insurance Number"
                           name="last_name"
-                          value={userData.last_name}
+                          // value={}
                           onChange={handleOnchange}
                         />
                       </div>
@@ -349,16 +352,16 @@ const ProfileEdit = () => {
                           htmlFor="exampleFormControlInput4"
                           className="form-label text-primary"
                         >
-                          Contract type<span className="required">*</span>
+                          Contract Type<span className="required">*</span>
                         </label>
                         <input
-                          type="number"
-                          name="phone"
-                          value={userData.phone}
+                          type="text"
+                          name="contract_type"
+                          // value={}
                           onChange={handleOnchange}
                           className="form-control"
                           id="exampleFormControlInput4"
-                          placeholder="Phone"
+                          placeholder="Contract Type"
                         />
                       </div>
                
@@ -369,7 +372,7 @@ const ProfileEdit = () => {
                           type="button"
                           onClick={submit}
                         >
-                          Submit
+                        Update
                         </Button>
                       </div>
                     </div>

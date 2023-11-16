@@ -9,6 +9,7 @@ import { MdEditSquare } from "react-icons/md";
 import { Link } from "react-router-dom";
 import LightGallery from "lightgallery/react";
 import Highlight from "react-highlight";
+import { BiSolidEdit } from "react-icons/bi";
 // import styles
 import 'lightgallery/css/lightgallery.css';
 import 'lightgallery/css/lg-zoom.css';
@@ -123,13 +124,20 @@ const SingleProfile = () => {
                 <div className="profile-details">
                   <div className="profile-name px-3 pt-2">
                     <h4 className="text-primary mb-0">Mitchell C. Shay</h4>
-                    <p style={{visibility:"hidden"}}>UX / UI Designer</p>
+                    <p style={{ visibility: "hidden" }}>UX / UI Designer</p>
                   </div>
                   <div className="profile-email px-2 pt-2">
                     <h4 className="text-muted mb-0">hello@email.com</h4>
-                    <p style={{visibility:"hidden"}}>Email</p>
+                    <p style={{ visibility: "hidden" }}>Email</p>
                   </div>
 
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  <div>
+                  <a href="/edit-profile">  <Button className="me-2" variant="primary btn-icon-xxs">
+                      <BiSolidEdit />
+                    </Button></a>
+                  </div>
                 </div>
 
               </div>
@@ -141,7 +149,7 @@ const SingleProfile = () => {
                   fill
                 >
                   <Tab eventKey="profile" title="Profile">
-                    <Table striped bordered hover >
+                    <Table bordered hover >
                       <thead>
                         {/* <tr>
           <th>#</th>
@@ -201,7 +209,7 @@ const SingleProfile = () => {
                           <td style={{ fontWeight: '600' }}></td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: '700'}}>National insurance number</td>
+                          <td style={{ fontWeight: '700' }}>National insurance number</td>
                           <td style={{ fontWeight: '600' }}></td>
                         </tr>
                         <tr>
