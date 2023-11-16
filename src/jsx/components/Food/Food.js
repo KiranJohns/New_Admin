@@ -204,7 +204,10 @@ const Food = () => {
                   <th>
                     <strong>Tags</strong>
                   </th>
-                  <th>  <strong>Action</strong></th>
+                  <th>
+                    {" "}
+                    <strong>Action</strong>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -228,15 +231,26 @@ const Food = () => {
                           {item?.tags ? JSON.parse(item.tags).join(",") : ""}
                         </td>
                         <td>
-                        <Button className="me-2" variant="success btn-icon-xxs">
-                    <FaEye />
-                  </Button>
-                  <Button className="me-2" variant="primary btn-icon-xxs">
-                    <BiSolidEdit />
-                  </Button>
-                  <Button className="me-2" variant="primary btn-icon-xxs">
-                  <FaDownload />
-                  </Button>
+                        <a target="_blank" href={`https://test.learnforcare.co.uk/blog/${item.id}`}>
+                          <Button
+                            className="me-2"
+                            variant="success btn-icon-xxs"
+                          >
+                            <FaEye />
+                          </Button>
+                        </a>
+                          <Button
+                            className="me-2"
+                            variant="primary btn-icon-xxs"
+                          >
+                            <BiSolidEdit />
+                          </Button>
+                          <Button
+                            className="me-2"
+                            variant="primary btn-icon-xxs"
+                          >
+                            <FaDownload />
+                          </Button>
                           <Button
                             className="btn btn-danger"
                             onClick={() => deleteHandler(item.id)}
@@ -551,6 +565,7 @@ const Food = () => {
                                                         </Dropdown.Toggle>
                                                         <Dropdown.Menu className="dropdown-menu-end" align="end">
                                                             <Dropdown.Item>Option 1</Dropdown.Item>
+
                                                             <Dropdown.Item>Option 2</Dropdown.Item>
                                                             <Dropdown.Item>Option 3</Dropdown.Item>
                                                         </Dropdown.Menu>
@@ -569,4 +584,4 @@ const Food = () => {
   );
 };
 
-export default Food;  
+export default Food;
