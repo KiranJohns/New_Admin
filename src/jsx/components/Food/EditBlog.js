@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Nav, Dropdown, Tab } from "react-bootstrap";
 import { IMAGES, SVGICON } from "../Dashboard/Content";
 import circle from "./../../../images/circle.svg";
@@ -8,6 +8,7 @@ import quotes from "./../../../images/quotes.svg";
 import fetchData from "../../../axios";
 import { useState } from "react";
 import swal from "sweetalert";
+import { useEffect } from "react";
 
 const inputBlog = [
   {
@@ -86,8 +87,12 @@ const EditBlog = () => {
     content: "",
     author: "",
     tags: "",
-    image: null,
+    img: null,
   });
+
+  const { state } = useLocation();
+
+  const [selectedImage, setSelectedImage] = useState("");
 
   function handleChange(e) {
     setBlog((prev) => {
@@ -97,20 +102,49 @@ const EditBlog = () => {
       };
     });
   }
-  function Submit() {
-    makeRequest("POST", "/blog/create-blog", blog)
+  function uploadImage() {
+    makeRequest("POST", `/blog/update-blog-image`, {
+      image: selectedImage,
+      blog_id: state?.id,
+    })
       .then((res) => {
-        swal("Done!", "blog created", "success");
+        swal("Done!", "image updated", "success");
       })
       .catch((err) => {
-        let error = err?.data?.errors[0]?.error
-          ? err?.data?.errors[0]?.error
-          : err?.data?.errors[0]?.message;
-        swal("Oops!", error, "error");
-        console.log(err?.data?.errors[0]);
+        console.log(err?.data);
       });
-    console.log(blog);
   }
+
+  function updateBlogData() {
+    let form = new FormData();
+    form.append("form", {});
+    console.log(blog);
+    makeRequest("POST", `/blog/update-blog-data`, {
+      ...blog,
+      blog_id: blog?.id,
+    })
+      .then((res) => {
+        swal("Done!", "blog data updated", "success");
+      })
+      .catch((err) => {
+        console.log(err?.data);
+      });
+  }
+
+  useEffect(() => {
+    makeRequest("GET", `/blog/get-blog-by-id/${state.id}`)
+      .then((res) => {
+        let tags = JSON.parse(res.data.response[0].tags || "")
+        setBlog({ ...res.data.response[0], tags: tags });
+      })
+      .catch((err) => {
+        console.log(err?.data);
+        // let error = err?.data?.errors[0]?.error
+        //   ? err?.data?.errors[0]?.error
+        //   : err?.data?.errors[0]?.message;
+        // swal("Oops!", error, "error");
+      });
+  }, []);
   return (
     <div className="row">
       <div className="col-xl-11">
@@ -130,85 +164,99 @@ const EditBlog = () => {
             }}
           >
             <form type="button" onSubmit={(e) => e.preventDefault()}>
-              <div  style={{}}>
-               
-                  <div className="row">
-                    <div className="col-6">
-                        
-              <div style={{  }}>
-                <div className="card-body">
-                  <h4 className="">Add Blog Image:</h4>
-                  <div className="mb-3 ">
-                    <input
-                      className="form-control input-default "
-                      type="file"
-                      id="formFile"
-                      onChange={(e) =>
-                        setBlog({ ...blog, image: e.target.files[0] })
-                      }
-                    />
-                  </div>
-                  </div>
-               </div>
-                  
-          
-       
-              <div style={{  }} className="">
-                <div className="card-body">
-                  <h4 className="">Blog Title:</h4>
-                  <div className=" mb-3 ">
-                    <input
-                      type="text"
-                      className="form-control  input-default "
-                      placeholder="Title"
-                      name="header"
-                      value={blog.header}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
-              </div>
-              </div>
-             
-              <div className="col-6" style={{  }}>
-                <div className="card-body">
-                  <h4 className="">Blog Author:</h4>
-                  <div className=" mb-3 ">
-                    <input
-                      name="author"
-                      value={blog.author}
-                      onChange={handleChange}
-                      type="text"
-                      className="form-control input-default "
-                      placeholder="Author"
-                    />
-                  </div>
-                </div>
-           
+              <div style={{}}>
+                <div className="row">
+                  <div className="col-6">
+                    <div style={{}}>
+                      <div className="card-body">
+                        <h4 className="">Add Blog Image:</h4>
+                        <div className="">
+                          <input
+                            className="form-control input-default "
+                            type="file"
+                            id="formFile"
+                            onChange={(e) =>
+                              setSelectedImage(e.target.files[0])
+                            }
+                          />
+                          <div>
+                            <img
+                              style={{ width: "5rem" }}
+                              src={
+                                selectedImage
+                                  ? URL.createObjectURL(selectedImage)
+                                  : blog.img
+                              }
+                            />
+                            {selectedImage && (
+                              <a
+                                className="btn btn-success m-3"
+                                onClick={uploadImage}
+                              >
+                                upload
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
-              <div style={{ }}>
-                <div className="card-body">
-                  <h4 className="">Blog Tags:</h4>
-                  <div className=" mb-3">
-                    <input
-                      name="tags"
-                      value={blog.tags}
-                      onChange={handleChange}
-                      type="text"
-                      className="form-control input-default "
-                      placeholder="Tag1, Tag2, Tag3.."
-                    />
+                    <div style={{}} className="">
+                      <div className="card-body">
+                        <h4 className="">Blog Title:</h4>
+                        <div className=" mb-3 ">
+                          <input
+                            type="text"
+                            className="form-control  input-default "
+                            placeholder="Title"
+                            name="header"
+                            value={blog.header}
+                            onChange={handleChange}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="col-6" style={{}}>
+                    <div className="card-body">
+                      <h4 className="">Blog Author:</h4>
+                      <div className=" mb-3 ">
+                        <input
+                          name="author"
+                          value={blog.author}
+                          onChange={handleChange}
+                          type="text"
+                          className="form-control input-default "
+                          placeholder="Author"
+                        />
+                      </div>
+                    </div>
+
+                    <div style={{}}>
+                      <div className="card-body">
+                        <h4 className="">Blog Tags:</h4>
+                        <div className=" mb-3">
+                          <input
+                            name="tags"
+                            value={blog.tags}
+                            onChange={handleChange}
+                            type="text"
+                            className="form-control input-default "
+                            placeholder="Tag1, Tag2, Tag3.."
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                </div>
-              </div>
-              </div>
-             
               </div>
 
-              <div style={{  }}>
+              <div style={{}}>
                 <div className="card-body">
-                  <h4 style={{textAlign:"center"}} className="">Blog Content:</h4>
+                  <h4 style={{ textAlign: "center" }} className="">
+                    Blog Content:
+                  </h4>
                   <div className="form-group ">
                     <textarea
                       className="form-control"
@@ -228,7 +276,7 @@ const EditBlog = () => {
                   <Button
                     className=""
                     variant="primary"
-                    onClick={Submit}
+                    onClick={updateBlogData}
                     type="button"
                   >
                     Submit
