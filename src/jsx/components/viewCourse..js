@@ -57,7 +57,7 @@ const ViewCourse = () => {
             <Card.Body>
               <Table responsive>
                 <thead>
-                  <tr>
+                  <tr style={{ textAlign: "center" }}>
                     <th className="width80">
                       <strong>ID</strong>
                     </th>
@@ -80,7 +80,7 @@ const ViewCourse = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr style={{ textAlign: "center" }}>
                     <td>
                       <strong>01</strong>
                     </td>
@@ -103,7 +103,7 @@ const ViewCourse = () => {
                   </Button>
                     </td>
                   </tr>
-                  <tr>
+                  <tr style={{ textAlign: "center" }}>
                     <td>
                       <strong>02</strong>
                     </td>
@@ -126,7 +126,7 @@ const ViewCourse = () => {
                   </Button>
                     </td>
                   </tr>
-                  <tr>
+                  <tr style={{ textAlign: "center" }}>
                     <td>
                       <strong>03</strong>
                     </td>

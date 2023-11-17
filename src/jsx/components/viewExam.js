@@ -60,63 +60,63 @@ const ViewExam = () => {
               <Table responsive>
                 <thead>
                   <tr>
-                    <th className="width80">
+                    <th style={{ textAlign: "center" }} className="width80">
                       <strong>Course ID</strong>
                     </th>
-                    <th>
+                    <th style={{ textAlign: "center" }}>
                       <strong>Course Name</strong>
                     </th>
-                    <th>
+                    <th style={{ textAlign: "center" }}>
                       <strong>Exam ID</strong>
                     </th>
-                    <th>
+                    <th style={{ textAlign: "center" }}>
                       <strong>Image</strong>
                     </th>
-                    <th>
+                    <th style={{ textAlign: "center" }}>
                       <strong>Status</strong>
                     </th>
-                    <th>
+                    <th style={{ textAlign: "center" }}>
                       <strong>Category</strong>
                     </th>
-                    <th><strong>Action</strong></th>
+                    <th style={{ textAlign: "center" }}><strong>Action</strong></th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>
+                    <td style={{ textAlign: "center" }}>
                       <strong>01</strong>
                     </td>
-                    <td>Adhd Awareness</td>
-                    <td>11</td>
-                    <td>Image</td>
-                    <td>
+                    <td style={{ textAlign: "center" }}>Adhd Awareness</td>
+                    <td style={{ textAlign: "center" }}>11</td>
+                    <td style={{ textAlign: "center" }}>Image</td>
+                    <td style={{ textAlign: "center" }}>
                       <Badge bg="" className="light badge-success">Active</Badge>
                     </td>
-                    <td>Care course</td>
-                    <td>
+                    <td style={{ textAlign: "center" }}>Care course</td>
+                    <td style={{ textAlign: "center" }}>
                     <Button className="me-2"  variant="danger btn-icon-xxs">
                   <RiChatDeleteFill />
                   </Button>
                     </td>
                   </tr>
-                  <tr>
-                    <td>
+                  <tr style={{ textAlign: "center" }}>
+                    <td style={{ textAlign: "center" }}>
                       <strong>02</strong>
                     </td>
-                    <td>Understanding Autism</td>
-                    <td>12</td>
-                    <td>Image</td>
-                    <td>
+                    <td style={{ textAlign: "center" }}>Understanding Autism</td>
+                    <td style={{ textAlign: "center" }}>12</td>
+                    <td style={{ textAlign: "center" }}>Image</td>
+                    <td style={{ textAlign: "center" }}>
                       <Badge bg="" className="light badge-success">Active</Badge>
                     </td>
-                    <td>Care course</td>
+                    <td style={{ textAlign: "center" }}>Care course</td>
                     <td>
                     <Button className="me-2"  variant="danger btn-icon-xxs">
                   <RiChatDeleteFill />
                   </Button>
                     </td>
                   </tr>
-                  <tr>
+                  <tr style={{ textAlign: "center" }}>
                     <td>
                       <strong>03</strong>
                     </td>
