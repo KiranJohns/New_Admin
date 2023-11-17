@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Nav, Tab, Dropdown } from "react-bootstrap";
 import { IMAGES, SVGICON } from "../Dashboard/Content";
 import circle from "./../../../images/circle.svg";
@@ -148,9 +148,8 @@ const tabledata4 = [
   },
 ];
 
-const Food = () => {
+const BlogTrash = () => {
   const makeRequest = fetchData();
-  const navigate = useNavigate()
 
   const [blogs, setBlogs] = useState([]);
   makeRequest("GET", "/blog/get-all-blog")
@@ -226,7 +225,7 @@ const Food = () => {
                         <td>
                           <strong>01</strong>
                         </td>
-                        <td> <a target="_blank" href={`https://test.learnforcare.co.uk/blog/${item.id}`}>{item.header} </a></td>
+                        <td>{item.header}</td>
                         <td>{item.author}</td>
                         <td>{date}</td>
                         <td>0</td>
@@ -245,13 +244,12 @@ const Food = () => {
                           <Button
                             className=""
                             variant="primary btn-icon-xxs"
-                            onClick={() => navigate("/edit-blog",{state:{id:item.id}})}
                           >
                             <BiSolidEdit />
                           </Button>
                           <Button
                             className=""
-                            variant="dark btn-icon-xxs"
+                            variant="warning btn-icon-xxs"
                           >
                             <FaDownload />
                           </Button>
@@ -596,4 +594,4 @@ const Food = () => {
   );
 };
 
-export default Food;
+export default BlogTrash;

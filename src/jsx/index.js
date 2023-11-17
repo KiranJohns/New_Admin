@@ -26,6 +26,7 @@ import CreateCoupon from "./components/Food/CreateCoupon";
 import VolumeDiscount from "./components/Food/VolumeDiscount";
 import OfferText from "./components/Food/OfferText";
 import EditBlog from "./components/Food/EditBlog";
+import BlogTrash from "./components/Food/TrashBlog";
 /// Layout
 import Nav from "./layouts/nav";
 import Nav2 from "./layouts/nav/index2";
@@ -166,8 +167,8 @@ const Markup = () => {
     {url:'company',component: <CompanyTable/>},
     {url:'offer-text',component: <OfferText/>},
     {url:'edit-blog',component: <EditBlog/>},
-
-     //OfferText {url:'company',component: <CompanyAdmin />},
+    {url:'trash',component: <BlogTrash/>},
+     //BlogTrash {url:'company',component: <CompanyAdmin />},
     // {url: "user", component: <User/>},
     {url: "activity", component: <Activity/>},
     {url: "calendar", component: <HomeCalendar/>},

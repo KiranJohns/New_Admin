@@ -105,7 +105,7 @@ const tableData = [
 
 const CouponList = () => {
   const [showModal, setShowModal] = useState(false);
-  const childRef = useRef();
+  // const childRef = useRef();
   const [currentPage, setCurrentPage] = useState(1);
   const [checked, setChecked] = useState(tableData);
   const [unchecked, setUnChecked] = useState(true);
@@ -130,6 +130,8 @@ const CouponList = () => {
     setUnChecked(!unchecked);
   };
 
+  
+
   function handleDelete(id) {
     makeRequest("DELETE", `/coupon/delete-coupon/${id}`)
       .then((res) => {
@@ -141,8 +143,8 @@ const CouponList = () => {
       .catch((err) => console.log(err));
   }
   makeRequest("GET", "/coupon/list-coupons").then((res) => {
-    if (res.data.response) {
-      setCoupons(res.data.response);
+    if (res?.data.response) {
+      setCoupons(res?.data.response);
     }
   });
 
@@ -204,20 +206,130 @@ const CouponList = () => {
                       <Dropdown.Item>Newest</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
-                  <button
+                  <a href="/create-coupon">  <button
                     type="button"
                     className="btn btn-primary"
-                    onClick={() => childRef.current.openModal()}
+
+                  // onClick={() => childRef.current.openModal()}
                   >
                     + New Coupon
-                  </button>
+                  </button></a>
                 </div>
               </div>
             </div>
             <div className="col-xl-12 wow fadeInUp" data-wow-delay="1.5s">
+
               <Modal show={showModal} onHide={() => setShowModal(false)}>
-                hi
+                <div className="">
+                  <div style={{ background: "#212A50" }} className="">
+                    <h4 style={{ color: "#fff", padding: ".6rem" }}>Edit Coupon</h4>
+                  </div>
+                  <form type="button" action="">
+                    <div className="row">
+                      <div className="col-6">
+                        <div style={{}}>
+                          <div className="card-body">
+                            <h4 className="">Coupon Code</h4>
+                            <div className="mb-3 ">
+                              <input
+                                type="text"
+                                className="form-control  input-default "
+                                placeholder="LFC152"
+                                name="coupon_code"
+                              // value={coupon.coupon_code}
+                              // onChange={handleChange}
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div style={{}} className="">
+                          <div className="card-body">
+                            <h4 className="">Coupon Type:</h4>
+                            <div className="form-group mb-3">
+                              <select
+                                // onChange={handleChange}
+                                name="coupon_type"
+                                className="form-control"
+                              >
+                                <option value="">Select</option>
+                                <option value="Cash">Cash</option>
+                                <option value="Percent">Percent</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="col-6" style={{}}>
+                        <div className="card-body">
+                          <h4 className="">Valid Till:</h4>
+                          <div className=" mb-3 ">
+                            {/* <DatePicker  className="form-control" style={{width:'100%'}}/>  */}
+
+                            <input
+                              name="valid_till"
+                              // value={coupon.valid_till}
+                              // onChange={handleChange}
+                              type="date"
+                              className="form-control input-default "
+                            />
+                          </div>
+                        </div>
+
+                        <div style={{}}>
+                          <div className="card-body">
+                            <h4 className="">Minimum Purchase</h4>
+                            <div className=" mb-3">
+                              <input
+                                name="minimum_purchase"
+                                // value={coupon.minimum_purchase}
+                                // onChange={handleChange}
+                                type="number"
+                                className="form-control input-default "
+                                placeholder=""
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>  </div>
+
+                    <div style={{}}>
+                      <div className="card-body col-6">
+                        <h4 style={{ textAlign: "" }} className="">
+                          Amount:
+                        </h4>
+                        <div className="form-group ">
+                          <input
+                            name="amount"
+                            // value={coupon.amount}
+                            // onChange={handleChange}
+                            type="number"
+                            className="form-control input-default "
+                            placeholder=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                      <div className="m-2 p-2 ">
+                        <Button
+                          className=""
+                          variant="primary"
+                          // onClick={Submit}
+                          type="button"
+                        >
+                          Submit
+                        </Button>
+                      </div>
+                    </div>
+                  </form>
+
+                </div>
               </Modal>
+
               <div className="table-responsive full-data">
                 <div
                   id="example-student_wrapper"
@@ -298,11 +410,10 @@ const CouponList = () => {
 
                               <td>
                                 <div
-                                  class={`badge bg-${
-                                    new Date(item.valid_till) > new Date()
-                                      ? "success"
-                                      : "warning"
-                                  }`}
+                                  className={`badge bg-${new Date(item.valid_till) > new Date()
+                                    ? "success"
+                                    : "warning"
+                                    }`}
                                 >
                                   {new Date(item.valid_till) > new Date()
                                     ? "active"
@@ -354,9 +465,8 @@ const CouponList = () => {
                       <span>
                         {number.map((n, i) => (
                           <Link
-                            className={`paginate_button ${
-                              currentPage === n ? "current" : ""
-                            } `}
+                            className={`paginate_button ${currentPage === n ? "current" : ""
+                              } `}
                             key={i}
                             onClick={() => changeCPage(n)}
                           >
@@ -379,7 +489,7 @@ const CouponList = () => {
           </div>
         </div>
       </div>
-      <BasicModal ref={childRef} />
+      {/* <BasicModal ref={childRef} /> */}
     </>
   );
 };
