@@ -63,10 +63,10 @@ const ViewInvoice = () => {
               <Table responsive>
                 <thead>
                   <tr>
-                    <th className="width80">
+                    <th  className="width80">
                       <strong>ID</strong>
                     </th>
-                    <th>
+                    <th >
                       <strong>Amount</strong>
                     </th>
                     <th>
@@ -90,7 +90,7 @@ const ViewInvoice = () => {
                       <strong>01</strong>
                     </td>
                     <td>Adhd Awareness</td>
-                    <td>11</td>
+                    <td>11/11/2023</td>
                     <td>Image</td>
                     <td>
                         London

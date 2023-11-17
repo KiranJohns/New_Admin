@@ -277,8 +277,60 @@ const SingleProfile = () => {
                           <td style={{ fontWeight: "700" }}>Brief Profile</td>
                           <td style={{ fontWeight: "600" }}>{userData.brief_profile}</td>
                         </tr>
+                        <tr>
+                          <td style={{ fontWeight: "700" }}>Recent Qualification</td>
+                          <td style={{ fontWeight: "600" }}></td>
+                        </tr>
+                        <tr>
+                          <td style={{ fontWeight: "700" }}>Staff CV</td>
+                          <td style={{ fontWeight: "600" }}><a href="#" style={{color:"blue"}}>Download</a></td>
+                        </tr>
+                        <tr>
+                          <td style={{ fontWeight: "700" }}>Agreement</td>
+                          <td style={{ fontWeight: "600" }}>I have read and agree to Learning Ltd<a href="#" style={{color:"blue"}}> terms and Conditions</a></td>
+                        </tr>
                       </tbody>
+                      
                     </Table>
+                    
+                    <div style={{padding:"2rem", background:""}}>
+                       <h3 >Bank Details</h3>
+                       <Table bordered hover>
+                      <thead>
+                        {/* <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Username</th>
+        </tr> */}
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td style={{ fontWeight: "700" }} className="col-5">
+                           Bank Holder Name
+                          </td>
+                          <td style={{ fontWeight: "600" }}></td>
+                        </tr>
+                        <tr>
+                          <td style={{ fontWeight: "700" }}>Bank Name</td>
+                          <td style={{ fontWeight: "600" }}></td>
+                        </tr>
+                        <tr>
+                          <td style={{ fontWeight: "700" }}>Accoount No</td>
+                          <td style={{ fontWeight: "600" }}></td>
+                        </tr>
+                        <tr>
+                          <td style={{ fontWeight: "700" }}>Sort Code</td>
+                          <td style={{ fontWeight: "600" }}></td>
+                        </tr>
+                        <tr>
+                          <td style={{ fontWeight: "700" }}>Roll Number</td>
+                          <td style={{ fontWeight: "600" }}>0</td>
+                        </tr>
+                      </tbody>
+                      
+                    </Table>
+                    </div>
                   </Tab>
 
                   <Tab eventKey="qualification" title="Qualification">
@@ -352,7 +404,7 @@ const SingleProfile = () => {
                       style={{ display: "flex", justifyContent: "flex-end" }}
                     >
                       <Button
-                        style={{ marginTop: "3rem", marginRight: "1rem" }}
+                        style={{ marginTop: "1rem", marginRight: "1rem" }}
                         variant="primary"
                         size="md"
                         active
@@ -361,7 +413,7 @@ const SingleProfile = () => {
                         Upload Document
                       </Button>
                     </div>
-                    <Table striped style={{ marginTop: "5rem" }}>
+                    <Table striped style={{ marginTop: "1rem" }}>
                       <thead>
                         <tr>
                           <th>Course Name</th>
@@ -480,7 +532,7 @@ const SingleProfile = () => {
                       style={{ display: "flex", justifyContent: "flex-end" }}
                     >
                       <Button
-                        style={{ marginTop: "3rem", marginRight: "1rem" }}
+                        style={{ marginTop: "1rem", marginRight: "1rem" }}
                         variant="primary"
                         size="md"
                         active
@@ -489,7 +541,7 @@ const SingleProfile = () => {
                         Upload Document
                       </Button>
                     </div>
-                    <Table striped style={{ marginTop: "5rem" }}>
+                    <Table striped style={{ marginTop: "1rem" }}>
                       <thead>
                         <tr>
                           <th>Organisation Name</th>
