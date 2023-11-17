@@ -27,6 +27,7 @@ import VolumeDiscount from "./components/Food/VolumeDiscount";
 import OfferText from "./components/Food/OfferText";
 import EditBlog from "./components/Food/EditBlog";
 import BlogTrash from "./components/Food/TrashBlog";
+import AddCertificate from "./components/Student/AddCertificate";
 /// Layout
 import Nav from "./layouts/nav";
 import Nav2 from "./layouts/nav/index2";
@@ -168,6 +169,7 @@ const Markup = () => {
     {url:'offer-text',component: <OfferText/>},
     {url:'edit-blog',component: <EditBlog/>},
     {url:'trash',component: <BlogTrash/>},
+    {url:'create-certificate',component: <AddCertificate/>},
      //BlogTrash {url:'company',component: <CompanyAdmin />},
     // {url: "user", component: <User/>},
     {url: "activity", component: <Activity/>},

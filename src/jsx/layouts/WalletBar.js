@@ -105,7 +105,7 @@ const WalletBar = () => {
                       </span>
                       <div className="user-info">
                         <h6 className="name">
-                          <Link to={"/app-profile"}>ID {item.id}</Link>
+                          <Link to={"https://admin.learnforcare.co.uk/individual"}>ID {item.id}</Link>
                         </h6>
                         <span className="fs-14 font-w400 text-wrap">
                           {item.first_name + " " + item.last_name}
@@ -180,7 +180,7 @@ const WalletBar = () => {
                     </span>
                     <div className="user-info">
                       <h5 className="name">
-                        <Link to={"/app-profile"}>{item.header}</Link>
+                        <Link to={"https://admin.learnforcare.co.uk/view-blog"}>{item.header}</Link>
                       </h5>
                     </div>
                   </div>
