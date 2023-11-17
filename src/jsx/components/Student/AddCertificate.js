@@ -16,17 +16,21 @@ import {
   Nav,
 } from "react-bootstrap";
 import fetchData from "../../../axios";
+import { useEffect } from "react";
 
 const AddCertificate = () => {
   const makeRequest = fetchData();
   const [userData, setUserData] = useState({
-    email: "",
-    first_name: "",
-    last_name: "",
-    phone: "",
-    country: "",
-    city: "",
+    user_id: Number("0"),
+    course_name: "",
+    user_name: "",
+    percentage: "",
+    date: ""
   });
+  const [courses, setCourses] = useState([]);
+  const [category, setCategory] = useState("");
+  const [selectedCourse, setSelectedCourse] = useState("");
+  const [filteredCourses, setFilteredCourses] = useState([]);
   function handleOnchange(e) {
     setUserData((prev) => {
       return {
@@ -36,15 +40,34 @@ const AddCertificate = () => {
     });
   }
 
+  useEffect(() => {
+    makeRequest("GET", "/course/get-all-course")
+      .then((res) => {
+        setCourses(res.data.response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   function submit(e) {
     e.preventDefault();
-    makeRequest("POST","/info/create-user",userData).then(res => {
-        swal("Done!","user successfully created","success")
-    }).catch(err => {
-        swal("Oops!",err.data.errors[0].error,"error")
-        console.log(err);
-    })
     console.log(userData);
+    let form = new FormData()
+    form.append("user_id", userData.user_id)
+    form.append("course_name", userData.course_name)
+    form.append("user_name", userData.user_name)
+    form.append("percentage", Number(userData.percentage))
+    form.append("category", category)
+    form.append("date", userData.date)
+    makeRequest("POST", "/certificate/create-certificate", form)
+      .then((res) => {
+        swal("Done!", "user successfully created", "success");
+      })
+      .catch((err) => {
+        swal("Oops!", err.data.errors[0].error, "error");
+        console.log(err);
+      });
   }
 
   return (
@@ -69,7 +92,7 @@ const AddCertificate = () => {
                         </label>
                         <input
                           type="text"
-                          name="first_name"
+                          name="user_name"
                           value={userData.first_name}
                           onChange={handleOnchange}
                           className="form-control"
@@ -87,8 +110,8 @@ const AddCertificate = () => {
                         <input
                           type="text"
                           name="id"
-                          value={userData.id}
-                          onChange={handleOnchange}
+                          value={userData.user_id}
+                          disabled
                           className="form-control"
                           id="exampleFormControlInput1"
                           placeholder="ID"
@@ -100,21 +123,35 @@ const AddCertificate = () => {
                             htmlFor="exampleFormControlInput1"
                             className="form-label text-primary"
                           >
-                            Country<span className="required">*</span>
+                            Category<span className="required">*</span>
                           </label>
                           <select
-                          name="country"
-                            onChange={handleOnchange}
-                            className="form-control "
+                            name="category"
+                            onChange={(e) => {
+                              setFilteredCourses(() => {
+                                return courses.filter(c => c.category == e.target.value)
+                              })
+                              setCategory(e.target.value)
+                            }}
+                            className="form-control"
                           >
                             <option>Select</option>
-                            <option value="United Kingdom">
-                              United Kingdom
+                            <option value="Care Course">Care Course</option>
+                            <option value="Mandatory Care Courses">
+                              Mandatory Care Course
+                            </option>
+                            <option value="Specialised Care Courses">
+                              Specialised Care Course
+                            </option>
+                            <option value="Recovery Care Courses">
+                              Recovery Care Course
+                            </option>
+                            <option value="Child Care Courses">
+                              Child Care Courses
                             </option>
                           </select>
                         </div>
                       </div>
-                 
                     </div>
                     <div className="col-xl-6 col-sm-6">
                       <div className="mb-3">
@@ -125,7 +162,7 @@ const AddCertificate = () => {
                           Date<span className="required">*</span>
                         </label>
                         <input
-                          type="text"
+                          type="date"
                           className="form-control"
                           id="exampleFormControlInput5"
                           placeholder="Date"
@@ -139,48 +176,50 @@ const AddCertificate = () => {
                           htmlFor="exampleFormControlInput4"
                           className="form-label text-primary"
                         >
-                          Phone<span className="required">*</span>
+                          Course<span className="required">*</span>
                         </label>
                         <select
-                          name="category"
-                            onChange={handleOnchange}
-                            className="form-control "
-                          >
-                            <option>Select</option>
-                            <option value="United Kingdom">
-                              United Kingdom
+                          name="course_name"
+                          onChange={handleOnchange}
+                          className="form-control "
+                        >
+                          <option>Select</option>
+                          {courses &&
+                          filteredCourses.map((item) => (
+                            <option key={item.name} value={item.name}>
+                              {item.name}
                             </option>
-                          </select>
+                          ))}
+                        </select>
                       </div>
-                      {/* <div className="mb-3">
+                      <div className="mb-3">
                         <label
                           htmlFor="exampleFormControlInput6"
                           className="form-label text-primary"
                         >
-                          City<span className="required">*</span>
+                          Percentage<span className="required">*</span>
                         </label>
                         <input
-                          type="text"
-                          name="city"
-                          value={userData.city}
+                          type="number"
+                          name="percentage"
+                          value={userData.percentage}
                           onChange={handleOnchange}
                           className="form-control"
                           id="exampleFormControlInput6"
-                          placeholder="City"
+                          placeholder="percentage"
                         />
-                      </div> */}
-                  
+                      </div>
                     </div>
                     <div className="mb-3 d-flex justify-content-center mt-5 ml-4">
-                        <Button
-                          className=""
-                          variant="primary"
-                          type="button"
-                          onClick={submit}
-                        >
-                          Generate Certificate
-                        </Button>
-                      </div>
+                      <Button
+                        className=""
+                        variant="primary"
+                        type="button"
+                        onClick={submit}
+                      >
+                        Generate Certificate
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>
