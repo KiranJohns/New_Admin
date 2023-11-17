@@ -39,7 +39,7 @@ const tableData = [
 
 
 const ViewCertificates = () => {
-    const childRef = useRef();
+    // const childRef = useRef();
     const [currentPage, setCurrentPage] = useState(1);
     const [checked, setChecked] = useState(tableData);
     const [unchecked, setUnChecked] = useState(true);
@@ -106,11 +106,12 @@ const ViewCertificates = () => {
                                             <Dropdown.Item>Recent</Dropdown.Item> */}
                                         </Dropdown.Menu>
                                     </Dropdown>
-                                    <button type="button" className="btn btn-primary"
-                                        onClick={() => childRef.current.openModal()}
+                                 <a href='/create-certificate'>  <button type="button" className="btn btn-primary"
+                                  
+                                        // onClick={() => childRef.current.openModal()}
                                     >
                                         + Assign Certificate
-                                    </button>
+                                    </button></a> 
                                 </div>
                             </div>
                         </div>
@@ -226,7 +227,7 @@ const ViewCertificates = () => {
                     </div>
                 </div>
             </div>
-            <BasicModal ref={childRef} />
+            {/* <BasicModal ref={childRef} /> */}
         </>
     )
 }
