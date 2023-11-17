@@ -344,15 +344,12 @@ const CompanyTable = () => {
                                         </Dropdown.Menu>
                                     </Dropdown>                                     */}
                   <Button
-
                     // type="button"
                     className="btn btn-primary"
                     onClick={() => navigate("/add-user")}
                   >
                     + New Company
                   </Button>
-
-
                 </div>
               </div>
             </div>
@@ -373,7 +370,7 @@ const CompanyTable = () => {
                             type="checkbox"
                             className="form-check-input"
                             id="checkAll"
-                          // onClick={()=>handleCheckedAll(unchecked)}
+                            // onClick={()=>handleCheckedAll(unchecked)}
                           />
                         </th>
                         <th>ID</th>
@@ -383,81 +380,92 @@ const CompanyTable = () => {
                         <th>City</th>
                         <th>Type</th>
 
-                        <th >Action</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {users.map((item, ind) => (
-                        <tr key={ind}>
-                          <td>
-                            <div className="checkbox me-0 align-self-center">
-                              <div className="custom-control custom-checkbox ">
-                                <input
-                                  type="checkbox"
-                                  className="form-check-input"
-                                  id={`stud-${item.id}`}
-                                  checked={item.inputchecked}
-                                  onChange={() => handleChecked(item.id)}
-                                />
-                                <label
-                                  className="custom-control-label"
-                                  htmlFor={`stud-${item.id}`}
-                                ></label>
-                              </div>
-                            </div>
-                          </td>
-                          <td>
-                            <div className="trans-list">
-                              {/* <img src={item.image} alt="" className="avatar avatar-sm me-3" /> */}
-                              <h4>{item.first_name + " " + item.last_name}</h4>
-                            </div>
-                          </td>
-                          <td>
-                            <span className="text-primary font-w600">
-                              {item.id}
-                            </span>
-                          </td>
-                          <td>
-                            <div className="email">{item.email}</div>
-                          </td>
-                          <td>
-                            <h6 className="mb-0">{item.phone}</h6>
-                          </td>
-                          <td>
-                            <h6 className="mb-0">{item.city}</h6>
-                          </td>
+                      {users.map((item, ind) => {
+                        if (item.type_of_account == "company") {
+                          return (
+                            <tr key={ind}>
+                              <td>
+                                <div className="checkbox me-0 align-self-center">
+                                  <div className="custom-control custom-checkbox ">
+                                    <input
+                                      type="checkbox"
+                                      className="form-check-input"
+                                      id={`stud-${item.id}`}
+                                      checked={item.inputchecked}
+                                      onChange={() => handleChecked(item.id)}
+                                    />
+                                    <label
+                                      className="custom-control-label"
+                                      htmlFor={`stud-${item.id}`}
+                                    ></label>
+                                  </div>
+                                </div>
+                              </td>
+                              <td>
+                                <span className="text-primary font-w600">
+                                  {item.id}
+                                </span>
+                              </td>
+                              <td>
+                                <div className="trans-list">
+                                  {/* <img src={item.image} alt="" className="avatar avatar-sm me-3" /> */}
+                                  <h4>
+                                    {item.first_name + " " + item.last_name}
+                                  </h4>
+                                </div>
+                              </td>
+                              <td>
+                                <div className="email">{item.email}</div>
+                              </td>
+                              <td>
+                                <h6 className="mb-0">{item.phone}</h6>
+                              </td>
+                              <td>
+                                <h6 className="mb-0">{item.city}</h6>
+                              </td>
 
-                          <td>
-                            <div
-                              class={`badge bg-${item.type_of_account === "company"
-                                  ? "secondary"
-                                  : item.type_of_account === "individual"
-                                    ? "primary"
-                                    : "warning"
-                                }`}
-                            >
-                              {item.type_of_account}
-                            </div>
-                          </td>
-                          <td>
-                            <Button
-                              onClick={() => {
-                                navigate("/user-detail", {
-                                  state: { id: item.id },
-                                });
-                              }}
-                              className="me-2"
-                              variant="success btn-icon-xxs"
-                            >
-                              <FaEye />
-                            </Button>
-                            <Button className="me-2" variant="primary btn-icon-xxs">
-                              <BiSolidEdit />
-                            </Button>
-                            <Button className="me-2" variant="danger btn-icon-xxs">
-                              <RiChatDeleteFill />
-                            </Button>
-                            {/* <Dropdown className="custom-dropdown float-end">
+                              <td>
+                                <div
+                                  class={`badge bg-${
+                                    item.type_of_account === "company"
+                                      ? "secondary"
+                                      : item.type_of_account === "individual"
+                                      ? "primary"
+                                      : "warning"
+                                  }`}
+                                >
+                                  {item.type_of_account}
+                                </div>
+                              </td>
+                              <td>
+                                <Button
+                                  onClick={() => {
+                                    navigate("/user-detail", {
+                                      state: { id: item.id },
+                                    });
+                                  }}
+                                  className="me-2"
+                                  variant="success btn-icon-xxs"
+                                >
+                                  <FaEye />
+                                </Button>
+                                <Button
+                                  className="me-2"
+                                  variant="primary btn-icon-xxs"
+                                >
+                                  <BiSolidEdit />
+                                </Button>
+                                <Button
+                                  className="me-2"
+                                  variant="danger btn-icon-xxs"
+                                >
+                                  <RiChatDeleteFill />
+                                </Button>
+                                {/* <Dropdown className="custom-dropdown float-end">
                               <Dropdown.Toggle
                                 className="i-false btn sharp tp-btn "
                                 as="div"
@@ -484,9 +492,13 @@ const CompanyTable = () => {
                                 <Dropdown.Item>Option 3</Dropdown.Item>
                               </Dropdown.Menu>
                             </Dropdown> */}
-                          </td>
-                        </tr>
-                      ))}
+                              </td>
+                            </tr>
+                          );
+                        } else {
+                          return null
+                        }
+                      })}
                     </tbody>
                   </table>
                   <div className="d-sm-flex text-center justify-content-between align-items-center">
@@ -511,8 +523,9 @@ const CompanyTable = () => {
                       <span>
                         {number.map((n, i) => (
                           <Link
-                            className={`paginate_button ${currentPage === n ? "current" : ""
-                              } `}
+                            className={`paginate_button ${
+                              currentPage === n ? "current" : ""
+                            } `}
                             key={i}
                             onClick={() => changeCPage(n)}
                           >
