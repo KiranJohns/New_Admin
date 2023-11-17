@@ -28,6 +28,7 @@ import OfferText from "./components/Food/OfferText";
 import EditBlog from "./components/Food/EditBlog";
 import BlogTrash from "./components/Food/TrashBlog";
 import AddCertificate from "./components/Student/AddCertificate";
+import EditCourse from "./components/Food/editCourse";
 /// Layout
 import Nav from "./layouts/nav";
 import Nav2 from "./layouts/nav/index2";
@@ -148,6 +149,7 @@ const Markup = () => {
      {url:'view-exam', component: <ViewExam /> },
     { url: "add-exam", component: <AddExam /> },
     {url:"add-course", component:<AddCourse/>},
+    {url:"edit-course", component:<EditCourse/>},
     {url:"view-course",component:<ViewCourse/>},
     {url: "finance", component: <Finance/>},
     {url: "individual", component: <Students/>},

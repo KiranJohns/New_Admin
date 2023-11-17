@@ -62,7 +62,7 @@ const ViewInvoice = () => {
             <Card.Body>
               <Table responsive>
                 <thead>
-                  <tr>
+                  <tr style={{background:"#212a50"}}>
                     <th  className="width80">
                       <strong>ID</strong>
                     </th>
@@ -85,7 +85,7 @@ const ViewInvoice = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr >
                     <td >
                       <strong>01</strong>
                     </td>

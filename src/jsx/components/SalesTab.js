@@ -189,17 +189,17 @@ const SalesTab = () => {
                 <Card.Body>
                   <Table responsive>
                     <thead>
-                      <tr>
-                        <th className="width80">
+                      <tr style={{background:'#212a50',color:"#fff"}}>
+                        <th style={{ color:"#fff" }} className="width80">
                           <strong>ID</strong>
                         </th>
-                        <th style={{ textAlign: "center" }}>
-                          <strong>Course Count</strong>
+                        <th style={{ textAlign: "center",color:"#fff" }}>
+                          <strong >Course Count</strong>
                         </th>
-                        <th style={{ textAlign: "center" }}>
+                        <th style={{ textAlign: "center",color:"#fff" }}>
                           <strong>Amount</strong>
                         </th>
-                        <th style={{ textAlign: "center" }}>
+                        <th style={{ textAlign: "center",color:"#fff"  }}>
                           <strong>Date</strong>
                         </th>
                       </tr>
@@ -212,7 +212,7 @@ const SalesTab = () => {
                               <td>
                                 <strong>{i}</strong>
                               </td>
-                              <td style={{ textAlign: "center" }}>
+                              <td style={{ textAlign: "center", }}>
                                 {item.total_course_count}
                               </td>
                               <td style={{ textAlign: "center" }}>
@@ -235,22 +235,22 @@ const SalesTab = () => {
             <Col lg={12}>
               <Card>
                 <Card.Header>
-                  <Card.Title>All Invoices</Card.Title>
+                  <Card.Title></Card.Title>
                 </Card.Header>
                 <Card.Body>
                   <Table responsive>
                     <thead>
-                      <tr>
-                        <th className="width80">
+                      <tr style={{color:"#fff",background:'#212a50'}}>
+                        <th className="width80" style={{color:"#fff"}}>
                           <strong>ID</strong>
                         </th>
-                        <th style={{ textAlign: "center" }}>
+                        <th style={{ textAlign: "center",color:"#fff" }}>
                           <strong>Course Count</strong>
                         </th>
-                        <th style={{ textAlign: "center" }}>
+                        <th style={{ textAlign: "center",color:"#fff" }}>
                           <strong>Amount</strong>
                         </th>
-                        <th style={{ textAlign: "center" }}>
+                        <th style={{ textAlign: "center",color:"#fff" }}>
                           <strong>Month</strong>
                         </th>
                       </tr>
@@ -286,20 +286,20 @@ const SalesTab = () => {
             <Col lg={12}>
               <Card>
                 <Card.Header>
-                  <Card.Title>All Invoices</Card.Title>
+                  <Card.Title></Card.Title>
                 </Card.Header>
                 <Card.Body>
                   <Table responsive>
                     <thead>
-                      <tr>
+                      <tr style={{background:"#212a50"}}>
                         <th className="width80">
                           <strong>ID</strong>
                         </th>
                         <th style={{ textAlign: "center" }}>
-                          <strong>Amount</strong>
+                          <strong>Course Count</strong>
                         </th>
                         <th style={{ textAlign: "center" }}>
-                          <strong>Price</strong>
+                          <strong>Amount</strong>
                         </th>
                         <th style={{ textAlign: "center" }}>
                           <strong>Year</strong>

@@ -25713,7 +25713,7 @@ code {
   width: 3.75rem; }
 
 .table thead th {
-  color: var(--primary);
+  color:#fff;
   white-space: nowrap;
   font-size: 14px;
   text-transform: capitalize;

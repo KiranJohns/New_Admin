@@ -57,12 +57,12 @@ const ViewReports = () => {
                  <Col lg={12}>
                  <Card>
             <Card.Header>
-              <Card.Title>All Invoices</Card.Title>
+              <Card.Title>All Reports</Card.Title>
             </Card.Header>
             <Card.Body>
               <Table responsive>
                 <thead>
-                  <tr>
+                  <tr style={{background:"#212a50"}}>
                     <th  className="width80">
                       <strong>ID</strong>
                     </th>
