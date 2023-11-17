@@ -42,7 +42,9 @@ const AddExam = () => {
     });
   }
 
-  function handleDelete(id) {}
+  function handleDelete(id) {
+    setExam(prev => prev.filter(item => item.id != id))
+  }
 
   function add() {
     console.log(answer);
@@ -78,7 +80,6 @@ const AddExam = () => {
       return [...prev, question];
     });
 
-    console.log(question);
 
     setData({
       question: "",
