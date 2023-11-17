@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Nav, Tab, Dropdown } from "react-bootstrap";
 import { IMAGES, SVGICON } from "../Dashboard/Content";
 import circle from "./../../../images/circle.svg";
@@ -148,6 +148,7 @@ const tabledata4 = [
 
 const Food = () => {
   const makeRequest = fetchData();
+  const navigate = useNavigate()
 
   const [blogs, setBlogs] = useState([]);
   makeRequest("GET", "/blog/get-all-blog")
@@ -242,6 +243,7 @@ const Food = () => {
                           <Button
                             className="me-2"
                             variant="primary btn-icon-xxs"
+                            onClick={() => navigate("/edit-blog",{state:{id:item.id}})}
                           >
                             <BiSolidEdit />
                           </Button>
