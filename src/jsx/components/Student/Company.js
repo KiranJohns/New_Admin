@@ -364,7 +364,7 @@ const CompanyTable = () => {
                     id="example-student"
                   >
                     <thead>
-                      <tr style={{ textAlign: "center" }}>
+                      <tr style={{ textAlign: "center", }}>
                         <th>
                           <input
                             type="checkbox"
