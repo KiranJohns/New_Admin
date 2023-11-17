@@ -185,8 +185,9 @@ const SingleProfile = () => {
                   id="fill-tab-example"
                   className="mb-3 mt-2"
                   fill
+                style={{}}
                 >
-                  <Tab eventKey="profile" title="Profile">
+                  <Tab  eventKey="profile" title="Profile">
                     <Table bordered hover>
                       <thead>
                         {/* <tr>
@@ -238,7 +239,11 @@ const SingleProfile = () => {
                           <td style={{ fontWeight: "600" }}>{userData.date_of_birth}</td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>Next to kin</td>
+                          <td style={{ fontWeight: "700" }}>Next to Kin Name</td>
+                          <td style={{ fontWeight: "600" }}>{userData.next_to_kin}</td>
+                        </tr>
+                        <tr>
+                          <td style={{ fontWeight: "700" }}>Next to Kin Number</td>
                           <td style={{ fontWeight: "600" }}>{userData.next_to_kin}</td>
                         </tr>
                         <tr>
@@ -275,6 +280,10 @@ const SingleProfile = () => {
                         </tr>
                         <tr>
                           <td style={{ fontWeight: "700" }}>Brief Profile</td>
+                          <td style={{ fontWeight: "600" }}>{userData.brief_profile}</td>
+                        </tr>
+                        <tr>
+                          <td style={{ fontWeight: "700" }}>Permanent Address</td>
                           <td style={{ fontWeight: "600" }}>{userData.brief_profile}</td>
                         </tr>
                         <tr>
