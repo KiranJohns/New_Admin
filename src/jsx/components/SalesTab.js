@@ -69,7 +69,7 @@ const SalesTab = () => {
                 >
                   <Tab eventKey="daily" title="Daily">
                   <Col lg={12}>
-          <Card>
+                  <Card>
             <Card.Header>
               <Card.Title></Card.Title>
             </Card.Header>
@@ -77,41 +77,41 @@ const SalesTab = () => {
               <Table responsive>
                 <thead>
                   <tr>
-                    <th className="width80">
+                    <th  className="width80">
                       <strong>ID</strong>
                     </th>
-                    <th>
+                    <th style={{textAlign:'center'}}>
                       <strong>Amount</strong>
                     </th>
-                    <th>
-                      <strong>Date</strong>
+                    <th style={{textAlign:'center'}}>
+                      <strong >Date</strong>
                     </th>
-                    <th>
-                      <strong>Customer Name</strong>
+                    <th style={{textAlign:'center'}}>
+                      <strong>Customer</strong>
                     </th>
-                    <th>
+                    <th style={{textAlign:'center'}}>
                       <strong>Place</strong>
                     </th>
-                    <th>
+                    <th style={{textAlign:'center'}}>
                       <strong>Customer Type</strong>
-                    </th>
-                    <th> <strong>Action</strong></th>
+                    </th >
+                    <th style={{textAlign:'center'}}> <strong>Action</strong></th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>
+                    <td >
                       <strong>01</strong>
                     </td>
-                    <td>250</td>
-                    <td>11</td>
-                    <td>Rio</td>
-                    <td>
+                    <td style={{textAlign:'center'}}>250</td>
+                    <td style={{textAlign:'center'}}>11/11/2023</td>
+                    <td style={{textAlign:'center'}}>Rio</td>
+                    <td style={{textAlign:'center'}}>
                         London
                       {/* <Badge bg="" className="light badge-success">Active</Badge> */}
                     </td>
-                    <td>Individual</td>
-                    <td>
+                    <td style={{textAlign:'center'}}>Individual</td>
+                    <td style={{textAlign:'center'}}>
                     <Button className="me-2" variant="success btn-icon-xxs">
                     <FaEye />
                   </Button>
@@ -119,7 +119,7 @@ const SalesTab = () => {
                     <BiSolidEdit />
                   </Button>
                   <Button className="me-2"  variant="danger btn-icon-xxs">
-                  <RiChatDeleteFill />
+                  <FaDeleteLeft />
                   </Button>
                     </td>
                   </tr>
@@ -127,14 +127,14 @@ const SalesTab = () => {
                     <td>
                       <strong>02</strong>
                     </td>
-                    <td>55</td>
-                    <td>12</td>
-                    <td>Image</td>
+                    <td style={{textAlign:'center'}}>55</td>
+                    <td style={{textAlign:'center'}}>12/11/2023</td>
+                    <td style={{textAlign:'center'}}></td>
                     <td>
                       {/* <Badge bg="" className="light badge-success">Active</Badge> */}
                     </td>
-                    <td>Company</td>
-                    <td>
+                    <td style={{textAlign:'center'}}>Company</td>
+                    <td style={{textAlign:'center'}}>
                     <Button className="me-2" variant="success btn-icon-xxs">
                     <FaEye />
                   </Button>
@@ -142,7 +142,7 @@ const SalesTab = () => {
                     <BiSolidEdit />
                   </Button>
                   <Button className="me-2"  variant="danger btn-icon-xxs">
-                  <RiChatDeleteFill />
+                  <FaDeleteLeft />
                   </Button>
                     </td>
                   </tr>
@@ -150,14 +150,14 @@ const SalesTab = () => {
                     <td>
                       <strong>03</strong>
                     </td>
-                    <td>25</td>
-                    <td>13</td>
-                    <td>Image</td>
+                    <td style={{textAlign:'center'}}>25</td>
+                    <td style={{textAlign:'center'}}>13</td>
+                    <td style={{textAlign:'center'}}>Rio</td>
                     <td>
                       
                     </td>
-                    <td>Individual</td>
-                    <td>
+                    <td style={{textAlign:'center'}}>Individual</td>
+                    <td style={{textAlign:'center'}}>
                     <Button className="me-2" variant="success btn-icon-xxs">
                     <FaEye />
                   </Button>
@@ -165,7 +165,7 @@ const SalesTab = () => {
                     <BiSolidEdit />
                   </Button>
                   <Button className="me-2"  variant="danger btn-icon-xxs">
-                  <RiChatDeleteFill />
+                  <FaDeleteLeft />
                   </Button>
                     </td>
                   </tr>
@@ -179,49 +179,49 @@ const SalesTab = () => {
 
                   <Tab eventKey="qualification" title="Monthly">
                   <Col lg={12}>
-          <Card>
+                  <Card>
             <Card.Header>
-              <Card.Title></Card.Title>
+              <Card.Title>All Invoices</Card.Title>
             </Card.Header>
             <Card.Body>
               <Table responsive>
                 <thead>
                   <tr>
-                    <th className="width80">
+                    <th  className="width80">
                       <strong>ID</strong>
                     </th>
-                    <th>
+                    <th style={{textAlign:'center'}}>
                       <strong>Amount</strong>
                     </th>
-                    <th>
-                      <strong>Date</strong>
+                    <th style={{textAlign:'center'}}>
+                      <strong >Date</strong>
                     </th>
-                    <th>
-                      <strong>Customer Name</strong>
+                    <th style={{textAlign:'center'}}>
+                      <strong>Customer</strong>
                     </th>
-                    <th>
+                    <th style={{textAlign:'center'}}>
                       <strong>Place</strong>
                     </th>
-                    <th>
+                    <th style={{textAlign:'center'}}>
                       <strong>Customer Type</strong>
-                    </th>
-                    <th><strong>Action</strong></th>
+                    </th >
+                    <th style={{textAlign:'center'}}> <strong>Action</strong></th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>
+                    <td >
                       <strong>01</strong>
                     </td>
-                    <td>250</td>
-                    <td>11</td>
-                    <td>Rio</td>
-                    <td>
+                    <td style={{textAlign:'center'}}>250</td>
+                    <td style={{textAlign:'center'}}>11/11/2023</td>
+                    <td style={{textAlign:'center'}}>Rio</td>
+                    <td style={{textAlign:'center'}}>
                         London
                       {/* <Badge bg="" className="light badge-success">Active</Badge> */}
                     </td>
-                    <td>Individual</td>
-                    <td>
+                    <td style={{textAlign:'center'}}>Individual</td>
+                    <td style={{textAlign:'center'}}>
                     <Button className="me-2" variant="success btn-icon-xxs">
                     <FaEye />
                   </Button>
@@ -229,7 +229,7 @@ const SalesTab = () => {
                     <BiSolidEdit />
                   </Button>
                   <Button className="me-2"  variant="danger btn-icon-xxs">
-                  <RiChatDeleteFill />
+                  <FaDeleteLeft />
                   </Button>
                     </td>
                   </tr>
@@ -237,14 +237,14 @@ const SalesTab = () => {
                     <td>
                       <strong>02</strong>
                     </td>
-                    <td>55</td>
-                    <td>12</td>
-                    <td>Image</td>
+                    <td style={{textAlign:'center'}}>55</td>
+                    <td style={{textAlign:'center'}}>12/11/2023</td>
+                    <td style={{textAlign:'center'}}></td>
                     <td>
                       {/* <Badge bg="" className="light badge-success">Active</Badge> */}
                     </td>
-                    <td>Company</td>
-                    <td>
+                    <td style={{textAlign:'center'}}>Company</td>
+                    <td style={{textAlign:'center'}}>
                     <Button className="me-2" variant="success btn-icon-xxs">
                     <FaEye />
                   </Button>
@@ -252,7 +252,7 @@ const SalesTab = () => {
                     <BiSolidEdit />
                   </Button>
                   <Button className="me-2"  variant="danger btn-icon-xxs">
-                  <RiChatDeleteFill />
+                  <FaDeleteLeft />
                   </Button>
                     </td>
                   </tr>
@@ -260,14 +260,14 @@ const SalesTab = () => {
                     <td>
                       <strong>03</strong>
                     </td>
-                    <td>25</td>
-                    <td>13</td>
-                    <td>Image</td>
+                    <td style={{textAlign:'center'}}>25</td>
+                    <td style={{textAlign:'center'}}>13</td>
+                    <td style={{textAlign:'center'}}>Rio</td>
                     <td>
                       
                     </td>
-                    <td>Individual</td>
-                    <td>
+                    <td style={{textAlign:'center'}}>Individual</td>
+                    <td style={{textAlign:'center'}}>
                     <Button className="me-2" variant="success btn-icon-xxs">
                     <FaEye />
                   </Button>
@@ -275,7 +275,7 @@ const SalesTab = () => {
                     <BiSolidEdit />
                   </Button>
                   <Button className="me-2"  variant="danger btn-icon-xxs">
-                  <RiChatDeleteFill />
+                  <FaDeleteLeft />
                   </Button>
                     </td>
                   </tr>
@@ -288,49 +288,49 @@ const SalesTab = () => {
 
                   <Tab eventKey="Work" title="Yearly">
                   <Col lg={12}>
-          <Card>
+                  <Card>
             <Card.Header>
-              <Card.Title></Card.Title>
+              <Card.Title>All Invoices</Card.Title>
             </Card.Header>
             <Card.Body>
               <Table responsive>
                 <thead>
                   <tr>
-                    <th className="width80">
+                    <th  className="width80">
                       <strong>ID</strong>
                     </th>
-                    <th>
+                    <th style={{textAlign:'center'}}>
                       <strong>Amount</strong>
                     </th>
-                    <th>
-                      <strong>Date</strong>
+                    <th style={{textAlign:'center'}}>
+                      <strong >Date</strong>
                     </th>
-                    <th>
-                      <strong>Customer Name</strong>
+                    <th style={{textAlign:'center'}}>
+                      <strong>Customer</strong>
                     </th>
-                    <th>
+                    <th style={{textAlign:'center'}}>
                       <strong>Place</strong>
                     </th>
-                    <th>
+                    <th style={{textAlign:'center'}}>
                       <strong>Customer Type</strong>
-                    </th>
-                    <th><strong>Action</strong></th>
+                    </th >
+                    <th style={{textAlign:'center'}}> <strong>Action</strong></th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>
+                    <td >
                       <strong>01</strong>
                     </td>
-                    <td>250</td>
-                    <td>11</td>
-                    <td>Rio</td>
-                    <td>
+                    <td style={{textAlign:'center'}}>250</td>
+                    <td style={{textAlign:'center'}}>11/11/2023</td>
+                    <td style={{textAlign:'center'}}>Rio</td>
+                    <td style={{textAlign:'center'}}>
                         London
                       {/* <Badge bg="" className="light badge-success">Active</Badge> */}
                     </td>
-                    <td>Individual</td>
-                    <td>
+                    <td style={{textAlign:'center'}}>Individual</td>
+                    <td style={{textAlign:'center'}}>
                     <Button className="me-2" variant="success btn-icon-xxs">
                     <FaEye />
                   </Button>
@@ -338,7 +338,7 @@ const SalesTab = () => {
                     <BiSolidEdit />
                   </Button>
                   <Button className="me-2"  variant="danger btn-icon-xxs">
-                  <RiChatDeleteFill />
+                  <FaDeleteLeft />
                   </Button>
                     </td>
                   </tr>
@@ -346,14 +346,14 @@ const SalesTab = () => {
                     <td>
                       <strong>02</strong>
                     </td>
-                    <td>55</td>
-                    <td>12</td>
-                    <td>Image</td>
+                    <td style={{textAlign:'center'}}>55</td>
+                    <td style={{textAlign:'center'}}>12/11/2023</td>
+                    <td style={{textAlign:'center'}}></td>
                     <td>
                       {/* <Badge bg="" className="light badge-success">Active</Badge> */}
                     </td>
-                    <td>Company</td>
-                    <td>
+                    <td style={{textAlign:'center'}}>Company</td>
+                    <td style={{textAlign:'center'}}>
                     <Button className="me-2" variant="success btn-icon-xxs">
                     <FaEye />
                   </Button>
@@ -361,7 +361,7 @@ const SalesTab = () => {
                     <BiSolidEdit />
                   </Button>
                   <Button className="me-2"  variant="danger btn-icon-xxs">
-                  <RiChatDeleteFill />
+                  <FaDeleteLeft />
                   </Button>
                     </td>
                   </tr>
@@ -369,14 +369,14 @@ const SalesTab = () => {
                     <td>
                       <strong>03</strong>
                     </td>
-                    <td>25</td>
-                    <td>13</td>
-                    <td>Image</td>
+                    <td style={{textAlign:'center'}}>25</td>
+                    <td style={{textAlign:'center'}}>13</td>
+                    <td style={{textAlign:'center'}}>Rio</td>
                     <td>
                       
                     </td>
-                    <td>Individual</td>
-                    <td>
+                    <td style={{textAlign:'center'}}>Individual</td>
+                    <td style={{textAlign:'center'}}>
                     <Button className="me-2" variant="success btn-icon-xxs">
                     <FaEye />
                   </Button>
@@ -384,7 +384,7 @@ const SalesTab = () => {
                     <BiSolidEdit />
                   </Button>
                   <Button className="me-2"  variant="danger btn-icon-xxs">
-                  <RiChatDeleteFill />
+                  <FaDeleteLeft />
                   </Button>
                     </td>
                   </tr>
