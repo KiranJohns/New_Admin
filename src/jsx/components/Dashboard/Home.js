@@ -151,7 +151,7 @@ const Home = () => {
         </div>
         <div className="col-xl-6">
           <div className="card h-auto">
-            <SchoolOverView data={true} />
+            <SchoolOverView />
           </div>
         </div>
       </div>

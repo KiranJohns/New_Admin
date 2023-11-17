@@ -47,8 +47,8 @@ const WalletBar = () => {
   useEffect(() => {
     makeRequest("GET", "/info/super-admin-dashboard-data")
       .then((res) => {
-        setUsers(res.data.response.newUsers.slice(0,6));
-		setBlogs(res.data.response.newBlogs.slice(0,6))
+        setUsers(res?.data?.response?.newUsers?.slice(0,6));
+		setBlogs(res?.data?.response?.newBlogs?.slice(0,6))
       })
       .catch((err) => {
         console.log(err);
@@ -65,7 +65,7 @@ const WalletBar = () => {
                   <h2 className="heading mb-0">New Users</h2>
                   <span>
                     You have{" "}
-                    <span className="font-w600">{users && users?.length}</span>{" "}
+                    <span className="font-w600">{users && users?.length || 0}</span>{" "}
                     new users
                   </span>
                 </div>
