@@ -364,7 +364,7 @@ const CompanyTable = () => {
                     id="example-student"
                   >
                     <thead>
-                      <tr>
+                      <tr style={{ textAlign: "center" }}>
                         <th>
                           <input
                             type="checkbox"
@@ -387,7 +387,7 @@ const CompanyTable = () => {
                       {users.map((item, ind) => {
                         if (item.type_of_account == "company") {
                           return (
-                            <tr key={ind}>
+                            <tr key={ind} style={{ textAlign: "center" }}>
                               <td>
                                 <div className="checkbox me-0 align-self-center">
                                   <div className="custom-control custom-checkbox ">

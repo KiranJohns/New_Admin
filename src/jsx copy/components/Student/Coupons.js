@@ -367,7 +367,7 @@ const CouponList = () => {
                     id="example-student"
                   >
                     <thead>
-                      <tr>
+                      <tr style={{ textAlign: "center" }}>
                         <th>
                           <input
                             type="checkbox"
@@ -391,8 +391,8 @@ const CouponList = () => {
                       {coupons &&
                         coupons.map((item, ind) => {
                           return (
-                            <tr key={ind}>
-                              <td>
+                            <tr style={{ textAlign: "center" }} key={ind}>
+                              <td >
                                 <div className="checkbox me-0 align-self-center">
                                   <div className="custom-control custom-checkbox ">
                                     <input
@@ -410,7 +410,7 @@ const CouponList = () => {
                                 </div>
                               </td>
                               <td>
-                                <div className="trans-list">
+                                <div className="">
                                   <h4>{item.coupon_code}</h4>
                                 </div>
                               </td>

@@ -373,7 +373,7 @@ const ViewCertificates = () => {
                     id="example-student"
                   >
                     <thead>
-                      <tr>
+                      <tr style={{ textAlign: "center" }}>
                         <th>
                           <input
                             type="checkbox"
@@ -392,8 +392,8 @@ const ViewCertificates = () => {
                     </thead>
                     <tbody>
                       {records.map((item, ind) => (
-                        <tr key={ind}>
-                          <td>
+                        <tr key={ind} style={{ textAlign: "center" }}>
+                          <td style={{ textAlign: "center" }}>
                             <div className="checkbox me-0 align-self-center">
                               <div className="custom-control custom-checkbox ">
                                 <input
