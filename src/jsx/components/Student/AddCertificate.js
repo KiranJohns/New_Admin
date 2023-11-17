@@ -50,7 +50,7 @@ const AddCertificate = () => {
   return (
     <>
       <div className="row">
-        <div className="col-xl-10">
+        <div className="col-xl-9">
           <div className="card">
             <div className="card-header">
               <h5 className="mb-0">User Details</h5>
@@ -65,7 +65,7 @@ const AddCertificate = () => {
                           htmlFor="exampleFormControlInput1"
                           className="form-label text-primary"
                         >
-                          First Name<span className="required">*</span>
+                          Name<span className="required">*</span>
                         </label>
                         <input
                           type="text"
@@ -74,7 +74,7 @@ const AddCertificate = () => {
                           onChange={handleOnchange}
                           className="form-control"
                           id="exampleFormControlInput1"
-                          placeholder="First Name"
+                          placeholder="Name"
                         />
                       </div>
                       <div className="mb-3">
@@ -82,16 +82,16 @@ const AddCertificate = () => {
                           htmlFor="exampleFormControlInput1"
                           className="form-label text-primary"
                         >
-                          Email<span className="required">*</span>
+                          User ID<span className="required">*</span>
                         </label>
                         <input
                           type="text"
-                          name="email"
-                          value={userData.email}
+                          name="id"
+                          value={userData.id}
                           onChange={handleOnchange}
                           className="form-control"
                           id="exampleFormControlInput1"
-                          placeholder="Email"
+                          placeholder="ID"
                         />
                       </div>
                       <div className="mb-3">
@@ -122,15 +122,15 @@ const AddCertificate = () => {
                           htmlFor="exampleFormControlInput5"
                           className="form-label text-primary"
                         >
-                          Last Name<span className="required">*</span>
+                          Date<span className="required">*</span>
                         </label>
                         <input
                           type="text"
                           className="form-control"
                           id="exampleFormControlInput5"
-                          placeholder="Last Name"
-                          name="last_name"
-                          value={userData.last_name}
+                          placeholder="Date"
+                          name="date"
+                          value={userData.date}
                           onChange={handleOnchange}
                         />
                       </div>
@@ -141,17 +141,18 @@ const AddCertificate = () => {
                         >
                           Phone<span className="required">*</span>
                         </label>
-                        <input
-                          type="number"
-                          name="phone"
-                          value={userData.phone}
-                          onChange={handleOnchange}
-                          className="form-control"
-                          id="exampleFormControlInput4"
-                          placeholder="Phone"
-                        />
+                        <select
+                          name="category"
+                            onChange={handleOnchange}
+                            className="form-control "
+                          >
+                            <option>Select</option>
+                            <option value="United Kingdom">
+                              United Kingdom
+                            </option>
+                          </select>
                       </div>
-                      <div className="mb-3">
+                      {/* <div className="mb-3">
                         <label
                           htmlFor="exampleFormControlInput6"
                           className="form-label text-primary"
@@ -167,7 +168,7 @@ const AddCertificate = () => {
                           id="exampleFormControlInput6"
                           placeholder="City"
                         />
-                      </div>
+                      </div> */}
                   
                     </div>
                     <div className="mb-3 d-flex justify-content-center mt-5 ml-4">
@@ -177,7 +178,7 @@ const AddCertificate = () => {
                           type="button"
                           onClick={submit}
                         >
-                          Submit
+                          Generate Certificate
                         </Button>
                       </div>
                   </div>
