@@ -12,76 +12,6 @@ import swal from "sweetalert";
 import { FaPlus } from "react-icons/fa6";
 import fetchData from "../../../axios";
 
-const inputBlog = [
-  {
-    inputid: "1234",
-    lable: "Calories: 217.",
-    inputid2: "23456",
-    lable2: "2 tablespoons butter, softened, divided",
-  },
-  {
-    inputid: "1235",
-    lable: "Water: 61%",
-    inputid2: "23457",
-    lable2: "1 teaspoon minced fresh parsley",
-  },
-  {
-    inputid: "1236",
-    lable: "Protein: 26.1 grams.",
-    inputid2: "23458",
-    lable2: "1/2 teaspoon minced garlic",
-  },
-  {
-    inputid: "1237",
-    lable: "Carbs: 0 grams.",
-    inputid2: "23459",
-    lable2: "1/4 teaspoon reduced-sodium soy sauce",
-  },
-  {
-    inputid: "1238",
-    lable: "Sugar: 0 grams.",
-    inputid2: "23460",
-    lable2: "1 beef flat iron steak or boneless top sirloin steak (3/4 pound)",
-  },
-  {
-    inputid: "1239",
-    lable: "Fiber: 0 grams.",
-    inputid2: "23461",
-    lable2: "1/8 teaspoon salt",
-  },
-  {
-    inputid: "1240",
-    lable: "Vitamin: 10 grams.",
-    inputid2: "23462",
-    lable2: "1/8 teaspoon pepper",
-  },
-];
-
-const cardBlog = [
-  { image: IMAGES.avatarpng1, title: "Samantha W." },
-  { image: IMAGES.avatarpng2, title: "Karen Hope." },
-  { image: IMAGES.avatarpng3, title: "Tony Soap" },
-];
-
-const tabledata = [
-  {
-    image: IMAGES.food3,
-    title: "Beef Steak with Fried Potato",
-    subtitle: "Snack",
-    rating: "5.0",
-    sales: "1,400",
-    intrest: "17%",
-  },
-  {
-    image: IMAGES.food5,
-    title: "Pancake with Honey",
-    subtitle: "Snack",
-    rating: "4.8",
-    sales: "1,456",
-    intrest: "15%",
-  },
-];
-
 const AddExam = () => {
   const [text, setText] = useState("");
   const [value, setValue] = useState("<p>TinyMCE editor text</p>");
@@ -91,12 +21,16 @@ const AddExam = () => {
   const [filteredCourse, setFilteredCourse] = useState([]);
   const makeRequest = fetchData();
   const [answer, setAnswer] = useState();
+  const [optionCount, setOptionCount] = useState(0);
+
   const [data, setData] = useState({
     question: "",
     option1: "",
     option2: "",
     option3: "",
     option4: "",
+    option5: "",
+    option6: "",
   });
 
   function handleOnchange(e) {
@@ -107,27 +41,19 @@ const AddExam = () => {
       };
     });
   }
-  function handleEdit(id) {
-    let data = exam.find((item, idx) => idx == id);
-    console.log(data);
-    setData({
-      question: data.question,
-      option1: data.options[0],
-      option2: data.options[1],
-      option3: data.options[2],
-      option4: data.options[3],
-    });
-  }
+
   function handleDelete(id) {}
 
   function add() {
+    console.log(answer);
     let options = [
       data.option1,
       data.option2,
       data.option3,
       data.option4,
+      data.option5,
+      data.option6,
     ].filter((opt) => opt.length >= 1);
-
     let question = {
       question: data.question,
       options: options,
@@ -152,14 +78,20 @@ const AddExam = () => {
       return [...prev, question];
     });
 
+    console.log(question);
+
     setData({
       question: "",
       option1: "",
       option2: "",
       option3: "",
       option4: "",
+      option5: "",
+      option6: "",
       answer: "",
     });
+
+    setOptionCount(0);
   }
 
   useEffect(() => {
@@ -174,12 +106,15 @@ const AddExam = () => {
   }, []);
 
   function submit() {
-    makeRequest("POST", "/exam/create-exam", {
-      course_id: courseId,
-      questions: exam,
-    })
+    console.log(exam,courseId);
+    let form = new FormData()
+    form.append("course_id",courseId)
+    form.append("questions",JSON.stringify([...exam]))
+    makeRequest("POST", "/exam/create-exam", form)
       .then((res) => {
         setCourse(res.data);
+        setExam([])
+        swal("Done!", "Anew exam created", "success");
       })
       .catch((err) => {
         console.log(err);
@@ -206,88 +141,85 @@ const AddExam = () => {
             }}
           >
             <form type="button" onSubmit={(e) => e.preventDefault()}>
-
               <div className="row">
-
-              <div className="col-4" style={{ }}>
-                
-                <div className="card-body">
-                  <h4 className="" style={{ textAlign: "center" }}>
-                    Course Category:
-                  </h4>
-                  <div className="form-group mb-3">
-                    <select
-                      onChange={(e) => {
-                        setFilteredCourse(() => {
-                          return course.filter((item) => {
-                            if (item.category == e.target.value) {
-                              return item;
-                            }
+                <div className="col-4" style={{}}>
+                  <div className="card-body">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      Course Category:
+                    </h4>
+                    <div className="form-group mb-3">
+                      <select
+                        onChange={(e) => {
+                          setFilteredCourse(() => {
+                            return course.filter((item) => {
+                              if (item.category == e.target.value) {
+                                return item;
+                              }
+                            });
                           });
-                        });
-                      }}
-                      defaultValue={"option"}
-                      className="form-control form-control-lg"
-                    >
-                      <option>Select</option>
-                      <option value="Care Course">Care Course</option>
-                      <option value="Mandatory Care Courses">
-                        Mandatory Care Course
-                      </option>
-                      <option value="Specialised Care Courses">
-                        Specialised Care Course
-                      </option>
-                      <option value="Recovery Care Courses">
-                        Recovery Care Course
-                      </option>
-                      <option value="Child Care Courses">
-                        Child Care Courses
-                      </option>
-                    </select>
+                        }}
+                        defaultValue={"option"}
+                        className="form-control form-control-lg"
+                      >
+                        <option>Select</option>
+                        <option value="Care Course">Care Course</option>
+                        <option value="Mandatory Care Courses">
+                          Mandatory Care Course
+                        </option>
+                        <option value="Specialised Care Courses">
+                          Specialised Care Course
+                        </option>
+                        <option value="Recovery Care Courses">
+                          Recovery Care Course
+                        </option>
+                        <option value="Child Care Courses">
+                          Child Care Courses
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-4" style={{}}>
+                  <div className="card-body">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      Course Name:
+                    </h4>
+                    <div className="form-group mb-3">
+                      <select
+                        onChange={(e) => setCourseId(e.target.value)}
+                        defaultValue={"option"}
+                        className="form-control form-control-lg"
+                      >
+                        <option>Select</option>
+                        {course &&
+                          filteredCourse.map((item) => (
+                            <option key={item.name} value={item.id}>
+                              {item.name}
+                            </option>
+                          ))}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-4">
+                  <div className="card-body">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      Course ID:
+                    </h4>
+                    <div className="form-group mb-3">
+                      <input
+                        className="form-control form-control-lg"
+                        type="text"
+                        placeholder=""
+                        value={courseId}
+                        disabled
+                        />
+                    </div>
                   </div>
                 </div>
               </div>
-
-              <div className="col-4" style={{  }}>
-                <div className="card-body">
-                  <h4 className="" style={{ textAlign: "center" }}>
-                    Course Name:
-                  </h4>
-                  <div className="form-group mb-3">
-                    <select
-                      onChange={(e) => setCourseId(e.target.value)}
-                      defaultValue={"option"}
-                      className="form-control form-control-lg"
-                    >
-                      <option>Select</option>
-                      {course &&
-                        filteredCourse.map((item) => (
-                          <option key={item.name} value={item.id}>
-                            {item.name}
-                          </option>
-                        ))}
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-4">
-              <div className="card-body">
-                  <h4 className="" style={{ textAlign: "center" }}>
-                    Course ID:
-                  </h4>
-                  <div className="form-group mb-3">
-                    <input
-                      className="form-control form-control-lg"
-                      type="text"
-                      placeholder=""
-                    disabled/>
-                  </div>
-                </div>
-              </div>
-
-              </div>
-
 
               <div style={{ padding: "1rem" }}>
                 <div
@@ -314,155 +246,202 @@ const AddExam = () => {
                       </div>
                     </div>
                   </div>
-               
-               <div className="row">
 
-                <div className="col-6">
-                  <div className="p-3">
-                    <h4 className="" style={{ textAlign: "center" }}>
-                      option a
-                    </h4>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      {/* <input
+                  <div className="row">
+                    <div className="col-6">
+                      <div className="p-3">
+                        <h4 className="" style={{ textAlign: "center" }}>
+                          option a
+                        </h4>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          {/* <input
                         style={{ marginRight: "1.5rem" }}
                         type="checkbox"
                         className="form-check-input"
                         onChange={() => setAnswer("option1")}
                         id="customCheckBox8"
                       /> */}
-                      <input
-                        value={data.option1}
-                        onChange={handleOnchange}
-                        name="option1"
-                        style={{ width: "80%" }}
-                        className="form-control"
-                        type="text"
-                        placeholder="option 1"
-                      />
-                    </div>
-                  </div>
+                          <input
+                            value={data.option1}
+                            onChange={handleOnchange}
+                            name="option1"
+                            style={{ width: "80%" }}
+                            className="form-control"
+                            type="text"
+                            placeholder="option 1"
+                          />
+                        </div>
+                      </div>
 
-                  <div className="p-3">
-                    <h4 className="" style={{ textAlign: "center" }}>
-                      option b
-                    </h4>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      {/* <input
+                      <div className="p-3">
+                        <h4 className="" style={{ textAlign: "center" }}>
+                          option b
+                        </h4>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          {/* <input
                         style={{ marginRight: "1.5rem" }}
                         type="checkbox"
                         className="form-check-input"
                         id="customCheckBox8"
                         onChange={() => setAnswer("option2")}
                       /> */}
-                      <input
-                        value={data.option2}
-                        onChange={handleOnchange}
-                        name="option2"
-                        style={{ width: "80%" }}
-                        className="form-control"
-                        type="text"
-                        placeholder="option 2"
-                      />
+                          <input
+                            value={data.option2}
+                            onChange={handleOnchange}
+                            name="option2"
+                            style={{ width: "80%" }}
+                            className="form-control"
+                            type="text"
+                            placeholder="option 2"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-6">
+                      <div className="p-3">
+                        <h4 className="" style={{ textAlign: "center" }}>
+                          option c
+                        </h4>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <input
+                            value={data.option3}
+                            onChange={handleOnchange}
+                            name="option3"
+                            style={{ width: "80%" }}
+                            className="form-control"
+                            type="text"
+                            placeholder="option 3"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="p-3">
+                        <h4 className="" style={{ textAlign: "center" }}>
+                          option d
+                        </h4>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <input
+                            value={data.option4}
+                            onChange={handleOnchange}
+                            name="option4"
+                            style={{ width: "80%" }}
+                            className="form-control"
+                            type="text"
+                            placeholder="option 4"
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
+                  <div className="row" style={{ display: "flex" }}>
+                    {optionCount >= 1 && <div className="col-6">
+                      <div className="p-3">
+                        <h4 className="" style={{ textAlign: "center" }}>
+                          option e
+                        </h4>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <input
+                            value={data.option5}
+                            onChange={handleOnchange}
+                            name="option5"
+                            style={{ width: "80%" }}
+                            className="form-control"
+                            type="text"
+                            placeholder="option 5"
+                          />
+                        </div>
+                      </div>
+                    </div>}
+                    {optionCount >= 2 &&<div className="col-6">
+                      <div className="p-3">
+                        <h4 className="" style={{ textAlign: "center" }}>
+                          option 6
+                        </h4>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <input
+                            value={data.option6}
+                            onChange={handleOnchange}
+                            name="option6"
+                            style={{ width: "80%" }}
+                            className="form-control"
+                            type="text"
+                            placeholder="option 6"
+                          />
+                        </div>
+                      </div>
+                    </div>}
                   </div>
-                  <div className="col-6">
-                  <div className="p-3">
-                    <h4 className="" style={{ textAlign: "center" }}>
-                      option c
-                    </h4>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      {/* <input
-                        style={{ marginRight: "1.5rem" }}
-                        type="checkbox"
-                        onChange={() => setAnswer("option3")}
-                        className="form-check-input"
-                        id="customCheckBox8"
-                      /> */}
-                      <input
-                        value={data.option3}
-                        onChange={handleOnchange}
-                        name="option3"
-                        style={{ width: "80%" }}
-                        className="form-control"
-                        type="text"
-                        placeholder="option 3"
-                      />
-                    </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      margin: "1rem 0",
+                    }}
+                  >
+                    <Button className="me-2" variant="primary btn-icon-xxs" onClick={() => setOptionCount(prev => ++prev)}>
+                      add option
+                    </Button>
                   </div>
 
                   <div className="p-3">
                     <h4 className="" style={{ textAlign: "center" }}>
-                      option d
+                      Select Answer
                     </h4>
                     <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
+                      style={{ display: "flex", justifyContent: "center" }}
+                      className="form-group mb-3"
                     >
-                      {/* <input
-                        style={{ marginRight: "1.5rem" }}
-                        type="checkbox"
-                        className="form-check-input"
-                        id="customCheckBox8"
-                        onChange={() => setAnswer("option4")}
-                      /> */}
-                      <input
-                        value={data.option4}
-                        onChange={handleOnchange}
-                        name="option4"
-                        style={{ width: "80%" }}
+                      <select
+                        defaultValue={"option"}
                         className="form-control"
-                        type="text"
-                        placeholder="option 4"
-                      />
+                        style={{ width: "50%" }}
+                        onChange={(e) => setAnswer(e.target.value)}
+                      >
+                        <option value="">Select</option>
+                        <option value="option1">Option A</option>
+                        <option value="option2">Option B</option>
+                        <option value="option3">Option C</option>
+                        <option value="option4">Option D</option>
+                        <option value="option5">Option E</option>
+                        <option value="option6">Option F</option>
+                      </select>
                     </div>
-                    </div>
- 
-                  </div>
-                  </div>
-                  <div style={{display:'flex', justifyContent:'center',margin:'1rem 0'}}>
-                    <Button className="me-2" variant="primary btn-icon-xxs">
-                    add option
-                  </Button>
-                  </div>
-
-                    <div className="p-3">
-                    <h4 className="" style={{ textAlign: "center" }}>
-                     Select Answer
-                    </h4>
-                  <div style={{display:'flex', justifyContent:'center'}} className="form-group mb-3">
-                    <select defaultValue={"option"} 
-                    className="form-control"style={{ width: "50%" }} >
-
-                      <option>Option a</option>
-                      <option>Option b</option>
-                      <option>Option c</option>
-                      <option>Option d</option>
-                      <option>Option e</option>
-                      <option>Option f</option>
-                    </select>
-                  </div>
                   </div>
 
                   <div style={{ display: "flex", justifyContent: "flex-end" }}>
@@ -474,57 +453,51 @@ const AddExam = () => {
                   </div>
 
                   <Card.Body>
-                <Table responsive>
-                  <thead>
-                    <tr>
-                      <th className="width80">
-                        <strong>No</strong>
-                      </th>
-                      <th>
-                        <strong>Question</strong>
-                      </th>
-                      <th>
-                        <strong>Options</strong>
-                      </th>
-                      <th>
-                        <strong>Answer</strong>
-                      </th>
-                      <th><strong>Action</strong></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {exam &&
-                      exam.map((item, id) => (
-                        <tr key={id}>
-                          <td>
-                            <strong>01</strong>
-                          </td>
-                          <td>{item.question.slice(0, 30)}</td>
-                          <td>{item.options.length}</td>
-                          <td>{item.answer}</td>
-                          <td>
-                            <Button
-                              className="me-2"
-                              variant="primary btn-icon-xxs"
-                              onClick={() => handleEdit(id)}
-                            >
-                              <BiSolidEdit />
-                            </Button>
-                            {/* <Button
-                              className="me-2"
-                              variant="danger btn-icon-xxs"
-                            >
-                              <RiChatDeleteFill
-                                onClick={() => handleDelete(item.id)}
-                              />
-                            </Button> */}
-                          </td>
+                    <Table responsive>
+                      <thead>
+                        <tr>
+                          <th className="width80">
+                            <strong>No</strong>
+                          </th>
+                          <th>
+                            <strong>Question</strong>
+                          </th>
+                          <th>
+                            <strong>Options</strong>
+                          </th>
+                          <th>
+                            <strong>Answer</strong>
+                          </th>
+                          <th>
+                            <strong>Action</strong>
+                          </th>
                         </tr>
-                      ))}
-                  </tbody>
-                </Table>
-              </Card.Body>
-
+                      </thead>
+                      <tbody>
+                        {exam &&
+                          exam.map((item, id) => (
+                            <tr key={id}>
+                              <td>
+                                <strong>01</strong>
+                              </td>
+                              <td>{item.question.slice(0, 30)}</td>
+                              <td>{item.options.length}</td>
+                              <td>{item.answer}</td>
+                              <td>
+                                <Button
+                                  className="me-2"
+                                  variant="danger btn-icon-xxs"
+                                >
+                                  <RiChatDeleteFill
+                                    onClick={() => handleDelete(item.id)}
+                                  />
+                                </Button>
+                              </td>
+                            </tr>
+                          ))}
+                      </tbody>
+                    </Table>
+                  </Card.Body>
                 </div>
               </div>
 

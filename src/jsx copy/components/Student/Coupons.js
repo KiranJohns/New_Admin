@@ -110,6 +110,7 @@ const CouponList = () => {
   const [checked, setChecked] = useState(tableData);
   const [unchecked, setUnChecked] = useState(true);
   const [coupons, setCoupons] = useState([]);
+  const [coupon, setCoupon] = useState({amount: "", coupon_code: "", coupon_type: "", id: "", minimum_purchase: "", valid_till: ""});
   const navigate = useNavigate();
   const makeRequest = fetchData();
 
@@ -130,8 +131,6 @@ const CouponList = () => {
     setUnChecked(!unchecked);
   };
 
-  
-
   function handleDelete(id) {
     makeRequest("DELETE", `/coupon/delete-coupon/${id}`)
       .then((res) => {
@@ -142,11 +141,38 @@ const CouponList = () => {
       })
       .catch((err) => console.log(err));
   }
+
   makeRequest("GET", "/coupon/list-coupons").then((res) => {
     if (res?.data.response) {
       setCoupons(res?.data.response);
     }
+  }).catch(err => {
+    console.log(err);
   });
+
+  function handelEdit(id) {
+    makeRequest("PATCH", `/coupon/edit-coupon`,{
+      ...coupon,
+      coupon_id: coupon.id
+    })
+      .then((res) => {
+        setShowModal(false)
+        setCoupons((prev) => {
+          return prev.filter((item) => item.id !== id);
+        });
+        swal("Done!", "coupon deleted", "success");
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function handleChange(e) {
+    setCoupon(prev => {
+      return {
+        ...prev,
+        [e.target.name]:e.target.value
+      }
+    })
+  }
 
   const recordsPage = 15;
   const lastIndex = currentPage * recordsPage;
@@ -236,7 +262,7 @@ const CouponList = () => {
                                 className="form-control  input-default "
                                 placeholder="LFC152"
                                 name="coupon_code"
-                              // value={coupon.coupon_code}
+                              value={coupon.coupon_code}
                               // onChange={handleChange}
                               />
                             </div>
@@ -251,8 +277,9 @@ const CouponList = () => {
                                 // onChange={handleChange}
                                 name="coupon_type"
                                 className="form-control"
+                              onChange={handleChange}
                               >
-                                <option value="">Select</option>
+                                <option value={coupon.coupon_type}>{coupon.coupon_type}</option>
                                 <option value="Cash">Cash</option>
                                 <option value="Percent">Percent</option>
                               </select>
@@ -269,8 +296,8 @@ const CouponList = () => {
 
                             <input
                               name="valid_till"
-                              // value={coupon.valid_till}
-                              // onChange={handleChange}
+                              value={new Date(coupon.valid_till).toLocaleDateString('en-CA')}
+                              onChange={handleChange}
                               type="date"
                               className="form-control input-default "
                             />
@@ -283,8 +310,8 @@ const CouponList = () => {
                             <div className=" mb-3">
                               <input
                                 name="minimum_purchase"
-                                // value={coupon.minimum_purchase}
-                                // onChange={handleChange}
+                                value={coupon.minimum_purchase}
+                                onChange={handleChange}
                                 type="number"
                                 className="form-control input-default "
                                 placeholder=""
@@ -304,8 +331,8 @@ const CouponList = () => {
                         <div className="form-group ">
                           <input
                             name="amount"
-                            // value={coupon.amount}
-                            // onChange={handleChange}
+                            value={coupon.amount}
+                            onChange={handleChange}
                             type="number"
                             className="form-control input-default "
                             placeholder=""
@@ -318,7 +345,7 @@ const CouponList = () => {
                         <Button
                           className=""
                           variant="primary"
-                          // onClick={Submit}
+                          onClick={handelEdit}
                           type="button"
                         >
                           Submit
@@ -424,9 +451,10 @@ const CouponList = () => {
                                 <Button
                                   className="me-2"
                                   variant="primary btn-icon-xxs"
-                                  onClick={() =>
+                                  onClick={() =>{
+                                    setCoupon(coupons.find(c => c.id === item.id))
                                     setShowModal(true)
-                                  }
+                                  }}
                                 >
                                   <BiSolidEdit />
                                 </Button>
