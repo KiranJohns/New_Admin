@@ -385,7 +385,7 @@ const AddExam = () => {
                     {optionCount >= 2 &&<div className="col-6">
                       <div className="p-3">
                         <h4 className="" style={{ textAlign: "center" }}>
-                          option 6
+                          option f
                         </h4>
                         <div
                           style={{
@@ -415,7 +415,7 @@ const AddExam = () => {
                     }}
                   >
                     <Button className="me-2" variant="primary btn-icon-xxs" onClick={() => setOptionCount(prev => ++prev)}>
-                      add option
+                      Add Option
                     </Button>
                   </div>
 
@@ -447,7 +447,7 @@ const AddExam = () => {
                   <div style={{ display: "flex", justifyContent: "flex-end" }}>
                     <div className="m-2 p-2 ">
                       <Button className="" variant="primary" onClick={add}>
-                        Next question
+                        Next Question
                       </Button>
                     </div>
                   </div>

@@ -3954,15 +3954,16 @@ textarea.form-control-lg {
   isolation: isolate;
 }
 .nav-tabs .nav-link.disabled {
-  color: #6c757d;
+  color: #b4c6d5;
   background-color: transparent;
   border-color: transparent;
 }
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: #495057;
+  color: #212a50 !important;
   background-color: #fff;
   border-color: #dee2e6 #dee2e6 #fff;
+  font-weight: bold !important;
 }
 .nav-tabs .dropdown-menu {
   margin-top: -1px;

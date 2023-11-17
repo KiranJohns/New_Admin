@@ -29,7 +29,7 @@ const cardBlog = [
 ];
 
 const WalletBar = () => {
-  const childRef = useRef();
+  // const childRef = useRef();
   const [addList, setAddList] = useState(studentList);
   const [load, setload] = useState(false);
   const [users, setUsers] = useState([]);
@@ -73,7 +73,8 @@ const WalletBar = () => {
                   <Link
                     to={"#"}
                     className="add icon-box bg-primary"
-                    onClick={() => childRef.current.openModal()}
+                    // onClick={() => childRef.current.openModal()}
+                    href="https://admin.learnforcare.co.uk/add-user"
                   >
                     <svg
                       width="14"
@@ -196,7 +197,7 @@ const WalletBar = () => {
         </div>
       </div>
       <div className="wallet-bar-close" onClick={() => SideBarAdd()}></div>
-      <BasicModal ref={childRef} />
+      {/* <BasicModal ref={childRef} /> */}
     </>
   );
 };

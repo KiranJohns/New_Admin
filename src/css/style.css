@@ -3221,8 +3221,9 @@ textarea.form-control-lg {
       border-color: transparent; }
   .nav-tabs .nav-link.active,
   .nav-tabs .nav-item.show .nav-link {
-    color: #495057;
+    color: #212a50;
     background-color: #E6EBEE;
+    font-weight: bold;
     border-color: #dee2e6 #dee2e6 #E6EBEE; }
   .nav-tabs .dropdown-menu {
     margin-top: -1px;
@@ -30602,4 +30603,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .tox-statusbar__path-item {
 	display: none !important;
+}
+
+
+input::file-selector-button {
+  font-weight: bold;
+  color: white !important;
+  background-color: #212a50 !important;
+  padding: 0.5em;
+  border: thin solid grey;
+  border-radius: 3px;
 }

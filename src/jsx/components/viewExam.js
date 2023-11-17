@@ -2,7 +2,8 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {Nav, Tab, Dropdown} from 'react-bootstrap';
 import { IMAGES, SVGICON } from './Dashboard/Content';
-
+import { Button, ButtonGroup } from "react-bootstrap";
+import { RiChatDeleteFill } from "react-icons/ri";
 import PageTitle from '../layouts/PageTitle';
 import {
     Row,
@@ -77,7 +78,7 @@ const ViewExam = () => {
                     <th>
                       <strong>Category</strong>
                     </th>
-                    <th></th>
+                    <th><strong>Action</strong></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -93,18 +94,9 @@ const ViewExam = () => {
                     </td>
                     <td>Care course</td>
                     <td>
-                      <Dropdown>
-                        <Dropdown.Toggle
-                          variant="success"
-                          className="light sharp i-false"
-                        >
-                          {svg1}
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                          <Dropdown.Item>Edit</Dropdown.Item>
-                          <Dropdown.Item>Delete</Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
+                    <Button className="me-2"  variant="danger btn-icon-xxs">
+                  <RiChatDeleteFill />
+                  </Button>
                     </td>
                   </tr>
                   <tr>
@@ -119,18 +111,9 @@ const ViewExam = () => {
                     </td>
                     <td>Care course</td>
                     <td>
-                      <Dropdown>
-                        <Dropdown.Toggle
-                          variant="danger"
-                          className="light sharp i-false"
-                        >
-                          {svg1}
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                          <Dropdown.Item>Edit</Dropdown.Item>
-                          <Dropdown.Item>Delete</Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
+                    <Button className="me-2"  variant="danger btn-icon-xxs">
+                  <RiChatDeleteFill />
+                  </Button>
                     </td>
                   </tr>
                   <tr>
@@ -145,18 +128,9 @@ const ViewExam = () => {
                     </td>
                     <td>Care course</td>
                     <td>
-                      <Dropdown>
-                        <Dropdown.Toggle
-                          variant="warning"
-                          className="light sharp i-false"
-                        >
-                          {svg1}
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                          <Dropdown.Item>Edit</Dropdown.Item>
-                          <Dropdown.Item>Delete</Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
+                    <Button className="me-2"  variant="danger btn-icon-xxs">
+                  <RiChatDeleteFill />
+                  </Button>
                     </td>
                   </tr>
                 </tbody>
