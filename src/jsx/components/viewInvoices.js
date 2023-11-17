@@ -63,41 +63,41 @@ const ViewInvoice = () => {
               <Table responsive>
                 <thead>
                   <tr>
-                    <th className="width80">
+                    <th  className="width80">
                       <strong>ID</strong>
                     </th>
-                    <th>
+                    <th style={{textAlign:'center'}}>
                       <strong>Amount</strong>
                     </th>
-                    <th>
-                      <strong>Date</strong>
+                    <th style={{textAlign:'center'}}>
+                      <strong >Date</strong>
                     </th>
-                    <th>
+                    <th style={{textAlign:'center'}}>
                       <strong>Customer</strong>
                     </th>
-                    <th>
+                    <th style={{textAlign:'center'}}>
                       <strong>Place</strong>
                     </th>
-                    <th>
+                    <th style={{textAlign:'center'}}>
                       <strong>Customer Type</strong>
-                    </th>
-                    <th> <strong>Action</strong></th>
+                    </th >
+                    <th style={{textAlign:'center'}}> <strong>Action</strong></th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>
+                    <td >
                       <strong>01</strong>
                     </td>
-                    <td>Adhd Awareness</td>
-                    <td>11</td>
-                    <td>Image</td>
-                    <td>
+                    <td style={{textAlign:'center'}}>250</td>
+                    <td style={{textAlign:'center'}}>11/11/2023</td>
+                    <td style={{textAlign:'center'}}>Rio</td>
+                    <td style={{textAlign:'center'}}>
                         London
                       {/* <Badge bg="" className="light badge-success">Active</Badge> */}
                     </td>
-                    <td>Individual</td>
-                    <td>
+                    <td style={{textAlign:'center'}}>Individual</td>
+                    <td style={{textAlign:'center'}}>
                     <Button className="me-2" variant="success btn-icon-xxs">
                     <FaEye />
                   </Button>
@@ -113,14 +113,14 @@ const ViewInvoice = () => {
                     <td>
                       <strong>02</strong>
                     </td>
-                    <td>Understanding Autism</td>
-                    <td>12</td>
-                    <td>Image</td>
+                    <td style={{textAlign:'center'}}>55</td>
+                    <td style={{textAlign:'center'}}>12/11/2023</td>
+                    <td style={{textAlign:'center'}}></td>
                     <td>
                       {/* <Badge bg="" className="light badge-success">Active</Badge> */}
                     </td>
-                    <td>Company</td>
-                    <td>
+                    <td style={{textAlign:'center'}}>Company</td>
+                    <td style={{textAlign:'center'}}>
                     <Button className="me-2" variant="success btn-icon-xxs">
                     <FaEye />
                   </Button>
@@ -136,14 +136,14 @@ const ViewInvoice = () => {
                     <td>
                       <strong>03</strong>
                     </td>
-                    <td>ADHD Awareness</td>
-                    <td>13</td>
-                    <td>Image</td>
+                    <td style={{textAlign:'center'}}>25</td>
+                    <td style={{textAlign:'center'}}>13</td>
+                    <td style={{textAlign:'center'}}>Rio</td>
                     <td>
                       
                     </td>
-                    <td>Individual</td>
-                    <td>
+                    <td style={{textAlign:'center'}}>Individual</td>
+                    <td style={{textAlign:'center'}}>
                     <Button className="me-2" variant="success btn-icon-xxs">
                     <FaEye />
                   </Button>

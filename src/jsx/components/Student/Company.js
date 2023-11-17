@@ -4,7 +4,10 @@ import { IMAGES } from "../Dashboard/Content";
 import { Dropdown } from "react-bootstrap";
 import BasicModal from "../Dashboard/BasicModal";
 import fetchData from "../../../axios";
-
+import { FaEye } from "react-icons/fa";
+import { BiSolidEdit } from "react-icons/bi";
+import { RiChatDeleteFill } from "react-icons/ri";
+import { Button, ButtonGroup } from "react-bootstrap";
 const tableData = [
   {
     id: "1",
@@ -340,13 +343,16 @@ const CompanyTable = () => {
                                             <Dropdown.Item>Recent</Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>                                     */}
-                  <button
-                    type="button"
+                  <Button
+
+                    // type="button"
                     className="btn btn-primary"
                     onClick={() => navigate("/add-user")}
                   >
                     + New Company
-                  </button>
+                  </Button>
+
+
                 </div>
               </div>
             </div>
@@ -367,7 +373,7 @@ const CompanyTable = () => {
                             type="checkbox"
                             className="form-check-input"
                             id="checkAll"
-                            // onClick={()=>handleCheckedAll(unchecked)}
+                          // onClick={()=>handleCheckedAll(unchecked)}
                           />
                         </th>
                         <th>ID</th>
@@ -423,28 +429,34 @@ const CompanyTable = () => {
 
                           <td>
                             <div
-                              class={`badge bg-${
-                                item.type_of_account === "company"
+                              class={`badge bg-${item.type_of_account === "company"
                                   ? "secondary"
                                   : item.type_of_account === "individual"
-                                  ? "primary"
-                                  : "warning"
-                              }`}
+                                    ? "primary"
+                                    : "warning"
+                                }`}
                             >
                               {item.type_of_account}
                             </div>
                           </td>
                           <td>
-                            <a
+                            <Button
                               onClick={() => {
                                 navigate("/user-detail", {
                                   state: { id: item.id },
                                 });
                               }}
-                              className="btn btn-success"
+                              className="me-2"
+                              variant="success btn-icon-xxs"
                             >
-                              view
-                            </a>
+                              <FaEye />
+                            </Button>
+                            <Button className="me-2" variant="primary btn-icon-xxs">
+                              <BiSolidEdit />
+                            </Button>
+                            <Button className="me-2" variant="danger btn-icon-xxs">
+                              <RiChatDeleteFill />
+                            </Button>
                             {/* <Dropdown className="custom-dropdown float-end">
                               <Dropdown.Toggle
                                 className="i-false btn sharp tp-btn "
@@ -499,9 +511,8 @@ const CompanyTable = () => {
                       <span>
                         {number.map((n, i) => (
                           <Link
-                            className={`paginate_button ${
-                              currentPage === n ? "current" : ""
-                            } `}
+                            className={`paginate_button ${currentPage === n ? "current" : ""
+                              } `}
                             key={i}
                             onClick={() => changeCPage(n)}
                           >

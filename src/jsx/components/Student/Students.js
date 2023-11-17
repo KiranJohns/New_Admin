@@ -4,6 +4,10 @@ import { IMAGES } from "../Dashboard/Content";
 import { Dropdown } from "react-bootstrap";
 import BasicModal from "../Dashboard/BasicModal";
 import fetchData from "../../../axios";
+import { FaEye } from "react-icons/fa";
+import { BiSolidEdit } from "react-icons/bi";
+import { RiChatDeleteFill } from "react-icons/ri";
+import { Button, ButtonGroup } from "react-bootstrap";
 
 const tableData = [
   {
@@ -435,16 +439,23 @@ const Students = () => {
                             </div>
                           </td>
                           <td>
-                            <a
+                          <Button
                               onClick={() => {
                                 navigate("/user-detail", {
                                   state: { id: item.id },
                                 });
                               }}
-                              className="btn btn-success"
+                              className="me-2"
+                              variant="success btn-icon-xxs"
                             >
-                              view
-                            </a>
+                              <FaEye />
+                            </Button>
+                            <Button className="me-2" variant="primary btn-icon-xxs">
+                              <BiSolidEdit />
+                            </Button>
+                            <Button className="me-2" variant="danger btn-icon-xxs">
+                              <RiChatDeleteFill />
+                            </Button>
                             {/* <Dropdown className="custom-dropdown float-end">
                               <Dropdown.Toggle
                                 className="i-false btn sharp tp-btn "
