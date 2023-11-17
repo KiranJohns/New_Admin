@@ -153,34 +153,24 @@ const tabledata4 = [
 ];
 
 const SalesTab = () => {
-  const [reports, setReports] = useState([])
-  const [purchasedCourse, setPurchasedCourse] = useState([])
-  const [type, setType] = useState("day")
-
-  function makeReport(type) {
-    console.log(purchasedCourse);
-  }
-
-  function makeDailyReport(data) {
-    let obj = {
-      amount: "",
-      product_count: "",
-      day: "",
-      
-    }
-
-  }
-
-  const makeRequest = fetchData()
+  const [reports, setReports] = useState([]);
+  const [groupByDay, setGroupByDay] = useState([]);
+  const [groupByMonth, setGroupByMonth] = useState([]);
+  const [groupByYear, setGroupByYear] = useState([]);
+  const [type, setType] = useState("day");
+  const makeRequest = fetchData();
   useEffect(() => {
-    makeRequest("GET","/course/get-all-purchased-course").then(res => {
-      setPurchasedCourse(res.data.response);
-      let reports = res.data.response
-      makeDailyReport(reports);
-    }).catch(err => {
-      console.log('error', err)
-    })
-  },[])
+    makeRequest("GET", "/course/get-all-purchased-course-group-by")
+      .then((res) => {
+        console.log(res);
+        setGroupByDay(res.data.response.groupByDay);
+        setGroupByMonth(res.data.response.groupByMonth);
+        setGroupByYear(res.data.response.groupByYear);
+      })
+      .catch((err) => {
+        console.log("error", err);
+      });
+  }, []);
   return (
     <div className="card">
       <Col xl={12}>
@@ -189,7 +179,6 @@ const SalesTab = () => {
           id="fill-tab-example"
           className="mb-3 mt-2"
           fill
-          ooClick={() => makeReport("day")}
         >
           <Tab eventKey="daily" title="Daily">
             <Col lg={12}>
@@ -205,40 +194,36 @@ const SalesTab = () => {
                           <strong>ID</strong>
                         </th>
                         <th style={{ textAlign: "center" }}>
+                          <strong>Course Count</strong>
+                        </th>
+                        <th style={{ textAlign: "center" }}>
                           <strong>Amount</strong>
                         </th>
                         <th style={{ textAlign: "center" }}>
                           <strong>Date</strong>
                         </th>
-                        <th style={{ textAlign: "center" }}>
-                          <strong>Customer</strong>
-                        </th>
-                        <th style={{ textAlign: "center" }}>
-                          <strong>Place</strong>
-                        </th>
-                        <th style={{ textAlign: "center" }}>
-                          <strong>Customer Type</strong>
-                        </th>
-                        {/* <th style={{ textAlign: "center" }}>
-                          {" "}
-                          <strong>Action</strong>
-                        </th> */}
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>
-                          <strong>01</strong>
-                        </td>
-                        <td style={{ textAlign: "center" }}>250</td>
-                        <td style={{ textAlign: "center" }}>11/11/2023</td>
-                        <td style={{ textAlign: "center" }}>Rio</td>
-                        <td style={{ textAlign: "center" }}>
-                          London
-                          {/* <Badge bg="" className="light badge-success">Active</Badge> */}
-                        </td>
-                        <td style={{ textAlign: "center" }}>Individual</td>
-                      </tr>
+                      {groupByDay &&
+                        groupByDay.map((item, i) => {
+                          return (
+                            <tr>
+                              <td>
+                                <strong>{i}</strong>
+                              </td>
+                              <td style={{ textAlign: "center" }}>
+                                {item.total_course_count}
+                              </td>
+                              <td style={{ textAlign: "center" }}>
+                                £ {item.total_amount}
+                              </td>
+                              <td style={{ textAlign: "center" }}>
+                                {new Date(item.day).toLocaleDateString()}
+                              </td>
+                            </tr>
+                          );
+                        })}
                     </tbody>
                   </Table>
                 </Card.Body>
@@ -260,58 +245,36 @@ const SalesTab = () => {
                           <strong>ID</strong>
                         </th>
                         <th style={{ textAlign: "center" }}>
+                          <strong>Course Count</strong>
+                        </th>
+                        <th style={{ textAlign: "center" }}>
                           <strong>Amount</strong>
                         </th>
                         <th style={{ textAlign: "center" }}>
-                          <strong>Date</strong>
-                        </th>
-                        <th style={{ textAlign: "center" }}>
-                          <strong>Customer</strong>
-                        </th>
-                        <th style={{ textAlign: "center" }}>
-                          <strong>Place</strong>
-                        </th>
-                        <th style={{ textAlign: "center" }}>
-                          <strong>Customer Type</strong>
+                          <strong>Month</strong>
                         </th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>
-                          <strong>01</strong>
-                        </td>
-                        <td style={{ textAlign: "center" }}>250</td>
-                        <td style={{ textAlign: "center" }}>11/11/2023</td>
-                        <td style={{ textAlign: "center" }}>Rio</td>
-                        <td style={{ textAlign: "center" }}>
-                          London
-                          {/* <Badge bg="" className="light badge-success">Active</Badge> */}
-                        </td>
-                        <td style={{ textAlign: "center" }}>Individual</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <strong>02</strong>
-                        </td>
-                        <td style={{ textAlign: "center" }}>55</td>
-                        <td style={{ textAlign: "center" }}>12/11/2023</td>
-                        <td style={{ textAlign: "center" }}></td>
-                        <td>
-                          {/* <Badge bg="" className="light badge-success">Active</Badge> */}
-                        </td>
-                        <td style={{ textAlign: "center" }}>Company</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <strong>03</strong>
-                        </td>
-                        <td style={{ textAlign: "center" }}>25</td>
-                        <td style={{ textAlign: "center" }}>13</td>
-                        <td style={{ textAlign: "center" }}>Rio</td>
-                        <td></td>
-                        <td style={{ textAlign: "center" }}>Individual</td>
-                      </tr>
+                      {groupByMonth &&
+                        groupByMonth.map((item, i) => {
+                          return (
+                            <tr>
+                              <td>
+                                <strong>{i}</strong>
+                              </td>
+                              <td style={{ textAlign: "center" }}>
+                                {item.total_course_count}
+                              </td>
+                              <td style={{ textAlign: "center" }}>
+                                £ {" "}{item.total_amount}
+                              </td>
+                              <td style={{ textAlign: "center" }}>
+                                {item.month}
+                              </td>
+                            </tr>
+                          );
+                        })}
                     </tbody>
                   </Table>
                 </Card.Body>
@@ -336,55 +299,33 @@ const SalesTab = () => {
                           <strong>Amount</strong>
                         </th>
                         <th style={{ textAlign: "center" }}>
-                          <strong>Date</strong>
+                          <strong>Price</strong>
                         </th>
                         <th style={{ textAlign: "center" }}>
-                          <strong>Customer</strong>
-                        </th>
-                        <th style={{ textAlign: "center" }}>
-                          <strong>Place</strong>
-                        </th>
-                        <th style={{ textAlign: "center" }}>
-                          <strong>Customer Type</strong>
+                          <strong>Year</strong>
                         </th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>
-                          <strong>01</strong>
-                        </td>
-                        <td style={{ textAlign: "center" }}>250</td>
-                        <td style={{ textAlign: "center" }}>11/11/2023</td>
-                        <td style={{ textAlign: "center" }}>Rio</td>
-                        <td style={{ textAlign: "center" }}>
-                          London
-                          {/* <Badge bg="" className="light badge-success">Active</Badge> */}
-                        </td>
-                        <td style={{ textAlign: "center" }}>Individual</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <strong>02</strong>
-                        </td>
-                        <td style={{ textAlign: "center" }}>55</td>
-                        <td style={{ textAlign: "center" }}>12/11/2023</td>
-                        <td style={{ textAlign: "center" }}></td>
-                        <td>
-                          {/* <Badge bg="" className="light badge-success">Active</Badge> */}
-                        </td>
-                        <td style={{ textAlign: "center" }}>Company</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <strong>03</strong>
-                        </td>
-                        <td style={{ textAlign: "center" }}>25</td>
-                        <td style={{ textAlign: "center" }}>13</td>
-                        <td style={{ textAlign: "center" }}>Rio</td>
-                        <td></td>
-                        <td style={{ textAlign: "center" }}>Individual</td>
-                      </tr>
+                      {groupByYear &&
+                        groupByYear.map((item, i) => {
+                          return (
+                            <tr>
+                              <td>
+                                <strong>{i}</strong>
+                              </td>
+                              <td style={{ textAlign: "center" }}>
+                                {item.total_course_count}
+                              </td>
+                              <td style={{ textAlign: "center" }}>
+                              £{" "} {item.total_amount}
+                              </td>
+                              <td style={{ textAlign: "center" }}>
+                                {item.year}
+                              </td>
+                            </tr>
+                          );
+                        })}
                     </tbody>
                   </Table>
                 </Card.Body>
