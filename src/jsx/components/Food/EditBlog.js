@@ -135,7 +135,7 @@ const EditBlog = () => {
     makeRequest("GET", `/blog/get-blog-by-id/${state.id}`)
       .then((res) => {
         let tags = JSON.parse(res.data.response[0].tags || "");
-        tags = tags.map(t => t.replace("#",""))
+        tags = tags.map(t => t.replace("#","")).join(",")
         setBlog({ ...res.data.response[0], tags: tags });
       })
       .catch((err) => {
