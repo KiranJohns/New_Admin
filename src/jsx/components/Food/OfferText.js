@@ -71,9 +71,9 @@ const OfferText = () => {
     }
     return (
         <div className="row">
-            <div className="col-xl-12">
+            <div className="col-xl-12 ">
                 <div
-                    className="card"
+                    className="card "
                     style={{
                         boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
                         background: "#f5f5f7",
@@ -151,13 +151,13 @@ const OfferText = () => {
 
 
                         <div className="col-8 mt-4 " >
-                            <div style={{ display: "flex", justifyContent: 'center' }}>
+                            <div style={{ padding:".6rem "}}>
                                 <Card >
 
                                     <Card.Body>
                                         <Table responsive>
                                             <thead>
-                                                <tr >
+                                                <tr style={{background:"#212A50", textAlign:"center"}}>
                                                     <th >
                                                         <strong>Offer Text{' '}</strong>
                                                     </th>
@@ -172,7 +172,7 @@ const OfferText = () => {
                                             </thead>
                                             <tbody>
 
-                                                <tr>
+                                                <tr style={{textAlign:"center"}}>
            <td style={{ textAlign: 'center' }}>This is an offer text example</td>
                                                     <td style={{ textAlign: 'center' }}>example</td>
                                                     <td>
@@ -193,6 +193,7 @@ const OfferText = () => {
                                 </Card>
                             </div>
                         </div>
+                        
 
                     </div>
                 </div>

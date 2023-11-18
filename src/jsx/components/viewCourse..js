@@ -57,7 +57,7 @@ const ViewCourse = () => {
             <Card.Body>
               <Table responsive>
                 <thead>
-                  <tr style={{ textAlign: "center" }}>
+                  <tr style={{ textAlign: "center", background:"#212A50" }}>
                     <th className="width80">
                       <strong>ID</strong>
                     </th>

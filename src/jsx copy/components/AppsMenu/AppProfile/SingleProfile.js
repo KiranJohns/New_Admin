@@ -185,7 +185,6 @@ const SingleProfile = () => {
                   id="fill-tab-example"
                   className="mb-3 mt-2"
                   fill
-                style={{}}
                 >
                   <Tab  eventKey="profile" title="Profile">
                     <Table bordered hover>

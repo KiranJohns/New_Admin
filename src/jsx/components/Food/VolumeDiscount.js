@@ -158,7 +158,7 @@ const VolumeDiscount = () => {
                                 <Card.Body>
                                     <Table responsive>
                                         <thead>
-                                            <tr >
+                                            <tr style={{background:"#212A50"}}>
                                                 <th >
                                                     <strong>Minimum Number of Test</strong>
                                                 </th>
