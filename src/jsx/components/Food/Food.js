@@ -196,7 +196,7 @@ const Food = () => {
           <Card.Body>
             <Table responsive>
               <thead>
-                <tr>
+                <tr style={{background:"#212A50"}}>
                   <th className="width80">
                     <strong>ID</strong>
                   </th>

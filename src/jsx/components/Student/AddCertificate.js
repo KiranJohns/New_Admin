@@ -80,7 +80,7 @@ const AddCertificate = () => {
             </div>
             <div className="card-body">
               <div className="row">
-                <div className="col-xl-9 col-lg-8">
+                <div className="col-xl-11 col-lg-11">
                   <div className="row">
                     <div className="col-xl-6 col-sm-6">
                       <div className="mb-3">

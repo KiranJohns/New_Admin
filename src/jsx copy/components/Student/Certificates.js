@@ -416,7 +416,7 @@ const ViewCertificates = () => {
                             </span>
                           </td>
                           <td>
-                            <div className="trans-list">
+                            <div className="">
                               <h4>{item.user_name}</h4>
                             </div>
                           </td>

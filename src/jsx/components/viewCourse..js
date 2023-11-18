@@ -161,7 +161,7 @@ const ViewCourse = () => {
 
   function handleDelete(id) {
     makeRequest("DELETE",`/course/delete/${id}`).then(res => {
-      setCourse(prev => prev.filter(item => item.id != id));
+      setCourse(prev => prev.filter(item => item.id != Number(id)));
       swal("Done!","successfully deleted", "success")
     }).catch(err => {
       console.log(err);
@@ -177,7 +177,7 @@ const ViewCourse = () => {
           <Card.Body>
             <Table responsive>
               <thead>
-                <tr style={{ textAlign: "center" }}>
+                <tr style={{ textAlign: "center", background:'#212A50' }}>
                   <th className="width80">
                     <strong>ID</strong>
                   </th>
