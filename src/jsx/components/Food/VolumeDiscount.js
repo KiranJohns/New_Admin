@@ -53,7 +53,7 @@ const VolumeDiscount = () => {
     makeRequest("DELETE", `/coupon/delete-volume-coupon/${id}`)
       .then((res) => {
         setCoupons(prev => prev.filter(item => item.id !== id))
-        swal("Done!", "blog deleted", "success");
+        swal("Done!", "coupon deleted", "success");
       })
       .catch((err) => {
         let error = err?.data?.errors[0]?.error
