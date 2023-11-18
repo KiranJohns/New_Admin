@@ -11,6 +11,7 @@ import swal from "sweetalert";
 import DatePicker from "react-datepicker";
 import { BiSolidEdit } from "react-icons/bi";
 import { RiChatDeleteFill } from "react-icons/ri";
+import { useEffect } from "react";
 
 const cardBlog = [
   { image: IMAGES.avatarpng1, title: "Samantha W." },
@@ -39,16 +40,41 @@ const tabledata = [
 
 const VolumeDiscount = () => {
   const makeRequest = fetchData();
-  const [blog, setBlog] = useState({
-    header: "",
-    content: "",
-    author: "",
-    tags: "",
-    image: null,
+  const [coupon, setCoupon] = useState({
+    coupon_code: "",
+    max_val: "",
+    min_val: "",
+    percent: "",
   });
 
+  const [coupons, setCoupons] = useState([]);
+
+  function deleteCoupon(id) {
+    makeRequest("DELETE", `/coupon/delete-volume-coupon/${id}`)
+      .then((res) => {
+        setCoupons(prev => prev.filter(item => item.id !== id))
+        swal("Done!", "blog deleted", "success");
+      })
+      .catch((err) => {
+        let error = err?.data?.errors[0]?.error
+          ? err?.data?.errors[0]?.error
+          : err?.data?.errors[0]?.message;
+        swal("Oops!", error, "error");
+        console.log(err?.data?.errors[0]);
+      });
+  }
+  useEffect(() => {
+    makeRequest("GET", "/coupon/list-volume-coupon")
+      .then((res) => {
+        console.log(res.data);
+        setCoupons(res.data.response);
+      })
+      .catch((err) => {
+        console.log(err?.data);
+      });
+  }, []);
   function handleChange(e) {
-    setBlog((prev) => {
+    setCoupon((prev) => {
       return {
         ...prev,
         [e.target.name]: e.target.value,
@@ -56,7 +82,10 @@ const VolumeDiscount = () => {
     });
   }
   function Submit() {
-    makeRequest("POST", "/coupon/create-volume-coupon", blog)
+    makeRequest("POST", "/coupon/create-volume-coupon", {
+      ...coupon,
+      percent: Number(coupon.percent),
+    })
       .then((res) => {
         swal("Done!", "blog created", "success");
       })
@@ -67,7 +96,6 @@ const VolumeDiscount = () => {
         swal("Oops!", error, "error");
         console.log(err?.data?.errors[0]);
       });
-    console.log(blog);
   }
   return (
     <div className="row">
@@ -91,8 +119,8 @@ const VolumeDiscount = () => {
                           type="number"
                           className="form-control  input-default "
                           placeholder="0"
-                          name="minimum"
-                          //   value={}
+                          name="max_val"
+                          value={coupon.max_val}
                           onChange={handleChange}
                         />
                       </div>
@@ -107,8 +135,8 @@ const VolumeDiscount = () => {
                           type="number"
                           className="form-control  input-default "
                           placeholder="0"
-                          name="maximum"
-                          //   value={}
+                          name="min_val"
+                          value={coupon.min_val}
                           onChange={handleChange}
                         />
                       </div>
@@ -123,8 +151,24 @@ const VolumeDiscount = () => {
                           type="number"
                           className="form-control  input-default "
                           placeholder="0"
-                          name="maximum"
-                          //   value={}
+                          name="percent"
+                          value={coupon.percent}
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{}} className="">
+                    <div className="card-body">
+                      <h4 className="">Coupon Code</h4>
+                      <div className="mb-3 ">
+                        <input
+                          type="number"
+                          className="form-control  input-default "
+                          placeholder="0"
+                          name="coupon_code"
+                          value={coupon.coupon_code}
                           onChange={handleChange}
                         />
                       </div>
@@ -169,28 +213,36 @@ const VolumeDiscount = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td style={{ textAlign: "center" }}>
-                            <strong>01</strong>
-                          </td>
+                        {coupons &&
+                          coupons.map((item) => (
+                            <tr>
+                              <td style={{ textAlign: "center" }}>
+                                <strong>{item.max_val}</strong>
+                              </td>
 
-                          <td style={{ textAlign: "center" }}></td>
-                          <td style={{ textAlign: "center" }}></td>
-                          <td>
-                            <Button
-                              className="me-2"
-                              variant="primary btn-icon-xxs"
-                            >
-                              <BiSolidEdit />
-                            </Button>
-                            <Button
-                              className="me-2"
-                              variant="danger btn-icon-xxs"
-                            >
-                              <RiChatDeleteFill />
-                            </Button>
-                          </td>
-                        </tr>
+                              <td style={{ textAlign: "center" }}>
+                                {item.min_val}
+                              </td>
+                              <td style={{ textAlign: "center" }}>
+                                {item.percent}
+                              </td>
+                              <td>
+                                {/* <Button
+                                  className="me-2"
+                                  variant="primary btn-icon-xxs"
+                                >
+                                  <BiSolidEdit />
+                                </Button> */}
+                                <Button
+                                  className="me-2"
+                                  variant="danger btn-icon-xxs"
+                                  onClick={() => deleteCoupon(item.id)}
+                                >
+                                  <RiChatDeleteFill />
+                                </Button>
+                              </td>
+                            </tr>
+                          ))}
                       </tbody>
                     </Table>
                   </Card.Body>
