@@ -134,15 +134,16 @@ const EditBlog = () => {
   useEffect(() => {
     makeRequest("GET", `/blog/get-blog-by-id/${state.id}`)
       .then((res) => {
-        let tags = JSON.parse(res.data.response[0].tags || "")
+        let tags = JSON.parse(res.data.response[0].tags || "");
+        tags = tags.map(t => t.replace("#",""))
         setBlog({ ...res.data.response[0], tags: tags });
       })
       .catch((err) => {
         console.log(err?.data);
-        // let error = err?.data?.errors[0]?.error
-        //   ? err?.data?.errors[0]?.error
-        //   : err?.data?.errors[0]?.message;
-        // swal("Oops!", error, "error");
+        let error = err?.data?.errors[0]?.error
+          ? err?.data?.errors[0]?.error
+          : err?.data?.errors[0]?.message || err.message;
+        swal("Oops!", error, "error");
       });
   }, []);
   return (

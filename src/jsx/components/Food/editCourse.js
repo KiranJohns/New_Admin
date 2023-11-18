@@ -148,17 +148,31 @@ const EditCourse = () => {
       });
   }
 
+  function updateCourseData() {
+    let form = new FormData();
+    form.append("course_id", state.id);
+    form.append("name", courseInfo.name);
+    form.append("description", courseInfo.description);
+    form.append("category", courseInfo.category);
+    form.append("price", courseInfo.price);
+    form.append("thumbnail", courseInfo.thumbnail);
+
+
+    makeRequest("POST", "/course/update-course-resource", form)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   useEffect(() => {
     makeRequest("GET", `/course/get-single-course/${state.id}`)
       .then((res) => {
         console.log(res);
         let course = res.data.response[0];
         setCourseInfo({ ...course });
-        // ppt
-        // resource0
-        // resourceCount
-        // thumbnail
-        // video
       })
       .catch((err) => {
         console.log(err);
@@ -176,18 +190,6 @@ const EditCourse = () => {
     });
   }
 
-  function submit() {
-    // makeRequest("POST", "/course/create-course", {
-    //   ...course,
-    //   price: Number(course.price),
-    // })
-    //   .then((res) => {
-    //     swal("Success", "course created", "success");
-    //   })
-    //   .catch((err) => {
-    //     console.log(err.data);
-    //   });
-  }
   return (
     <div className="row">
       <div className="col-xl-11">
@@ -299,7 +301,7 @@ const EditCourse = () => {
                     className=""
                     variant="primary"
                     type="button"
-                    onClick={submit}
+                    onClick={updateCourseData}
                   >
                     Submit
                   </Button>
