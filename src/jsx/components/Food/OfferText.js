@@ -47,6 +47,8 @@ const OfferText = () => {
     is_active: "",
   });
 
+  
+
   function deleteOfferText(id) {
     makeRequest("DELETE", `/coupon/delete-offer-text/${id}`)
       .then((res) => {

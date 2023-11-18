@@ -14,6 +14,7 @@ import { FaEye } from "react-icons/fa";
 import { BiSolidEdit } from "react-icons/bi";
 import { FaDownload } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 
 const svg1 = (
@@ -182,6 +183,12 @@ const Food = () => {
     <div className="card">
       <Col lg={12}>
         <Card>
+          <div style={{display:"flex", marginLeft:"10rem",}}><a className="blog-head" href="/view-blog" style={{fontSize:"1rem", padding:'.2rem',borderRadius:'.1rem'}}>All (1)</a><div style={{borderLeft:'.1rem solid #5a9676', height:'1.3rem',marginTop:".45rem"}}></div>
+          <a className="blog-non" href="/view-blog"  style={{fontSize:"1rem", padding:'.3rem'}}>Published(0)</a><div style={{borderLeft:'.1rem solid #5a9676', height:'1.3rem',marginTop:".45rem"}}></div>
+          <a className="blog-non" href="/view-blog" style={{fontSize:"1rem", padding:'.3rem'}}>Draft(0)</a><div style={{borderLeft:'.1rem solid #5a9676', height:'1.3rem',marginTop:".45rem"}}></div>
+          <a className="blog-non" href="/view-blog" style={{fontSize:"1rem",padding:'.3rem'}}>Trash(0)</a><div style={{borderLeft:'.1rem solid #5a9676', height:'1.3rem',marginTop:".45rem"}}></div>
+          </div>
+          
           <Card.Header>
             <Card.Title>All Blogs</Card.Title>
             <div className="input-group search-area mb-md-0 mb-3">

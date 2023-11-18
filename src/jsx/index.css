@@ -711,3 +711,25 @@ button.react-calendar__tile.react-calendar__tile--active.react-calendar__tile--r
 	height: auto;
 	display: contents;
 }
+
+.blog-head{
+background:#212a50;
+color:#fff;
+font-weight: 500;
+}
+
+.blog-head:hover{
+
+  color: #d4d9fb;
+
+  }
+  .blog-non{
+    color:#45a8f5;
+    background: #fff;
+  }
+
+  .blog-non:hover{
+    background:  #212a50;
+    color: #fff;
+    font-weight: 500;
+    }
