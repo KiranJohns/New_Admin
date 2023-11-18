@@ -20,6 +20,7 @@ import ViewReports from "./components/viewReports";
 import CompanyAdmin from "./components/Teacher/Company";
 import CouponList from "../jsx copy/components/Student/Coupons";
 import CompanyTable from "./components/Student/Company";
+import ManagerTable from "./components/Student/Managers";
 import SalesTab from "./components/SalesTab";
 import ProfileEdit from "./components/Student/ProfileEdit";
 import CreateCoupon from "./components/Food/CreateCoupon";
@@ -29,6 +30,14 @@ import EditBlog from "./components/Food/EditBlog";
 import BlogTrash from "./components/Food/TrashBlog";
 import AddCertificate from "./components/Student/AddCertificate";
 import EditCourse from "./components/Food/editCourse";
+import PurchasedCourses from "./components/PurchasedCourses";
+import PurchasedBundles from "./components/PurchasedBundles";
+import MyBundles from "./components/MyBundles";
+import TrainingMatrix from "./components/TrainingMatrix";
+import BundleMatrix from "./components/BundleMatrix";
+import CourseMatrix from "./components/CourseMatrix";
+import CourseIndReport from "./components/IndCourseReport";
+import CourseManReport from "./components/ManCourseBundle";
 /// Layout
 import Nav from "./layouts/nav";
 import Nav2 from "./layouts/nav/index2";
@@ -56,7 +65,7 @@ import FoodDetails from './components/Food/FoodDetails';
 
 /// File Manager
 import FileManager from './components/FileManager/FileManager';
-import User from './components/FileManager/User';
+// import User from './components/FileManager/User';
 import HomeCalendar from './components/FileManager/HomeCalendar';
 import Activity from './components/FileManager/Activity';
 import FileChat from './components/FileManager/FileChat';
@@ -141,7 +150,15 @@ import { ThemeContext } from "../context/ThemeContext";
 
 const Markup = () => {
   const routhPath = [
-
+    {url:"individual-reports", components:<CourseIndReport/>},
+    {url:"manager-reports", components:<CourseManReport/>},
+    {url:"training-matrix", components:<TrainingMatrix/>},
+    {url:"course-matrix", components:<CourseMatrix/>},
+    {url:"bundle-matrix", components:<BundleMatrix/>},
+    {url:"manager", components:<ManagerTable/>},
+    {url:"view-bundles", components:< MyBundles/>},
+    {url:"purchased-bundles", components:<PurchasedBundles/>},
+     {url:"purchased-courses", components:<PurchasedCourses/>},
     {url:'course-details',component: <SingleCourse />},
     {url:'add-details',component: <AddDetails />},
     {url:'profile',component: <SingleProfile />},

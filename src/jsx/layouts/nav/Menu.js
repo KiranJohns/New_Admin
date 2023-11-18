@@ -59,6 +59,10 @@ export const MenuList = [
             {
                 title: 'Company',
                 to: 'company',					
+            }, 
+            {
+                title: 'Manager',
+                to: 'manager',					
             },
             {
                 title: 'Individual',
@@ -113,6 +117,11 @@ export const MenuList = [
                 iconStyle: <i className="material-icons">widgets</i>,
                 to: 'view-course',
             },
+            {   
+                title:'Purchased Courses',        
+                iconStyle: <i className="material-icons">widgets</i>,
+                to: 'purchased-courses',
+            },
            
             {   
                 title:'Add Exam',        
@@ -150,6 +159,23 @@ export const MenuList = [
             },
         ],
     },
+    
+    {
+        title:'Bundles',
+        classsChange: 'mm-collapse',		
+        iconStyle: <i className="material-symbols-outlined">app_registration</i>,
+        content: [
+            {
+                title: 'View Bundles',
+                to: 'view-bundles',					
+            },
+            {
+                title: 'Purchased Bundle',
+                to: 'purchased-bundles',					
+            },
+            
+        ],
+    },
     {
         title:'Blogs',
         classsChange: 'mm-collapse',		
@@ -167,6 +193,29 @@ export const MenuList = [
         ],
     },
     {
+        title:'Training Matrix',
+        classsChange: 'mm-collapse',		
+        iconStyle: <i className="material-symbols-outlined">assessment</i>,
+        content: [
+            {   
+                title:'Training Matrix',        
+                iconStyle: <i className="material-icons">assessment</i>,
+                to: 'training-matrix',
+            },
+            {   
+                title:'Course Matrix',        
+                iconStyle: <i className="material-icons">assessment</i>,
+                to: 'course-matrix',
+            },
+            {   
+                title:'Bundle Matrix',        
+                iconStyle: <i className="material-icons">assessment</i>,
+                to: 'bundle-matrix',
+            },
+        ],
+    },
+    
+    {
         title:'Certificate',
         classsChange: 'mm-collapse',		
         iconStyle: <i className="material-symbols-outlined">assessment</i>,
@@ -175,6 +224,23 @@ export const MenuList = [
                 title:'View Certificate',        
                 iconStyle: <i className="material-icons">assessment</i>,
                 to: 'view-certificate',
+            },
+        ],
+    },
+    {
+        title:'Course Reports',
+        classsChange: 'mm-collapse',		
+        iconStyle: <i className="material-symbols-outlined">assessment</i>,
+        content: [
+            {   
+                title:'Manager   Report',        
+                iconStyle: <i className="material-icons">assessment</i>,
+                to: 'manager-reports',
+            },
+            {   
+                title:'Individual  Report',        
+                iconStyle: <i className="material-icons">assessment</i>,
+                to: 'individual-reports',
             },
         ],
     },
