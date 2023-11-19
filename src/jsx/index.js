@@ -17,6 +17,7 @@ import EmployeeView from "../jsx copy/components/AppsMenu/AppProfile/EmployeeVie
 import AddDetails from "./components/Student/AddDetails";
 import ViewInvoice from "./components/viewInvoices";
 import ViewReports from "./components/viewReports";
+import PublishedBlog from "./components/Food/PublishedBlog";
 import CompanyAdmin from "./components/Teacher/Company";
 import CouponList from "../jsx copy/components/Student/Coupons";
 import CompanyTable from "./components/Student/Company";
@@ -38,6 +39,7 @@ import BundleMatrix from "./components/BundleMatrix";
 import CourseMatrix from "./components/CourseMatrix";
 import CourseIndReport from "./components/IndCourseReport";
 import CourseManReport from "./components/ManCourseBundle";
+import DraftBlog from "./components/Food/DraftBlog";
 /// Layout
 import Nav from "./layouts/nav";
 import Nav2 from "./layouts/nav/index2";
@@ -188,6 +190,9 @@ const Markup = () => {
     {url:'offer-text',component: <OfferText/>},
     {url:'edit-blog',component: <EditBlog/>},
     {url:'trash',component: <BlogTrash/>},
+    {url:'draft',component: <DraftBlog/>},
+    {url:'published',component: <PublishedBlog/>},
+    // {url:'draft',component: <DraftBlog/>},
     {url:'create-certificate',component: <AddCertificate/>},
      //BlogTrash {url:'company',component: <CompanyAdmin />},
     // {url: "user", component: <User/>},

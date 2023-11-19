@@ -11,10 +11,11 @@ import swal from "sweetalert";
 import { RiChatDeleteFill } from "react-icons/ri";
 import { Button, ButtonGroup } from "react-bootstrap";
 import { FaEye } from "react-icons/fa";
-import { BiSolidEdit } from "react-icons/bi";
+import { MdPublish } from "react-icons/md";
 import { FaTrashRestore } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import { FaDownload } from "react-icons/fa";
 
 
 const svg1 = (
@@ -149,7 +150,7 @@ const tabledata4 = [
   },
 ];
 
-const BlogTrash = () => {
+const PublishedBlog = () => {
   const makeRequest = fetchData();
   const navigate = useNavigate()
 
@@ -184,9 +185,9 @@ const BlogTrash = () => {
       <Col lg={12}>
         <Card>
           <div style={{display:"flex", marginLeft:"10rem",}}><a className="blog-non" href="/view-blog" style={{fontSize:"1rem", padding:'.2rem',borderRadius:'.1rem'}}>All (1)</a><div style={{borderLeft:'.1rem solid #5a9676', height:'1.3rem',marginTop:".45rem"}}></div>
-          <a className="blog-non" href="/published"  style={{fontSize:"1rem", padding:'.3rem'}}>Published(0)</a><div style={{borderLeft:'.1rem solid #5a9676', height:'1.3rem',marginTop:".45rem"}}></div>
-          <a className="blog-non" href="/draft" style={{fontSize:"1rem", padding:'.3rem'}}>Draft(0)</a><div style={{borderLeft:'.1rem solid #5a9676', height:'1.3rem',marginTop:".45rem"}}></div>
-          <a className="blog-head" href="/trash" style={{fontSize:"1rem", padding:'.2rem',borderRadius:'.1rem'}}>Trash(0)</a><div style={{borderLeft:'.1rem solid #5a9676', height:'1.3rem',marginTop:".45rem"}}></div>
+          <a className="blog-head" href="/published"  style={{fontSize:"1rem", padding:'.2rem',borderRadius:'.1rem'}}>Published(0)</a><div style={{borderLeft:'.1rem solid #5a9676', height:'1.3rem',marginTop:".45rem"}}></div>
+          <a className="blog-non" href="/draft"style={{fontSize:"1rem", padding:'.3rem'}} >Draft(0)</a><div style={{borderLeft:'.1rem solid #5a9676', height:'1.3rem',marginTop:".45rem"}}></div>
+          <a className="blog-non" href="/trash" style={{fontSize:"1rem", padding:'.3rem'}}>Trash(0)</a><div style={{borderLeft:'.1rem solid #5a9676', height:'1.3rem',marginTop:".45rem"}}></div>
           </div>
           
           <Card.Header>
@@ -262,13 +263,10 @@ const BlogTrash = () => {
                             variant="primary btn-icon-xxs"
                             // onClick={() => navigate("/edit-blog",{state:{id:item.id}})}
                           >
-                          <FaTrashRestore />
+                        <FaDownload />
                           </Button>
-                      
-                       
 
                           <Button
-                          
                             className=""
                             variant="secondary btn-icon-xxs"
                           >
@@ -288,4 +286,4 @@ const BlogTrash = () => {
   );
 };
 
-export default BlogTrash;
+export default PublishedBlog;

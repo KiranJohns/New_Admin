@@ -184,9 +184,9 @@ const Food = () => {
       <Col lg={12}>
         <Card>
           <div style={{display:"flex", marginLeft:"10rem",}}><a className="blog-head" href="/view-blog" style={{fontSize:"1rem", padding:'.2rem',borderRadius:'.1rem'}}>All (1)</a><div style={{borderLeft:'.1rem solid #5a9676', height:'1.3rem',marginTop:".45rem"}}></div>
-          <a className="blog-non" href="/view-blog"  style={{fontSize:"1rem", padding:'.3rem'}}>Published(0)</a><div style={{borderLeft:'.1rem solid #5a9676', height:'1.3rem',marginTop:".45rem"}}></div>
-          <a className="blog-non" href="/view-blog" style={{fontSize:"1rem", padding:'.3rem'}}>Draft(0)</a><div style={{borderLeft:'.1rem solid #5a9676', height:'1.3rem',marginTop:".45rem"}}></div>
-          <a className="blog-non" href="/view-blog" style={{fontSize:"1rem",padding:'.3rem'}}>Trash(0)</a><div style={{borderLeft:'.1rem solid #5a9676', height:'1.3rem',marginTop:".45rem"}}></div>
+          <a className="blog-non" href="/published"  style={{fontSize:"1rem", padding:'.3rem'}}>Published(0)</a><div style={{borderLeft:'.1rem solid #5a9676', height:'1.3rem',marginTop:".45rem"}}></div>
+          <a className="blog-non" href="/draft" style={{fontSize:"1rem", padding:'.3rem'}}>Draft(0)</a><div style={{borderLeft:'.1rem solid #5a9676', height:'1.3rem',marginTop:".45rem"}}></div>
+          <a className="blog-non" href="/trash" style={{fontSize:"1rem",padding:'.3rem'}}>Trash(0)</a><div style={{borderLeft:'.1rem solid #5a9676', height:'1.3rem',marginTop:".45rem"}}></div>
           </div>
           
           <Card.Header>
@@ -203,7 +203,7 @@ const Food = () => {
           <Card.Body>
             <Table responsive>
               <thead>
-                <tr style={{background:"#212A50"}}>
+                <tr style={{background:"#212A50" ,textAlign:"center"}}>
                   <th className="width80">
                     <strong>ID</strong>
                   </th>
@@ -220,7 +220,7 @@ const Food = () => {
                     <strong>Views</strong>
                   </th>
                   <th>
-                    <strong>Tags</strong>
+                    <strong>Status</strong>
                   </th>
                   <th>
                     {" "}
@@ -237,7 +237,7 @@ const Food = () => {
                       .map((d) => (d.length <= 1 ? "0" + d : d));
                     date = date[1] + "-" + date[0] + "-" + date[2];
                     return (
-                      <tr>
+                      <tr style={{textAlign:'center'}}>
                         <td>
                           <strong>01</strong>
                         </td>
@@ -251,27 +251,27 @@ const Food = () => {
                         <td>
                         <a target="_blank" href={`https://test.learnforcare.co.uk/blog/${item.id}`}>
                           <Button
-                            className=""
+                          className="me-2"
                             variant="success btn-icon-xxs"
                           >
                             <FaEye />
                           </Button>
                         </a>
                           <Button
-                            className=""
+                            className="me-2"
                             variant="primary btn-icon-xxs"
                             onClick={() => navigate("/edit-blog",{state:{id:item.id}})}
                           >
                             <BiSolidEdit />
                           </Button>
                           <Button
-                            className=""
+                            className="me-2"
                             variant="dark btn-icon-xxs"
                           >
                             <FaDownload />
                           </Button>
                           <Button
-                            className="btn btn-danger"
+                            className="btn btn-danger me-2"
                             onClick={() => deleteHandler(item.id)}
                             variant="danger btn-icon-xxs"
                           >
