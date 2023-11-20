@@ -1,4 +1,10 @@
-import React, { Fragment, useReducer, useState } from "react";
+import React, {
+  Fragment,
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from "react";
 import { Button, Dropdown, Modal, Nav } from "react-bootstrap";
 import ReactModal from "react-modal";
 import Table from "react-bootstrap/Table";
@@ -29,10 +35,11 @@ import profile06 from "../../../../images/profile/6.jpg";
 import profile07 from "../../../../images/profile/7.jpg";
 import profile08 from "../../../../images/profile/8.jpg";
 import profile09 from "../../../../images/profile/9.jpg";
-import profile from "../../../../images/profile/profile.png";
+import tempProfile from "../../../../images/profile/profile.png";
 import PageTitle from "../../../layouts/PageTitle";
 import { Row, Col, Card } from "react-bootstrap";
 import fetchData from "../../../../axios";
+import axios from "axios";
 const sidebarLink = [
   { to: "default-tab", title: "Default Tab" },
   { to: "custom-tab", title: "Custom Tab" },
@@ -105,8 +112,8 @@ const SingleProfile = () => {
   const [userData, setUserData] = useState({
     employee_id: "",
     employee_name: "",
-    designation: "",
     email: "",
+    designation: "",
     department: "",
     phone: "",
     contact_no: "",
@@ -120,26 +127,85 @@ const SingleProfile = () => {
     date_of_joining: "",
     correspondence_address: "",
     brief_profile: "",
+    bank_holder_name: "",
+    bank_name: "",
+    account_on: "",
+    sort_code: "",
+    roll_number: "",
+    staff_cv: "",
+    recent_qualification: "",
+    next_to_kin_number: "",
+    permanent_address: "",
   });
   const options = {
     settings: {
       overlayColor: "#000000",
     },
   };
+
   const [openModalForQualification, setOpenModalForQualification] =
     useState(false);
   const [openModalForWorkExp, setOpenModalForWorkExp] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialState);
   const makeRequest = fetchData();
-  makeRequest("GET", "/info/get-admin-info")
-    .then((res) => {
-      if (res?.data?.response[0]) {
-        setUserData(res.data.response[0]);
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+
+  const [banner, setBanner] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const [changeBanner, setChangeBanner] = useState(false);
+  const [changeProfile, setChangeProfile] = useState(false);
+  const profileRef = useRef();
+  const bannerRef = useRef();
+  const [qualificationInfo, setQualificationInfo] = useState({
+    course_name: "",
+    university: "",
+    content: "",
+  });
+
+  function handleQualificationInfoChange(e) {
+    setQualificationInfo({ ...qualificationInfo, [e.target.name]: e.target.value });
+  }
+  const [qualification, setQualification] = useState();
+
+  function submitQualification() {
+    console.log(qualificationInfo);
+    const file = new FormData();
+    file.append("doc", qualification);
+    file.append("course_name", qualificationInfo.course_name);
+    file.append("university", qualificationInfo.university);
+    file.append("content", qualificationInfo.content);
+
+    makeRequest("POST", "/info/set-qualification", file)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  function updateBanner() {
+    const file = new FormData();
+    file.append("image", qualification);
+    makeRequest("PATCH", "/info/update-admin-profile-image", file)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  useEffect(() => {
+    makeRequest("GET", "/info/get-admin-info")
+      .then((res) => {
+        if (res?.data?.response[0]) {
+          console.log(res.data.response[0]);
+          setUserData(res.data.response[0]);
+          setProfile(res.data.response[0].profile_image);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <Fragment>
       <PageTitle activeMenu="Profile" motherMenu="App" />
@@ -153,20 +219,49 @@ const SingleProfile = () => {
               <div className="profile-info">
                 <div className="profile-photo">
                   <img
-                    src={profile}
+                    src={changeProfile ? URL.createObjectURL(profile) : profile}
                     className="img-fluid rounded-circle"
                     alt="profile"
                   />
+                  <input
+                    type="file"
+                    ref={profileRef}
+                    style={{ display: "none" }}
+                    onChange={(e) => {
+                      console.log(e.target.files[0]);
+                      setProfile(e.target.files[0]);
+                      setChangeProfile(true);
+                    }}
+                  />
+                  <Button
+                    className="me-2"
+                    variant="primary btn-icon-xxs"
+                    onClick={() => profileRef.current.click()}
+                  >
+                    <BiSolidEdit />
+                  </Button>
                 </div>
                 <div className="profile-details">
                   <div className="profile-name px-3 pt-2">
-                    <h4 className="text-primary mb-0">{userData?.employee_name}</h4>
+                    <h4 className="text-primary mb-0">
+                      {userData?.employee_name}
+                    </h4>
                     {/* <p style={{ visibility: "hidden" }}>{userData.designation}</p> */}
                   </div>
                   <div className="profile-email px-2 pt-2">
                     <h4 className="text-muted mb-0">{userData.email}</h4>
                     {/* <p style={{ visibility: "hidden" }}>Email</p> */}
                   </div>
+                  {banner ? (
+                    <a onClick={updateBanner} className="btn btn -primary">
+                      update banner
+                    </a>
+                  ) : null}
+                  {profile ? (
+                    <a onClick={updateBanner} className="btn btn -primary">
+                      update profile
+                    </a>
+                  ) : null}
                 </div>
                 <div style={{ display: "flex", justifyContent: "flex-end" }}>
                   <div>
@@ -186,7 +281,7 @@ const SingleProfile = () => {
                   className="mb-3 mt-2"
                   fill
                 >
-                  <Tab  eventKey="profile" title="Profile">
+                  <Tab eventKey="profile" title="Profile">
                     <Table bordered hover>
                       <thead>
                         {/* <tr>
@@ -201,23 +296,33 @@ const SingleProfile = () => {
                           <td style={{ fontWeight: "700" }} className="col-5">
                             Employee ID
                           </td>
-                          <td style={{ fontWeight: "600" }}>{userData.employee_id}</td>
+                          <td style={{ fontWeight: "600" }}>
+                            {userData.employee_id}
+                          </td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: "700" }}>Employee Name</td>
-                          <td style={{ fontWeight: "600" }}>{userData?.employee_name}</td>
+                          <td style={{ fontWeight: "600" }}>
+                            {userData?.employee_name}
+                          </td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: "700" }}>Designation</td>
-                          <td style={{ fontWeight: "600" }}>{userData.designation}</td>
+                          <td style={{ fontWeight: "600" }}>
+                            {userData.designation}
+                          </td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: "700" }}>Department</td>
-                          <td style={{ fontWeight: "600" }}>{userData.department}</td>
+                          <td style={{ fontWeight: "600" }}>
+                            {userData.department}
+                          </td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: "700" }}>Phone</td>
-                          <td style={{ fontWeight: "600" }}>{userData.phone}</td>
+                          <td style={{ fontWeight: "600" }}>
+                            {userData.phone}
+                          </td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: "700" }}>Email</td>
@@ -227,117 +332,174 @@ const SingleProfile = () => {
                         </tr>
                         <tr>
                           <td style={{ fontWeight: "700" }}>Contact No</td>
-                          <td style={{ fontWeight: "600" }}>{userData.contact_no}</td>
+                          <td style={{ fontWeight: "600" }}>
+                            {userData.contact_no}
+                          </td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: "bold" }}>Gender</td>
-                          <td style={{ fontWeight: "600" }}>{userData.gender}</td>
+                          <td style={{ fontWeight: "600" }}>
+                            {userData.gender}
+                          </td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: "700" }}>Date of Birth</td>
-                          <td style={{ fontWeight: "600" }}>{userData.date_of_birth}</td>
+                          <td style={{ fontWeight: "600" }}>
+                            {userData.date_of_birth}
+                          </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>Next to Kin Name</td>
-                          <td style={{ fontWeight: "600" }}>{userData.next_to_kin}</td>
+                          <td style={{ fontWeight: "700" }}>
+                            Next to Kin Name
+                          </td>
+                          <td style={{ fontWeight: "600" }}>
+                            {userData.next_to_kin}
+                          </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>Next to Kin Number</td>
-                          <td style={{ fontWeight: "600" }}>{userData.next_to_kin}</td>
+                          <td style={{ fontWeight: "700" }}>
+                            Next to Kin Number
+                          </td>
+                          <td style={{ fontWeight: "600" }}>
+                            {userData.next_to_kin_number}
+                          </td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: "700" }}>
                             Payroll Reference number
                           </td>
-                          <td style={{ fontWeight: "600" }}>{userData.payroll_reference_number}</td>
+                          <td style={{ fontWeight: "600" }}>
+                            {userData.payroll_reference_number}
+                          </td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: "700" }}>Medical Details</td>
-                          <td style={{ fontWeight: "600" }}>{userData.medical_details}</td>
+                          <td style={{ fontWeight: "600" }}>
+                            {userData.medical_details}
+                          </td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: "700" }}>
                             National Insurance Number
                           </td>
-                          <td style={{ fontWeight: "600" }}>{userData.national_insurance_number}</td>
+                          <td style={{ fontWeight: "600" }}>
+                            {userData.national_insurance_number}
+                          </td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: "700" }}>Contract Type</td>
-                          <td style={{ fontWeight: "600" }}>{userData.contract_type}</td>
+                          <td style={{ fontWeight: "600" }}>
+                            {userData.contract_type}
+                          </td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: "bold" }}>
                             Date of joining
                           </td>
-                          <td style={{ fontWeight: "600" }}>{userData.date_of_joining}</td>
+                          <td style={{ fontWeight: "600" }}>
+                            {userData.date_of_joining}
+                          </td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: "700" }}>
                             Correspondence Address
                           </td>
-                          <td style={{ fontWeight: "600" }}>{userData.correspondence_address}</td>
+                          <td style={{ fontWeight: "600" }}>
+                            {userData.correspondence_address}
+                          </td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: "700" }}>Brief Profile</td>
-                          <td style={{ fontWeight: "600" }}>{userData.brief_profile}</td>
+                          <td style={{ fontWeight: "600" }}>
+                            {userData.brief_profile}
+                          </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>Permanent Address</td>
-                          <td style={{ fontWeight: "600" }}>{userData.brief_profile}</td>
+                          <td style={{ fontWeight: "700" }}>
+                            Permanent Address
+                          </td>
+                          <td style={{ fontWeight: "600" }}>
+                            {userData.brief_profile}
+                          </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>Recent Qualification</td>
-                          <td style={{ fontWeight: "600" }}></td>
+                          <td style={{ fontWeight: "700" }}>
+                            Recent Qualification
+                          </td>
+                          <td style={{ fontWeight: "600" }}>
+                            {userData.recent_qualification}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style={{ fontWeight: "700" }}>
+                            Permanent Address
+                          </td>
+                          <td style={{ fontWeight: "600" }}>
+                            {userData.permanent_address}
+                          </td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: "700" }}>Staff CV</td>
-                          <td style={{ fontWeight: "600" }}><a href="#" style={{color:"blue"}}>Download</a></td>
+                          <td style={{ fontWeight: "600" }}>
+                            <a
+                              target="_blank"
+                              href="https://carekiran1.s3.eu-north-1.amazonaws.com//staff-cv/cdb1b096-e0f3-4bbc-a35d-44577333cb58?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAY6GHMHJQN4HBZCPB%2F20231120%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20231120T130729Z&X-Amz-Expires=6000&X-Amz-Signature=a0acaced4254e4156ce580471bee886d52b54dccb6f75893be2c846f142c0db0&X-Amz-SignedHeaders=host"
+                              download="staff-cv"
+                              style={{ color: "blue" }}
+                            >
+                              Download
+                            </a>
+                          </td>
                         </tr>
                         <tr>
                           <td style={{ fontWeight: "700" }}>Agreement</td>
-                          <td style={{ fontWeight: "600" }}>I have read and agree to Learning Ltd<a href="#" style={{color:"blue"}}> terms and Conditions</a></td>
+                          <td style={{ fontWeight: "600" }}>
+                            I have read and agree to Learning Ltd
+                            <a href="#" style={{ color: "blue" }}>
+                              {" "}
+                              terms and Conditions
+                            </a>
+                          </td>
                         </tr>
                       </tbody>
-                      
                     </Table>
-                    
-                    <div style={{padding:"2rem", background:""}}>
-                       <h3 >Bank Details</h3>
-                       <Table bordered hover>
-                      <thead>
-                        {/* <tr>
+
+                    <div style={{ padding: "2rem", background: "" }}>
+                      <h3>Bank Details</h3>
+                      <Table bordered hover>
+                        <thead>
+                          {/* <tr>
           <th>#</th>
           <th>First Name</th>
           <th>Last Name</th>
           <th>Username</th>
         </tr> */}
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td style={{ fontWeight: "700" }} className="col-5">
-                           Bank Holder Name
-                          </td>
-                          <td style={{ fontWeight: "600" }}></td>
-                        </tr>
-                        <tr>
-                          <td style={{ fontWeight: "700" }}>Bank Name</td>
-                          <td style={{ fontWeight: "600" }}></td>
-                        </tr>
-                        <tr>
-                          <td style={{ fontWeight: "700" }}>Accoount No</td>
-                          <td style={{ fontWeight: "600" }}></td>
-                        </tr>
-                        <tr>
-                          <td style={{ fontWeight: "700" }}>Sort Code</td>
-                          <td style={{ fontWeight: "600" }}></td>
-                        </tr>
-                        <tr>
-                          <td style={{ fontWeight: "700" }}>Roll Number</td>
-                          <td style={{ fontWeight: "600" }}>0</td>
-                        </tr>
-                      </tbody>
-                      
-                    </Table>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td style={{ fontWeight: "700" }} className="col-5">
+                              Bank Holder Name
+                            </td>
+                            <td style={{ fontWeight: "600" }}></td>
+                          </tr>
+                          <tr>
+                            <td style={{ fontWeight: "700" }}>Bank Name</td>
+                            <td style={{ fontWeight: "600" }}></td>
+                          </tr>
+                          <tr>
+                            <td style={{ fontWeight: "700" }}>Accoount No</td>
+                            <td style={{ fontWeight: "600" }}></td>
+                          </tr>
+                          <tr>
+                            <td style={{ fontWeight: "700" }}>Sort Code</td>
+                            <td style={{ fontWeight: "600" }}></td>
+                          </tr>
+                          <tr>
+                            <td style={{ fontWeight: "700" }}>Roll Number</td>
+                            <td style={{ fontWeight: "600" }}>0</td>
+                          </tr>
+                        </tbody>
+                      </Table>
                     </div>
                   </Tab>
 
@@ -348,64 +510,68 @@ const SingleProfile = () => {
                     >
                       <div className="">
                         <div style={{ background: "#212A50" }} className="">
-                          <h4 style={{ color: "#fff", padding: ".6rem" }}>Add Qualification</h4>
+                          <h4 style={{ color: "#fff", padding: ".6rem" }}>
+                            Add Qualification
+                          </h4>
                         </div>
                         <form type="button" action="">
-                        <div className="row p-2" style={{display:'flex'}}>
-                          <div className="col-6 form-group mb-3 ">
-                         
-                            <input
-                              className="form-control "
-                              name="course_name"
-                              type="text"
-                              placeholder="Course Name"
+                          <div className="row p-2" style={{ display: "flex" }}>
+                            <div className="col-6 form-group mb-3 ">
+                              <input
+                                className="form-control"
+                                name="course_name"
+                                value={qualificationInfo.course_name}
+                                type="text"
+                                onChange={handleQualificationInfoChange}
+                                placeholder="Course Name"
                               />
+                            </div>
+                            <div className="col-6 form-group mb-3 ">
+                              <input
+                                className="form-control "
+                                name="university"
+                                value={qualificationInfo.university}
+                                onChange={handleQualificationInfoChange}
+                                type="text"
+                                placeholder="University/Institute Name"
+                              />
+                            </div>
+
+                            <div className="col-12 form-group mb-3 ">
+                              <label htmlFor="">Select Document</label>
+                              <input
+                                className="form-control"
+                                onChange={(e) =>
+                                  setQualification(e.target.files[0])
+                                }
+                                type="file"
+                                id="formFile"
+                              />
+                            </div>
+
+                            <div className="col-12 form-group mb-3 mt-3">
+                              <textarea
+                                name="content"
+                                value={qualificationInfo.content}
+                                onChange={handleQualificationInfoChange}
+                                className="form-control"
+                                rows="2"
+                                id="qnote"
+                                placeholder="Content"
+                              ></textarea>
+                            </div>
+                            <div>
+                              <Button
+                                className=""
+                                variant="primary"
+                                type="button"
+                                onClick={submitQualification}
+                              >
+                                Submit
+                              </Button>
+                            </div>
                           </div>
-                          <div className="col-6 form-group mb-3 ">
-                       
-                         <input
-                           className="form-control "
-                           name="course_name"
-                           type="text"
-                           placeholder="University/Institute Name"
-                           />
-                       </div>
-                    
-                       <div className="col-12 form-group mb-3 ">
-                       <label htmlFor="">Select Document</label>
-                       <input
-                      className="form-control"
-                      // onChange={}   
-                      type="file"
-                      id="formFile"                 
-                    />     
-                       </div>
-
-                       <div className="col-12 form-group mb-3 mt-3">
-                       <textarea
-                      // value={}
-                      // onChange={}
-                      name="q_note"
-                      className="form-control"
-                      rows="2"
-                      id="qnote"
-                      placeholder="Content"
-                    ></textarea>
-                       </div>
-                      <div>
-                      <Button
-                    className=""
-                    variant="primary"
-                    type="button"
-                    // onClick={submit}
-                  >
-                    Submit
-                  </Button>
-                      </div>
-
-                        </div>
                         </form>
-
                       </div>
                     </Modal>
                     <div
@@ -464,76 +630,79 @@ const SingleProfile = () => {
                       onHide={() => setOpenModalForWorkExp(false)}
                       show={openModalForWorkExp}
                     >
-                            <div className="">
+                      <div className="">
                         <div style={{ background: "#212A50" }} className="">
-                          <h4 style={{ color: "#fff", padding: ".6rem" }}>Add Experience</h4>
+                          <h4 style={{ color: "#fff", padding: ".6rem" }}>
+                            Add Experience
+                          </h4>
                         </div>
                         <form type="button" action="">
-                        <div className="row p-2" style={{display:'flex'}}>
-                          <div className="col-6 form-group mb-3 ">
-                         
-                            <input
-                              className="form-control "
-                              name="course_name"
-                              type="text"
-                              placeholder="Organisation"
+                          <div className="row p-2" style={{ display: "flex" }}>
+                            <div className="col-6 form-group mb-3 ">
+                              <input
+                                className="form-control "
+                                name="course_name"
+                                type="text"
+                                placeholder="Organisation"
                               />
+                            </div>
+                            <div className="col-6 form-group mb-3 ">
+                              <input
+                                className="form-control "
+                                name="course_name"
+                                type="text"
+                                placeholder="Designation"
+                              />
+                            </div>
+
+                            <div className="col-6 form-group mb-3 ">
+                              <label htmlFor="">Select Document</label>
+                              <input
+                                className="form-control"
+                                // onChange={}
+                                type="file"
+                                id="formFile"
+                              />
+                            </div>
+
+                            <div className="col-6 form-group mb-3 ">
+                              <label
+                                style={{ visibility: "hidden" }}
+                                htmlFor=""
+                              >
+                                No. of Years
+                              </label>
+                              <input
+                                className="form-control "
+                                name="course_name"
+                                type="text"
+                                placeholder="Designation"
+                              />
+                            </div>
+
+                            <div className="col-12 form-group mb-3 mt-3">
+                              <textarea
+                                // value={}
+                                // onChange={}
+                                name="q_note"
+                                className="form-control"
+                                rows="2"
+                                id="qnote"
+                                placeholder="Content"
+                              ></textarea>
+                            </div>
+                            <div>
+                              <Button
+                                className=""
+                                variant="primary"
+                                type="button"
+                                // onClick={submit}
+                              >
+                                Upload
+                              </Button>
+                            </div>
                           </div>
-                          <div className="col-6 form-group mb-3 ">
-                       
-                         <input
-                           className="form-control "
-                           name="course_name"
-                           type="text"
-                           placeholder="Designation"
-                           />
-                       </div>
-                    
-                       <div className="col-6 form-group mb-3 ">
-                       <label htmlFor="">Select Document</label>
-                       <input
-                      className="form-control"
-                      // onChange={}   
-                      type="file"
-                      id="formFile"                 
-                    />     
-                       </div>
-
-                       <div className="col-6 form-group mb-3 ">
-                       <label style={{visibility:"hidden"}} htmlFor="">No. of Years</label>
-                       <input
-                         className="form-control "
-                         name="course_name"
-                         type="text"
-                         placeholder="Designation"
-                         />
-                     </div>
-
-                       <div className="col-12 form-group mb-3 mt-3">
-                       <textarea
-                      // value={}
-                      // onChange={}
-                      name="q_note"
-                      className="form-control"
-                      rows="2"
-                      id="qnote"
-                      placeholder="Content"
-                    ></textarea>
-                       </div>
-                      <div>
-                      <Button
-                    className=""
-                    variant="primary"
-                    type="button"
-                    // onClick={submit}
-                  >
-                    Upload
-                  </Button>
-                      </div>
-
-                        </div>
                         </form>
-
                       </div>
                     </Modal>
                     <div

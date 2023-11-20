@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import { IMAGES } from "../Dashboard/Content";
@@ -37,7 +37,16 @@ const ProfileEdit = () => {
     date_of_joining: "",
     correspondence_address: "",
     brief_profile: "",
+    bank_holder_name: "",
+    bank_name: "",
+    account_on: "",
+    sort_code: "",
+    roll_number: "",
+    recent_qualification: "",
+    next_to_kin_number: "",
+    permanent_address: "",
   });
+  const [staffCV, setStaffCV] = useState(null);
   function handleOnchange(e) {
     setUserData((prev) => {
       return {
@@ -46,6 +55,42 @@ const ProfileEdit = () => {
       };
     });
   }
+
+  function handleStaffCVSubmit() {
+    if (staffCV) {
+      const file = new FormData();
+      file.append("pdf", staffCV);
+      makeRequest("POST", "/info/set-staff-cv", file)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }
+
+  useEffect(() => {
+    makeRequest("GET", "/info/get-admin-info")
+      .then((res) => {
+        if (res?.data?.response[0]) {
+          console.log(res?.data?.response[0]);
+          if (res.data.response[0].date_of_joining) {
+            setUserData({
+              ...res.data.response[0],
+              date_of_joining: new Date(
+                res.data.response[0].date_of_joining
+              ).toISOString().substr(0, 10),
+            });
+          } else {
+            setUserData({ ...res.data.response[0] });
+          }
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   function submit(e) {
     e.preventDefault();
@@ -97,7 +142,7 @@ const ProfileEdit = () => {
                           onChange={handleOnchange}
                           className="form-control"
                           id="exampleFormControlInput1"
-                          placeholder="First Name"
+                          placeholder="Name"
                         />
                       </div>
 
@@ -199,7 +244,7 @@ const ProfileEdit = () => {
                             Date of Birth<span className="required">*</span>
                           </label>
                           <input
-                            type="text"
+                            type="date"
                             name="date_of_birth"
                             value={userData.date_of_birth}
                             onChange={handleOnchange}
@@ -241,6 +286,77 @@ const ProfileEdit = () => {
                           className="form-control"
                           id="exampleFormControlInput4"
                           placeholder="Brief Profile"
+                        />
+                      </div>
+                      <div className="mb-3">
+                        <label
+                          htmlFor="exampleFormControlInput4"
+                          className="form-label text-primary"
+                        >
+                          Sort Code<span className="required">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          name="sort_code"
+                          value={userData.sort_code}
+                          onChange={handleOnchange}
+                          className="form-control"
+                          id="exampleFormControlInput4"
+                          placeholder="Sort Code"
+                        />
+                      </div>
+                      <div className="mb-3">
+                        <label
+                          htmlFor="exampleFormControlInput4"
+                          className="form-label text-primary"
+                        >
+                          Roll Number<span className="required">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          name="roll_number"
+                          value={userData.roll_number}
+                          onChange={handleOnchange}
+                          className="form-control"
+                          id="exampleFormControlInput4"
+                          placeholder="Roll Number"
+                        />
+                      </div>
+
+                      <div className="mb-3">
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend"></div>
+                          <input
+                            type="file"
+                            class="form-control"
+                            placeholder="Username"
+                            aria-label="Username"
+                            aria-describedby="basic-addon1"
+                            onChange={(e) => setStaffCV(e.target.files[0])}
+                          />
+                          <button
+                            onClick={handleStaffCVSubmit}
+                            class=" btn btn-primary input-group-text"
+                            id="basic-addon1"
+                          >
+                            upload
+                          </button>
+                        </div>
+                        <label
+                          htmlFor="exampleFormControlInput4"
+                          className="form-label text-primary"
+                        >
+                          Recent Qualification
+                          <span className="required">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          name="recent_qualification"
+                          value={userData.recent_qualification}
+                          onChange={handleOnchange}
+                          className="form-control"
+                          id="exampleFormControlInput4"
+                          placeholder="Recent Qualification"
                         />
                       </div>
                     </div>
@@ -386,6 +502,96 @@ const ProfileEdit = () => {
                         />
                       </div>
 
+                      <div className="mb-3">
+                        <label
+                          htmlFor="exampleFormControlInput5"
+                          className="form-label text-primary"
+                        >
+                          Bank Holder Name
+                          <span className="required">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="exampleFormControlInput5"
+                          placeholder="Bank Holder Name"
+                          name="bank_holder_name"
+                          value={userData.bank_holder_name}
+                          onChange={handleOnchange}
+                        />
+                      </div>
+                      <div className="mb-3">
+                        <label
+                          htmlFor="exampleFormControlInput4"
+                          className="form-label text-primary"
+                        >
+                          Bank Name<span className="required">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          name="bank_name"
+                          value={userData.bank_name}
+                          onChange={handleOnchange}
+                          className="form-control"
+                          id="exampleFormControlInput4"
+                          placeholder="Bank Name"
+                        />
+                      </div>
+
+                      <div className="mb-3">
+                        <label
+                          htmlFor="exampleFormControlInput5"
+                          className="form-label text-primary"
+                        >
+                          Account No
+                          <span className="required">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="exampleFormControlInput5"
+                          placeholder="Account No"
+                          name="account_on"
+                          value={userData.account_on}
+                          onChange={handleOnchange}
+                        />
+                      </div>
+                      <div className="mb-3">
+                        <label
+                          htmlFor="exampleFormControlInput5"
+                          className="form-label text-primary"
+                        >
+                          Next To Kin Number
+                          <span className="required">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="exampleFormControlInput5"
+                          placeholder="Next To Kin Number"
+                          name="next_to_kin_number"
+                          value={userData.next_to_kin_number}
+                          onChange={handleOnchange}
+                        />
+                      </div>
+                      <div className="mb-3">
+                        <label
+                          htmlFor="exampleFormControlInput5"
+                          className="form-label text-primary"
+                        >
+                          Permanent Address
+                          <span className="required">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="exampleFormControlInput5"
+                          placeholder="Permanent Address"
+                          name="permanent_address"
+                          value={userData.permanent_address}
+                          onChange={handleOnchange}
+                        />
+                      </div>
                       <div className="mb-3 d-flex justify-content-center mt-5 ml-4">
                         <Button
                           className=""
