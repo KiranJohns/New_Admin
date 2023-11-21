@@ -419,6 +419,7 @@ const SingleProfile = () => {
               </div>
               <Col xl={12}>
                 <Tabs
+                // style={{backgroundColor:"#212A50", color:"white"}}
                   defaultActiveKey="profile"
                   id="fill-tab-example"
                   className="mb-3 mt-2"
@@ -431,7 +432,7 @@ const SingleProfile = () => {
                         justifyContent: "flex-start",
                         alignItems: "center",
                         marginBottom:'1rem',
-                        background:"#212A50"
+                    
                       }}
                     >
                       <div>
@@ -545,7 +546,7 @@ const SingleProfile = () => {
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>
+                          <td style={{ fontWeight: "500" }}>
                             National Insurance Number
                           </td>
                           <td style={{ fontWeight: "500" }}>
