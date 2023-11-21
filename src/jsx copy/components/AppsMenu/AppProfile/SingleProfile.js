@@ -333,7 +333,7 @@ const SingleProfile = () => {
                   style={{
                     backgroundImage: changeBanner
                       ? `url(${URL.createObjectURL(banner)})`
-                      : banner
+                      : `url(${banner})`
                   }}
                 >
                   <Button
