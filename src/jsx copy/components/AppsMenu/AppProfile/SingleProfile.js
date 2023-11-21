@@ -184,6 +184,7 @@ const SingleProfile = () => {
       [e.target.name]: e.target.value,
     });
   }
+  const [showEditProfileBtn, setShowEditProfileBtn] = useState(false);
   const [qualification, setQualification] = useState();
   const [qualifications, setQualifications] = useState([]);
 
@@ -197,6 +198,7 @@ const SingleProfile = () => {
           console.log(res.data.response[0]);
           setUserData(res.data.response[0]);
           setProfile(res.data.response[0].profile_image);
+          setBanner(res.data.response[0].profile_banner);
         }
       })
       .catch((err) => {
@@ -221,13 +223,26 @@ const SingleProfile = () => {
       });
   }, []);
 
-  function updateBanner() {
+  function updateProfile(image) {
     const file = new FormData();
-    file.append("image", profile);
+    file.append("image", image);
     makeRequest("PATCH", "/info/update-admin-profile-image", file)
       .then((res) => {
         console.log(res);
         swal("Done!", "Profile image updated", "success");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function updateBanner(image) {
+    const file = new FormData();
+    file.append("image", image);
+    makeRequest("POST", "/info/update-admin-profile-banner", file)
+      .then((res) => {
+        console.log(res);
+        swal("Done!", "banner image updated", "success");
       })
       .catch((err) => {
         console.log(err);
@@ -288,6 +303,23 @@ const SingleProfile = () => {
         console.log(err);
       });
   }
+
+  function profileOnChange(e) {
+    setProfile(e.target.files[0]);
+    setTimeout(() => {
+      updateProfile(e.target.files[0])
+    }, 3000);
+    setChangeProfile(true);
+  }
+  function bannerOnChange(e) {
+    setBanner(e.target.files[0]);
+    setChangeBanner(true);
+    setTimeout(() => {
+      updateBanner(e.target.files[0])
+    }, 3000);
+  }
+
+  // function profileOnMouse
   return (
     <Fragment>
       <PageTitle activeMenu="Profile" motherMenu="App" />
@@ -295,12 +327,45 @@ const SingleProfile = () => {
         <div className="col-lg-12">
           <div className="profile card card-body px-3 pt-3 pb-0">
             <div className="profile-head">
-              <div className="photo-content " >
-                <div className="cover-photo rounded "  style={{backgroundImage:"url('https://images.pexels.com/photos/3789871/pexels-photo-3789871.jpeg?auto=compress&cs=tinysrgb&w=600')"}}></div>
+              <div className="photo-content ">
+                <div
+                  className="cover-photo rounded "
+                  style={{
+                    backgroundImage: changeBanner
+                      ? `url(${URL.createObjectURL(banner)})`
+                      : banner
+                  }}
+                >
+                  <Button
+                    className="me-2"
+                    style={{
+                      position: "absolute",
+                      top: "20px",
+                      right: "20px",
+                    }}
+                    variant="primary btn-icon-xxs"
+                    onClick={() => bannerRef.current.click()}
+                  >
+                    <BiSolidEdit />
+                  </Button>
+                  <input
+                    ref={bannerRef}
+                    style={{ display: "none" }}
+                    type="file"
+                    onChange={(e) => {
+                      bannerOnChange(e);
+                    }}
+                  />
+                </div>
               </div>
               <div className="profile-info">
-                <div className="profile-photo ">
+                <div
+                  className="profile-photo "
+                  onMouseOver={() => setShowEditProfileBtn(true)}
+                  onMouseLeave={() => setShowEditProfileBtn(false)}
+                >
                   <img
+                    style={{ width: "8rem", height: "7rem" }}
                     src={changeProfile ? URL.createObjectURL(profile) : profile}
                     className="img-fluid rounded-circle"
                     alt="profile"
@@ -310,13 +375,18 @@ const SingleProfile = () => {
                     ref={profileRef}
                     style={{ display: "none" }}
                     onChange={(e) => {
-                      console.log(e.target.files[0]);
-                      setProfile(e.target.files[0]);
-                      setChangeProfile(true);
+                      profileOnChange(e);
                     }}
                   />
                   <Button
                     className="me-2"
+                    style={{
+                      opacity: showEditProfileBtn ? "1" : "-1",
+                      transition: "0.5s",
+                      position: "absolute",
+                      top: "35px",
+                      left: "30px",
+                    }}
                     variant="primary btn-icon-xxs"
                     onClick={() => profileRef.current.click()}
                   >
@@ -334,18 +404,7 @@ const SingleProfile = () => {
                     <h4 className="text-muted mb-0">{userData.email}</h4>
                     {/* <p style={{ visibility: "hidden" }}>Email</p> */}
                   </div>
-                  {banner ? (
-                    <a onClick={updateBanner} className="btn btn -primary">
-                      update banner
-                    </a>
-                  ) : null}
-                  {profile ? (
-                    <a onClick={updateBanner} className="btn btn -primary">
-                      update profile
-                    </a>
-                  ) : null}
                 </div>
-                
               </div>
               <Col xl={12}>
                 <Tabs
@@ -355,18 +414,28 @@ const SingleProfile = () => {
                   fill
                 >
                   <Tab eventKey="profile" title="Profile">
-                  <div style={{ display: "flex", justifyContent: "flex-end", alignItems:'center' }}>
-                  <div>
-                    <a href="/edit-profile">
-                      {" "}
-                      {/* <Button className="me-2" variant=" btn-icon-xxs"> */}
-                        <BiSolidEdit style={{fontSize:"1.7rem", border:"solid 1px #212a50"}}/>
-                      {/* </Button> */}
-                    </a>
-                  </div>
-                </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        alignItems: "center",
+                      }}
+                    >
+                      <div>
+                        <a href="/edit-profile">
+                          {" "}
+                          {/* <Button className="me-2" variant=" btn-icon-xxs"> */}
+                          <BiSolidEdit
+                            style={{
+                              fontSize: "1.7rem",
+                              border: "solid 1px #212a50",
+                            }}
+                          />
+                          {/* </Button> */}
+                        </a>
+                      </div>
+                    </div>
                     <Table bordered hover>
-                      
                       <thead>
                         {/* <tr>
           <th>#</th>
@@ -843,7 +912,9 @@ const SingleProfile = () => {
                                   </Button>
                                 </a>
                                 <Button
-                                  onClick={() => handleExperienceDelete(item.id)}
+                                  onClick={() =>
+                                    handleExperienceDelete(item.id)
+                                  }
                                   variant="secondary"
                                   size="sm"
                                 >
