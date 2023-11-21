@@ -178,8 +178,8 @@ const SingleProfile = () => {
   }
 
   function handleQualificationInfoChange(e) {
-    setExperienceInfo({
-      ...experienceInfo,
+    setQualificationInfo({
+      ...qualificationInfo,
       [e.target.name]: e.target.value,
     });
   }
