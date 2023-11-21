@@ -381,11 +381,11 @@ const SingleProfile = () => {
                   <Button
                     className="me-2"
                     style={{
-                      opacity: showEditProfileBtn ? "1" : "-1",
+                      opacity: showEditProfileBtn ? "0.8" : "-1",
                       transition: "0.5s",
                       position: "absolute",
-                      top: "35px",
-                      left: "30px",
+                      top: "29px",
+                      left: "27px",
                     }}
                     variant="primary btn-icon-xxs"
                     onClick={() => profileRef.current.click()}
@@ -633,23 +633,23 @@ const SingleProfile = () => {
                             <td style={{ fontWeight: "700" }} className="col-5">
                               Bank Holder Name
                             </td>
-                            <td style={{ fontWeight: "600" }}></td>
+                            <td style={{ fontWeight: "600" }}>{userData.bank_holder_name}</td>
                           </tr>
                           <tr>
                             <td style={{ fontWeight: "700" }}>Bank Name</td>
-                            <td style={{ fontWeight: "600" }}></td>
+                            <td style={{ fontWeight: "600" }}>{userData.bank_name}</td>
                           </tr>
                           <tr>
                             <td style={{ fontWeight: "700" }}>Accoount No</td>
-                            <td style={{ fontWeight: "600" }}></td>
+                            <td style={{ fontWeight: "600" }}>{userData.account_no}</td>
                           </tr>
                           <tr>
                             <td style={{ fontWeight: "700" }}>Sort Code</td>
-                            <td style={{ fontWeight: "600" }}></td>
+                            <td style={{ fontWeight: "600" }}>{userData.sort_code}</td>
                           </tr>
                           <tr>
                             <td style={{ fontWeight: "700" }}>Roll Number</td>
-                            <td style={{ fontWeight: "600" }}>0</td>
+                            <td style={{ fontWeight: "600" }}>{userData.roll_number}</td>
                           </tr>
                         </tbody>
                       </Table>

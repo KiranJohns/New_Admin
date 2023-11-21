@@ -39,7 +39,7 @@ const ProfileEdit = () => {
     brief_profile: "",
     bank_holder_name: "",
     bank_name: "",
-    account_on: "",
+    account_no: "",
     sort_code: "",
     roll_number: "",
     recent_qualification: "",
@@ -49,6 +49,7 @@ const ProfileEdit = () => {
   const [staffCV, setStaffCV] = useState(null);
   function handleOnchange(e) {
     setUserData((prev) => {
+      console.log([e.target.name],e.target.value);
       return {
         ...prev,
         [e.target.name]: e.target.value,
@@ -551,8 +552,8 @@ const ProfileEdit = () => {
                           className="form-control"
                           id="exampleFormControlInput5"
                           placeholder="Account No"
-                          name="account_on"
-                          value={userData.account_on}
+                          name="account_no"
+                          value={userData.account_no}
                           onChange={handleOnchange}
                         />
                       </div>
