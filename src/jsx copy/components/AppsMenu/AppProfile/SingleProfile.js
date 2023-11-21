@@ -18,6 +18,7 @@ import LightGallery from "lightgallery/react";
 import Highlight from "react-highlight";
 import { BiSolidEdit } from "react-icons/bi";
 import swal from "sweetalert";
+
 // import styles
 import "lightgallery/css/lightgallery.css";
 import "lightgallery/css/lg-zoom.css";
@@ -294,11 +295,11 @@ const SingleProfile = () => {
         <div className="col-lg-12">
           <div className="profile card card-body px-3 pt-3 pb-0">
             <div className="profile-head">
-              <div className="photo-content ">
-                <div className="cover-photo rounded"></div>
+              <div className="photo-content " >
+                <div className="cover-photo rounded "  style={{backgroundImage:"url('https://images.pexels.com/photos/3789871/pexels-photo-3789871.jpeg?auto=compress&cs=tinysrgb&w=600')"}}></div>
               </div>
               <div className="profile-info">
-                <div className="profile-photo">
+                <div className="profile-photo ">
                   <img
                     src={changeProfile ? URL.createObjectURL(profile) : profile}
                     className="img-fluid rounded-circle"
@@ -344,16 +345,7 @@ const SingleProfile = () => {
                     </a>
                   ) : null}
                 </div>
-                <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                  <div>
-                    <a href="/edit-profile">
-                      {" "}
-                      <Button className="me-2" variant="primary btn-icon-xxs">
-                        <BiSolidEdit />
-                      </Button>
-                    </a>
-                  </div>
-                </div>
+                
               </div>
               <Col xl={12}>
                 <Tabs
@@ -363,7 +355,18 @@ const SingleProfile = () => {
                   fill
                 >
                   <Tab eventKey="profile" title="Profile">
+                  <div style={{ display: "flex", justifyContent: "flex-end", alignItems:'center' }}>
+                  <div>
+                    <a href="/edit-profile">
+                      {" "}
+                      {/* <Button className="me-2" variant=" btn-icon-xxs"> */}
+                        <BiSolidEdit style={{fontSize:"1.7rem", border:"solid 1px #212a50"}}/>
+                      {/* </Button> */}
+                    </a>
+                  </div>
+                </div>
                     <Table bordered hover>
+                      
                       <thead>
                         {/* <tr>
           <th>#</th>
@@ -524,7 +527,7 @@ const SingleProfile = () => {
                           <td style={{ fontWeight: "600" }}>
                             <a
                               target="_blank"
-                              href="https://carekiran1.s3.eu-north-1.amazonaws.com//staff-cv/cdb1b096-e0f3-4bbc-a35d-44577333cb58?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAY6GHMHJQN4HBZCPB%2F20231120%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20231120T130729Z&X-Amz-Expires=6000&X-Amz-Signature=a0acaced4254e4156ce580471bee886d52b54dccb6f75893be2c846f142c0db0&X-Amz-SignedHeaders=host"
+                              href="userData.staff_cv"
                               download="staff-cv"
                               style={{ color: "blue" }}
                             >
