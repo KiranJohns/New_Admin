@@ -173,6 +173,11 @@ export const MenuList = [
                 title: 'Purchased Bundle',
                 to: 'purchased-bundles',					
             },
+            {
+                title: 'Add Bundle',
+                to: 'add-bundle',					
+            },
+            
             
         ],
     },

@@ -40,6 +40,7 @@ import CourseMatrix from "./components/CourseMatrix";
 import CourseIndReport from "./components/IndCourseReport";
 import CourseManReport from "./components/ManCourseBundle";
 import DraftBlog from "./components/Food/DraftBlog";
+import AddBundle from "./components/Food/addBundle";
 /// Layout
 import Nav from "./layouts/nav";
 import Nav2 from "./layouts/nav/index2";
@@ -192,7 +193,8 @@ const Markup = () => {
     {url:'trash',component: <BlogTrash/>},
     {url:'draft',component: <DraftBlog/>},
     {url:'published',component: <PublishedBlog/>},
-    // {url:'draft',component: <DraftBlog/>},
+    {url:'add-bundle',component: <AddBundle/>},
+    //AddBundle {url:'draft',component: <DraftBlog/>},
     {url:'create-certificate',component: <AddCertificate/>},
      //BlogTrash {url:'company',component: <CompanyAdmin />},
     // {url: "user", component: <User/>},

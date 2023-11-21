@@ -260,7 +260,7 @@ const ProfileEdit = () => {
                           htmlFor="exampleFormControlInput6"
                           className="form-label text-primary"
                         >
-                          Next to Kin<span className="required">*</span>
+                          Next to Kin Name<span className="required">*</span>
                         </label>
                         <input
                           type="text"
@@ -327,6 +327,13 @@ const ProfileEdit = () => {
                       <div className="mb-3">
                         <div class="input-group mb-3">
                           <div class="input-group-prepend"></div>
+                          <label style={{visibility:'hidden'}}
+                          htmlFor="exampleFormControlInput4"
+                          className="form-label text-primary"
+                        >
+                          Recent Qualification
+                          <span className="required">*</span>
+                        </label>
                           <input
                             type="file"
                             class="form-control"
