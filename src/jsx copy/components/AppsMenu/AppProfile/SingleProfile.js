@@ -222,7 +222,7 @@ const SingleProfile = () => {
 
   function updateBanner() {
     const file = new FormData();
-    file.append("image", qualification);
+    file.append("image", profile);
     makeRequest("PATCH", "/info/update-admin-profile-image", file)
       .then((res) => {
         console.log(res);
