@@ -37,13 +37,11 @@ const SchoolPerformance = () => {
         let total = 0;
         let arr1 = [0, 0, 0, 0, 0, 0];
         let arr2 = [0, 0, 0, 0, 0, 0];
-        console.log(today.toLocaleDateString());
         let j = 0;
         for (let i = 0; i < course?.length; i++) {
           let date = new Date(course[i].date);
           if (date.toLocaleDateString() == today.toLocaleDateString()) {
             total += Number(course[i].amount);
-            console.log(date.toLocaleDateString(), course[i].amount);
           } else {
             if (flag) {
               arr1[j] = total;
@@ -56,8 +54,6 @@ const SchoolPerformance = () => {
             total = Number(course[i].amount);
 
             if (today.toLocaleDateString() == before12days) break;
-
-            // console.log(today.toLocaleDateString());
 
             today.setDate(today.getDate() - 1);
 

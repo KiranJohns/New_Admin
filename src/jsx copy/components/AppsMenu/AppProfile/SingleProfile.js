@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 import LightGallery from "lightgallery/react";
 import Highlight from "react-highlight";
 import { BiSolidEdit } from "react-icons/bi";
+import swal from "sweetalert";
 // import styles
 import "lightgallery/css/lightgallery.css";
 import "lightgallery/css/lg-zoom.css";
@@ -161,10 +162,76 @@ const SingleProfile = () => {
     content: "",
   });
 
+  const [experienceInfo, setExperienceInfo] = useState({
+    organization: "",
+    designation: "",
+    no_of_years: "",
+    content: "",
+  });
+
+  function handleExperienceInfoChange(e) {
+    console.log(e.target);
+    setExperienceInfo({
+      ...experienceInfo,
+      [e.target.name]: e.target.value,
+    });
+  }
+
   function handleQualificationInfoChange(e) {
-    setQualificationInfo({ ...qualificationInfo, [e.target.name]: e.target.value });
+    setExperienceInfo({
+      ...experienceInfo,
+      [e.target.name]: e.target.value,
+    });
   }
   const [qualification, setQualification] = useState();
+  const [qualifications, setQualifications] = useState([]);
+
+  const [experience, setExperience] = useState();
+  const [experiences, setExperiences] = useState([]);
+
+  useEffect(() => {
+    makeRequest("GET", "/info/get-admin-info")
+      .then((res) => {
+        if (res?.data?.response[0]) {
+          console.log(res.data.response[0]);
+          setUserData(res.data.response[0]);
+          setProfile(res.data.response[0].profile_image);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    makeRequest("GET", "/info/get-qualification")
+      .then((res) => {
+        setQualifications(res.data.response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    makeRequest("GET", "/info/get-experience")
+      .then((res) => {
+        setExperiences(res.data.response);
+        console.log(res.data.response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  function updateBanner() {
+    const file = new FormData();
+    file.append("image", qualification);
+    makeRequest("PATCH", "/info/update-admin-profile-image", file)
+      .then((res) => {
+        console.log(res);
+        swal("Done!", "Profile image updated", "success");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   function submitQualification() {
     console.log(qualificationInfo);
@@ -182,10 +249,17 @@ const SingleProfile = () => {
         console.log(err);
       });
   }
-  function updateBanner() {
+
+  function submitExperience() {
+    console.log(experienceInfo);
     const file = new FormData();
-    file.append("image", qualification);
-    makeRequest("PATCH", "/info/update-admin-profile-image", file)
+    file.append("doc", experience);
+    file.append("organization", experienceInfo.organization);
+    file.append("designation", experienceInfo.designation);
+    file.append("no_of_years", experienceInfo.no_of_years);
+    file.append("content", experienceInfo.content);
+
+    makeRequest("POST", "/info/set-experience", file)
       .then((res) => {
         console.log(res);
       })
@@ -193,19 +267,26 @@ const SingleProfile = () => {
         console.log(err);
       });
   }
-  useEffect(() => {
-    makeRequest("GET", "/info/get-admin-info")
+
+  function handleQualificationDelete(id) {
+    makeRequest("DELETE", `/info/delete-qualification/${id}`)
       .then((res) => {
-        if (res?.data?.response[0]) {
-          console.log(res.data.response[0]);
-          setUserData(res.data.response[0]);
-          setProfile(res.data.response[0].profile_image);
-        }
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }
+
+  function handleExperienceDelete(id) {
+    makeRequest("DELETE", `/info/delete-experience/${id}`)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   return (
     <Fragment>
       <PageTitle activeMenu="Profile" motherMenu="App" />
@@ -588,39 +669,43 @@ const SingleProfile = () => {
                       </Button>
                     </div>
                     <Table striped style={{ marginTop: "1rem" }}>
-                      <thead>
+                      <thead style={{ backgroundColor: "gray" }}>
                         <tr>
                           <th>Course Name</th>
                           <th>University Name</th>
                           <th>Note</th>
-                          <th>Documents</th>
+                          <th>Actions</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>Bachelor of Science</td>
-                          <td>Mark</td>
-                          <td>90%</td>
-                          <td>
-                            <Button
-                              variant="success"
-                              size="sm"
-                              style={{ marginRight: ".3rem" }}
-                            >
-                              <FaDownload style={{ fontSize: "1rem" }} />
-                            </Button>
-                            <Button variant="secondary" size="sm">
-                              <ImCross style={{ fontSize: "1rem" }} />
-                            </Button>
-                          </td>
-                        </tr>
-
-                        <tr>
-                          <td>Master of Science</td>
-                          <td>Jacob</td>
-                          <td>note</td>
-                          <td></td>
-                        </tr>
+                        {qualifications &&
+                          qualifications.map((item) => (
+                            <tr>
+                              <td>{item.course_name}</td>
+                              <td>{item.university}</td>
+                              <td>{item.content}</td>
+                              <td>
+                                <a href={item.doc}>
+                                  <Button
+                                    variant="success"
+                                    size="sm"
+                                    style={{ marginRight: ".3rem" }}
+                                  >
+                                    <FaDownload style={{ fontSize: "1rem" }} />
+                                  </Button>
+                                </a>
+                                <Button
+                                  variant="secondary"
+                                  size="sm"
+                                  onClick={() =>
+                                    handleQualificationDelete(item.id)
+                                  }
+                                >
+                                  <ImCross style={{ fontSize: "1rem" }} />
+                                </Button>
+                              </td>
+                            </tr>
+                          ))}
                       </tbody>
                     </Table>
                   </Tab>
@@ -640,18 +725,22 @@ const SingleProfile = () => {
                           <div className="row p-2" style={{ display: "flex" }}>
                             <div className="col-6 form-group mb-3 ">
                               <input
-                                className="form-control "
-                                name="course_name"
+                                className="form-control"
+                                name="organization"
                                 type="text"
+                                value={experienceInfo.organization}
+                                onChange={handleExperienceInfoChange}
                                 placeholder="Organisation"
                               />
                             </div>
                             <div className="col-6 form-group mb-3 ">
                               <input
                                 className="form-control "
-                                name="course_name"
+                                name="designation"
                                 type="text"
                                 placeholder="Designation"
+                                value={experienceInfo.designation}
+                                onChange={handleExperienceInfoChange}
                               />
                             </div>
 
@@ -659,7 +748,9 @@ const SingleProfile = () => {
                               <label htmlFor="">Select Document</label>
                               <input
                                 className="form-control"
-                                // onChange={}
+                                onChange={(e) =>
+                                  setExperience(e.target.files[0])
+                                }
                                 type="file"
                                 id="formFile"
                               />
@@ -673,18 +764,20 @@ const SingleProfile = () => {
                                 No. of Years
                               </label>
                               <input
-                                className="form-control "
-                                name="course_name"
+                                className="form-control"
+                                value={experienceInfo.no_of_years}
+                                name="no_of_years"
                                 type="text"
-                                placeholder="Designation"
+                                placeholder="No. of Years"
+                                onChange={handleExperienceInfoChange}
                               />
                             </div>
 
                             <div className="col-12 form-group mb-3 mt-3">
                               <textarea
-                                // value={}
-                                // onChange={}
-                                name="q_note"
+                                value={experienceInfo.content}
+                                onChange={handleExperienceInfoChange}
+                                name="content"
                                 className="form-control"
                                 rows="2"
                                 id="qnote"
@@ -696,7 +789,7 @@ const SingleProfile = () => {
                                 className=""
                                 variant="primary"
                                 type="button"
-                                // onClick={submit}
+                                onClick={submitExperience}
                               >
                                 Upload
                               </Button>
@@ -719,52 +812,43 @@ const SingleProfile = () => {
                       </Button>
                     </div>
                     <Table striped style={{ marginTop: "1rem" }}>
-                      <thead>
+                      <thead style={{ backgroundColor: "gray" }}>
                         <tr>
-                          <th>Organisation Name</th>
+                          <th>Organization Name</th>
                           <th>Position</th>
                           <th>No. of Years</th>
                           <th>Note</th>
-                          <th>Documents</th>
+                          <th>Actions</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>Amazon</td>
-                          <td>Mark</td>
-                          <td>7</td>
-                          <td>Developer</td>
-                          <td>
-                            <Button
-                              variant="success"
-                              size="sm"
-                              style={{ marginRight: ".3rem" }}
-                            >
-                              <FaDownload style={{ fontSize: "1rem" }} />
-                            </Button>
-                            <Button variant="secondary" size="sm">
-                              <ImCross style={{ fontSize: "1rem" }} />
-                            </Button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Amazon</td>
-                          <td>Mark</td>
-                          <td>7</td>
-                          <td>Developer</td>
-                          <td>
-                            <Button
-                              variant="success"
-                              size="sm"
-                              style={{ marginRight: ".3rem" }}
-                            >
-                              <FaDownload style={{ fontSize: "1rem" }} />
-                            </Button>
-                            <Button variant="secondary" size="sm">
-                              <ImCross style={{ fontSize: "1rem" }} />
-                            </Button>
-                          </td>
-                        </tr>
+                        {experiences &&
+                          experiences.map((item) => (
+                            <tr>
+                              <td>{item.organization_name}</td>
+                              <td>{item.designation}</td>
+                              <td>{item.no_of_years}</td>
+                              <td>{item.content}</td>
+                              <td>
+                                <a href={item.doc} target="_blank">
+                                  <Button
+                                    variant="success"
+                                    size="sm"
+                                    style={{ marginRight: ".3rem" }}
+                                  >
+                                    <FaDownload style={{ fontSize: "1rem" }} />
+                                  </Button>
+                                </a>
+                                <Button
+                                  onClick={() => handleExperienceDelete(item.id)}
+                                  variant="secondary"
+                                  size="sm"
+                                >
+                                  <ImCross style={{ fontSize: "1rem" }} />
+                                </Button>
+                              </td>
+                            </tr>
+                          ))}
                       </tbody>
                     </Table>
                   </Tab>

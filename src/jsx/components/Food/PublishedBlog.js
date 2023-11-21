@@ -157,12 +157,43 @@ const PublishedBlog = () => {
   const [blogs, setBlogs] = useState([]);
   makeRequest("GET", "/blog/get-all-blog")
     .then((res) => {
-      setBlogs(res.data.response);
+      setBlogs(res.data.response.filter(item => item.state == 'published'));
     })
     .catch((err) => {
       console.log(err);
     });
 
+    function changeBlogState(id) {
+      makeRequest("POST", "/blog/update-blog-status", {
+        id,
+        status: 'trash'
+      })
+        .then((res) => {
+          setBlogs((prev) => {
+            return prev.filter((item) => item.id != id);
+          });
+          swal("Done!", "blog moved to trash", "success");
+        })
+        .catch((err) => {
+          swal("Oops!", err?.errors[0]?.error, "error");
+          console.log(err);
+        });
+    }
+
+    function deleteHandler(id) {
+      console.log(id);
+      makeRequest("DELETE", "/blog/delete-blog", {
+        blog_id: id,
+      })
+        .then((res) => {
+          console.log(res);
+          swal("Done!", "blog deleted", "success");
+        })
+        .catch((err) => {
+          swal("Done!", err?.errors[0]?.error, "success");
+          console.log(err);
+        });
+    }
   function deleteHandler(id) {
     console.log(id);
     makeRequest("DELETE", "/blog/delete-blog", {
@@ -262,13 +293,15 @@ const PublishedBlog = () => {
                             className="me-2"
                             variant="primary btn-icon-xxs"
                             // onClick={() => navigate("/edit-blog",{state:{id:item.id}})}
+                          onClick={() => changeBlogState(item.id)}
                           >
                         <FaDownload />
                           </Button>
 
                           <Button
-                            className=""
+                            className=""changeBlogState
                             variant="secondary btn-icon-xxs"
+                            onClick={() => deleteHandler(item.id)}
                           >
                           <FaTrash />
                           </Button>
