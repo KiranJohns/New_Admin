@@ -1,22 +1,12 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import { IMAGES, SVGICON } from "../Dashboard/Content";
 import circle from "./../../../images/circle.svg";
-import { Row, Col, Card, Button, ButtonGroup,Table } from "react-bootstrap";
+import { Row, Col, Card, Button, ButtonGroup, Table } from "react-bootstrap";
 import quotes from "./../../../images/quotes.svg";
 import { RiChatDeleteFill } from "react-icons/ri";
 import fetchData from "../../../axios";
 import swal from "sweetalert";
-
-
-
-const cardBlog = [
-  { image: IMAGES.avatarpng1, title: "Samantha W." },
-  { image: IMAGES.avatarpng2, title: "Karen Hope." },
-  { image: IMAGES.avatarpng3, title: "Tony Soap" },
-];
-
-
 
 const AddBundle = () => {
   const [course, setCourse] = useState({
@@ -30,29 +20,62 @@ const AddBundle = () => {
     resource: "",
     ppt: "",
   });
+  const [filteredCourse, setFilteredCourse] = useState([]);
+  const [allCourse, setAllCourse] = useState([]);
+  const [selectedCourse, setSelectedCourse] = useState([]);
+  const categoryRef = useRef();
+  const courseRef = useRef();
+  const [category, setCAtegory] = useState(null);
+  const [bundle, setBundle] = useState({
+    name: "",
+    price: "",
+    description: "",
+    image: "",
+  });
+
   const makeRequest = fetchData();
   function handleChange(e) {
-    setCourse((prev) => {
+    setBundle((prev) => {
       return {
         ...prev,
         [e.target.name]: e.target.value,
       };
     });
   }
+  function handleSubmit() {
+    let arr = [];
+    selectedCourse.forEach((item) => {
+      arr.push(item.id);
+    });
 
-  function submit() {
-    console.log(course);
-    makeRequest("POST", "/course/create-course", {
-      ...course,
-      price: Number(course.price),
-    })
+    console.log(bundle);
+
+    const form = new FormData();
+    form.append("name", bundle.name);
+    form.append("price", bundle.price);
+    form.append("description", bundle.description);
+    form.append("courses", arr);
+    form.append("image", bundle.image);
+
+    makeRequest("POST", "/bundle/create-bundle", form)
       .then((res) => {
-        swal("Success", "course created", "success");
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  useState(() => {
+    makeRequest("GET", "/course/get-all-course")
+      .then((res) => {
+        setAllCourse(res.data.response);
+        console.log(res.data.response);
       })
       .catch((err) => {
         console.log(err.data);
       });
-  }
+  }, []);
   return (
     <div className="row">
       <div className="col-xl-11">
@@ -72,157 +95,187 @@ const AddBundle = () => {
             }}
           >
             <form type="button" onSubmit={(e) => e.preventDefault()}>
- 
-             <div className="row">
-              <div className="col-4" style={{  }}>
-                <div className="card-body">
-                  <h4 className="" style={{ textAlign: "center" }}>
-                     Bundle Name:
-                  </h4>
-                  <div className=" mb-3 ">
-                    <input
-                      type="text"
-                      name="name"
-                      value={course.name}
-                      onChange={handleChange}
-                      className="form-control input-default "
-                      placeholder="bundle name"
-                    />
+              <div className="row">
+                <div className="col-4" style={{}}>
+                  <div className="card-body">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      Bundle Name:
+                    </h4>
+                    <div className=" mb-3 ">
+                      <input
+                        type="text"
+                        name="name"
+                        value={bundle.name}
+                        onChange={handleChange}
+                        className="form-control"
+                        placeholder="bundle name"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="col-4" style={{ }}>
-                <div className="card-body">
-                  <h4 className="" style={{ textAlign: "center" }}>
-                    Bundle Price:
-                  </h4>
-                  <div className=" mb-3 ">
-                    <input
-                      name="price"
-                      value={course.price}
-                      onChange={handleChange}
-                      type="number"
-                      className="form-control input-default "
-                      placeholder="bundle price"
-                    />
+                <div className="col-4" style={{}}>
+                  <div className="card-body">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      Bundle Price:
+                    </h4>
+                    <div className=" mb-3 ">
+                      <input
+                        name="price"
+                        value={bundle.price}
+                        onChange={handleChange}
+                        type="number"
+                        className="form-control"
+                        placeholder="bundle price"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="col-4" style={{  }}>
-                <div className="card-body">
-                  <h4 className="" style={{ textAlign: "center" }}>
-                    Select Course Category:
-                  </h4>
-                  <div className="form-group mb-3">
-                    <select
-                      onChange={handleChange}
-                      defaultValue={"option"}
-                      name="category"
-                      className="form-control form-control"
-                    >
-                      <option>Select</option>
-                      <option value="Care Course">Care Course</option>
-                      <option value="Mandatory Care Course">
-                        Mandatory Care Course
-                      </option>
-                      <option value="Specialized Care Course">
-                        Specialized Care Course
-                      </option>
-                      <option value="Recovery Care Course">
-                        Recovery Care Course
-                      </option>
-                      <option value="Child Care Course">
-                        Child Care Course
-                      </option>
-                    </select>
+                <div className="col-4" style={{}}>
+                  <div className="card-body">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      Select Course Category:
+                    </h4>
+                    <div className="form-group mb-3">
+                      <select
+                        onChange={(e) => {
+                          let course = allCourse.filter((item) => {
+                            if (item.category == e.target.value) {
+                              return item;
+                            }
+                          });
+                          courseRef.current.selectedIndex = 0;
+                          setFilteredCourse(course);
+                          setCAtegory(e.target.value);
+                        }}
+                        ref={categoryRef}
+                        name="category"
+                        className="form-control form-control"
+                      >
+                        <option value="">Select</option>
+                        <option value="Care Course">Care Course</option>
+                        <option value="Mandatory Care Courses">
+                          Mandatory Care Course
+                        </option>
+                        <option value="Specialised Care Courses">
+                          Specialised Care Courses
+                        </option>
+                        <option value="Recovery Care Courses">
+                          Recovery Care Course
+                        </option>
+                        <option value="Child Care Courses">
+                          Child Care Courses
+                        </option>
+                      </select>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              
-            <div className="col-8 mt-4 ">
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <Card>
-                  <Card.Body>
-                    <Table responsive>
-                      <thead>
-                        <tr style={{background:'#212a50'}}>
-                          <th>
-                            <strong>Index</strong>
-                          </th>
-                          <th>
-                            <strong>Course Category</strong>
-                          </th>
-                          <th>
-                            <strong>Course Name</strong>
-                          </th>
-                          <th>
-                            <strong>Action</strong>
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                       
-                            <tr>
-                              <td style={{ textAlign: "center" }}>
-                                <strong></strong>
-                              </td>
+                <div className="col-8 mt-4 ">
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <Card>
+                      <Card.Body>
+                        <Table responsive>
+                          <thead>
+                            <tr style={{ background: "#212a50" }}>
+                              <th>
+                                <strong>Index</strong>
+                              </th>
+                              <th>
+                                <strong>Course Category</strong>
+                              </th>
+                              <th>
+                                <strong>Course Name</strong>
+                              </th>
+                              <th>
+                                <strong>Action</strong>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {selectedCourse.map((item) => (
+                              <tr>
+                                <td style={{ textAlign: "center" }}>
+                                  <strong>{item?.id}</strong>
+                                </td>
 
-                              <td style={{ textAlign: "center" }}>
-                               
-                              </td>
-                              <td style={{ textAlign: "center" }}>
-                                
-                              </td>
-                              <td>
-                                {/* <Button
+                                <td style={{ textAlign: "center" }}>
+                                  {item?.category}
+                                </td>
+                                <td style={{ textAlign: "center" }}>
+                                  {item?.name}
+                                </td>
+                                <td>
+                                  {/* <Button
                                   className="me-2"
                                   variant="primary btn-icon-xxs"
                                 >
                                   <BiSolidEdit />
                                 </Button> */}
-                                <Button
-                                  className="me-2"
-                                  variant="danger btn-icon-xxs"
-                                  
-                                >
-                                  <RiChatDeleteFill />
-                                </Button>
-                              </td>
-                            </tr>
-                       
-                      </tbody>
-                    </Table>
-                  </Card.Body>
-                </Card>
-              </div>
-            </div>
+                                  <Button
+                                    className="me-2"
+                                    variant="danger btn-icon-xxs"
+                                  >
+                                    <RiChatDeleteFill
+                                      onClick={() =>
+                                        setSelectedCourse(
+                                          selectedCourse.filter(
+                                            (i) => i.id != item.id
+                                          )
+                                        )
+                                      }
+                                    />
+                                  </Button>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </Table>
+                      </Card.Body>
+                    </Card>
+                  </div>
+                </div>
 
-            <div className="col-4" style={{  }}>
-                <div className="card-body">
-                  <h4 className="" style={{ textAlign: "center" }}>
-                    Add Course:
-                  </h4>
-                  <div className="form-group mb-3">
-                    <select
-                      onChange={handleChange}
-                      defaultValue={"option"}
-                      name="category"
-                      className="form-control form-control"
-                    >
-                      <option>Select</option>
-                      <option value="Care Course">Care Course</option>
-                      
-                    </select>
+                <div className="col-4" style={{}}>
+                  <div className="card-body">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      Add Course:
+                    </h4>
+                    <div className="form-group mb-3">
+                      <select
+                        ref={courseRef}
+                        onChange={(e) => {
+                          if (!e.target.value) return;
+                          if (
+                            selectedCourse.find(
+                              (item) => item.id == e.target.value
+                            )
+                          )
+                            return;
+                          setSelectedCourse((prev) => {
+                            return [
+                              ...prev,
+                              filteredCourse.find(
+                                (item) => item.id == e.target.value
+                              ),
+                            ];
+                          });
+                          categoryRef.current.selectedIndex = 0;
+                        }}
+                        defaultValue={"option"}
+                        name="category"
+                        className="form-control form-control"
+                      >
+                        <option value="">Select</option>
+                        {filteredCourse.map((item) => (
+                          <option value={item.id}>{item.name}</option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
                 </div>
               </div>
-
-              </div>
-
-            
 
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <div className="card-body">
@@ -231,7 +284,7 @@ const AddBundle = () => {
                   </h4>
                   <div className="form-group ">
                     <textarea
-                      value={course.description}
+                      value={bundle.description}
                       onChange={handleChange}
                       name="description"
                       className="form-control"
@@ -244,30 +297,32 @@ const AddBundle = () => {
               </div>
 
               <div className="d-flex justify-content-center">
-              
-              <div className="col-6">
-              <div  style={{ }}>
-                <div className="card-body">
-                  <h4 className="" style={{ textAlign: "center" }}>
-                    Upload Bundle Image:
-                  </h4>
-                  <div className="">
-                    <label htmlFor="formFile" className="form-label"></label>
-                    <input
-                      className="form-control"
-                      type="file"
-                      id="formFile"
-                      onChange={(e) =>
-                        setCourse({ ...course, thumbnail: e.target.files[0] })
-                      }
-                    />
+                <div className="col-6">
+                  <div style={{}}>
+                    <div className="card-body">
+                      <h4 className="" style={{ textAlign: "center" }}>
+                        Upload Bundle Image:
+                      </h4>
+                      <div className="">
+                        <label
+                          htmlFor="formFile"
+                          className="form-label"
+                        ></label>
+                        <input
+                          className="form-control"
+                          type="file"
+                          id="formFile"
+                          onChange={(e) =>
+                            setBundle((prev) => {
+                              return { ...prev, image: e.target.files[0] };
+                            })
+                          }
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-
-              </div>
-
-            </div>
 
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <div className="m-2 p-2 ">
@@ -275,7 +330,7 @@ const AddBundle = () => {
                     className=""
                     variant="primary"
                     type="button"
-                    onClick={submit}
+                    onClick={handleSubmit}
                   >
                     Submit
                   </Button>
