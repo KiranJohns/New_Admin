@@ -18944,7 +18944,8 @@ input#checkAll.form-check-input:checked {
     width: 100%; }
 
 .profile .profile-photo {
-  max-width: 6.25rem;
+  max-width: 8rem;
+  max-height: 8rem;
   position: relative;
   z-index: 1;
   margin-top: -4.5rem;

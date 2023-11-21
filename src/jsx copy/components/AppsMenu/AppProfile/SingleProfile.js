@@ -359,13 +359,14 @@ const SingleProfile = () => {
                 </div>
               </div>
               <div className="profile-info">
-                <div
+                <div  
+                style={{boxSizing:'border-box', padding:'.8rem .6rem .45rem .6rem',background:"white", borderRadius:".3rem"}}
                   className="profile-photo "
                   onMouseOver={() => setShowEditProfileBtn(true)}
                   onMouseLeave={() => setShowEditProfileBtn(false)}
                 >
-                  <img
-                    style={{ width: "8rem", height: "7rem" }}
+                  <img      
+                    style={{ width: "8.5rem", height: "7rem"   }}
                     src={changeProfile ? URL.createObjectURL(profile) : profile}
                     className="img-fluid rounded-circle"
                     alt="profile"
@@ -378,7 +379,7 @@ const SingleProfile = () => {
                       profileOnChange(e);
                     }}
                   />
-                  <Button
+                  {/* <Button
                     className="me-2"
                     style={{
                       opacity: showEditProfileBtn ? "0.8" : "-1",
@@ -389,9 +390,19 @@ const SingleProfile = () => {
                     }}
                     variant="primary btn-icon-xxs"
                     onClick={() => profileRef.current.click()}
-                  >
-                    <BiSolidEdit />
-                  </Button>
+                  > */}
+                    <BiSolidEdit   style={{
+                      color:"#212a50",
+                      fontSize:"22px",
+                      // opacity: showEditProfileBtn ? "0.8" : "-1",
+                      // transition: "0.5s",
+                      position: "absolute",
+                      top: "2px",
+                      left: "85px",
+                      cursor:'pointer'
+                    }}
+                    onClick={() => profileRef.current.click()}/>
+                  {/* </Button> */}
                 </div>
                 <div className="profile-details">
                   <div className="profile-name px-3 pt-2">
@@ -417,21 +428,23 @@ const SingleProfile = () => {
                     <div
                       style={{
                         display: "flex",
-                        justifyContent: "flex-end",
+                        justifyContent: "flex-start",
                         alignItems: "center",
+                        marginBottom:'1rem',
+                        background:"#212A50"
                       }}
                     >
                       <div>
                         <a href="/edit-profile">
                           {" "}
-                          {/* <Button className="me-2" variant=" btn-icon-xxs"> */}
+                          <Button className="me-2" variant="primary btn-icon-xxs">
                           <BiSolidEdit
                             style={{
-                              fontSize: "1.7rem",
-                              border: "solid 1px #212a50",
+                              fontSize: "1rem",
+                              // border: "solid 1px #212a50",
                             }}
                           />
-                          {/* </Button> */}
+                          </Button>
                         </a>
                       </div>
                     </div>
@@ -444,90 +457,90 @@ const SingleProfile = () => {
           <th>Username</th>
         </tr> */}
                       </thead>
-                      <tbody>
-                        <tr>
-                          <td style={{ fontWeight: "700" }} className="col-5">
+                      <tbody style={{color:"#212a50"}}>
+                        <tr >
+                          <td style={{ fontWeight: "500" }} className="col-5">
                             Employee ID
                           </td>
-                          <td style={{ fontWeight: "600" }}>
+                          <td style={{ fontWeight: "500" }}>
                             {userData.employee_id}
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>Employee Name</td>
-                          <td style={{ fontWeight: "600" }}>
+                          <td style={{ fontWeight: "500" }}>Employee Name</td>
+                          <td style={{ fontWeight: "500" }}>
                             {userData?.employee_name}
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>Designation</td>
-                          <td style={{ fontWeight: "600" }}>
+                          <td style={{ fontWeight: "500" }}>Designation</td>
+                          <td style={{ fontWeight: "500" }}>
                             {userData.designation}
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>Department</td>
-                          <td style={{ fontWeight: "600" }}>
+                          <td style={{ fontWeight: "500" }}>Department</td>
+                          <td style={{ fontWeight: "500" }}>
                             {userData.department}
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>Phone</td>
-                          <td style={{ fontWeight: "600" }}>
+                          <td style={{ fontWeight: "500" }}>Phone</td>
+                          <td style={{ fontWeight: "500" }}>
                             {userData.phone}
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>Email</td>
-                          <td style={{ fontWeight: "600" }}>
+                          <td style={{ fontWeight: "500" }}>Email</td>
+                          <td style={{ fontWeight: "500" }}>
                             {userData.email}
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>Contact No</td>
-                          <td style={{ fontWeight: "600" }}>
+                          <td style={{ fontWeight: "500" }}>Contact No</td>
+                          <td style={{ fontWeight: "500" }}>
                             {userData.contact_no}
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "bold" }}>Gender</td>
-                          <td style={{ fontWeight: "600" }}>
+                          <td style={{ fontWeight: "500" }}>Gender</td>
+                          <td style={{ fontWeight: "500" }}>
                             {userData.gender}
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>Date of Birth</td>
-                          <td style={{ fontWeight: "600" }}>
+                          <td style={{ fontWeight: "500" }}>Date of Birth</td>
+                          <td style={{ fontWeight: "500" }}>
                             {userData.date_of_birth}
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>
+                          <td style={{ fontWeight: "500" }}>
                             Next to Kin Name
                           </td>
-                          <td style={{ fontWeight: "600" }}>
+                          <td style={{ fontWeight: "500" }}>
                             {userData.next_to_kin}
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>
+                          <td style={{ fontWeight: "500" }}>
                             Next to Kin Number
                           </td>
-                          <td style={{ fontWeight: "600" }}>
+                          <td style={{ fontWeight: "500" }}>
                             {userData.next_to_kin_number}
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>
+                          <td style={{ fontWeight: "500" }}>
                             Payroll Reference number
                           </td>
-                          <td style={{ fontWeight: "600" }}>
+                          <td style={{ fontWeight: "500" }}>
                             {userData.payroll_reference_number}
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>Medical Details</td>
-                          <td style={{ fontWeight: "600" }}>
+                          <td style={{ fontWeight: "500" }}>Medical Details</td>
+                          <td style={{ fontWeight: "500" }}>
                             {userData.medical_details}
                           </td>
                         </tr>
@@ -535,65 +548,65 @@ const SingleProfile = () => {
                           <td style={{ fontWeight: "700" }}>
                             National Insurance Number
                           </td>
-                          <td style={{ fontWeight: "600" }}>
+                          <td style={{ fontWeight: "500" }}>
                             {userData.national_insurance_number}
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>Contract Type</td>
-                          <td style={{ fontWeight: "600" }}>
+                          <td style={{ fontWeight: "500" }}>Contract Type</td>
+                          <td style={{ fontWeight: "500" }}>
                             {userData.contract_type}
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "bold" }}>
+                          <td style={{ fontWeight: "500" }}>
                             Date of joining
                           </td>
-                          <td style={{ fontWeight: "600" }}>
+                          <td style={{ fontWeight: "500" }}>
                             {userData.date_of_joining}
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>
+                          <td style={{ fontWeight: "500" }}>
                             Correspondence Address
                           </td>
-                          <td style={{ fontWeight: "600" }}>
+                          <td style={{ fontWeight: "500" }}>
                             {userData.correspondence_address}
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>Brief Profile</td>
-                          <td style={{ fontWeight: "600" }}>
+                          <td style={{ fontWeight: "500" }}>Brief Profile</td>
+                          <td style={{ fontWeight: "500" }}>
                             {userData.brief_profile}
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>
+                          <td style={{ fontWeight: "500" }}>
                             Permanent Address
                           </td>
-                          <td style={{ fontWeight: "600" }}>
+                          <td style={{ fontWeight: "500" }}>
                             {userData.brief_profile}
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>
+                          <td style={{ fontWeight: "500" }}>
                             Recent Qualification
                           </td>
-                          <td style={{ fontWeight: "600" }}>
+                          <td style={{ fontWeight: "500" }}>
                             {userData.recent_qualification}
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>
+                          <td style={{ fontWeight: "500" }}>
                             Permanent Address
                           </td>
-                          <td style={{ fontWeight: "600" }}>
+                          <td style={{ fontWeight: "500" }}>
                             {userData.permanent_address}
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>Staff CV</td>
-                          <td style={{ fontWeight: "600" }}>
+                          <td style={{ fontWeight: "500" }}>Staff CV</td>
+                          <td style={{ fontWeight: "500" }}>
                             <a
                               target="_blank"
                               href="userData.staff_cv"
@@ -605,8 +618,8 @@ const SingleProfile = () => {
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "700" }}>Agreement</td>
-                          <td style={{ fontWeight: "600" }}>
+                          <td style={{ fontWeight: "500" }}>Agreement</td>
+                          <td style={{ fontWeight: "500" }}>
                             I have read and agree to Learning Ltd
                             <a href="#" style={{ color: "blue" }}>
                               {" "}
@@ -628,28 +641,28 @@ const SingleProfile = () => {
           <th>Username</th>
         </tr> */}
                         </thead>
-                        <tbody>
+                        <tbody style={{color:'#212a50'}}>
                           <tr>
-                            <td style={{ fontWeight: "700" }} className="col-5">
+                            <td style={{ fontWeight: "500" }} className="col-5">
                               Bank Holder Name
                             </td>
-                            <td style={{ fontWeight: "600" }}>{userData.bank_holder_name}</td>
+                            <td style={{ fontWeight: "500" }}>{userData.bank_holder_name}</td>
                           </tr>
                           <tr>
-                            <td style={{ fontWeight: "700" }}>Bank Name</td>
-                            <td style={{ fontWeight: "600" }}>{userData.bank_name}</td>
+                            <td style={{ fontWeight: "500" }}>Bank Name</td>
+                            <td style={{ fontWeight: "500" }}>{userData.bank_name}</td>
                           </tr>
                           <tr>
-                            <td style={{ fontWeight: "700" }}>Accoount No</td>
-                            <td style={{ fontWeight: "600" }}>{userData.account_no}</td>
+                            <td style={{ fontWeight: "500" }}>Accoount No</td>
+                            <td style={{ fontWeight: "500" }}>{userData.account_no}</td>
                           </tr>
                           <tr>
-                            <td style={{ fontWeight: "700" }}>Sort Code</td>
-                            <td style={{ fontWeight: "600" }}>{userData.sort_code}</td>
+                            <td style={{ fontWeight: "500" }}>Sort Code</td>
+                            <td style={{ fontWeight: "500" }}>{userData.sort_code}</td>
                           </tr>
                           <tr>
-                            <td style={{ fontWeight: "700" }}>Roll Number</td>
-                            <td style={{ fontWeight: "600" }}>{userData.roll_number}</td>
+                            <td style={{ fontWeight: "500" }}>Roll Number</td>
+                            <td style={{ fontWeight: "500" }}>{userData.roll_number}</td>
                           </tr>
                         </tbody>
                       </Table>
@@ -732,7 +745,7 @@ const SingleProfile = () => {
                     >
                       <Button
                         style={{ marginTop: "1rem", marginRight: "1rem" }}
-                        variant="primary"
+                        variant="success"
                         size="md"
                         active
                         onClick={() => setOpenModalForQualification(true)}
@@ -741,7 +754,7 @@ const SingleProfile = () => {
                       </Button>
                     </div>
                     <Table striped style={{ marginTop: "1rem" }}>
-                      <thead style={{ backgroundColor: "gray" }}>
+                      <thead style={{ backgroundColor: "#212a50" }}>
                         <tr>
                           <th>Course Name</th>
                           <th>University Name</th>
@@ -875,7 +888,7 @@ const SingleProfile = () => {
                     >
                       <Button
                         style={{ marginTop: "1rem", marginRight: "1rem" }}
-                        variant="primary"
+                        variant="success"
                         size="md"
                         active
                         onClick={() => setOpenModalForWorkExp(true)}
@@ -884,7 +897,7 @@ const SingleProfile = () => {
                       </Button>
                     </div>
                     <Table striped style={{ marginTop: "1rem" }}>
-                      <thead style={{ backgroundColor: "gray" }}>
+                      <thead style={{ backgroundColor: "#212a50" }}>
                         <tr>
                           <th>Organization Name</th>
                           <th>Position</th>
