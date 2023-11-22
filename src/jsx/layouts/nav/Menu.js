@@ -203,11 +203,6 @@ export const MenuList = [
         iconStyle: <i className="material-symbols-outlined">assessment</i>,
         content: [
             {   
-                title:'Training Matrix',        
-                iconStyle: <i className="material-icons">assessment</i>,
-                to: 'training-matrix',
-            },
-            {   
                 title:'Course Matrix',        
                 iconStyle: <i className="material-icons">assessment</i>,
                 to: 'course-matrix',

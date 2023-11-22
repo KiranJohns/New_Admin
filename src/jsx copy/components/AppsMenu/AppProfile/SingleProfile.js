@@ -406,14 +406,14 @@ const SingleProfile = () => {
                 </div>
                 <div className="profile-details">
                   <div className="profile-name px-3 pt-2">
-                    <h4 className="text-primary mb-0">
+                    <h3 className="text-primary mb-0">
                       {userData?.employee_name}
-                    </h4>
+                    </h3>
                     {/* <p style={{ visibility: "hidden" }}>{userData.designation}</p> */}
                   </div>
                   <div className="profile-email px-2 pt-2">
-                    <h4 className="text-muted mb-0">{userData.email}</h4>
-                    {/* <p style={{ visibility: "hidden" }}>Email</p> */}
+                    <h4 style={{ visibility: "hidden" }} className="text-muted mb-0">{userData.email}</h4>
+                    <p style={{ visibility: "hidden" }}>Email</p>
                   </div>
                 </div>
               </div>
@@ -449,7 +449,7 @@ const SingleProfile = () => {
                         </a>
                       </div>
                     </div>
-                    <Table bordered hover>
+                    <Table bordered hover responsive>
                       <thead>
                         {/* <tr>
           <th>#</th>
@@ -633,7 +633,7 @@ const SingleProfile = () => {
 
                     <div style={{ padding: "2rem", background: "" }}>
                       <h3>Bank Details</h3>
-                      <Table bordered hover>
+                      <Table bordered hover responsive>
                         <thead>
                           {/* <tr>
           <th>#</th>
@@ -754,7 +754,7 @@ const SingleProfile = () => {
                         Upload Document
                       </Button>
                     </div>
-                    <Table striped style={{ marginTop: "1rem" }}>
+                    <Table  responsive style={{ marginTop: "1rem" }}>
                       <thead style={{ backgroundColor: "#212a50" }}>
                         <tr>
                           <th>Course Name</th>
@@ -897,7 +897,7 @@ const SingleProfile = () => {
                         Upload Document
                       </Button>
                     </div>
-                    <Table striped style={{ marginTop: "1rem" }}>
+                    <Table  responsive style={{ marginTop: "1rem" }}>
                       <thead style={{ backgroundColor: "#212a50" }}>
                         <tr>
                           <th>Organization Name</th>

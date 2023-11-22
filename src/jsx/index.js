@@ -33,7 +33,7 @@ import AddCertificate from "./components/Student/AddCertificate";
 import EditCourse from "./components/Food/editCourse";
 import PurchasedCourses from "./components/PurchasedCourses";
 import PurchasedBundles from "./components/PurchasedBundles";
-import MyBundles from "./components/MyBundles";
+import MyBundle from "./components/MyBundles";
 import TrainingMatrix from "./components/TrainingMatrix";
 import BundleMatrix from "./components/BundleMatrix";
 import CourseMatrix from "./components/CourseMatrix";
@@ -151,17 +151,17 @@ import Error500 from "./pages/Error500";
 import Error503 from "./pages/Error503";
 import { ThemeContext } from "../context/ThemeContext";
 
+
 const Markup = () => {
   const routhPath = [
-    {url:"individual-reports", components:<CourseIndReport/>},
-    {url:"manager-reports", components:<CourseManReport/>},
-    {url:"training-matrix", components:<TrainingMatrix/>},
-    {url:"course-matrix", components:<CourseMatrix/>},
-    {url:"bundle-matrix", components:<BundleMatrix/>},
-    {url:"manager", components:<ManagerTable/>},
-    {url:"view-bundles", components:< MyBundles/>},
-    {url:"purchased-bundles", components:<PurchasedBundles/>},
-     {url:"purchased-courses", components:<PurchasedCourses/>},
+    {url:"individual-reports", component:<CourseIndReport/>},
+    {url:"manager-reports", component:<CourseManReport/>},
+    {url:"course-matrix", component:<CourseMatrix/>},
+    {url:"bundle-matrix", component:<BundleMatrix/>},
+    {url:"manager", component:<ManagerTable/>},
+    {url:"view-bundles", component:<MyBundle/>},
+    {url:"purchased-bundles", component:<PurchasedBundles/>},
+     {url:"purchased-courses", component:<PurchasedCourses/>},
     {url:'course-details',component: <SingleCourse />},
     {url:'add-details',component: <AddDetails />},
     {url:'profile',component: <SingleProfile />},

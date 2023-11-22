@@ -145,7 +145,7 @@ const tabledata4 = [
   },
 ];
 
-const MyBundles = () => {
+const MyBundle = () => {
   const makeRequest = fetchData()
   const [course, setCourse] = useState([])
   const navigate = useNavigate()
@@ -169,10 +169,10 @@ const MyBundles = () => {
   }
   return (
     <div className="card">
-      {/* <Col lg={12}>
+      <Col lg={12}>
         <Card>
           <Card.Header>
-            <Card.Title>All Courses</Card.Title>
+            <Card.Title>All Bundles</Card.Title>
           </Card.Header>
           <Card.Body>
             <Table responsive>
@@ -182,10 +182,10 @@ const MyBundles = () => {
                     <strong>ID</strong>
                   </th>
                   <th>
-                    <strong>Course Name</strong>
+                    <strong>Bundle Name</strong>
                   </th>
                   <th>
-                    <strong>Category</strong>
+                    <strong>Number of Courses</strong>
                   </th>
                   <th>
                     <strong>Description</strong>
@@ -216,12 +216,12 @@ const MyBundles = () => {
                     </Badge>
                   </td>
                   <td>
-                    <Button className="me-2" variant="success btn-icon-xxs">
+                    {/* <Button className="me-2" variant="success btn-icon-xxs">
                       <FaEye />
                     </Button>
                     <Button className="me-2" variant="primary btn-icon-xxs" onClick={() => navigate("/edit-course",{state:{id: item.id}})}>
                       <BiSolidEdit />
-                    </Button>
+                    </Button> */}
                     <Button className="me-2" variant="danger btn-icon-xxs">
                       <RiChatDeleteFill onClick={() => handleDelete(item.id)} />
                     </Button>
@@ -231,9 +231,9 @@ const MyBundles = () => {
             </Table>
           </Card.Body>
         </Card>
-      </Col> */}
+      </Col>
     </div>
   );
 };
 
-export default MyBundles;
+export default MyBundle;

@@ -146,6 +146,7 @@ const tabledata4 = [
 ];
 
 const PurchasedCourses = () => {
+
   const makeRequest = fetchData()
   const [course, setCourse] = useState([])
   const navigate = useNavigate()
@@ -169,7 +170,7 @@ const PurchasedCourses = () => {
   }
   return (
     <div className="card">
-      {/* <Col lg={12}>
+      <Col lg={12}>
         <Card>
           <Card.Header>
             <Card.Title>All Courses</Card.Title>
@@ -231,7 +232,7 @@ const PurchasedCourses = () => {
             </Table>
           </Card.Body>
         </Card>
-      </Col> */}
+      </Col>
     </div>
   );
 };

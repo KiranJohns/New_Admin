@@ -169,7 +169,7 @@ const PurchasedBundles = () => {
   }
   return (
     <div className="card">
-      {/* <Col lg={12}>
+      <Col lg={12}>
         <Card>
           <Card.Header>
             <Card.Title>All Courses</Card.Title>
@@ -182,19 +182,19 @@ const PurchasedBundles = () => {
                     <strong>ID</strong>
                   </th>
                   <th>
-                    <strong>Course Name</strong>
+                    <strong>Bundle Name</strong>
                   </th>
                   <th>
                     <strong>Category</strong>
                   </th>
                   <th>
-                    <strong>Description</strong>
+                    <strong>User Name</strong>
                   </th>
                   <th>
                     <strong>Price</strong>
                   </th>
                   <th>
-                    <strong>Status</strong>
+                    <strong>Date</strong>
                   </th>
                   <th>
                     <strong>Action</strong>
@@ -231,7 +231,7 @@ const PurchasedBundles = () => {
             </Table>
           </Card.Body>
         </Card>
-      </Col> */}
+      </Col>
     </div>
   );
 };
