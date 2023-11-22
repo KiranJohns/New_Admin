@@ -12,6 +12,7 @@ import avatar from "../../../images/avatar/1.jpg";
 import avatar2 from "../../../images/avatar/2.jpg";
 import avatar3 from "../../../images/avatar/3.jpg";
 import avatar4 from "../../../images/avatar/4.jpg";
+import avatar5 from "../../../images/squareprofile.jpg";
 import { ThemeContext } from "../../../context/ThemeContext";
 
 const searchList = [
@@ -23,6 +24,7 @@ const searchList = [
 	{image: avatar4, title:'Harry'},
 	{image: avatar, title:'Benjamin'},
 	{image: avatar3, title:'Lucas'},
+	{image: avatar5, title:'Admin'},
 ];
 
 export function  SideBarAdd(){
@@ -167,6 +169,7 @@ const Header2 = ({ onNote }) => {
 						</div>
 					</Dropdown.Menu>
 				</Dropdown> */}
+				
                 <li className="nav-item dropdown notification_dropdown">
                     <Link to={"#"} className="nav-link  menu-wallet" onClick={()=>SideBarAdd()}>
 						<svg id="Layer_2" enableBackground="new 0 0 512 512" height="18" viewBox="0 0 512 512" width="18" xmlns="http://www.w3.org/2000/svg"><g><path d="m174 240h-108c-36.393 0-66-29.607-66-66v-108c0-36.393 29.607-66 66-66h108c36.393 0 66 29.607 66 66v108c0 36.393-29.607 66-66 66zm-108-208c-18.748 0-34 15.252-34 34v108c0 18.748 15.252 34 34 34h108c18.748 0 34-15.252 34-34v-108c0-18.748-15.252-34-34-34z"/><path d="m446 240h-108c-36.393 0-66-29.607-66-66v-108c0-36.393 29.607-66 66-66h108c36.393 0 66 29.607 66 66v108c0 36.393-29.607 66-66 66zm-108-208c-18.748 0-34 15.252-34 34v108c0 18.748 15.252 34 34 34h108c18.748 0 34-15.252 34-34v-108c0-18.748-15.252-34-34-34z"/><path d="m392 512c-66.168 0-120-53.832-120-120s53.832-120 120-120 120 53.832 120 120-53.832 120-120 120zm0-208c-48.523 0-88 39.477-88 88s39.477 88 88 88 88-39.477 88-88-39.477-88-88-88z"/><path d="m174 512h-108c-36.393 0-66-29.607-66-66v-108c0-36.393 29.607-66 66-66h108c36.393 0 66 29.607 66 66v108c0 36.393-29.607 66-66 66zm-108-208c-18.748 0-34 15.252-34 34v108c0 18.748 15.252 34 34 34h108c18.748 0 34-15.252 34-34v-108c0-18.748-15.252-34-34-34z"/></g></svg>
@@ -184,6 +187,7 @@ const Header2 = ({ onNote }) => {
 						</i>
 					</Link>
 				</li>
+
 				{/* <li className="nav-item dropdown notification_dropdown">
 					<Link to={"#"} className="nav-link bell dz-fullscreen" 
 						ref={fullscreenRef} onClick={EnterFullScreen}
@@ -394,7 +398,7 @@ const Header2 = ({ onNote }) => {
 					<Dropdown className="dropdown header-profile2">
 						<Dropdown.Toggle variant="" as="a" className="nav-link i-false c-pointer ms-0">							
 							<div className="header-info2 d-flex align-items-center">								
-								<img src={profile}  alt="" />
+								<img src={avatar5}  alt="" />
 							</div>
 						</Dropdown.Toggle>
 						<Dropdown.Menu align="end" className="mt-1 dropdown-menu dropdown-menu-end" >
@@ -402,17 +406,17 @@ const Header2 = ({ onNote }) => {
 								<div className="card-header p-3">
 									<ul className="d-flex align-items-center">
 										<li>
-											<img src={profile} className="ms-0" alt="" />
+											<img src={avatar5} className="ms-0" alt="" />
 										</li>
 										<li className="ms-2">
-											<h4 className="mb-0">Nella Vita</h4>
+											<h4 className="mb-0">Admin Name</h4>
 											<span>Admin</span>
 										</li>
 									</ul>
 
 								</div>
 								<div className="card-body p-3">
-									<Link to="/app-profile" className="dropdown-item ai-icon">
+									<Link to="/profile" className="dropdown-item ai-icon">
 										<svg xmlns="http://www.w3.org/2000/svg"  width="24px" height="24px" viewBox="0 0 24 24" version="1.1" className="svg-main-icon">
 											<g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
 												<polygon points="0 0 24 0 24 24 0 24"/>
