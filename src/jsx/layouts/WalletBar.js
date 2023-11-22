@@ -38,7 +38,7 @@ const WalletBar = () => {
   const AddMoreData = () => {
     setload(true);
     setTimeout(() => {
-      const randomIndex = Math.floor(Math.random() * addList.length);
+      const randomIndex = Math.floor(Math.random() * addList?.length);
       const randomItem = addList[randomIndex];
       setAddList((prevArray) => [...prevArray, randomItem]);
       setload(false);
