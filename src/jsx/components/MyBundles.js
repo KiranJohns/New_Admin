@@ -24,135 +24,17 @@ import { useEffect } from "react";
 //   </svg>
 // );
 
-const tabledata = [
-  {
-    image: IMAGES.food1,
-    title: "Beef Steak with Fried Potato",
-    subtitle: "Dinner",
-    rating: "5.0",
-    sales: "1,210",
-    intrest: "20%",
-  },
-  {
-    image: IMAGES.food2,
-    title: "Pancake with Honey",
-    subtitle: "Breakfast",
-    rating: "4.9",
-    sales: "1,110",
-    intrest: "13&",
-  },
-  {
-    image: IMAGES.food3,
-    title: "Japanese Beef Ramen",
-    subtitle: "Lunch",
-    rating: "4.8",
-    sales: "1,050",
-    intrest: "18%",
-  },
-  {
-    image: IMAGES.food4,
-    title: "Mixed Salad",
-    subtitle: "Lunch",
-    rating: "5.0",
-    sales: "1,400",
-    intrest: "17%",
-  },
-  {
-    image: IMAGES.food5,
-    title: "Snack Beef Meatball with Vegetable",
-    subtitle: "Snack",
-    rating: "4.8",
-    sales: "1,456",
-    intrest: "15%",
-  },
-];
-const tabledata2 = [
-  {
-    image: IMAGES.food5,
-    title: "Beef Steak with Fried Potato",
-    subtitle: "Breakfast",
-    rating: "5.0",
-    sales: "1,210",
-    intrest: "20%",
-  },
-  {
-    image: IMAGES.food2,
-    title: "Pancake with Honey",
-    subtitle: "Breakfast",
-    rating: "4.9",
-    sales: "1,110",
-    intrest: "13&",
-  },
-  {
-    image: IMAGES.food3,
-    title: "Japanese Beef Ramen",
-    subtitle: "Breakfast",
-    rating: "4.8",
-    sales: "1,050",
-    intrest: "18%",
-  },
-];
-const tabledata3 = [
-  {
-    image: IMAGES.food2,
-    title: "Beef Steak with Fried Potato",
-    subtitle: "Lunch",
-    rating: "5.0",
-    sales: "1,210",
-    intrest: "20%",
-  },
-  {
-    image: IMAGES.food2,
-    title: "Pancake with Honey",
-    subtitle: "Lunch",
-    rating: "4.9",
-    sales: "1,110",
-    intrest: "13&",
-  },
-  {
-    image: IMAGES.food3,
-    title: "Japanese Beef Ramen",
-    subtitle: "Lunch",
-    rating: "4.8",
-    sales: "1,050",
-    intrest: "18%",
-  },
-  {
-    image: IMAGES.food4,
-    title: "Mixed Salad",
-    subtitle: "Lunch",
-    rating: "5.0",
-    sales: "1,400",
-    intrest: "17%",
-  },
-];
-const tabledata4 = [
-  {
-    image: IMAGES.food3,
-    title: "Mixed Salad",
-    subtitle: "Snack",
-    rating: "5.0",
-    sales: "1,400",
-    intrest: "17%",
-  },
-  {
-    image: IMAGES.food5,
-    title: "Snack Beef Meatball with Vegetable",
-    subtitle: "Snack",
-    rating: "4.8",
-    sales: "1,456",
-    intrest: "15%",
-  },
-];
+
 
 const MyBundle = () => {
   const makeRequest = fetchData()
-  const [course, setCourse] = useState([])
   const navigate = useNavigate()
 
+  const [bundles, setBundles] = useState([])
   useEffect(() => {
-    makeRequest("GET","/course/get-all-course").then(res => {
-      setCourse(res.data.response);
+    makeRequest("GET","/bundle/get-all-course-bundles").then(res => {
+      setBundles(res.data.response)
+      console.log(res);
     }).catch(err => {
       console.log(err);
     })
@@ -160,13 +42,14 @@ const MyBundle = () => {
 
 
   function handleDelete(id) {
-    makeRequest("DELETE",`/course/delete/${id}`).then(res => {
-      setCourse(prev => prev.filter(item => item.id != Number(id)));
-      swal("Done!","successfully deleted", "success")
+    makeRequest("DELETE",`/bundle/delete-bundle/${id}`).then(res => {
+      swal("Deleted!", "Your bundle has been deleted.", "success");
+      setBundles(bundles.filter(item => item.id != id))
     }).catch(err => {
       console.log(err);
     })
   }
+  
   return (
     <div className="card">
       <Col lg={12}>
@@ -202,12 +85,12 @@ const MyBundle = () => {
                 </tr>
               </thead>
               <tbody>
-                {course && course.map((item,id) => <tr style={{ textAlign: "center" }}>
+                {bundles && bundles.map((item,id) => <tr style={{ textAlign: "center" }}>
                   <td>
-                    <strong>{id}</strong>
+                    <strong>{++id}</strong>
                   </td>
                   <td>{item.name}</td>
-                  <td>{item.category}</td>
+                  <td>{JSON.parse(item.courses).split(",").length}</td>
                   <td>{item.description.slice(0,30)}</td>
                   <td>{item.price}</td>
                   <td>
