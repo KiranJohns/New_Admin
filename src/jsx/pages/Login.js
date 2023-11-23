@@ -5,7 +5,7 @@ import {
   loadingToggleAction,
   loginAction,
 } from "../../store/actions/AuthActions";
-
+import { FaEye } from "react-icons/fa";
 // image
 
 import BgImage from "../../images/bg1.png";
@@ -13,6 +13,7 @@ import logo from "../../images/logo-full.png";
 import logolight from "../../images/logo-white.png";
 import pol from "../../images/pol.jpg";
 import careLogo from "../../images/activity-img/logo7.png";
+import { FaEyeSlash } from "react-icons/fa";
 
 function Login(props) {
   let errorsObj = { email: "", password: "" };
@@ -20,6 +21,7 @@ function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [superAdmin, setSuperAdmin] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -130,17 +132,23 @@ function Login(props) {
                           </div>
                         )}
                       </div>
-                      <div className="mb-3">
+                      <div className="mb-3"  style={{position:"relative"}}>
                         <label className="mb-1">
                           <strong>Password</strong>
                         </label>
                         <input
-                          type="password"
+                          type={showPassword ? "text" : "password"}
                           className="form-control"
                           value={password}
                           placeholder="Type Your Password"
                           onChange={(e) => setPassword(e.target.value)}
+                          onClick={() => setShowPassword((prev) => !prev)}
                         />
+                    <div  id="pasToggle"
+                          style={{ cursor: "pointer" }}
+                          onClick={() => setShowPassword((prev) => !prev)}>   
+                          {<FaEye style={{position:'absolute', top:"37", right:'10',font:"1.3rem"}}/>}
+                          </div>
                         {errors.password && (
                           <div className="text-danger fs-12">
                             {errors.password}
@@ -163,6 +171,7 @@ function Login(props) {
                                 className="form-check-input"
                                 value={superAdmin}
                                 onChange={(e) => setSuperAdmin((prev) => !prev)}
+                                
                               />
                               Super-Admin
                             </label>
