@@ -133,6 +133,11 @@ export const MenuList = [
                 iconStyle: <i className="material-icons">insert_drive_file</i>,
                 to: 'view-exam',
             },
+            {   
+                title:'Assign Course',        
+                iconStyle: <i className="material-icons">insert_drive_file</i>,
+                to: 'assign-course',
+            },
             
         ],
     },
@@ -244,7 +249,7 @@ export const MenuList = [
             },
         ],
     },
-  
+   
 
 
     // {

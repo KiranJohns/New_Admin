@@ -157,10 +157,7 @@ function Login(props) {
                       </div>
                       <div className="row d-flex justify-content-between mt-4 mb-2">
                         <div className="mb-3">
-                          {/* <div className="form-check custom-checkbox ms-1">
-														<input type="checkbox" className="form-check-input" id="basic_checkbox_1" />
-														<label className="form-check-label" htmlFor="basic_checkbox_1">Remember my preference</label>
-													</div> */}
+                        
                         </div>
 
                         <div className="form-group mb-3">
@@ -178,7 +175,7 @@ function Login(props) {
                           </div>
                         </div>
                       </div>
-                      <div className="text-center mb-4">
+                      <div className="text-center mb-4 ">
                         <button
                           type="submit"
                           className="btn btn-primary btn-block"
