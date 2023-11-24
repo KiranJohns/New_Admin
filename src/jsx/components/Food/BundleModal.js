@@ -11,289 +11,135 @@ import swal from "sweetalert";
 import { useEffect } from "react";
 import { Modal } from "react-bootstrap";
 
-
-const BundleModal = ({setOpenModalForWorkExp,openModalForWorkExp}) => {
-
-    const [selectUserForAssignCourse, setSelectUserForAssignCourse] =
+const BundleModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle }) => {
+  const [selectUserForAssignCourse, setSelectUserForAssignCourse] =
     useState("individual");
-    const [records, setRecords] = useState([]);
-    const [allManagers, setAllManagers] = useState([]);
-    const [filteredManagers, setFilteredManagers] = useState([]);
-    const [showModal, setShowModal] = useState(false);
-    const [selectedBundleCount, setSelectedBundleCount] = useState(0);
-    const [assignData, setAssignData] = useState({
-      course_id: null, // purchased course id (purchased course table id)
-      userId: null,
-      count: null,
-    });
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [allManagers, setAllManagers] = useState([]);
+  const [filteredManagers, setFilteredManagers] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [courseCount, setCourseCount] = useState(1);
+  const [assignData, setAssignData] = useState({
+    course_id: null, // purchased course id (purchased course table id)
+    userId: null,
+    count: null,
+  });
   
-    const [filteredCompanyIndividuals, setFilteredCompanyIndividuals] = useState(
-      []
-    );
-  
-    const [companyIndividuals, setCompanyIndividuals] = useState([]);
+  const makeRequest = fetchData();
 
-     const  makeRequest = fetchData();
-
-    function assignCourseToManager(id) {
-        let form = new FormData();
-        form.append("course_id", assignData.course_id);
-        form.append("userId", id);
-        form.append("count", assignData.count);
-    
-        makeRequest("POST", "/info/assign-course-to-manager", form)
-          .then((res) => {
-            getData();
-            console.log(res);
-            // toast("course assigned");
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-
-      function getData() {
-        makeRequest("GET", "/info/get-purchased-bundles")
-          .then((res) => {
-            setRecords(res.data.response.filter((item) => item.course_count >= 1));
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-    
-        makeRequest("GET", "/info/get-all-manager-individual")
-          .then((res) => {
-            setFilteredCompanyIndividuals(res.data.response);
-            setCompanyIndividuals(res.data.response);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-    
-        makeRequest("GET", "/info/get-all-managers")
-          .then((res) => {
-            setAllManagers(res.data.response);
-            setFilteredManagers(res.data.response);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
+  useEffect(() => {
+    makeRequest("GET", "/info/get-individuals-and-managers")
+      .then((res) => {
+        console.log(res.data.response);
+        setUsers(res.data.response);
+        setFilteredUsers(res.data.response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
 
-      function assignCourseToManagerIndividual(id) {
-        let form = new FormData();
-        form.append("course_id", assignData.course_id);
-        form.append("userId", id);
-        form.append("count", 1);
-    
-        console.log(assignData);
-        makeRequest("POST", "/info/assign-course-to-manager-individual", form)
-          .then((res) => {
-            getData();
-            console.log(res);
-            // toast("course assigned");
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-
-      useEffect(() => {
-        getData();
-      }, []);
 
   return (
- 
-      <Modal
-        styles={{ padding: "2rem" }}
-        onHide={() => setOpenModalForWorkExp(false)}
-        show={openModalForWorkExp}
-      >
-        <div style={{ maxHeight: "100rem" }}>
-          <div className="modal-header d-flex">
-            <strong
-              className={`btn ${
-                selectUserForAssignCourse == "individual" ? "btn-success" : ""
-              }`}
-              onClick={() => {
-                setSelectUserForAssignCourse("individual");
-                setAssignData((prev) => {
-                  return {
-                    ...prev,
-                    count: 1,
-                  };
-                });
-              }}
+    <Modal
+      styles={{ padding: "2rem" }}
+      onHide={() => setOpenModalForWorkExp(false)}
+      show={openModalForWorkExp}
+    >
+      <div style={{ maxHeight: "100rem" }}>
+          <div>
+            <div
+              className="form-control d-flex gap-3"
+              style={{ height: "fit-content" }}
             >
-              Individual
-            </strong>
-            <strong
-              className={`btn ${
-                selectUserForAssignCourse == "manager" ? "btn-success" : ""
-              }`}
-              onClick={() => {
-                setAssignData((prev) => {
-                  return {
-                    ...prev,
-                    count: 1,
-                  };
-                });
-                setSelectUserForAssignCourse("manager");
-              }}
+              <div className="form-group" style={{ width: "20%" }}>
+                <input
+                  type="number"
+                  className="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  placeholder="1"
+                  onChange={e => {
+                    if(Number(e.target.value) > 0) {
+                      setCourseCount(Number(e.target.value))
+                    }
+                  }}
+                />
+              </div>
+              <div className="form-group" style={{ width: "40%" }}>
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  onChange={(e) => {
+                    console.log(e.target.value);
+                    setFilteredUsers(
+                      users.filter((item) => {
+                        if (e.target.value == "all") {
+                          return item;
+                        } else if(e.target.value == item.type_of_account) {
+                          return item;
+                        }
+                      })
+                    );
+                  }}
+                >
+                  <option selected value="all">
+                    all
+                  </option>
+                  <option value="individual">Individual</option>
+                  <option value="company">Company</option>
+                </select>
+              </div>
+              <div className="form-group" style={{ width: "40%" }}>
+                <input
+                  onChange={(e) =>
+                    setFilteredUsers(
+                      users.filter((item) =>
+                        item.first_name
+                          .toLocaleLowerCase()
+                          .startsWith(e.target.value.toLocaleLowerCase())
+                      )
+                    )
+                  }
+                  type="text"
+                  className="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  placeholder="enter course name"
+                />
+              </div>
+            </div>
+            <div
+              className="list-group bg-white"
+              style={{ height: "20rem", overflow: "auto" }}
             >
-              Manager
-            </strong>
+              <ul class="list-group">
+                {filteredUsers &&
+                  filteredUsers.map((item) => {
+                    return (
+                      <li class="list-group-item bg-white text-black d-flex justify-content-between">
+                        <span style={{ width: "fit-content" }}>
+                          {item.first_name + " " + item.last_name}
+                        </span>
+                        <span>{item.email}</span>
+                        <span
+                          onClick={() =>
+                            assignBundle(item.id,courseCount)
+                          }
+                          style={{ width: "fit-content" }}
+                          className="btn btn-success py-2"
+                        >
+                          Assign
+                        </span>
+                      </li>
+                    );
+                  })}
+              </ul>
+            </div>
           </div>
-          {selectUserForAssignCourse === "individual" ? (
-            <div>
-              <div
-                className="form-control d-flex gap-3"
-                style={{ height: "fit-content" }}
-              >
-                <div className="form-group">
-                  <input
-                    disabled
-                    type="number"
-                    className="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder="1"
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    onChange={(e) =>
-                      setFilteredCompanyIndividuals(
-                        companyIndividuals.filter((item) =>
-                          item.first_name
-                            .toLocaleLowerCase()
-                            .startsWith(e.target.value.toLocaleLowerCase())
-                        )
-                      )
-                    }
-                    type="text"
-                    className="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder="enter course name"
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    onChange={(e) =>
-                      setFilteredCompanyIndividuals(
-                        companyIndividuals.filter((item) =>
-                          item.first_name
-                            .toLocaleLowerCase()
-                            .startsWith(e.target.value.toLocaleLowerCase())
-                        )
-                      )
-                    }
-                    type="text"
-                    className="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder="enter course name"
-                  />
-                </div>
-              </div>
-              <div className="list-group bg-white">
-                <ul class="list-group">
-                  {filteredCompanyIndividuals &&
-                    filteredCompanyIndividuals.map((item) => {
-                      return (
-                        <li class="list-group-item bg-white text-black d-flex justify-content-between">
-                          <span style={{ width: "fit-content" }}>
-                            {item.first_name + " " + item.last_name}
-                          </span>
-                          <span>{item.email}</span>
-                          <span
-                            onClick={() =>
-                              assignCourseToManagerIndividual(item.id)
-                            }
-                            style={{ width: "fit-content" }}
-                            className="btn btn-success"
-                          >
-                            Assign
-                          </span>
-                        </li>
-                      );
-                    })}
-                </ul>
-              </div>
-            </div>
-          ) : (
-            <div>
-              <div className="form-control d-flex gap-3">
-                <div className="form-group">
-                  <label for="exampleInputEmail1">Course Count</label>
-                  <input
-                    onChange={(e) => {
-                      if (Number(e.target.value) <= selectedBundleCount) {
-                        setAssignData((prev) => {
-                          return {
-                            ...prev,
-                            count: e.target.value,
-                          };
-                        });
-                      }
-                    }}
-                    type="number"
-                    value={assignData.count}
-                    className="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder="0"
-                  />
-                </div>
-                <div className="form-group">
-                  <label for="exampleInputEmail1">manager name</label>
-                  <input
-                    onChange={(e) =>
-                      setFilteredManagers(
-                        allManagers.filter((item) =>
-                          item.first_name
-                            .toLocaleLowerCase()
-                            .startsWith(e.target.value.toLocaleLowerCase())
-                        )
-                      )
-                    }
-                    type="text"
-                    className="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder="enter user name"
-                  />
-                </div>
-              </div>
-              <div className="list-group bg-white">
-                <ul class="list-group">
-                  {filteredManagers &&
-                    filteredManagers.map((item) => {
-                      return (
-                        <li class="list-group-item bg-white text-black d-flex justify-content-between">
-                          <span style={{ width: "fit-content" }}>
-                            {item.first_name + " " + item.last_name}
-                          </span>
-                          <span>{item.email}</span>
-                          <span
-                            style={{ width: "fit-content" }}
-                            className="btn btn-success"
-                            onClick={() => assignCourseToManager(item.id)}
-                          >
-                            Assign
-                          </span>
-                        </li>
-                      );
-                    })}
-                </ul>
-              </div>
-            </div>
-          )}
-        </div>
-      </Modal>
-
+      </div>
+    </Modal>
   );
 };
 

@@ -16,17 +16,6 @@ import { useEffect } from "react";
 import { MdAssignmentAdd } from "react-icons/md";
 import BundleModal from "./Food/BundleModal";
 
-// const svg1 = (
-//   <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1">
-//     <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-//       <rect x="0" y="0" width="24" height="24"></rect>
-//       <circle fill="#000000" cx="5" cy="12" r="2"></circle>
-//       <circle fill="#000000" cx="12" cy="12" r="2"></circle>
-//       <circle fill="#000000" cx="19" cy="12" r="2"></circle>
-//     </g>
-//   </svg>
-// );
-
 const MyBundle = () => {
   const makeRequest = fetchData();
   const navigate = useNavigate();
@@ -35,6 +24,7 @@ const MyBundle = () => {
 
 
   const [bundles, setBundles] = useState([]);
+  const [bundleId, setBundleId] = useState();
   useEffect(() => {
     makeRequest("GET", "/bundle/get-all-course-bundles")
       .then((res) => {
@@ -56,11 +46,27 @@ const MyBundle = () => {
         console.log(err);
       });
   }
+  function assignBundle(userId,count) {
+    console.log(bundleId,userId,count);
+    let form = new FormData();
+    form.append("type", "bundle");
+    form.append("count", count);
+    form.append("user_id", userId);
+    form.append("bundle_id", bundleId);
+
+    makeRequest("POST", "/info/assign-bundle", form)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   return (
     <div>
      
-     <BundleModal  setOpenModalForWorkExp={setOpenModalForWorkExp} openModalForWorkExp={openModalForWorkExp} />
+     <BundleModal  setOpenModalForWorkExp={setOpenModalForWorkExp} openModalForWorkExp={openModalForWorkExp} assignBundle={assignBundle} />
 
       <div className="card">
         <Col lg={12}>
@@ -118,7 +124,10 @@ const MyBundle = () => {
                           <Button
                             className="me-2"
                             variant="primary btn-icon-xxs"
-                            onClick={() => setOpenModalForWorkExp(true)}
+                            onClick={() => {
+                              setBundleId(item.id)
+                              setOpenModalForWorkExp(true)
+                            }}
                           >
                             <MdAssignmentAdd />
                           </Button>
