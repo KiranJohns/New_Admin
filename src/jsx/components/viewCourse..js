@@ -154,7 +154,7 @@ const ViewCourse = () => {
   const [openModalForWorkExp, setOpenModalForWorkExp] = useState(false);
 
   const [bundles, setBundles] = useState([]);
-  const [bundleId, setBundleId] = useState();
+  const [bundleId, setBundleId] = useState(1);
 
   useEffect(() => {
     makeRequest("GET", "/course/get-all-course").then(res => {
@@ -167,7 +167,7 @@ const ViewCourse = () => {
   function assignBundle(userId,count) {
     console.log(bundleId,userId,count);
     let form = new FormData();
-    form.append("type", "bundle");
+    form.append("type", "course");
     form.append("count", count);
     form.append("user_id", userId);
     form.append("bundle_id", bundleId);

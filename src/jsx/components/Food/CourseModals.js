@@ -12,11 +12,7 @@ import { useEffect } from "react";
 import { Modal } from "react-bootstrap";
 
 const CourseModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle }) => {
-  const [selectUserForAssignCourse, setSelectUserForAssignCourse] =
-    useState("individual");
   const [filteredUsers, setFilteredUsers] = useState([]);
-  const [allManagers, setAllManagers] = useState([]);
-  const [filteredManagers, setFilteredManagers] = useState([]);
   const [users, setUsers] = useState([]);
   const [courseCount, setCourseCount] = useState(1);
   const [assignData, setAssignData] = useState({
