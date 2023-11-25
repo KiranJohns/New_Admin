@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { IMAGES } from "../Dashboard/Content";
 import { Dropdown } from "react-bootstrap";
@@ -275,14 +275,18 @@ const ManagerTable = () => {
     setChecked(temp);
   };
 
-  makeRequest("GET", "/info/get-all-users")
-    .then((res) => {
-      console.log(res);
-      setUsers(res.data.response);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  useEffect(() => {
+    makeRequest("GET", "/info/get-all-users")
+      .then((res) => {
+        console.log(res);
+        setUsers(
+          res.data.response.filter((item) => item.type_of_account == "manager")
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   const recordsPage = 15;
   const lastIndex = currentPage * recordsPage;
   const firstIndex = lastIndex - recordsPage;
@@ -364,7 +368,7 @@ const ManagerTable = () => {
                     id="example-student"
                   >
                     <thead>
-                      <tr style={{ textAlign: "center", }}>
+                      <tr style={{ textAlign: "center" }}>
                         <th>
                           <input
                             type="checkbox"
@@ -385,87 +389,78 @@ const ManagerTable = () => {
                     </thead>
                     <tbody>
                       {users.map((item, ind) => {
-                        if (item.type_of_account == "company") {
-                          return (
-                            <tr key={ind} style={{ textAlign: "center" }}>
-                              <td>
-                                <div className="checkbox me-0 align-self-center">
-                                  <div className="custom-control custom-checkbox ">
-                                    <input
-                                      type="checkbox"
-                                      className="form-check-input"
-                                      id={`stud-${item.id}`}
-                                      checked={item.inputchecked}
-                                      onChange={() => handleChecked(item.id)}
-                                    />
-                                    <label
-                                      className="custom-control-label"
-                                      htmlFor={`stud-${item.id}`}
-                                    ></label>
-                                  </div>
+                        return (
+                          <tr key={ind} style={{ textAlign: "center" }}>
+                            <td>
+                              <div className="checkbox me-0 align-self-center">
+                                <div className="custom-control custom-checkbox ">
+                                  <input
+                                    type="checkbox"
+                                    className="form-check-input"
+                                    id={`stud-${item.id}`}
+                                    checked={item.inputchecked}
+                                    onChange={() => handleChecked(item.id)}
+                                  />
+                                  <label
+                                    className="custom-control-label"
+                                    htmlFor={`stud-${item.id}`}
+                                  ></label>
                                 </div>
-                              </td>
-                              <td>
-                                <span className="text-primary font-w600">
-                                  {item.id}
-                                </span>
-                              </td>
-                              <td>
-                                <div className="trans-list">
-                                  {/* <img src={item.image} alt="" className="avatar avatar-sm me-3" /> */}
-                                  <h4>
-                                    {item.first_name + " " + item.last_name}
-                                  </h4>
-                                </div>
-                              </td>
-                              <td>
-                                <div className="email">{item.email}</div>
-                              </td>
-                              <td>
-                                <h6 className="mb-0">{item.phone}</h6>
-                              </td>
-                              <td>
-                                <h6 className="mb-0">{item.city}</h6>
-                              </td>
+                              </div>
+                            </td>
+                            <td>
+                              <span className="text-primary font-w600">
+                                {item.id}
+                              </span>
+                            </td>
+                            <td>
+                              <div className="trans-list">
+                                {/* <img src={item.image} alt="" className="avatar avatar-sm me-3" /> */}
+                                <h4>
+                                  {item.first_name + " " + item.last_name}
+                                </h4>
+                              </div>
+                            </td>
+                            <td>
+                              <div className="email">{item.email}</div>
+                            </td>
+                            <td>
+                              <h6 className="mb-0">{item.phone}</h6>
+                            </td>
+                            <td>
+                              <h6 className="mb-0">{item.city}</h6>
+                            </td>
 
-                              <td>
-                                <div
-                                  class={`badge bg-${
-                                    item.type_of_account === "company"
-                                      ? "secondary"
-                                      : item.type_of_account === "individual"
-                                      ? "primary"
-                                      : "warning"
-                                  }`}
-                                >
-                                  {item.type_of_account}
-                                </div>
-                              </td>
-                              <td>
-                                <Button
-                                  onClick={() => {
-                                    navigate("/user-detail", {
-                                      state: { id: item.id },
-                                    });
-                                  }}
-                                  className="me-2"
-                                  variant="success btn-icon-xxs"
-                                >
-                                  <FaEye />
-                                </Button>
-                                <Button
-                                  className="me-2"
-                                  variant="primary btn-icon-xxs"
-                                >
-                                  <BiSolidEdit />
-                                </Button>
-                                <Button
-                                  className="me-2"
-                                  variant="danger btn-icon-xxs"
-                                >
-                                  <RiChatDeleteFill />
-                                </Button>
-                                {/* <Dropdown className="custom-dropdown float-end">
+                            <td>
+                              <div className={`badge bg-warning`}>
+                                {item.type_of_account}
+                              </div>
+                            </td>
+                            <td>
+                              <Button
+                                onClick={() => {
+                                  navigate("/user-detail", {
+                                    state: { id: item.id },
+                                  });
+                                }}
+                                className="me-2"
+                                variant="success btn-icon-xxs"
+                              >
+                                <FaEye />
+                              </Button>
+                              <Button
+                                className="me-2"
+                                variant="primary btn-icon-xxs"
+                              >
+                                <BiSolidEdit />
+                              </Button>
+                              <Button
+                                className="me-2"
+                                variant="danger btn-icon-xxs"
+                              >
+                                <RiChatDeleteFill />
+                              </Button>
+                              {/* <Dropdown className="custom-dropdown float-end">
                               <Dropdown.Toggle
                                 className="i-false btn sharp tp-btn "
                                 as="div"
@@ -492,12 +487,9 @@ const ManagerTable = () => {
                                 <Dropdown.Item>Option 3</Dropdown.Item>
                               </Dropdown.Menu>
                             </Dropdown> */}
-                              </td>
-                            </tr>
-                          );
-                        } else {
-                          return null
-                        }
+                            </td>
+                          </tr>
+                        );
                       })}
                     </tbody>
                   </table>

@@ -12,6 +12,9 @@
 /*
  * Scrollbar rail styles
  */
+ /* #webpack-dev-server-client-overlay-div {
+  display: none;
+ } */
 .ps__rail-x {
   display: none;
   opacity: 0;
