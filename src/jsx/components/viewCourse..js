@@ -231,10 +231,10 @@ const ViewCourse = () => {
                     <td>
                       <strong>{id}</strong>
                     </td>
-                    <td>{item.name}</td>
-                    <td>{item.category}</td>
-                    <td>{item.description.slice(0, 30)}</td>
-                    <td>{item.price}</td>
+                    <td>{item?.name}</td>
+                    <td>{item?.category}</td>
+                    <td>{item?.description.slice(0, 30)}</td>
+                    <td>{item?.price}</td>
                     <td>
                       <Badge bg="" className="light badge-success">
                         Active
