@@ -275,8 +275,9 @@ const AddCourse = () => {
                     <label htmlFor="formFile" className="form-label"></label>
                     <input
                       className="form-control"
+                      multiple={true}
                       onChange={(e) =>
-                        setCourse({ ...course, ppt: e.target.files[0] })
+                        setCourse({ ...course, ppt: e.target.files })
                       }
                       type="file"
                       id="formFile"

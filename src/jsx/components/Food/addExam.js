@@ -151,8 +151,10 @@ const AddExam = () => {
                     <div className="form-group mb-3">
                       <select
                         onChange={(e) => {
+                          console.log(course);
                           setFilteredCourse(() => {
                             return course.filter((item) => {
+                              console.log(item.category,e.target.value);
                               if (item.category == e.target.value) {
                                 return item;
                               }
@@ -167,7 +169,7 @@ const AddExam = () => {
                         <option value="Mandatory Care Courses">
                           Mandatory Care Course
                         </option>
-                        <option value="Specialised Care Courses">
+                        <option value="Specialized Care Course">
                           Specialised Care Course
                         </option>
                         <option value="Recovery Care Courses">
