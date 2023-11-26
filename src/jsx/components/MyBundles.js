@@ -66,13 +66,13 @@ const MyBundle = () => {
   return (
     <div>
      
-     <BundleModal  setOpenModalForWorkExp={setOpenModalForWorkExp} openModalForWorkExp={openModalForWorkExp} assignBundle={assignBundle} />
+     <BundleModal   setOpenModalForWorkExp={setOpenModalForWorkExp} openModalForWorkExp={openModalForWorkExp} assignBundle={assignBundle} />
 
       <div className="card">
         <Col lg={12}>
           <Card>
             <Card.Header>
-              <Card.Title>All Bundles</Card.Title>
+              <Card.Title>View & Assign Bundles</Card.Title>
             </Card.Header>
             <Card.Body>
               <Table responsive>
@@ -123,7 +123,7 @@ const MyBundle = () => {
                     </Button> */}
                           <Button
                             className="me-2"
-                            variant="primary btn-icon-xxs"
+                            variant="info btn-icon-xxs"
                             onClick={() => {
                               setBundleId(item.id)
                               setOpenModalForWorkExp(true)

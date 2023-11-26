@@ -49,6 +49,9 @@ const BundleModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle
     >
       <div style={{ maxHeight: "100rem" }}>
           <div>
+          <div>
+              <h4 style={{textAlign:'center', padding:'.5rem', background:"#5a9676",color:"#fff"}}>Assign Bundle</h4>
+            </div>
             <div
               className="form-control d-flex gap-3"
               style={{ height: "fit-content" }}
@@ -69,7 +72,7 @@ const BundleModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle
               </div>
               <div className="form-group" style={{ width: "40%" }}>
                 <select
-                  class="form-select"
+                  className="form-control"
                   aria-label="Default select example"
                   onChange={(e) => {
                     console.log(e.target.value);
@@ -85,7 +88,7 @@ const BundleModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle
                   }}
                 >
                   <option selected value="all">
-                    all
+                    User Type
                   </option>
                   <option value="individual">Individual</option>
                   <option value="company">Company</option>
@@ -106,7 +109,7 @@ const BundleModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle
                   className="form-control"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
-                  placeholder="enter course name"
+                  placeholder="User Name"
                 />
               </div>
             </div>

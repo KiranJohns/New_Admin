@@ -39,12 +39,15 @@ const CourseModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle
 
   return (
     <Modal
-      styles={{ padding: "2rem" }}
+      style={{ padding: "1rem", }}
       onHide={() => setOpenModalForWorkExp(false)}
       show={openModalForWorkExp}
     >
-      <div style={{ maxHeight: "100rem" }}>
+      <div style={{ maxHeight: "100rem", }}>
           <div>
+            <div>
+              <h4 style={{textAlign:'center', padding:'.5rem', background:"#5a9676",color:"#fff"}}>Assign Course</h4>
+            </div>
             <div
               className="form-control d-flex gap-3"
               style={{ height: "fit-content" }}
@@ -65,7 +68,7 @@ const CourseModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle
               </div>
               <div className="form-group" style={{ width: "40%" }}>
                 <select
-                  class="form-select"
+                  className="form-control"
                   aria-label="Default select example"
                   onChange={(e) => {
                     console.log(e.target.value);
@@ -81,7 +84,7 @@ const CourseModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle
                   }}
                 >
                   <option selected value="all">
-                    all
+                   Select
                   </option>
                   <option value="individual">Individual</option>
                   <option value="company">Company</option>
@@ -102,7 +105,7 @@ const CourseModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle
                   className="form-control"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
-                  placeholder="enter course name"
+                  placeholder="Enter Name"
                 />
               </div>
             </div>
@@ -114,11 +117,11 @@ const CourseModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle
                 {filteredUsers &&
                   filteredUsers.map((item) => {
                     return (
-                      <li class="list-group-item bg-white text-black d-flex justify-content-between">
-                        <span style={{ width: "fit-content" }}>
+                      <li className="list-group-item bg-white text-black d-flex justify-content-between">
+                        <span style={{ width: "7rem",overflow:'hidden'}}>
                           {item.first_name + " " + item.last_name}
                         </span>
-                        <span>{item.email}</span>
+                        <span >{item.email}</span>
                         <span
                           onClick={() =>
                             assignBundle(item.id,courseCount)
