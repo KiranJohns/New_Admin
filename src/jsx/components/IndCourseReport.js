@@ -141,22 +141,27 @@ const tabledata4 = [
 ];
 
 const CourseIndReport = () => {
-  const makeRequest = fetchData()
-  const [exams, setExams] = useState([])
+  const makeRequest = fetchData();
+  const [exams, setExams] = useState([]);
   useEffect(() => {
-    makeRequest("GET","/exam/get-all-exam").then(res => {
-      setExams(res.data.response)
-    }).catch(err => {
-      console.log(err);
-    })
-  },[])
+    makeRequest("GET", "/info/get-individual-report")
+      .then((res) => {
+        console.log(res.data.response);
+        setExams(res.data.response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   function deleteExam(id) {
-    makeRequest("DELETE",`/exam/delete-exam/${id}`).then(res => {
-      setExams(exams.filter(item => item.id != id))
-    }).catch(err => {
-      console.log(err);
-    })
+    makeRequest("DELETE", `/exam/delete-exam/${id}`)
+      .then((res) => {
+        setExams(exams.filter((item) => item.id != id));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   return (
     <div className="card">
@@ -191,7 +196,7 @@ const CourseIndReport = () => {
           <Card.Body>
             <Table responsive>
               <thead>
-                <tr style={{background:"#212A50"}}>
+                <tr style={{ background: "#212A50" }}>
                   <th className="width80">
                     <strong>Individual ID</strong>
                   </th>
@@ -217,15 +222,10 @@ const CourseIndReport = () => {
                   <td>
                     <strong>{item.id}</strong>
                   </td>
-                  <td>{item?.course_name}</td>
-                  <td>{item?.course_category}</td>
-                  <td>{item?.course_description.slice(0,30)}</td>
-                  <td>{item?.exam_id}</td>
-                  <td>
-                    <Button className="me-2" variant="danger btn-icon-xxs" >
-                      <RiChatDeleteFill />
-                    </Button>
-                  </td>
+                  <td>{item?.first_name + " " + item?.last_name}</td>
+                  <td>{item?.assigned_course_count + item?.purchased_course_count}</td>
+                  <td>{item?.purchased_bundle_count + item?.assigned_bundle_count}</td>
+                  <td>{item?.certificates}</td>
                 </tr>)}
               </tbody>
             </Table>

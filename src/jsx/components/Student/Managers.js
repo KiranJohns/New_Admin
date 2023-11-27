@@ -280,7 +280,7 @@ const ManagerTable = () => {
       .then((res) => {
         console.log(res);
         setUsers(
-          res.data.response.filter((item) => item.type_of_account == "manager")
+          res.data.response.filter((item) => item.type_of_account == "manager").reverse()
         );
       })
       .catch((err) => {
