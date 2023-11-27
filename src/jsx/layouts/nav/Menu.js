@@ -43,10 +43,10 @@ export const MenuList = [
                 title: 'Invoices',
                 to: 'invoices',					
             },
-            {
-                title: 'Reports',
-                to: 'reports',					
-            },
+            // {
+            //     title: 'Reports',
+            //     to: 'reports',					
+            // },
             
         ],
     },
