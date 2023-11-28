@@ -195,7 +195,7 @@ const CourseManReport = () => {
           <Card.Body>
             <Table responsive>
               <thead>
-                <tr style={{background:"#212A50"}}>
+                <tr style={{background:"#212A50", textAlign:'center'}}>
                   <th className="width80">
                     <strong>Manager ID</strong>
                   </th>
@@ -214,7 +214,7 @@ const CourseManReport = () => {
                 </tr>
               </thead>
               <tbody>
-                {exams && exams.map(item => <tr>
+                {exams && exams.map(item => <tr style={{textAlign:'center'}}>
                   <td>
                     <strong>{item.id}</strong>
                   </td>

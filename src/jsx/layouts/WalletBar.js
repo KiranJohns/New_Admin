@@ -13,6 +13,7 @@ import foodpic1 from "./../../images/food/pic1.jpg";
 import foodpic2 from "./../../images/food/pic2.jpg";
 import foodpic3 from "./../../images/food/pic3.jpg";
 import fetchData from "../../axios";
+import avathar5 from "./../../images/squareprofile.jpg"
 
 const studentList = [
   { image: pic1, title: "Samantha William", subtitle: "ID 1134" },
@@ -102,7 +103,7 @@ const WalletBar = () => {
                       key={ind}
                     >
                       <span className="dz-media">
-                        <img src={item.profile_image ? item.profile_image : pic1} alt="" width="50" className="avatar" />
+                        <img src={item.profile_image ? item.profile_image : avathar5} alt="" width="50" className="avatar" />
                       </span>
                       <div className="user-info">
                         <h6 className="name">

@@ -9,6 +9,7 @@ import { BiSolidEdit } from "react-icons/bi";
 import { RiChatDeleteFill } from "react-icons/ri";
 import fetchData from "../../../axios";
 import swal from "sweetalert";
+import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
 
 const tableData = [
   {
@@ -362,12 +363,12 @@ const CouponList = () => {
                   id="example-student_wrapper"
                   className="dataTables_wrapper no-footer"
                 >
-                  <table
-                    className="table-responsive-lg table display dataTablesCard student-tab dataTable no-footer"
-                    id="example-student"
+                  <Table
+                     responsive
+                     id="example-student"
                   >
                     <thead>
-                      <tr style={{ textAlign: "center" }}>
+                      <tr style={{ textAlign: "center", background: "#212A50", color:"#fff", fontWeight:'bold'  }}>
                         <th>
                           <input
                             type="checkbox"
@@ -470,7 +471,7 @@ const CouponList = () => {
                           );
                         })}
                     </tbody>
-                  </table>
+                  </Table>
                   <div className="d-sm-flex text-center justify-content-between align-items-center">
                     <div className="dataTables_info">
                       Showing {lastIndex - recordsPage + 1} to{" "}
