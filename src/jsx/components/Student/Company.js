@@ -278,7 +278,7 @@ const CompanyTable = () => {
   makeRequest("GET", "/info/get-all-users")
     .then((res) => {
       console.log(res);
-      setUsers(res.data.response);
+      setUsers(res.data.response.reverse());
     })
     .catch((err) => {
       console.log(err);

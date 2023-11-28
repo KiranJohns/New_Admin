@@ -280,8 +280,7 @@ const ViewCertificates = () => {
     console.log("hi");
     makeRequest("GET", "/certificate/get-all-certificates")
       .then((res) => {
-        console.log(res.data.Response);
-        setChecked(res.data.Response);
+        setChecked(res.data.Response.reverse());
       })
       .catch((err) => {
         console.log(err);

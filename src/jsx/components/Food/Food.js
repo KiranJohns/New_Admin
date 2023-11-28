@@ -155,7 +155,7 @@ const Food = () => {
   const [blogs, setBlogs] = useState([]);
   makeRequest("GET", "/blog/get-all-blog")
     .then((res) => {
-      setBlogs(res.data.response);
+      setBlogs(res.data.response.reverse());
     })
     .catch((err) => {
       console.log(err);

@@ -162,10 +162,9 @@ const SalesTab = () => {
   useEffect(() => {
     makeRequest("GET", "/course/get-all-purchased-course-group-by")
       .then((res) => {
-        console.log(res);
-        setGroupByDay(res.data.response.groupByDay);
-        setGroupByMonth(res.data.response.groupByMonth);
-        setGroupByYear(res.data.response.groupByYear);
+        setGroupByDay(res.data.response.groupByDay.reverse());
+        setGroupByMonth(res.data.response.groupByMonth.reverse());
+        setGroupByYear(res.data.response.groupByYear.reverse());
       })
       .catch((err) => {
         console.log("error", err);
