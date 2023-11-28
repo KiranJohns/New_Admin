@@ -391,7 +391,7 @@ const ViewCertificates = () => {
                         <th>Action</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody style={{background:"white"}}>
                       {records.map((item, ind) => (
                         <tr key={ind} style={{ textAlign: "center" }}>
                           <td style={{ textAlign: "center" }}>

@@ -385,7 +385,7 @@ const Students = () => {
                         <th>Action</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody style={{background:"white"}}>
                       {users.map((item, ind) => {
                         if (item.type_of_account == "individual") {
                           return (

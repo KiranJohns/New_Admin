@@ -389,7 +389,7 @@ const ManagerTable = () => {
                         <th>Action</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody style={{background:"white"}}>
                       {users.map((item, ind) => {
                         return (
                           <tr key={ind} style={{ textAlign: "center" }}>

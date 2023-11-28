@@ -388,7 +388,7 @@ const CouponList = () => {
                         <th className="">Action</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody style={{background:"white"}}>
                       {coupons &&
                         coupons.map((item, ind) => {
                           return (
