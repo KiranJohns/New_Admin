@@ -51,6 +51,7 @@ const AddNewStudent = () => {
   return (
     <>
       <div className="row">
+        <div className="col-xl-1"></div>
         <div className="col-xl-10">
           <div className="card">
             <div className="card-header">
@@ -58,7 +59,8 @@ const AddNewStudent = () => {
             </div>
             <div className="card-body">
               <div className="row">
-                <div className="col-xl-9 col-lg-8">
+                <div  className="col-xl-1 col-lg-1"></div>
+                <div className="col-xl-10 col-lg-10">
                   <div className="row">
                     <div className="col-xl-6 col-sm-6">
                       <div className="mb-3">
@@ -68,7 +70,8 @@ const AddNewStudent = () => {
                         >
                           First Name<span className="required">*</span>
                         </label>
-                        <input
+                        <input 
+                        style={{background:'#f7fafc'}}
                           type="text"
                           name="first_name"
                           value={userData.first_name}
@@ -86,6 +89,7 @@ const AddNewStudent = () => {
                           Email<span className="required">*</span>
                         </label>
                         <input
+                         style={{background:'#f7fafc'}}
                           type="text"
                           name="email"
                           value={userData.email}
@@ -107,6 +111,7 @@ const AddNewStudent = () => {
                           name="country"
                             onChange={handleOnchange}
                             className="form-control "
+                            style={{background:'#f7fafc'}}
                           >
                             <option>Select</option>
                             <option value="United Kingdom">
@@ -123,6 +128,7 @@ const AddNewStudent = () => {
                           Password<span className="required">*</span>
                         </label>
                         <input
+                         style={{background:'#f7fafc'}}
                           type="text"
                           name="password"
                           value={userData.password}
@@ -142,6 +148,7 @@ const AddNewStudent = () => {
                           Last Name<span className="required">*</span>
                         </label>
                         <input
+                         style={{background:'#f7fafc'}}
                           type="text"
                           className="form-control"
                           id="exampleFormControlInput5"
@@ -159,6 +166,7 @@ const AddNewStudent = () => {
                           Phone<span className="required">*</span>
                         </label>
                         <input
+                         style={{background:'#f7fafc'}}
                           type="number"
                           name="phone"
                           value={userData.phone}
@@ -176,6 +184,7 @@ const AddNewStudent = () => {
                           City<span className="required">*</span>
                         </label>
                         <input
+                         style={{background:'#f7fafc'}}
                           type="text"
                           name="city"
                           value={userData.city}

@@ -8,6 +8,8 @@ import { FaEye } from "react-icons/fa";
 import { BiSolidEdit } from "react-icons/bi";
 import { RiChatDeleteFill } from "react-icons/ri";
 import { Button, ButtonGroup } from "react-bootstrap";
+import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
+
 const tableData = [
   {
     id: "1",
@@ -363,12 +365,12 @@ const ManagerTable = () => {
                   id="example-student_wrapper"
                   className="dataTables_wrapper no-footer"
                 >
-                  <table
-                    className="table-responsive-lg table display dataTablesCard student-tab dataTable no-footer"
-                    id="example-student"
+                  <Table
+                   responsive
+                   id="example-student"
                   >
                     <thead>
-                      <tr style={{ textAlign: "center" }}>
+                      <tr style={{ textAlign: "center", background: "#212A50", color:"#fff" }}>
                         <th>
                           <input
                             type="checkbox"
@@ -387,7 +389,7 @@ const ManagerTable = () => {
                         <th>Action</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody style={{background:"white"}}>
                       {users.map((item, ind) => {
                         return (
                           <tr key={ind} style={{ textAlign: "center" }}>
@@ -414,7 +416,7 @@ const ManagerTable = () => {
                               </span>
                             </td>
                             <td>
-                              <div className="trans-list">
+                              <div className="">
                                 {/* <img src={item.image} alt="" className="avatar avatar-sm me-3" /> */}
                                 <h4>
                                   {item.first_name + " " + item.last_name}
@@ -448,12 +450,14 @@ const ManagerTable = () => {
                               >
                                 <FaEye />
                               </Button>
-                              <Button
+
+                              {/* <Button
                                 className="me-2"
                                 variant="primary btn-icon-xxs"
                               >
                                 <BiSolidEdit />
-                              </Button>
+                              </Button> */}
+
                               <Button
                                 className="me-2"
                                 variant="danger btn-icon-xxs"
@@ -492,7 +496,7 @@ const ManagerTable = () => {
                         );
                       })}
                     </tbody>
-                  </table>
+                  </Table>
                   <div className="d-sm-flex text-center justify-content-between align-items-center">
                     <div className="dataTables_info">
                       Showing {lastIndex - recordsPage + 1} to{" "}

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { IMAGES } from "../Dashboard/Content";
 import { Dropdown } from "react-bootstrap";
@@ -8,6 +8,8 @@ import { FaEye } from "react-icons/fa";
 import { BiSolidEdit } from "react-icons/bi";
 import { RiChatDeleteFill } from "react-icons/ri";
 import { Button, ButtonGroup } from "react-bootstrap";
+import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
+
 const tableData = [
   {
     id: "1",
@@ -275,14 +277,20 @@ const CompanyTable = () => {
     setChecked(temp);
   };
 
-  makeRequest("GET", "/info/get-all-users")
-    .then((res) => {
-      console.log(res);
-      setUsers(res.data.response.reverse());
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await makeRequest("GET", "/info/get-all-users");
+        console.log(response);
+        setUsers(response.data.response.reverse());
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []); 
+    
   const recordsPage = 15;
   const lastIndex = currentPage * recordsPage;
   const firstIndex = lastIndex - recordsPage;
@@ -359,12 +367,12 @@ const CompanyTable = () => {
                   id="example-student_wrapper"
                   className="dataTables_wrapper no-footer"
                 >
-                  <table
-                    className="table-responsive-lg table display dataTablesCard student-tab dataTable no-footer"
+                  <Table
+                    responsive
                     id="example-student"
                   >
                     <thead>
-                      <tr style={{ textAlign: "center", }}>
+                    <tr style={{ textAlign: "center", background: "#212A50", color:"#fff" }}>
                         <th>
                           <input
                             type="checkbox"
@@ -383,7 +391,7 @@ const CompanyTable = () => {
                         <th>Action</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody style={{background:"white"}}>
                       {users.map((item, ind) => {
                         if (item.type_of_account == "company") {
                           return (
@@ -407,25 +415,25 @@ const CompanyTable = () => {
                               </td>
                               <td>
                                 <span className="text-primary font-w600">
-                                  {item.id}
+                                  {item?.id}
                                 </span>
                               </td>
                               <td>
-                                <div className="trans-list">
+                                <div className="">
                                   {/* <img src={item.image} alt="" className="avatar avatar-sm me-3" /> */}
                                   <h4>
-                                    {item.first_name + " " + item.last_name}
+                                    {item?.first_name + " " + item?.last_name}
                                   </h4>
                                 </div>
                               </td>
                               <td>
-                                <div className="email">{item.email}</div>
+                                <div className="email">{item?.email}</div>
                               </td>
                               <td>
-                                <h6 className="mb-0">{item.phone}</h6>
+                                <h6 className="mb-0">{item?.phone}</h6>
                               </td>
                               <td>
-                                <h6 className="mb-0">{item.city}</h6>
+                                <h6 className="mb-0">{item?.city}</h6>
                               </td>
 
                               <td>
@@ -453,12 +461,14 @@ const CompanyTable = () => {
                                 >
                                   <FaEye />
                                 </Button>
-                                <Button
+                                
+                                {/* <Button
                                   className="me-2"
                                   variant="primary btn-icon-xxs"
                                 >
                                   <BiSolidEdit />
-                                </Button>
+                                </Button> */}
+
                                 <Button
                                   className="me-2"
                                   variant="danger btn-icon-xxs"
@@ -500,7 +510,7 @@ const CompanyTable = () => {
                         }
                       })}
                     </tbody>
-                  </table>
+                  </Table>
                   <div className="d-sm-flex text-center justify-content-between align-items-center">
                     <div className="dataTables_info">
                       Showing {lastIndex - recordsPage + 1} to{" "}

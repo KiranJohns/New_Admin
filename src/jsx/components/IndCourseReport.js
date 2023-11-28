@@ -196,7 +196,7 @@ const CourseIndReport = () => {
           <Card.Body>
             <Table responsive>
               <thead>
-                <tr style={{ background: "#212A50" }}>
+                <tr style={{ textAlign: "center", background: "#212A50", color:"#fff" }}>
                   <th className="width80">
                     <strong>Individual ID</strong>
                   </th>
@@ -218,7 +218,7 @@ const CourseIndReport = () => {
                 </tr>
               </thead>
               <tbody>
-                {exams && exams.map(item => <tr>
+                {exams && exams.map(item => <tr style={{textAlign:'center'}}>
                   <td>
                     <strong>{item.id}</strong>
                   </td>
@@ -226,6 +226,7 @@ const CourseIndReport = () => {
                   <td>{item?.assigned_course_count + item?.purchased_course_count}</td>
                   <td>{item?.purchased_bundle_count + item?.assigned_bundle_count}</td>
                   <td>{item?.certificates}</td>
+                  <td>Active</td>
                 </tr>)}
               </tbody>
             </Table>
