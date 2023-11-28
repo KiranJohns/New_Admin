@@ -32,8 +32,7 @@ const AddBundle = () => {
     description: "",
     image: "",
   });
-  const [sub, setSub] = useState(false)
-
+  const [sub, setSub] = useState(false);
 
   const makeRequest = fetchData();
   function handleChange(e) {
@@ -79,7 +78,6 @@ const AddBundle = () => {
       });
   }, []);
   return (
-
     <div className="row">
       <div className="col-xl-1"></div>
       <div className="col-xl-10">
@@ -87,7 +85,8 @@ const AddBundle = () => {
           className="card"
           style={{
             boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
-            background: "#f5f5f7", justifyContent:'center'
+            background: "#f5f5f7",
+            justifyContent: "center",
           }}
         >
           <div
@@ -162,7 +161,7 @@ const AddBundle = () => {
                         <option value="Mandatory Care Courses">
                           Mandatory Care Course
                         </option>
-                        <option value="Specialised Care Courses">
+                        <option value="Specialized Care Courses">
                           Specialised Care Courses
                         </option>
                         <option value="Recovery Care Courses">
@@ -182,7 +181,12 @@ const AddBundle = () => {
                       <Card.Body>
                         <Table responsive>
                           <thead>
-                            <tr style={{ background: "#212a50", textAlign:'center' }}>
+                            <tr
+                              style={{
+                                background: "#212a50",
+                                textAlign: "center",
+                              }}
+                            >
                               <th>
                                 <strong>Index</strong>
                               </th>
@@ -249,7 +253,8 @@ const AddBundle = () => {
                     <div className="form-group mb-3">
                       <select
                         ref={courseRef}
-                        onChange={(e) => { setSub(true)
+                        onChange={(e) => {
+                          setSub(true);
                           if (!e.target.value) return;
                           if (
                             selectedCourse.find(
@@ -275,8 +280,18 @@ const AddBundle = () => {
                         {filteredCourse.map((item) => (
                           <option value={item.id}>{item.name}</option>
                         ))}
-                      </select>{ sub &&
-                    <small style={{textAlign:'center',marginLeft:'1.5rem', color:'#5a9676'}}>select again to add more courses</small> }
+                      </select>
+                      {sub && (
+                        <small
+                          style={{
+                            textAlign: "center",
+                            marginLeft: "1.5rem",
+                            color: "#5a9676",
+                          }}
+                        >
+                          select again to add more courses
+                        </small>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -346,7 +361,6 @@ const AddBundle = () => {
         </div>
       </div>
     </div>
-   
   );
 };
 
