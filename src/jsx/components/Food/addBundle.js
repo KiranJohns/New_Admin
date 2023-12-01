@@ -161,13 +161,13 @@ const AddBundle = () => {
                         <option value="Mandatory Care Courses">
                           Mandatory Care Course
                         </option>
-                        <option value="Specialized Care Courses">
+                        <option value="Specialized Care Course">
                           Specialised Care Courses
                         </option>
-                        <option value="Recovery Care Courses">
+                        <option value="Recovery Care Course">
                           Recovery Care Course
                         </option>
-                        <option value="Child Care Courses">
+                        <option value="Child Care Course">
                           Child Care Courses
                         </option>
                       </select>
