@@ -39,20 +39,23 @@ const CourseModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle
 
   return (
     <Modal
-      style={{ padding: "1rem", }}
+      style={{ padding: "2rem", }}
       onHide={() => setOpenModalForWorkExp(false)}
       show={openModalForWorkExp}
     >
-      <div style={{ maxHeight: "100rem", }}>
+      <div style={{ maxHeight: "10rem"}}>
           <div>
             <div>
-              <h4 style={{textAlign:'center', padding:'.5rem', background:"#5a9676",color:"#fff"}}>Assign Course</h4>
+              <h5 style={{textAlign:'center', padding:'.5rem', background:"#212a50",color:"#fff"}}>Assign:{" "}Course Name</h5>
             </div>
+            
             <div
-              className="form-control d-flex gap-3"
-              style={{ height: "fit-content" }}
+              className=" d-flex gap-2 p-2"
+              style={{ height: "",  }}
             >
-              <div className="form-group" style={{ width: "20%" }}>
+              
+              <div className="form-group" style={{ width: "17%", }}>
+               <label style={{fontSize:'.7rem'}} htmlFor="">Course count</label>
                 <input
                   type="number"
                   className="form-control"
@@ -66,7 +69,8 @@ const CourseModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle
                   }}
                 />
               </div>
-              <div className="form-group" style={{ width: "40%" }}>
+              <div className="form-group" style={{ width: "35%" }}>
+              <label style={{fontSize:'.72rem', visibility:"hidden"}} htmlFor="">Course count</label>
                 <select
                   className="form-control"
                   aria-label="Default select example"
@@ -84,13 +88,15 @@ const CourseModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle
                   }}
                 >
                   <option selected value="all">
-                   Select
+                   User type
                   </option>
                   <option value="individual">Individual</option>
                   <option value="company">Company</option>
                 </select>
               </div>
-              <div className="form-group" style={{ width: "40%" }}>
+              <div className="form-group" style={{ width: "48%" }}>
+              <label style={{fontSize:'.72rem', visibility:"hidden"}} htmlFor="">Search by name</label>
+              <div  className="p-relative d-inline">
                 <input
                   onChange={(e) =>
                     setFilteredUsers(
@@ -105,14 +111,28 @@ const CourseModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle
                   className="form-control"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
-                  placeholder="Enter Name"
+                  placeholder="Search by name"
                 />
+                  <i style={{fontSize:"1rem", position: 'absolute', left: "33.2rem", top: "6.1rem" }} className="bi bi-search"></i>
+                </div>
               </div>
             </div>
+
+            <div style={{padding:".7rem", background:'#212A50', color:'white', fontWeight:'bold', marginTop:'1rem'}}>
+              <ul style={{display:'flex', justifyContent:'space-between'}}>
+                <li style={{marginLeft:'1.5rem'}}>Name</li>
+                <li>Email</li>
+                <li style={{marginRight:'2.3rem'}}>Action</li>
+              </ul>
+             </div>
+
+             <div style={{background:'white'}}>
             <div
               className="list-group bg-white"
               style={{ height: "20rem", overflow: "auto" }}
             >
+         
+
               <ul class="list-group">
                 {filteredUsers &&
                   filteredUsers.map((item) => {
@@ -135,6 +155,7 @@ const CourseModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle
                     );
                   })}
               </ul>
+            </div>
             </div>
           </div>
       </div>

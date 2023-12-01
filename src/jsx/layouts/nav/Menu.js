@@ -117,11 +117,7 @@ export const MenuList = [
                 iconStyle: <i className="material-icons">widgets</i>,
                 to: 'view-course',
             },
-            {   
-                title:'Purchased Courses',        
-                iconStyle: <i className="material-icons">widgets</i>,
-                to: 'purchased-courses',
-            },
+          
            
             {   
                 title:'Add Exam',        
@@ -138,7 +134,11 @@ export const MenuList = [
             //     iconStyle: <i className="material-icons">insert_drive_file</i>,
             //     to: 'assign-course',
             // },
-            
+            // {   
+            //     title:'Purchased Courses',        
+            //     iconStyle: <i className="material-icons">widgets</i>,
+            //     to: 'purchased-courses',
+            // },
         ],
     },
     {
@@ -174,15 +174,15 @@ export const MenuList = [
                 title: 'View Bundles',
                 to: 'view-bundles',					
             },
-            {
-                title: 'Purchased Bundle',
-                to: 'purchased-bundles',					
-            },
+           
             {
                 title: 'Add Bundle',
                 to: 'add-bundle',					
             },
-            
+            // {
+            //     title: 'Purchased Bundle',
+            //     to: 'purchased-bundles',					
+            // },
             
         ],
     },

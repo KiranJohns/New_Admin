@@ -157,13 +157,15 @@ const AddCourse = () => {
                     Course Price:
                   </h4>
                   <div className=" mb-3 ">
-                    <input
+                <input
+               
                       name="price"
                       value={course.price}
                       onChange={handleChange}
                       type="number"
+                      step=".01"
                       className="form-control input-default "
-                      placeholder="course price"
+                      placeholder="£"
                     />
                   </div>
                 </div>
