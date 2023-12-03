@@ -9,6 +9,7 @@ import { BiSolidEdit } from "react-icons/bi";
 import { RiChatDeleteFill } from "react-icons/ri";
 import fetchData from "../../../axios/index";
 import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
+import Form from 'react-bootstrap/Form';
 
 
 
@@ -255,7 +256,7 @@ const tableData = [
   },
 ];
 
-const ViewCertificates = () => {
+const CourseMatrix = () => {
   // const childRef = useRef();
   const [currentPage, setCurrentPage] = useState(1);
   const [checked, setChecked] = useState([]);
@@ -320,7 +321,7 @@ const ViewCertificates = () => {
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="Search here..."
+                    placeholder="Search Company..."
                   />
                   <span className="input-group-text">
                     <Link to={"#"}>
@@ -340,27 +341,13 @@ const ViewCertificates = () => {
                   </span>
                 </div>
                 <div className="d-flex">
-                  <Dropdown className="drop-select me-3">
-                    <Dropdown.Toggle as="div" className="drop-select-btn ">
-                      Newest
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                      <Dropdown.Item>Newest</Dropdown.Item>
-                      {/* <Dropdown.Item>Oldest</Dropdown.Item>
-                                            <Dropdown.Item>Recent</Dropdown.Item> */}
-                    </Dropdown.Menu>
-                  </Dropdown>
-                  <a href="/create-certificate">
-                    {" "}
-                    <button
-                      type="button"
-                      className="btn btn-primary"
-
-                      // onClick={() => childRef.current.openModal()}
-                    >
-                      + Assign Certificate
-                    </button>
-                  </a>
+                <Form.Select   className="form-control"  aria-label="Default select example">
+            <option>Select Manager</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </Form.Select>
+              
                 </div>
               </div>
             </div>
@@ -375,43 +362,24 @@ const ViewCertificates = () => {
                     id="example-student"
                   >
                     <thead>
+                        <tr style={{background:"#212a50"}}>
+                           
+                            <th colSpan={57} style={{textAlign:'center'}}>Course Name</th>
+                        </tr>
                       <tr style={{ textAlign: "center", background: "#212A50", color:"#fff" }}>
-                        <th>
-                          <input
-                            type="checkbox"
-                            className="form-check-input"
-                            id="checkAll"
-                            onClick={() => handleCheckedAll(unchecked)}
-                          />
-                        </th>
-                        <th>ID</th>
+                    
                         <th>User Name</th>
-                        <th>Course ID</th>
-                        <th>Percentage</th>
-                        <th>Date</th>
-                        <th>Action</th>
+                        <th>Name 1</th>
+                        <th>Name 2</th>
+                        <th>Name 3</th>
+                        <th>Name 4</th>
+                        <th>Name 5</th>
                       </tr>
                     </thead>
                     <tbody style={{background:"white"}}>
                       {records.map((item, ind) => (
                         <tr key={ind} style={{ textAlign: "center" }}>
-                          <td style={{ textAlign: "center" }}>
-                            <div className="checkbox me-0 align-self-center">
-                              <div className="custom-control custom-checkbox ">
-                                <input
-                                  type="checkbox"
-                                  className="form-check-input"
-                                  id={`stud-${item.id}`}
-                                  checked={item.inputchecked}
-                                  onChange={() => handleChecked(item.id)}
-                                />
-                                <label
-                                  className="custom-control-label"
-                                  htmlFor={`stud-${item.id}`}
-                                ></label>
-                              </div>
-                            </div>
-                          </td>
+                     
                           <td>
                             <span className="text-primary font-w600">
                               ID {item.id}
@@ -503,4 +471,4 @@ const ViewCertificates = () => {
   );
 };
 
-export default ViewCertificates;
+export default CourseMatrix;
