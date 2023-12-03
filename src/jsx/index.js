@@ -35,13 +35,15 @@ import PurchasedCourses from "./components/PurchasedCourses";
 import PurchasedBundles from "./components/PurchasedBundles";
 import MyBundle from "./components/MyBundles";
 import TrainingMatrix from "./components/TrainingMatrix";
-import BundleMatrix from "./components/BundleMatrix";
-import CourseMatrix from "./components/CourseMatrix";
+// import BundleMatrix from "./components/BundleMatrix";
+// import CourseMatrix from "./components/CourseMatrix";
 import CourseIndReport from "./components/IndCourseReport";
 import CourseManReport from "./components/ManCourseBundle";
 import DraftBlog from "./components/Food/DraftBlog";
 import AddBundle from "./components/Food/addBundle";
 import AssignCourses from "./components/Food/assignCourses";
+import BundleMatrix from "../jsx copy/components/Student/BundleMatrix";
+import CourseMatrix from "../jsx copy/components/Student/CourseMatrix";
 /// Layout
 import Nav from "./layouts/nav";
 import Nav2 from "./layouts/nav/index2";

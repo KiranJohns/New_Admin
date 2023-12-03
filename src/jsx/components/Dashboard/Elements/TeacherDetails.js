@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import {Link} from 'react-router-dom';
+import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
 
 const tableData = [
 	{id:'1', name:'Yatin Xarma', subject:'Programming', qualification:'B.Tech', fee:'117.00', status:'Good'},
@@ -26,7 +27,7 @@ export const TeacherDetails = ({companies}) => {
     const lastIndex = currentPage * recordsPage;
     const firstIndex = lastIndex - recordsPage;   
     const records = companies?.slice(firstIndex, lastIndex);
-    const npage = Math.ceil(tableData.length / recordsPage)
+    const npage = Math.ceil(tableData?.length / recordsPage)
     const number = [...Array(npage + 1).keys()].slice(1)
     function prePage (){
         if(currentPage !== 1){
@@ -44,9 +45,14 @@ export const TeacherDetails = ({companies}) => {
     return (
         <div className="table-responsive basic-tbl">
             <div id="teacher-table_wrapper" className="dataTables_wrapper no-footer">
-                <table id="teacher-table" className="tech-data dataTable no-footer" style={{ width:'100%'}}>
+             
+                <Table
+                     responsive
+                     id="example-student"
+                     style={{ width:'100%'}}
+                  >
                     <thead>
-                        <tr>
+                        <tr style={{ textAlign: "center", background: "#212A50", color:"#fff", fontWeight:'bold'  }}>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
@@ -58,7 +64,7 @@ export const TeacherDetails = ({companies}) => {
                     </thead>
                     <tbody>
                         {records && records.map((item, ind)=>(
-                            <tr key={ind}>
+                            <tr style={{textAlign:"center"}} key={ind}>
                                 <td>{item.id}</td>
                                 <td>{item.first_name + " " + item.last_name}</td>
                                 <td>{item.email}</td>
@@ -72,12 +78,12 @@ export const TeacherDetails = ({companies}) => {
                         ))}
                         
                     </tbody>
-                </table>
+                </Table>
                 <div className="d-sm-flex text-center justify-content-between align-items-center">                           
                     <div className='dataTables_info'>
                         Showing {lastIndex-recordsPage + 1} to{" "}
-                        {tableData.length < lastIndex ? tableData.length : lastIndex}
-                        {" "}of {tableData.length} entries
+                        {tableData?.length < lastIndex ? tableData?.length : lastIndex}
+                        {" "}of {tableData?.length} entries
                     </div>
                     <div
                         className="dataTables_paginate paging_simple_numbers justify-content-center"
