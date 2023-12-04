@@ -156,17 +156,34 @@ const tabledata4 = [
 const Food = () => {
   const makeRequest = fetchData();
   const navigate = useNavigate();
+  const [publishedBlog, setPublishedBlog] = useState([]);
+  const [trashedBlogs, setTrashedBlog] = useState([]);
+  const [draftedBlogs, setDraftedBlog] = useState([]);
 
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
+    getBlogs();
+  }, []);
+
+  function getBlogs() {
     makeRequest("GET", "/blog/get-all-blog")
       .then((res) => {
+        console.log(res.data.response);
         setBlogs(res.data.response.reverse());
+        setPublishedBlog(
+          res.data.response.filter((blog) => blog.state == "published")
+        );
+        setTrashedBlog(
+          res.data.response.filter((blog) => blog.state == "draft")
+        );
+        setDraftedBlog(
+          res.data.response.filter((blog) => blog.state == "trash")
+        );
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }
 
   function deleteHandler(id) {
     console.log(id);
@@ -183,15 +200,14 @@ const Food = () => {
       });
   }
 
-  function moveToTrash(id) {
+  function blogStatusHandler(id, status) {
     makeRequest("POST", "/blog/update-blog-status", {
       id,
-      status: "trash",
+      status,
     })
       .then((res) => {
-        setBlogs((prev) => {
-          return prev.filter((item) => item.id != id);
-        });
+        getBlogs()
+        console.log(res);
         swal("Done!", "blog moved to trash", "success");
       })
       .catch((err) => {
@@ -287,11 +303,11 @@ const Food = () => {
                             </td>
                             <td>{item.author}</td>
                             <td>{date}</td>
-                            <td>0</td>
+                            <td>{item.views}</td>
                             <td>
-                              {item?.tags
-                                ? JSON.parse(item.tags).join(",")
-                                : ""}
+                              <span className="badge badge-primary">
+                                {item.state}
+                              </span>
                             </td>
                             <td>
                               <a
@@ -319,11 +335,23 @@ const Food = () => {
                               <Button
                                 className="me-2"
                                 variant="dark btn-icon-xxs"
+                                onClick={() =>
+                                  blogStatusHandler(item.id, "draft")
+                                }
                               >
                                 <FaDownload />
                               </Button>
                               <Button
-                                className="btn btn-danger me-2"
+                                className="me-2"
+                                variant="secondary btn-icon-xxs"
+                                onClick={() =>
+                                  blogStatusHandler(item.id, "trash")
+                                }
+                              >
+                                <FaTrash />
+                              </Button>
+                              <Button
+                                className="btn btn-danger"
                                 onClick={() => deleteHandler(item.id)}
                                 variant="danger btn-icon-xxs"
                               >
@@ -332,14 +360,6 @@ const Food = () => {
                               onClick={() => deleteHandler(item.id)}
                               title="Delete"
                             /> */}
-                              </Button>
-
-                              <Button
-                                className=""
-                                variant="secondary btn-icon-xxs"
-                                onClick={() => moveToTrash(item.id)}
-                              >
-                                <FaTrash />
                               </Button>
                             </td>
                           </tr>
@@ -351,15 +371,15 @@ const Food = () => {
             </Card>
           </Tab>
           <Tab eventKey="published" title="Published(0)">
-           <PublishedBlog/>
+            <PublishedBlog />
           </Tab>
 
           <Tab eventKey="draft" title="Draft(0)">
-           <BlogDraft/>
+            <BlogDraft />
           </Tab>
 
           <Tab eventKey="trash" title=" Trash(0)">
-          <BlogTrash/>
+            <BlogTrash />
           </Tab>
         </Tabs>
       </Col>
