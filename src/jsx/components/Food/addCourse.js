@@ -131,10 +131,10 @@ const AddCourse = () => {
     setCourse(prev => {
       return {
         ...prev, 
-        aims: JSON.stringify(courseInfo.aims),
-        who_should_attend: JSON.stringify(courseInfo.who_should_attend),
-        objectives_point: JSON.stringify(courseInfo.objectives_point),
-        what_you_will_learn_point: JSON.stringify(courseInfo.what_you_will_learn_point),  
+        aims: JSON.stringify(aims),
+        who_should_attend: JSON.stringify(who_should_attend),
+        objectives_point: JSON.stringify(objectives_point),
+        what_you_will_learn_point: JSON.stringify(what_you_will_learn),  
       }
     })
     makeRequest("POST", "/course/create-course", {
