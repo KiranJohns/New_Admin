@@ -226,8 +226,94 @@ const AddCourse = () => {
               </div>
 
               <div className="row">
+
+
+                
               
               <div className="col-6">
+
+              <div  style={{ }}>
+                <div className="card-body">
+                  <h4 className="" style={{ textAlign: "center" }}>
+                    Aims:
+                  </h4>
+                  <div className="">
+                    <label htmlFor="formFile" className="form-label"></label>
+                    <textarea
+                      // value={course.description}
+                      // onChange={handleChange}
+                      name="description"
+                      className="form-control"
+                      rows="4"
+                      id="comment"
+                      placeholder="Content"
+                    ></textarea>
+                  </div>
+                  <div style={{display:'flex', justifyContent:'center'}} className="m-2 p-2 ">
+                  <Button
+                    className=""
+                    variant="primary"
+                    // type="button"
+                    // onClick={submit}
+                  >
+                    ADD
+                  </Button>
+                </div>
+                </div>
+              </div>
+
+
+              <div  style={{ }}>
+                <div className="card-body">
+                  <h4 className="" style={{ textAlign: "center" }}>
+                    Objectives(points)
+                  </h4>
+                  <div className="">
+                    <label htmlFor="formFile" className="form-label"></label>
+                    <textarea
+                      // value={course.description}
+                      // onChange={handleChange}
+                      name="description"
+                      className="form-control"
+                      rows="4"
+                      id="comment"
+                      placeholder="Content"
+                    ></textarea>
+                  </div>
+                  <div style={{display:'flex', justifyContent:'center'}} className="m-2 p-2 ">
+                  <Button
+                    className=""
+                    variant="primary"
+                    // type="button"
+                    // onClick={submit}
+                  >
+                    ADD
+                  </Button>
+                </div>
+                </div>
+              </div>
+
+              <div  style={{ }}>
+                <div className="card-body">
+                  <h4 className="" style={{ textAlign: "center" }}>
+                    Objectives(define)
+                  </h4>
+                  <div className="">
+                    <label htmlFor="formFile" className="form-label"></label>
+                    <textarea
+                      // value={course.description}
+                      // onChange={handleChange}
+                      name="description"
+                      className="form-control"
+                      rows="4"
+                      id="comment"
+                      placeholder="Content"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+
+
               <div  style={{ }}>
                 <div className="card-body">
                   <h4 className="" style={{ textAlign: "center" }}>
@@ -268,6 +354,88 @@ const AddCourse = () => {
               </div>
              
              <div className="col-6">
+             
+             <div  style={{ }}>
+                <div className="card-body">
+                  <h4 className="" style={{ textAlign: "center" }}>
+                  Who should attend?
+                  </h4>
+                  <div className="">
+                    <label htmlFor="formFile" className="form-label"></label>
+                    <textarea
+                      // value={course.description}
+                      // onChange={handleChange}
+                      name="description"
+                      className="form-control"
+                      rows="4"
+                      id="comment"
+                      placeholder="Content"
+                    ></textarea>
+                  </div>
+                  <div style={{display:'flex', justifyContent:'center'}} className="m-2 p-2 ">
+                  <Button
+                    className=""
+                    variant="primary"
+                    // type="button"
+                    // onClick={submit}
+                  >
+                    ADD
+                  </Button>
+                </div>
+                </div>
+              </div>
+
+
+              <div  style={{ }}>
+                <div className="card-body">
+                  <h4 className="" style={{ textAlign: "center" }}>
+                    Objectives(points)
+                  </h4>
+                  <div className="">
+                    <label htmlFor="formFile" className="form-label"></label>
+                    <textarea
+                      // value={course.description}
+                      // onChange={handleChange}
+                      name="description"
+                      className="form-control"
+                      rows="4"
+                      id="comment"
+                      placeholder="Content"
+                    ></textarea>
+                  </div>
+                  <div style={{display:'flex', justifyContent:'center'}} className="m-2 p-2 ">
+                  <Button
+                    className=""
+                    variant="primary"
+                    // type="button"
+                    // onClick={submit}
+                  >
+                    ADD
+                  </Button>
+                </div>
+                </div>
+              </div>
+
+              <div  style={{ }}>
+                <div className="card-body">
+                  <h4 className="" style={{ textAlign: "center" }}>
+                  What you will learn?
+                  </h4>
+                  <div className="">
+                    <label htmlFor="formFile" className="form-label"></label>
+                    <textarea
+                      // value={course.description}
+                      // onChange={handleChange}
+                      name="description"
+                      className="form-control"
+                      rows="4"
+                      id="comment"
+                      placeholder="Content"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <div className="card-body">
                   <h4 className="" style={{ textAlign: "center" }}>
@@ -314,6 +482,46 @@ const AddCourse = () => {
               </div>
 
             </div>
+
+            <div style={{ display: "flex", justifyContent: "center" }}>
+                <div className="card-body">
+                  <h4 className="" style={{ textAlign: "center" }}>
+                  Assessment:
+                  </h4>
+                  <div className="form-group ">
+                    <textarea
+                      // value={course.description}
+                      // onChange={handleChange}
+                      name="description"
+                      className="form-control"
+                      rows="4"
+                      id="comment"
+                      placeholder="Content"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <div className="card-body">
+                  <h4 className="" style={{ textAlign: "center" }}>
+                  Certificate:
+                  </h4>
+                  <div className="form-group ">
+                    <textarea
+                      // value={course.description}
+                      // onChange={handleChange}
+                      name="description"
+                      className="form-control"
+                      rows="4"
+                      id="comment"
+                      placeholder="Content"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+
+
 
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <div className="m-2 p-2 ">
