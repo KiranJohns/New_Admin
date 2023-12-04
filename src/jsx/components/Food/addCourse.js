@@ -310,7 +310,7 @@ const AddCourse = () => {
                                   aims: "",
                                 };
                               });
-                              aims([]);
+                              setAims([]);
                             }}
                           >
                             CLEAR {aims.length}
