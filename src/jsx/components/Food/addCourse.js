@@ -126,8 +126,6 @@ const AddCourse = () => {
   }
 
   function submit() {
-    console.log(course);
-    
     setCourse(prev => {
       return {
         ...prev, 
@@ -145,7 +143,7 @@ const AddCourse = () => {
         swal("Success", "course created", "success");
       })
       .catch((err) => {
-        console.log(err.data);
+        console.log(err);
       });
   }
   return (
@@ -270,6 +268,7 @@ const AddCourse = () => {
                         ></label>
                         <textarea
                           name="aims"
+                          value={courseInfo.aims}
                           onChange={handlePointsChange}
                           className="form-control"
                           rows="4"
