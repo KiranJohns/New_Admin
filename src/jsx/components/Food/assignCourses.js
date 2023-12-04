@@ -61,6 +61,7 @@ const AssignCourses = () => {
 
     makeRequest("POST", "/bundle/create-bundle", form)
       .then((res) => {
+      swal("Oops!", "Bundle Created", "warning");
         console.log(res);
       })
       .catch((err) => {

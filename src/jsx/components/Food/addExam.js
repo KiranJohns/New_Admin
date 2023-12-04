@@ -115,7 +115,7 @@ const AddExam = () => {
       .then((res) => {
         setCourse(res.data);
         setExam([])
-        swal("Done!", "Anew exam created", "success");
+        swal("Done!", "A new exam created", "success");
       })
       .catch((err) => {
         console.log(err);

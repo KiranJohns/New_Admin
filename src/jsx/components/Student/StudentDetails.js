@@ -16,7 +16,7 @@ const StudentDetails = () => {
   const [userData, setUserData] = useState({});
   const [basicDetail, setBasicDetail] = useState([]);
   const [scheduleList, setScheduleList] = useState([]);
-  
+
   const makeRequest = fetchData();
 
   console.log(state);
@@ -26,18 +26,43 @@ const StudentDetails = () => {
         console.log(res);
         setUserData(res.data.response[0]);
         setBasicDetail([
-            { title: "ID", subtitle: res.data.response[0]?.id, image: profile },
-            { title: "City", subtitle: res.data.response[0].city, image: location },
-            { title: "Phone", subtitle: res.data.response[0].phone, image: phone },
-            { title: "Email", subtitle: res.data.response[0].email, image: email },
-        ])
-        setScheduleList(
-            [
-                { title: "Number of Courses", image: IMAGES.avat1, color: "schedule-card" },
-                { title: "Number of certificates",image: IMAGES.avat2, color: "schedule-card-1", },
-                { title: "Date of Join", image: IMAGES.avat3, color: "schedule-card-2" },
-            ]
-        )
+          { title: "ID", subtitle: res.data.response[0]?.id, image: profile },
+          {
+            title: "City",
+            subtitle: res.data.response[0].city,
+            image: location,
+          },
+          {
+            title: "Phone",
+            subtitle: res.data.response[0].phone,
+            image: phone,
+          },
+          {
+            title: "Email",
+            subtitle: res.data.response[0].email,
+            image: email,
+          },
+        ]);
+        setScheduleList([
+          {
+            title: "Number of Courses",
+            image: IMAGES.avat1,
+            color: "schedule-card",
+            count: res.data.response[0].course_count,
+          },
+          {
+            title: "Number of certificates",
+            image: IMAGES.avat2,
+            color: "schedule-card-1",
+            count: res.data.response[0].certificate_count,
+          },
+          {
+            title: "Date of Join",
+            image: IMAGES.avat3,
+            color: "schedule-card-2",
+            count: new Date(res.data.response[0].joined).toLocaleDateString(),
+          },
+        ]);
       })
       .catch((err) => {
         console.log(err);
@@ -105,14 +130,14 @@ const StudentDetails = () => {
                   </p>
                 </div>
               </div>
-              <Dropdown className="custom-dropdown">
+              {/* <Dropdown className="custom-dropdown">
                 <Dropdown.Toggle as="div" className="i-false btn sharp tp-btn ">
                   {SVGICON.dots}
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="dropdown-menu-end" align="end">
                   <Dropdown.Item>Disable</Dropdown.Item>
                 </Dropdown.Menu>
-              </Dropdown>
+              </Dropdown> */}
             </div>
             <div className="row mt-2">
               {basicDetail.map((item, ind) => (
@@ -133,14 +158,14 @@ const StudentDetails = () => {
             </div>
           </div>
         </div>
-        <div className="card h-auto">
+        {/* <div className="card h-auto">
           <div className="card-header border-0 p-3">
             <h4 className="heading mb-0">Courses</h4>
           </div>
           <div className="card-body p-0">
             <PaymentHistoryTable />
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="col-xl-3">
         <div className="row">
@@ -154,10 +179,8 @@ const StudentDetails = () => {
                   <div className="d-flex align-items-center justify-content-between">
                     <div>
                       <ul>
-                        <li className="mb-2">
-                          Purchased Courses
-                        </li>
-                        <li> 22</li>
+                        <li className="mb-2">Purchased Courses</li>
+                        <li> {data.count}</li>
                       </ul>
                     </div>
                   </div>
@@ -165,9 +188,6 @@ const StudentDetails = () => {
               </div>
             </div>
           ))}
-          {/* <div className="col-xl-12">
-                        <Link to={"#"} className="btn btn-primary btn-block light btn-rounded mb-5">View More</Link>
-                    </div> */}
         </div>
       </div>
     </div>

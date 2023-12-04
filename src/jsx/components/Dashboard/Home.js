@@ -19,14 +19,14 @@ const SchoolOverView = loadable(() =>
 );
 
 const cardBlog = [
-  { title: "Individuals", svg: SVGICON.user, number: "24", change: "std-data" },
   {
     title: "Companies",
     svg: SVGICON.user2,
     number: "200",
     change: "teach-data",
   },
-  { title: "Courses", svg: SVGICON.event, number: "55", change: "event-data" },
+  { title: "Managers", svg: SVGICON.event, number: "55", change: "event-data" },
+  { title: "Individuals", svg: SVGICON.user, number: "24", change: "std-data" },
   {
     title: "Certificates",
     svg: SVGICON.message,
@@ -53,16 +53,16 @@ const Home = () => {
             change: "std-data",
           },
           {
+            title: "Managers",
+            svg: SVGICON.user2,
+            number: res.data.response?.manager,
+            change: "event-data",
+          },
+          {
             title: "Companies",
             svg: SVGICON.user2,
             number: res.data.response.company_users_count,
             change: "teach-data",
-          },
-          {
-            title: "Courses",
-            svg: SVGICON.event,
-            number: res.data.response.course_count,
-            change: "event-data",
           },
           {
             title: "Certificates",

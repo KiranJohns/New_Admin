@@ -9,6 +9,7 @@ import { BiSolidEdit } from "react-icons/bi";
 import { RiChatDeleteFill } from "react-icons/ri";
 import { Button, ButtonGroup } from "react-bootstrap";
 import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
+import swal from "sweetalert2";
 
 const tableData = [
   {
@@ -282,7 +283,7 @@ const ManagerTable = () => {
       .then((res) => {
         console.log(res);
         setUsers(
-          res.data.response.filter((item) => item.type_of_account == "manager").reverse()
+          res.data.response.filter((item) => item.type_of_account == "manager").reverse().filter(item => !item.block)
         );
       })
       .catch((err) => {
@@ -308,6 +309,17 @@ const ManagerTable = () => {
       setCurrentPage(currentPage + 1);
     }
   }
+
+  async function blockHandler(id) {
+    try {
+      const response = await makeRequest("GET", `/info/block-user/${id}`);
+      setUsers(users.reverse().filter(item => item.id != id));
+      swal("Done!", "user successfully deleted", "success");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <>
       <div className="row">
@@ -461,6 +473,7 @@ const ManagerTable = () => {
                               <Button
                                 className="me-2"
                                 variant="danger btn-icon-xxs"
+                                onClick={() => blockHandler(item.id)}
                               >
                                 <RiChatDeleteFill />
                               </Button>

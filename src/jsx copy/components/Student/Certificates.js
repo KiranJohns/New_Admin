@@ -10,8 +10,6 @@ import { RiChatDeleteFill } from "react-icons/ri";
 import fetchData from "../../../axios/index";
 import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
 
-
-
 const tableData = [
   {
     id: "1",
@@ -280,7 +278,6 @@ const ViewCertificates = () => {
   };
 
   useEffect(() => {
-    console.log("hi");
     makeRequest("GET", "/certificate/get-all-certificates")
       .then((res) => {
         setChecked(res.data.Response.reverse());
@@ -370,12 +367,15 @@ const ViewCertificates = () => {
                   id="example-student_wrapper"
                   className="dataTables_wrapper no-footer"
                 >
-                  <Table
-                    responsive
-                    id="example-student"
-                  >
+                  <Table responsive id="example-student">
                     <thead>
-                      <tr style={{ textAlign: "center", background: "#212A50", color:"#fff" }}>
+                      <tr
+                        style={{
+                          textAlign: "center",
+                          background: "#212A50",
+                          color: "#fff",
+                        }}
+                      >
                         <th>
                           <input
                             type="checkbox"
@@ -386,13 +386,13 @@ const ViewCertificates = () => {
                         </th>
                         <th>ID</th>
                         <th>User Name</th>
-                        <th>Course ID</th>
+                        <th>Course Name</th>
                         <th>Percentage</th>
                         <th>Date</th>
                         <th>Action</th>
                       </tr>
                     </thead>
-                    <tbody style={{background:"white"}}>
+                    <tbody style={{ background: "white" }}>
                       {records.map((item, ind) => (
                         <tr key={ind} style={{ textAlign: "center" }}>
                           <td style={{ textAlign: "center" }}>
@@ -431,21 +431,19 @@ const ViewCertificates = () => {
                             <h6 className="mb-0">{item.percentage}</h6>
                           </td>
                           <td>
-                            <h6 className="mb-0">{new Date(item.date).toLocaleDateString()}</h6>
+                            <h6 className="mb-0">
+                              {new Date(item.date).toLocaleDateString()}
+                            </h6>
                           </td>
                           <td>
-                            <Button
-                              className="me-2"
-                              variant="success btn-icon-xxs"
-                            >
-                              <FaEye />
-                            </Button>
-                            <Button
-                              className="me-2"
-                              variant="danger btn-icon-xxs"
-                            >
-                              <RiChatDeleteFill />
-                            </Button>
+                            <a href={item.image} target="_blank" style={{color: 'white'}}>
+                              <Button
+                                className="me-2"
+                                variant="success btn-icon-xxs"
+                              >
+                                <FaEye />
+                              </Button>
+                            </a>
                           </td>
                         </tr>
                       ))}

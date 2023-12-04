@@ -27,6 +27,7 @@ const AddNewStudent = () => {
     phone: "",
     country: "",
     city: "",
+    type: "",
   });
   function handleOnchange(e) {
     setUserData((prev) => {
@@ -39,12 +40,14 @@ const AddNewStudent = () => {
 
   function submit(e) {
     e.preventDefault();
-    makeRequest("POST","/info/create-user",userData).then(res => {
-        swal("Done!","user successfully created","success")
-    }).catch(err => {
-        swal("Oops!",err.data.errors[0].error,"error")
+    makeRequest("POST", "/info/create-user", userData)
+      .then((res) => {
+        swal("Done!", "user successfully created", "success");
+      })
+      .catch((err) => {
+        swal("Oops!", err.data.errors[0].error, "error");
         console.log(err);
-    })
+      });
     console.log(userData);
   }
 
@@ -59,7 +62,7 @@ const AddNewStudent = () => {
             </div>
             <div className="card-body">
               <div className="row">
-                <div  className="col-xl-1 col-lg-1"></div>
+                <div className="col-xl-1 col-lg-1"></div>
                 <div className="col-xl-10 col-lg-10">
                   <div className="row">
                     <div className="col-xl-6 col-sm-6">
@@ -70,8 +73,8 @@ const AddNewStudent = () => {
                         >
                           First Name<span className="required">*</span>
                         </label>
-                        <input 
-                        style={{background:'#f7fafc'}}
+                        <input
+                          style={{ background: "#f7fafc" }}
                           type="text"
                           name="first_name"
                           value={userData.first_name}
@@ -89,7 +92,7 @@ const AddNewStudent = () => {
                           Email<span className="required">*</span>
                         </label>
                         <input
-                         style={{background:'#f7fafc'}}
+                          style={{ background: "#f7fafc" }}
                           type="text"
                           name="email"
                           value={userData.email}
@@ -108,10 +111,10 @@ const AddNewStudent = () => {
                             Country<span className="required">*</span>
                           </label>
                           <select
-                          name="country"
+                            name="country"
                             onChange={handleOnchange}
                             className="form-control "
-                            style={{background:'#f7fafc'}}
+                            style={{ background: "#f7fafc" }}
                           >
                             <option>Select</option>
                             <option value="United Kingdom">
@@ -128,7 +131,7 @@ const AddNewStudent = () => {
                           Password<span className="required">*</span>
                         </label>
                         <input
-                         style={{background:'#f7fafc'}}
+                          style={{ background: "#f7fafc" }}
                           type="text"
                           name="password"
                           value={userData.password}
@@ -148,7 +151,7 @@ const AddNewStudent = () => {
                           Last Name<span className="required">*</span>
                         </label>
                         <input
-                         style={{background:'#f7fafc'}}
+                          style={{ background: "#f7fafc" }}
                           type="text"
                           className="form-control"
                           id="exampleFormControlInput5"
@@ -166,7 +169,7 @@ const AddNewStudent = () => {
                           Phone<span className="required">*</span>
                         </label>
                         <input
-                         style={{background:'#f7fafc'}}
+                          style={{ background: "#f7fafc" }}
                           type="number"
                           name="phone"
                           value={userData.phone}
@@ -184,7 +187,7 @@ const AddNewStudent = () => {
                           City<span className="required">*</span>
                         </label>
                         <input
-                         style={{background:'#f7fafc'}}
+                          style={{ background: "#f7fafc" }}
                           type="text"
                           name="city"
                           value={userData.city}
@@ -194,7 +197,36 @@ const AddNewStudent = () => {
                           placeholder="City"
                         />
                       </div>
-                      <div className="mb-3 d-flex justify-content-center mt-5 ml-4">
+                      <div className="mb-3">
+                        <div className="form-group mb-3">
+                          <label
+                            htmlFor="exampleFormControlInput1"
+                            className="form-label text-primary"
+                          >
+                            Type Of Account<span className="required">*</span>
+                          </label>
+                          <select
+                            name="type"
+                            onChange={handleOnchange}
+                            className="form-control "
+                            style={{ background: "#f7fafc" }}
+                          >
+                            <option>Select</option>
+                            <option value="individual">
+                              individual
+                            </option>
+                            <option value="company">
+                              company
+                            </option>
+                            <option value="manager">
+                              manager
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+
+                    </div>
+                      <div className="mb-3 d-flex justify-content-center mt-3 ml-4">
                         <Button
                           className=""
                           variant="primary"
@@ -204,7 +236,6 @@ const AddNewStudent = () => {
                           Submit
                         </Button>
                       </div>
-                    </div>
                   </div>
                 </div>
               </div>
