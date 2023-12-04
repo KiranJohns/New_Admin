@@ -13,7 +13,7 @@ import { useState } from "react";
 import swal from "sweetalert";
 import { useEffect } from "react";
 import CourseModal from "./Food/CourseModals";
-import { MdAssignmentAdd } from "react-icons/md"
+import { MdAssignmentAdd } from "react-icons/md";
 // const svg1 = (
 //   <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1">
 //     <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
@@ -147,33 +147,37 @@ const tabledata4 = [
 ];
 
 const ViewCourse = () => {
-  const makeRequest = fetchData()
-  const [course, setCourse] = useState([])
-  const navigate = useNavigate()
+  const makeRequest = fetchData();
+  const [course, setCourse] = useState([]);
+  const navigate = useNavigate();
 
   const [openModalForWorkExp, setOpenModalForWorkExp] = useState(false);
 
   const [bundles, setBundles] = useState([]);
   const [bundleId, setBundleId] = useState(1);
+  const [courseName,setCourseName] = useState("");
 
   useEffect(() => {
-    makeRequest("GET", "/course/get-all-course").then(res => {
-      setCourse(res.data.response);
-    }).catch(err => {
-      console.log(err);
-    })
-  }, [])
+    makeRequest("GET", "/course/get-all-course")
+      .then((res) => {
+        setCourse(res.data.response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-  function assignBundle(userId,count) {
-    console.log(bundleId,userId,count);
+  function assignBundle(userId, count) {
+    console.log(bundleId, userId, count);
     let form = new FormData();
     form.append("type", "course");
     form.append("count", count);
     form.append("user_id", userId);
     form.append("bundle_id", bundleId);
 
-    makeRequest("POST", "/info/assign-bundle", form)
+    makeRequest("POST", "/info/assign-bundle", form) // assign bundle and assign course is same route
       .then((res) => {
+        swal("Deleted!", "Course Assigned", "success");
         console.log(res);
       })
       .catch((err) => {
@@ -181,18 +185,24 @@ const ViewCourse = () => {
       });
   }
 
-
   function handleDelete(id) {
-    makeRequest("DELETE", `/course/delete/${id}`).then(res => {
-      setCourse(prev => prev.filter(item => item.id != Number(id)));
-      swal("Done!", "successfully deleted", "success")
-    }).catch(err => {
-      console.log(err);
-    })
+    makeRequest("DELETE", `/course/delete/${id}`)
+      .then((res) => {
+        setCourse((prev) => prev.filter((item) => item.id != Number(id)));
+        swal("Done!", "successfully deleted", "success");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   return (
     <div>
-      <CourseModal  setOpenModalForWorkExp={setOpenModalForWorkExp} openModalForWorkExp={openModalForWorkExp} assignBundle={assignBundle} />
+      <CourseModal
+        setOpenModalForWorkExp={setOpenModalForWorkExp}
+        openModalForWorkExp={openModalForWorkExp}
+        assignBundle={assignBundle}
+        name={courseName}
+      />
       <div className="card">
         <Col lg={12}>
           <Card>
@@ -202,7 +212,7 @@ const ViewCourse = () => {
             <Card.Body>
               <Table responsive>
                 <thead>
-                  <tr style={{ textAlign: "center", background: '#212A50' }}>
+                  <tr style={{ textAlign: "center", background: "#212A50" }}>
                     <th className="width80">
                       <strong>ID</strong>
                     </th>
@@ -227,39 +237,64 @@ const ViewCourse = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {course && course.map((item, id) => <tr style={{ textAlign: "center" }}>
-                    <td>
-                      <strong>{id}</strong>
-                    </td>
-                    <td>{item?.name}</td>
-                    <td>{item?.category}</td>
-                    <td>{item?.description.slice(0, 30)}</td>
-                    <td>{item?.price}</td>
-                    <td>
-                      <Badge bg="" className="light badge-success">
-                        Active
-                      </Badge>
-                    </td>
-                    <td>
-                      <Button className="me-2" variant="success btn-icon-xxs">
-                        <FaEye />
-                      </Button>
-                      <Button onClick={() => {
-                        setBundleId(item.id)
-                        setOpenModalForWorkExp(true)
-                      }} className="me-2" variant="info btn-icon-xxs">
-                        <MdAssignmentAdd />
-                      </Button>
+                  {course &&
+                    course.map((item, id) => (
+                      <tr style={{ textAlign: "center" }}>
+                        <td>
+                          <strong>{id}</strong>
+                        </td>
+                        <td>{item?.name}</td>
+                        <td>{item?.category}</td>
+                        <td>{item?.description.slice(0, 30)}</td>
+                        <td>{item?.price}</td>
+                        <td>
+                          <Badge bg="" className="light badge-success">
+                            Active
+                          </Badge>
+                        </td>
+                        <td>
+                          <a href={`https://test.learnforcare.co.uk/course/${item.id}`}>
+                            <Button
+                              className="me-2"
+                              variant="success btn-icon-xxs"
+                            >
+                              <FaEye />
+                            </Button>
+                          </a>
+                          <Button
+                            onClick={() => {
+                              setBundleId(item.id);
+                              setCourseName(item.name)
+                              setOpenModalForWorkExp(true);
+                            }}
+                            className="me-2"
+                            variant="info btn-icon-xxs"
+                          >
+                            <MdAssignmentAdd />
+                          </Button>
 
-                      <Button className="me-2" variant="primary btn-icon-xxs" onClick={() => navigate("/edit-course", { state: { id: item.id } })}>
-                        <BiSolidEdit />
-                      </Button>
-                      <Button className="me-2" variant="danger btn-icon-xxs">
-                        <RiChatDeleteFill onClick={() => handleDelete(item.id)} />
-                      </Button>
-                   
-                    </td>
-                  </tr>)}
+                          <Button
+                            className="me-2"
+                            variant="primary btn-icon-xxs"
+                            onClick={() =>
+                              navigate("/edit-course", {
+                                state: { id: item.id },
+                              })
+                            }
+                          >
+                            <BiSolidEdit />
+                          </Button>
+                          <Button
+                            className="me-2"
+                            variant="danger btn-icon-xxs"
+                          >
+                            <RiChatDeleteFill
+                              onClick={() => handleDelete(item.id)}
+                            />
+                          </Button>
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </Table>
             </Card.Body>

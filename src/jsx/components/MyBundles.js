@@ -56,6 +56,7 @@ const MyBundle = () => {
 
     makeRequest("POST", "/info/assign-bundle", form)
       .then((res) => {
+        swal("Deleted!", "Bundle assigned", "success");
         console.log(res);
       })
       .catch((err) => {
@@ -121,6 +122,14 @@ const MyBundle = () => {
                           {/* <Button className="me-2" variant="success btn-icon-xxs">
                       <FaEye />
                     </Button> */}
+                          <a href={`https://test.learnforcare.co.uk/bundle/bundle-all`}>
+                            <Button
+                              className="me-2"
+                              variant="success btn-icon-xxs"
+                            >
+                              <FaEye />
+                            </Button>
+                          </a>
                           <Button
                             className="me-2"
                             variant="info btn-icon-xxs"

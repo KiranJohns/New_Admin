@@ -11,7 +11,7 @@ import swal from "sweetalert";
 import { useEffect } from "react";
 import { Modal } from "react-bootstrap";
 
-const CourseModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle }) => {
+const CourseModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle,name }) => {
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [users, setUsers] = useState([]);
   const [courseCount, setCourseCount] = useState(1);
@@ -46,7 +46,7 @@ const CourseModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle
       <div style={{ maxHeight: "10rem"}}>
           <div>
             <div>
-              <h5 style={{textAlign:'center', padding:'.5rem', background:"#212a50",color:"#fff"}}>Assign:{" "}Course Name</h5>
+              <h5 style={{textAlign:'center', padding:'.5rem', background:"#212a50",color:"#fff"}}>Assign:{" "}{name}</h5>
             </div>
             
             <div
