@@ -32,8 +32,7 @@ const AssignCourses = () => {
     description: "",
     image: "",
   });
-  const [sub, setSub] = useState(false)
-
+  const [sub, setSub] = useState(false);
 
   const makeRequest = fetchData();
   function handleChange(e) {
@@ -61,7 +60,7 @@ const AssignCourses = () => {
 
     makeRequest("POST", "/bundle/create-bundle", form)
       .then((res) => {
-      swal("Oops!", "Bundle Created", "warning");
+        swal("Oops!", "Bundle Created", "warning");
         console.log(res);
       })
       .catch((err) => {
@@ -80,7 +79,6 @@ const AssignCourses = () => {
       });
   }, []);
   return (
-
     <div className="row">
       <div className="col-xl-1"></div>
       <div className="col-xl-10">
@@ -88,7 +86,8 @@ const AssignCourses = () => {
           className="card"
           style={{
             boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
-            background: "#f5f5f7", justifyContent:'center'
+            background: "#f5f5f7",
+            justifyContent: "center",
           }}
         >
           <div
@@ -104,7 +103,7 @@ const AssignCourses = () => {
                 <div className="col-4" style={{}}>
                   <div className="card-body">
                     <h4 className="" style={{ textAlign: "center" }}>
-                     Course/Bundle
+                      Course/Bundle
                     </h4>
                     <div className=" mb-3 ">
                       <input
@@ -122,7 +121,7 @@ const AssignCourses = () => {
                 <div className="col-4" style={{}}>
                   <div className="card-body">
                     <h4 className="" style={{ textAlign: "center" }}>
-                    Course/Bundle
+                      Course/Bundle
                     </h4>
                     <div className="form-group mb-3">
                       <select
@@ -205,7 +204,12 @@ const AssignCourses = () => {
                       <Card.Body>
                         <Table responsive>
                           <thead>
-                            <tr style={{ background: "#212a50", textAlign:'center' }}>
+                            <tr
+                              style={{
+                                background: "#212a50",
+                                textAlign: "center",
+                              }}
+                            >
                               <th>
                                 <strong>Index</strong>
                               </th>
@@ -272,7 +276,8 @@ const AssignCourses = () => {
                     <div className="form-group mb-3">
                       <select
                         ref={courseRef}
-                        onChange={(e) => { setSub(true)
+                        onChange={(e) => {
+                          setSub(true);
                           if (!e.target.value) return;
                           if (
                             selectedCourse.find(
@@ -298,8 +303,18 @@ const AssignCourses = () => {
                         {filteredCourse.map((item) => (
                           <option value={item.id}>{item.name}</option>
                         ))}
-                      </select>{ sub &&
-                    <small style={{textAlign:'center',marginLeft:'1.5rem', color:'#5a9676'}}>select again to add more courses</small> }
+                      </select>
+                      {sub && (
+                        <small
+                          style={{
+                            textAlign: "center",
+                            marginLeft: "1.5rem",
+                            color: "#5a9676",
+                          }}
+                        >
+                          select again to add more courses
+                        </small>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -369,7 +384,6 @@ const AssignCourses = () => {
         </div>
       </div>
     </div>
-   
   );
 };
 
