@@ -212,8 +212,7 @@ const PublishedBlog = () => {
       });
   }
   return (
-    <div className="card">
-      <Col lg={12}>
+    
         <Card>
           <div style={{display:"flex", marginLeft:"10rem",}}><a className="blog-non" href="/view-blog" style={{fontSize:"1rem", padding:'.2rem',borderRadius:'.1rem'}}>All (1)</a><div style={{borderLeft:'.1rem solid #5a9676', height:'1.3rem',marginTop:".45rem"}}></div>
           <a className="blog-head" href="/published"  style={{fontSize:"1rem", padding:'.2rem',borderRadius:'.1rem'}}>Published(0)</a><div style={{borderLeft:'.1rem solid #5a9676', height:'1.3rem',marginTop:".45rem"}}></div>
@@ -313,9 +312,7 @@ const PublishedBlog = () => {
             </Table>
           </Card.Body>
         </Card>
-      </Col>
-     
-    </div>
+  
   );
 };
 

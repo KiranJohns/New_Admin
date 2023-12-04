@@ -204,11 +204,10 @@ const ViewInvoice = () => {
                       </td>
                       <td style={{ textAlign: "center" }}>{new Date(item.date).toLocaleDateString()}</td>
                       <td style={{ textAlign: "center" }}>
-                        <Button className="me-2" variant="success btn-icon-xxs">
-                        <a target="_blank" href={item.img}>
+                      <a target="_blank" href={item.img}>  
+                      <Button className="me-2" variant="success btn-icon-xxs">
                           <FaEye />
-                        </a>
-                        </Button>
+                        </Button></a>
                       </td>
                     </tr>
                   ))}
