@@ -11,7 +11,7 @@ import swal from "sweetalert";
 import { useEffect } from "react";
 import { Modal } from "react-bootstrap";
 
-const BundleModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle }) => {
+const BundleModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle, name }) => {
   const [selectUserForAssignCourse, setSelectUserForAssignCourse] =
     useState("individual");
   const [filteredUsers, setFilteredUsers] = useState([]);
@@ -50,7 +50,7 @@ const BundleModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle
       <div style={{ maxHeight: "100rem" }}>
           <div>
           <div>
-              <h4 style={{textAlign:'center', padding:'.5rem', background:"#5a9676",color:"#fff"}}>Assign Bundle</h4>
+              <h4 style={{textAlign:'center', padding:'.5rem', background:"#5a9676",color:"#fff"}}>Assign Bundle: {" "}{name}</h4>
             </div>
             <div
               className="form-control d-flex gap-3"

@@ -25,6 +25,7 @@ const MyBundle = () => {
 
   const [bundles, setBundles] = useState([]);
   const [bundleId, setBundleId] = useState();
+  const [bundleName, setBundleName] = useState("");
   useEffect(() => {
     makeRequest("GET", "/bundle/get-all-course-bundles")
       .then((res) => {
@@ -67,7 +68,7 @@ const MyBundle = () => {
   return (
     <div>
      
-     <BundleModal   setOpenModalForWorkExp={setOpenModalForWorkExp} openModalForWorkExp={openModalForWorkExp} assignBundle={assignBundle} />
+     <BundleModal  name={bundleName} setOpenModalForWorkExp={setOpenModalForWorkExp} openModalForWorkExp={openModalForWorkExp} assignBundle={assignBundle} />
 
       <div className="card">
         <Col lg={12}>
@@ -135,6 +136,7 @@ const MyBundle = () => {
                             variant="info btn-icon-xxs"
                             onClick={() => {
                               setBundleId(item.id)
+                              setBundleName(item.name)
                               setOpenModalForWorkExp(true)
                             }}
                           >
