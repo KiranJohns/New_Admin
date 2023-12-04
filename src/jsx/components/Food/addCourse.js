@@ -389,7 +389,7 @@ const AddCourse = () => {
               <div  style={{ }}>
                 <div className="card-body">
                   <h4 className="" style={{ textAlign: "center" }}>
-                    Objectives(points)
+                  What you will learn?(points)
                   </h4>
                   <div className="">
                     <label htmlFor="formFile" className="form-label"></label>
