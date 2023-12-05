@@ -248,9 +248,6 @@ const SalesTab = () => {
                           <strong>Course Count</strong>
                         </th>
                         <th style={{ textAlign: "center",color:"#fff" }}>
-                          <strong>Month</strong>
-                        </th>
-                        <th style={{ textAlign: "center",color:"#fff" }}>
                           <strong>Date</strong>
                         </th>
                         <th style={{ textAlign: "center",color:"#fff" }}>
@@ -270,10 +267,7 @@ const SalesTab = () => {
                                 {item.total_course_count}
                               </td>
                               <td style={{ textAlign: "center" }}>
-                                {item.month}
-                              </td>
-                              <td style={{ textAlign: "center" }}>
-                                {item.day}
+                                {item.day + "/" + item.month + "/" + item.year}
                               </td>
                               <td style={{ textAlign: "center" }}>
                                 £ {" "}{item.total_amount}
