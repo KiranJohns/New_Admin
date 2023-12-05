@@ -155,16 +155,19 @@ const tabledata4 = [
 const SalesTab = () => {
   const [reports, setReports] = useState([]);
   const [groupByDay, setGroupByDay] = useState([]);
+  const [filteredGroupByDay, setFilteredGroupByDay] = useState([]);
   const [daily, setDaily] = useState([]);
   const [groupByYear, setGroupByYear] = useState([]);
+  const [filteredGroupByYear, setFilteredGroupByYear] = useState([]);
   const [type, setType] = useState("day");
   const makeRequest = fetchData();
   useEffect(() => {
     makeRequest("GET", "/course/get-all-purchased-course-group-by")
       .then((res) => {
-        console.log(res.data);
+        setFilteredGroupByDay(res.data.response.groupByDay.reverse())
         setDaily(res.data.response.dailyReport.reverse());
         setGroupByDay(res.data.response.groupByDay.reverse());
+        setFilteredGroupByYear(res.data.response.groupByYear.reverse());
         setGroupByYear(res.data.response.groupByYear.reverse());
       })
       .catch((err) => {
@@ -240,7 +243,8 @@ const SalesTab = () => {
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="Search by date.."
+                    onChange={(e) => setFilteredGroupByDay(e.target.value ? groupByDay.filter(data => data.month == e.target.value) : groupByDay)}
+                    placeholder="Search by month..."
                   />
                   <span className="input-group-text">
                     <Link to={"#"}>
@@ -272,9 +276,6 @@ const SalesTab = () => {
                           <strong>Course Count</strong>
                         </th>
                         <th style={{ textAlign: "center",color:"#fff" }}>
-                          <strong>Month</strong>
-                        </th>
-                        <th style={{ textAlign: "center",color:"#fff" }}>
                           <strong>Date</strong>
                         </th>
                         <th style={{ textAlign: "center",color:"#fff" }}>
@@ -283,8 +284,8 @@ const SalesTab = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {groupByDay &&
-                        groupByDay.map((item, i) => {
+                      {filteredGroupByDay &&
+                        filteredGroupByDay.map((item, i) => {
                           return (
                             <tr>
                               <td>
@@ -294,10 +295,7 @@ const SalesTab = () => {
                                 {item.total_course_count}
                               </td>
                               <td style={{ textAlign: "center" }}>
-                                {item.month}
-                              </td>
-                              <td style={{ textAlign: "center" }}>
-                                {item.day}
+                                {item.day + "/" + item.month + "/" + item.year}
                               </td>
                               <td style={{ textAlign: "center" }}>
                                 £ {" "}{item.total_amount}
@@ -322,7 +320,8 @@ const SalesTab = () => {
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="Search by year.."
+                    onChange={(e) => setFilteredGroupByYear(e.target.value ? groupByYear.filter(data => data.year == e.target.value) : groupByYear)}
+                    placeholder="Search by year..."
                   />
                   <span className="input-group-text">
                     <Link to={"#"}>
@@ -365,8 +364,8 @@ const SalesTab = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {groupByYear &&
-                        groupByYear.map((item, i) => {
+                      {filteredGroupByYear &&
+                        filteredGroupByYear.map((item, i) => {
                           return (
                             <tr>
                               <td>
