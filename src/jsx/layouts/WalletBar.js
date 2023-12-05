@@ -63,7 +63,7 @@ const WalletBar = () => {
             <div className="card bg-transparent mb-1">
               <div className="card-header  border-0 px-3">
                 <div>
-                  <h2 className="heading mb-0">New Users</h2>
+                  <h2 className="heading mb-0">New Individuals</h2>
                   <span>
                     You have{" "}
                     <span className="font-w600">{users && users?.length || 0}</span>{" "}
@@ -71,11 +71,11 @@ const WalletBar = () => {
                   </span>
                 </div>
                 <div>
-                  <Link
-                    to={"#"}
+                  <a
+                   
                     className="add icon-box bg-primary"
-                    // onClick={() => childRef.current.openModal()}
-                    href="https://admin.learnforcare.co.uk/add-user"
+                    
+                    href="/add-user"
                   >
                     <svg
                       width="14"
@@ -89,7 +89,7 @@ const WalletBar = () => {
                         fill="white"
                       />
                     </svg>
-                  </Link>
+                  </a>
                 </div>
               </div>
               <div
@@ -124,14 +124,15 @@ const WalletBar = () => {
                   ))}
               </div>
               <div className="card-footer text-center border-0 pt-0 px-3 pb-0">
-                <Link
-                  to={"#"}
+                <a
+                href="/individual"
+                  // to={"#"}
                   className="btn btn-block btn-primary light btn-rounded dlab-load-more"
-                  onClick={AddMoreData}
+                  // onClick={AddMoreData}
                 >
                   {" "}
                   View More {load && <i className="fa fa-refresh"></i>}
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -189,9 +190,10 @@ const WalletBar = () => {
                 ))}
               </div>
               <div className="card-footer pt-0 border-0 px-2">
-                <button className="btn btn-block btn-primary light btn-rounded  mb-3">
+               <a href="/view-blog"> 
+               <button className="btn btn-block btn-primary light btn-rounded  mb-3">
                   View More
-                </button>
+                </button></a>
               </div>
             </div>
           </div>
