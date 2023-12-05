@@ -247,6 +247,23 @@ export const MenuList = [
                 iconStyle: <i className="material-icons">assessment</i>,
                 to: 'individual-reports',
             },
+        
+            {   
+                title:'Individual Course',        
+                iconStyle: <i className="material-icons">assessment</i>,
+                to: 'Course-Individuals',
+            },
+            {   
+                title:'Manager Course',        
+                iconStyle: <i className="material-icons">assessment</i>,
+                to: 'Course-Managers',
+            },
+            {   
+                title:'Transaction',        
+                iconStyle: <i className="material-icons">assessment</i>,
+                to: 'Transactions',
+            },
+            
         ],
     },
    

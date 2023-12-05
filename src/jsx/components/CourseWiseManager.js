@@ -20,7 +20,7 @@ const svg1 = (
 );
 
 
-const CourseWiseMan = () => {
+const  CourseWiseManager = () => {
   const makeRequest = fetchData();
   const [exams, setExams] = useState([]);
   useEffect(() => {
@@ -78,22 +78,20 @@ const CourseWiseMan = () => {
               <thead>
                 <tr style={{ textAlign: "center", background: "#212A50", color:"#fff" }}>
                   <th className="width80">
-                    <strong>Individual ID</strong>
+                    <strong>Sl No</strong>
                   </th>
                   <th>
-                    <strong> Name</strong>
+                    <strong>Date</strong>
                   </th>
                   <th>
-                    <strong>No of courses</strong>
+                    <strong>Time</strong>
+                  </th>
+               
+                  <th>
+                    <strong>Quantity</strong>
                   </th>
                   <th>
-                    <strong>No of bundles</strong>
-                  </th>
-                  <th>
-                    <strong>Certificates</strong>
-                  </th>
-                  <th>
-                    <strong>Status</strong>
+                    <strong>Amount</strong>
                   </th>
                 </tr>
               </thead>
@@ -104,7 +102,7 @@ const CourseWiseMan = () => {
                   </td>
                   <td>{item?.first_name + " " + item?.last_name}</td>
                   <td>{item?.assigned_course_count + item?.purchased_course_count}</td>
-                  <td>{item?.purchased_bundle_count + item?.assigned_bundle_count}</td>
+                 
                   <td>{item?.certificates}</td>
                   <td>Active</td>
                 </tr>)}
@@ -117,4 +115,4 @@ const CourseWiseMan = () => {
   );
 };
 
-export default CourseWiseMan;
+export default CourseWiseManager;
