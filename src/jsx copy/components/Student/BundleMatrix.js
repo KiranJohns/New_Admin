@@ -281,7 +281,6 @@ const BundleMatrix = () => {
   };
 
   useEffect(() => {
-    console.log("hi");
     makeRequest("GET", "/certificate/get-all-certificates")
       .then((res) => {
         setChecked(res.data.Response.reverse());
