@@ -233,7 +233,7 @@ export const MenuList = [
         ],
     },
     {
-        title:'Course Reports',
+        title:'Reports',
         classsChange: 'mm-collapse',		
         iconStyle: <i className="material-symbols-outlined">assessment</i>,
         content: [

@@ -167,7 +167,7 @@ const CourseManReport = () => {
       <Col lg={12}>
         <Card>
           <Card.Header>
-            <Card.Title>Course Reports</Card.Title>
+            <Card.Title></Card.Title>
             <div className="input-group search-area mb-md-0 mb-3">
               <input
                 type="text"

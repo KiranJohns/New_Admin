@@ -19,128 +19,8 @@ const svg1 = (
   </svg>
 );
 
-const tabledata = [
-  {
-    image: IMAGES.food1,
-    title: "Beef Steak with Fried Potato",
-    subtitle: "Dinner",
-    rating: "5.0",
-    sales: "1,210",
-    intrest: "20%",
-  },
-  {
-    image: IMAGES.food2,
-    title: "Pancake with Honey",
-    subtitle: "Breakfast",
-    rating: "4.9",
-    sales: "1,110",
-    intrest: "13&",
-  },
-  {
-    image: IMAGES.food3,
-    title: "Japanese Beef Ramen",
-    subtitle: "Lunch",
-    rating: "4.8",
-    sales: "1,050",
-    intrest: "18%",
-  },
-  {
-    image: IMAGES.food4,
-    title: "Mixed Salad",
-    subtitle: "Lunch",
-    rating: "5.0",
-    sales: "1,400",
-    intrest: "17%",
-  },
-  {
-    image: IMAGES.food5,
-    title: "Snack Beef Meatball with Vegetable",
-    subtitle: "Snack",
-    rating: "4.8",
-    sales: "1,456",
-    intrest: "15%",
-  },
-];
-const tabledata2 = [
-  {
-    image: IMAGES.food5,
-    title: "Beef Steak with Fried Potato",
-    subtitle: "Breakfast",
-    rating: "5.0",
-    sales: "1,210",
-    intrest: "20%",
-  },
-  {
-    image: IMAGES.food2,
-    title: "Pancake with Honey",
-    subtitle: "Breakfast",
-    rating: "4.9",
-    sales: "1,110",
-    intrest: "13&",
-  },
-  {
-    image: IMAGES.food3,
-    title: "Japanese Beef Ramen",
-    subtitle: "Breakfast",
-    rating: "4.8",
-    sales: "1,050",
-    intrest: "18%",
-  },
-];
-const tabledata3 = [
-  {
-    image: IMAGES.food2,
-    title: "Beef Steak with Fried Potato",
-    subtitle: "Lunch",
-    rating: "5.0",
-    sales: "1,210",
-    intrest: "20%",
-  },
-  {
-    image: IMAGES.food2,
-    title: "Pancake with Honey",
-    subtitle: "Lunch",
-    rating: "4.9",
-    sales: "1,110",
-    intrest: "13&",
-  },
-  {
-    image: IMAGES.food3,
-    title: "Japanese Beef Ramen",
-    subtitle: "Lunch",
-    rating: "4.8",
-    sales: "1,050",
-    intrest: "18%",
-  },
-  {
-    image: IMAGES.food4,
-    title: "Mixed Salad",
-    subtitle: "Lunch",
-    rating: "5.0",
-    sales: "1,400",
-    intrest: "17%",
-  },
-];
-const tabledata4 = [
-  {
-    image: IMAGES.food3,
-    title: "Mixed Salad",
-    subtitle: "Snack",
-    rating: "5.0",
-    sales: "1,400",
-    intrest: "17%",
-  },
-  {
-    image: IMAGES.food5,
-    title: "Snack Beef Meatball with Vegetable",
-    subtitle: "Snack",
-    rating: "4.8",
-    sales: "1,456",
-    intrest: "15%",
-  },
-];
 
-const CourseIndReport = () => {
+const CourseWiseInd = () => {
   const makeRequest = fetchData();
   const [exams, setExams] = useState([]);
   useEffect(() => {
@@ -237,4 +117,4 @@ const CourseIndReport = () => {
   );
 };
 
-export default CourseIndReport;
+export default CourseWiseInd;

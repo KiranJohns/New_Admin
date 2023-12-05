@@ -119,6 +119,7 @@ import UiTab from "./components/bootstrap/Tab";
 import UiPagination from "./components/bootstrap/Pagination";
 import UiGrid from "./components/bootstrap/Grid";
 import UiTypography from "./components/bootstrap/Typography";
+import Transactions from "./components/Transaction";
 
 /// Plugins
 import Select2 from "./components/PluginsMenu/Select2/Select2";
@@ -157,6 +158,7 @@ import { ThemeContext } from "../context/ThemeContext";
 
 const Markup = () => {
   const routhPath = [
+    {url:"Transactions", component:<Transactions/>},
     {url:"individual-reports", component:<CourseIndReport/>},
     {url:"manager-reports", component:<CourseManReport/>},
     {url:"course-matrix", component:<CourseMatrix/>},

@@ -280,7 +280,7 @@ const BundleMatrix = () => {
                               textAlign: "center",
                             }}
                           >
-                            {course.progress ? course.progress + "%" : "0%"}
+                            {course.progress ? course.progress + "%" : "0%"} 
                           </td>
                         );
                       }
