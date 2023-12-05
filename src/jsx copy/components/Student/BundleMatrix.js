@@ -23,7 +23,7 @@ const BundleMatrix = () => {
   }
 
   useEffect(() => {
-    makeRequest("GET", "/certificate/get-all-certificates")
+    makeRequest("GET", "/info/get-all-users")
       .then((res) => {
         setUsers(res.data.response);
         setCompanies(res.data.response.filter(item => item.type_of_account == "company"));
@@ -33,7 +33,7 @@ const BundleMatrix = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+    }, []);
   useEffect(() => {
     const form = new FormData();
     form.append("manager_id", manager);
@@ -43,6 +43,7 @@ const BundleMatrix = () => {
           color: "gray",
           progress: "",
         };
+        console.log(res.data.response);
         // console.log(res.data.response);
         let users = res.data.response;
         let course_name = [];
