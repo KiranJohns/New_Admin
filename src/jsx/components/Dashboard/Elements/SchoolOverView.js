@@ -14,28 +14,62 @@ const SchoolOverView = () => {
   const chartRef = useRef();
   const makeRequest = fetchDate();
   const [purchaseList, setPurchaseList] = useState([]);
+  const [graphData, setGraphData] = useState([
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  ]);
+  const [graphMonth, setGraphMonth] = useState([
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ]);
   const series = [
     {
       name: "Revenue",
       type: "column",
-      data: [75, 85, 72, 100, 50, 100, 80, 75, 95, 35, 75, 100],
+      data: graphData,
     },
-    // {
-    //   name: "Revenue",
-    //   type: "area",
-    //   data: [44, 65, 55, 75, 45, 55, 40, 60, 75, 45, 50, 42],
-    // },
-    // {
-    //   name: "Active Projects",
-    //   type: "line",
-    //   data: [30, 25, 45, 30, 25, 35, 20, 45, 35, 20, 35, 20],
-    // },
   ];
   useEffect(() => {
     makeRequest("GET", "/info/super-admin-dashboard-data")
       .then((res) => {
-        setPurchaseList(res.data.response);
-        console.log(res.data.response);
+        try {
+          
+          setPurchaseList(res.data.response.graph_data.reverse());
+        let data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        let month = [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ];
+        console.log(res.data.response.graph_data);
+        res.data.response.graph_data
+          .reverse()?.slice(0, 12)?.map((item, i) => {
+            data[data.length - 1+i] = parseInt(item.total_purchases);
+            month[month.length - 1+i] = item.month_name.slice(0,3);
+          });
+          setGraphData(data);
+        setGraphMonth(month);
+      } catch (error) {
+        console.log(error)
+      }
       })
       .catch((err) => {
         console.log(err);
@@ -123,20 +157,7 @@ const SchoolOverView = () => {
       },
     },
     colors: ["var(--primary)", "#3AC977", "#FF5E5E"],
-    labels: [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ],
+    labels: graphMonth,
     markers: {
       size: 0,
     },
