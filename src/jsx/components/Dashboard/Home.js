@@ -14,7 +14,7 @@ import fetchData from "../../../axios";
 const SchoolPerformance = loadable(() =>
   pMinDelay(import("./Elements/SchoolPerformance"), 2000)
 );
-const SchoolOverView = loadable(() =>
+const PSchoolOverView = loadable(() =>
   pMinDelay(import("./Elements/SchoolOverView"), 1000)
 );
 
