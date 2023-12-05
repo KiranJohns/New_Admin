@@ -155,15 +155,16 @@ const tabledata4 = [
 const SalesTab = () => {
   const [reports, setReports] = useState([]);
   const [groupByDay, setGroupByDay] = useState([]);
-  const [groupByMonth, setGroupByMonth] = useState([]);
+  const [daily, setDaily] = useState([]);
   const [groupByYear, setGroupByYear] = useState([]);
   const [type, setType] = useState("day");
   const makeRequest = fetchData();
   useEffect(() => {
     makeRequest("GET", "/course/get-all-purchased-course-group-by")
       .then((res) => {
+        console.log(res.data);
+        setDaily(res.data.response.dailyReport.reverse());
         setGroupByDay(res.data.response.groupByDay.reverse());
-        setGroupByMonth(res.data.response.groupByMonth.reverse());
         setGroupByYear(res.data.response.groupByYear.reverse());
       })
       .catch((err) => {
@@ -196,29 +197,29 @@ const SalesTab = () => {
                           <strong >Course Count</strong>
                         </th>
                         <th style={{ textAlign: "center",color:"#fff" }}>
-                          <strong>Amount</strong>
+                          <strong>Date</strong>
                         </th>
                         <th style={{ textAlign: "center",color:"#fff"  }}>
-                          <strong>Date</strong>
+                          <strong>Amount</strong>
                         </th>
                       </tr>
                     </thead>
                     <tbody>
-                      {groupByDay &&
-                        groupByDay.map((item, i) => {
+                      {daily &&
+                        daily.map((item, i) => {
                           return (
                             <tr>
                               <td>
                                 <strong>{i}</strong>
                               </td>
                               <td style={{ textAlign: "center", }}>
-                                {item.total_course_count}
+                                {item.fake_course_count}
                               </td>
                               <td style={{ textAlign: "center" }}>
-                                £ {item.total_amount}
+                                {new Date(item.date).toLocaleDateString()}
                               </td>
                               <td style={{ textAlign: "center" }}>
-                                {new Date(item.day).toLocaleDateString()}
+                                £ {item.amount}
                               </td>
                             </tr>
                           );
@@ -247,16 +248,19 @@ const SalesTab = () => {
                           <strong>Course Count</strong>
                         </th>
                         <th style={{ textAlign: "center",color:"#fff" }}>
-                          <strong>Amount</strong>
+                          <strong>Month</strong>
                         </th>
                         <th style={{ textAlign: "center",color:"#fff" }}>
-                          <strong>Month</strong>
+                          <strong>Date</strong>
+                        </th>
+                        <th style={{ textAlign: "center",color:"#fff" }}>
+                          <strong>Amount</strong>
                         </th>
                       </tr>
                     </thead>
                     <tbody>
-                      {groupByMonth &&
-                        groupByMonth.map((item, i) => {
+                      {groupByDay &&
+                        groupByDay.map((item, i) => {
                           return (
                             <tr>
                               <td>
@@ -266,10 +270,13 @@ const SalesTab = () => {
                                 {item.total_course_count}
                               </td>
                               <td style={{ textAlign: "center" }}>
-                                £ {" "}{item.total_amount}
+                                {item.month}
                               </td>
                               <td style={{ textAlign: "center" }}>
-                                {item.month}
+                                {item.day}
+                              </td>
+                              <td style={{ textAlign: "center" }}>
+                                £ {" "}{item.total_amount}
                               </td>
                             </tr>
                           );
@@ -298,10 +305,13 @@ const SalesTab = () => {
                           <strong>Course Count</strong>
                         </th>
                         <th style={{ textAlign: "center" }}>
-                          <strong>Amount</strong>
+                          <strong>Month</strong>
                         </th>
                         <th style={{ textAlign: "center" }}>
                           <strong>Year</strong>
+                        </th>
+                        <th style={{ textAlign: "center" }}>
+                          <strong>Amount</strong>
                         </th>
                       </tr>
                     </thead>
@@ -317,10 +327,13 @@ const SalesTab = () => {
                                 {item.total_course_count}
                               </td>
                               <td style={{ textAlign: "center" }}>
-                              £{" "} {item.total_amount}
+                                {item.month}
                               </td>
                               <td style={{ textAlign: "center" }}>
                                 {item.year}
+                              </td>
+                              <td style={{ textAlign: "center" }}>
+                              £{" "} {item.total_amount}
                               </td>
                             </tr>
                           );
