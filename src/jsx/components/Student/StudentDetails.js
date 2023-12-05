@@ -179,7 +179,7 @@ const StudentDetails = () => {
                   <div className="d-flex align-items-center justify-content-between">
                     <div>
                       <ul>
-                        <li className="mb-2">Purchased Courses</li>
+                        <li className="mb-2"></li>
                         <li> {data.count}</li>
                       </ul>
                     </div>
