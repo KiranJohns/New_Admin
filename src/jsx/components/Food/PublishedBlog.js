@@ -212,7 +212,7 @@ const PublishedBlog = () => {
   }
   return (
     <Card>
-      <div style={{ display: "flex", marginLeft: "10rem" }}>
+      {/* <div style={{ display: "flex", marginLeft: "10rem" }}>
         <a
           className="blog-non"
           href="/view-blog"
@@ -269,7 +269,7 @@ const PublishedBlog = () => {
             marginTop: ".45rem",
           }}
         ></div>
-      </div>
+      </div> */}
 
       <Card.Header>
         <Card.Title>All Blogs</Card.Title>

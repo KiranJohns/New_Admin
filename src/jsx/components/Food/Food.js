@@ -218,10 +218,11 @@ const Food = () => {
   return (
     <div className="card">
       <Col lg={12}>
+        
         <Tabs
           defaultActiveKey="blogs"
           id="uncontrolled-tab-example"
-          className="mb-3"
+          className="mb-3 mt-5"
         >
           <Tab eventKey="blogs" title="All Blogs(1)">
             <Card>

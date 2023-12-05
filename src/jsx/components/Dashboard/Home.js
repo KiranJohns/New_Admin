@@ -47,22 +47,24 @@ const Home = () => {
         setDashboardData(res.data.response);
         setCardBlog([
           {
-            title: "Individuals",
-            svg: SVGICON.user,
-            number: res.data.response.individual_users_count,
-            change: "std-data",
+            title: "Companies",
+            svg: SVGICON.user2,
+            number: res.data.response.company_users_count,
+            change: "teach-data",
           },
+         
           {
             title: "Managers",
             svg: SVGICON.user2,
             number: res.data.response?.manager,
             change: "event-data",
           },
+         
           {
-            title: "Companies",
-            svg: SVGICON.user2,
-            number: res.data.response.company_users_count,
-            change: "teach-data",
+            title: "Individuals",
+            svg: SVGICON.user,
+            number: res.data.response.individual_users_count,
+            change: "std-data",
           },
           {
             title: "Certificates",

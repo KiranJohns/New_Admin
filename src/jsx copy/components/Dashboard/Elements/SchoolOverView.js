@@ -21,11 +21,12 @@ const  SchoolOverView = () =>{
             name: 'Revenue',
             type: 'area',
             data: [44, 65, 55, 75, 45, 55, 40, 60, 75, 45, 50,42]
-        }, {
-            name: 'Active Projects',
-            type: 'line',
-            data: [30, 25, 45, 30, 25, 35, 20, 45, 35, 20, 35,20]
-        }
+        },
+        //  {
+        //     name: 'Active Projects',
+        //     type: 'line',
+        //     data: [30, 25, 45, 30, 25, 35, 20, 45, 35, 20, 35,20]
+        // }
     ]
       
    const options = {
@@ -181,15 +182,17 @@ const  SchoolOverView = () =>{
                 name: "Number of Projects",
                 type: 'column',
                 data: columnData
-            },{
+            },
+            {
                 name: 'Revenue',
                 type: 'area',
                 data: areaData
-            },{
-                name: 'Active Projects',
-                type: 'line',
-                data: lineData
-            }
+            },
+            // {
+            //     name: 'Active Projects',
+            //     type: 'line',
+            //     data: lineData
+            // }
 	    ]);
     }
     

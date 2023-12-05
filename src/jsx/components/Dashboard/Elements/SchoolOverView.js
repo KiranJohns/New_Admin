@@ -4,9 +4,9 @@ import { Nav, Tab } from "react-bootstrap";
 import fetchDate from "../../../../axios/index";
 import { useEffect } from "react";
 const chartHeaderData = [
-  { title: "day", type: "day" },
+  // { title: "day", type: "day" },
   { title: "Month", type: "month" },
-  { title: "Year", type: "year" },
+  // { title: "Year", type: "year" },
 ];
 
 const SchoolOverView = () => {
@@ -16,20 +16,20 @@ const SchoolOverView = () => {
   const [purchaseList, setPurchaseList] = useState([]);
   const series = [
     {
-      name: "Number of Projects",
+      name: "Revenue",
       type: "column",
       data: [75, 85, 72, 100, 50, 100, 80, 75, 95, 35, 75, 100],
     },
-    {
-      name: "Revenue",
-      type: "area",
-      data: [44, 65, 55, 75, 45, 55, 40, 60, 75, 45, 50, 42],
-    },
-    {
-      name: "Active Projects",
-      type: "line",
-      data: [30, 25, 45, 30, 25, 35, 20, 45, 35, 20, 35, 20],
-    },
+    // {
+    //   name: "Revenue",
+    //   type: "area",
+    //   data: [44, 65, 55, 75, 45, 55, 40, 60, 75, 45, 50, 42],
+    // },
+    // {
+    //   name: "Active Projects",
+    //   type: "line",
+    //   data: [30, 25, 45, 30, 25, 35, 20, 45, 35, 20, 35, 20],
+    // },
   ];
   useEffect(() => {
     makeRequest("GET", "/info/super-admin-dashboard-data")
