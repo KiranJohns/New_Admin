@@ -8,7 +8,19 @@ import PageTitle from "../layouts/PageTitle";
 import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
 import fetchData from "../../axios";
 
-const CourseIndReport = () => {
+const svg1 = (
+  <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+      <rect x="0" y="0" width="24" height="24"></rect>
+      <circle fill="#000000" cx="5" cy="12" r="2"></circle>
+      <circle fill="#000000" cx="12" cy="12" r="2"></circle>
+      <circle fill="#000000" cx="19" cy="12" r="2"></circle>
+    </g>
+  </svg>
+);
+
+
+const  CourseWiseManager = () => {
   const makeRequest = fetchData();
   const [exams, setExams] = useState([]);
   useEffect(() => {
@@ -21,7 +33,16 @@ const CourseIndReport = () => {
         console.log(err);
       });
   }, []);
-  
+
+  function deleteExam(id) {
+    makeRequest("DELETE", `/exam/delete-exam/${id}`)
+      .then((res) => {
+        setExams(exams.filter((item) => item.id != id));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   return (
     <div className="card">
       <Col lg={12}>
@@ -57,22 +78,20 @@ const CourseIndReport = () => {
               <thead>
                 <tr style={{ textAlign: "center", background: "#212A50", color:"#fff" }}>
                   <th className="width80">
-                    <strong>Individual ID</strong>
+                    <strong>Sl No</strong>
                   </th>
                   <th>
-                    <strong> Name</strong>
+                    <strong>Date</strong>
                   </th>
                   <th>
-                    <strong>No of courses</strong>
+                    <strong>Time</strong>
+                  </th>
+               
+                  <th>
+                    <strong>Quantity</strong>
                   </th>
                   <th>
-                    <strong>No of bundles</strong>
-                  </th>
-                  <th>
-                    <strong>Certificates</strong>
-                  </th>
-                  <th>
-                    <strong>Status</strong>
+                    <strong>Amount</strong>
                   </th>
                 </tr>
               </thead>
@@ -83,7 +102,7 @@ const CourseIndReport = () => {
                   </td>
                   <td>{item?.first_name + " " + item?.last_name}</td>
                   <td>{item?.assigned_course_count + item?.purchased_course_count}</td>
-                  <td>{item?.purchased_bundle_count + item?.assigned_bundle_count}</td>
+                 
                   <td>{item?.certificates}</td>
                   <td>Active</td>
                 </tr>)}
@@ -96,4 +115,4 @@ const CourseIndReport = () => {
   );
 };
 
-export default CourseIndReport;
+export default CourseWiseManager;

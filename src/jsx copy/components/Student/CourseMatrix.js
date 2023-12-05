@@ -1,474 +1,478 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { IMAGES } from "../Dashboard/Content";
-import { Dropdown } from "react-bootstrap";
-import BasicModal from "../Dashboard/BasicModal";
-import { FaEye } from "react-icons/fa";
-import { Button, ButtonGroup } from "react-bootstrap";
-import { BiSolidEdit } from "react-icons/bi";
-import { RiChatDeleteFill } from "react-icons/ri";
-import fetchData from "../../../axios/index";
-import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
-import Form from 'react-bootstrap/Form';
+import React from "react";
+import Table from "react-bootstrap/Table";
+import fetchData from "../../../axios";
+import { useEffect } from "react";
+import { useState } from "react";
+import Form from "react-bootstrap/Form";
 
 
+const ManCoursMatrix = () => {
+  const matrixDataUser = [
+    {
+      id: 1,
+      name: "Stark",
+    },
+    {
+      id: 2,
+      name: "Miles",
+    },
+    {
+      id: 3,
+      name: "Aloshy",
+    },
+    {
+      id: 4,
+      name: "Alba",
+    },
+  ];
 
-const tableData = [
-  {
-    id: "1",
-    image: IMAGES.trans1,
-    name: "Samantha William",
-    tabid: "123456789",
-    email: "samantha@gmail.com",
-    phone: "68523652",
-    city: "Jakarta",
-    type: "Individual",
-  },
-  {
-    id: "2",
-    image: IMAGES.trans2,
-    name: "Tony Soap",
-    tabid: "123453254",
-    email: "tony@gmail.com",
-    phone: "52523652",
-    city: "Phoenix",
-    type: "Individual",
-  },
-  {
-    id: "3",
-    image: IMAGES.trans3,
-    name: "Karen Hope",
-    tabid: "123456452",
-    email: "jkaren@hotmail.com",
-    phone: "78525265",
-    city: "Texas",
-    type: "Company",
-  },
-  {
-    id: "4",
-    image: IMAGES.trans4,
-    name: "Jordan Nico",
-    tabid: "123442584",
-    email: "jkaren@hotmail.com",
-    phone: "98525265",
-    city: "Dallas",
-    type: "Individual",
-  },
-  {
-    id: "5",
-    image: IMAGES.trans5,
-    name: "Nadila Adja",
-    tabid: "654781357",
-    email: "nadila@hotmail.com",
-    phone: "10125265",
-    city: "Houston",
-    type: "Individual",
-  },
-  {
-    id: "6",
-    image: IMAGES.trans6,
-    name: "Johnny Ahmad",
-    tabid: "123454555",
-    email: "johhnny@hotmail.com",
-    phone: "22125265",
-    city: "Chicago",
-    type: "Individual",
-  },
-  {
-    id: "7",
-    image: IMAGES.trans7,
-    name: "Dakota Farral",
-    tabid: "235456789",
-    email: "dakota@hotmail.com",
-    phone: "55125265",
-    city: "Philadelphia",
-    type: "Company",
-  },
-  {
-    id: "8",
-    image: IMAGES.trans8,
-    name: "Dimitres Viga",
-    tabid: "568756789",
-    email: "samantha@gmail.com",
-    phone: "52523652",
-    city: "Sharjah",
-    type: "Individual",
-  },
-  {
-    id: "9",
-    image: IMAGES.trans9,
-    name: "Samantha William",
-    tabid: "999956789",
-    email: "jkaren@hotmail.com",
-    phone: "68523652",
-    city: "Ajman",
-    type: "Company",
-  },
-  {
-    id: "10",
-    image: IMAGES.trans5,
-    name: "Samantha William",
-    tabid: "882356789",
-    email: "Aug 25, 2023",
-    phone: "10125265",
-    city: "Umm",
-    type: "Individual",
-  },
-  {
-    id: "11",
-    image: IMAGES.trans2,
-    name: "Samantha William",
-    tabid: "123456789",
-    email: "samantha@gmail.com",
-    phone: "68523652",
-    city: "Jakarta",
-    type: "Individual",
-  },
-  {
-    id: "12",
-    image: IMAGES.trans1,
-    name: "Tony Soap",
-    tabid: "123453254",
-    email: "tony@gmail.com",
-    phone: "52523652",
-    city: "Phoenix",
-    type: "Individual",
-  },
-  {
-    id: "13",
-    image: IMAGES.trans5,
-    name: "Karen Hope",
-    tabid: "123456452",
-    email: "jkaren@hotmail.com",
-    phone: "78525265",
-    city: "Texas",
-    type: "Company",
-  },
-  {
-    id: "14",
-    image: IMAGES.trans3,
-    name: "Jordan Nico",
-    tabid: "123442584",
-    email: "jkaren@hotmail.com",
-    phone: "98525265",
-    city: "Dallas",
-    type: "Individual",
-  },
-  {
-    id: "15",
-    image: IMAGES.trans5,
-    name: "Nadila Adja",
-    tabid: "654781357",
-    email: "nadila@hotmail.com",
-    phone: "10125265",
-    city: "Houston",
-    type: "Individual",
-  },
-  {
-    id: "16",
-    image: IMAGES.trans6,
-    name: "Johnny Ahmad",
-    tabid: "123454555",
-    email: "johhnny@hotmail.com",
-    phone: "22125265",
-    city: "Chicago",
-    type: "Individual",
-  },
-  {
-    id: "17",
-    image: IMAGES.trans7,
-    name: "Dakota Farral",
-    tabid: "235456789",
-    email: "dakota@hotmail.com",
-    phone: "55125265",
-    city: "Philadelphia",
-    type: "Company",
-  },
-  {
-    id: "18",
-    image: IMAGES.trans8,
-    name: "Dimitres Viga",
-    tabid: "568756789",
-    email: "samantha@gmail.com",
-    phone: "52523652",
-    city: "Sharjah",
-    type: "Individual",
-  },
-  {
-    id: "19",
-    image: IMAGES.trans9,
-    name: "Samantha William",
-    tabid: "999956789",
-    email: "jkaren@hotmail.com",
-    phone: "68523652",
-    city: "Ajman",
-    type: "Company",
-  },
-  {
-    id: "20",
-    image: IMAGES.trans1,
-    name: "Samantha William",
-    tabid: "882356789",
-    email: "Aug 25, 2023",
-    phone: "10125265",
-    city: "Umm",
-    type: "Individual",
-  },
-  {
-    id: "15",
-    image: IMAGES.trans9,
-    name: "Samantha William",
-    tabid: "999956789",
-    email: "jkaren@hotmail.com",
-    phone: "68523652",
-    city: "Ajman",
-    type: "Company",
-  },
-  {
-    id: "16",
-    image: IMAGES.trans5,
-    name: "Samantha William",
-    tabid: "882356789",
-    email: "Aug 25, 2023",
-    phone: "10125265",
-    city: "Umm",
-    type: "Individual",
-  },
-  {
-    id: "17",
-    image: IMAGES.trans2,
-    name: "Samantha William",
-    tabid: "123456789",
-    email: "samantha@gmail.com",
-    phone: "68523652",
-    city: "Jakarta",
-    type: "Individual",
-  },
-  {
-    id: "18",
-    image: IMAGES.trans1,
-    name: "Tony Soap",
-    tabid: "123453254",
-    email: "tony@gmail.com",
-    phone: "52523652",
-    city: "Phoenix",
-    type: "Individual",
-  },
-];
+  const matrixDataCourse = [
+    [
+      {
+        id: 1,
+        userId: 1,
+        course: {
+          name: "some of the people",
+          color: "#ae0000",
+          progress: "0%",
+        },
+      },
+      {
+        id: 1,
+        userId: 1,
+        course: {
+          name: "of the people",
+          color: "#549C30",
+          progress: "100%",
+        },
+      },
+      {
+        id: 1,
+        userId: 1,
+        course: {
+          name: "by the people",
+          color: "#f7b500",
+          progress: "50%",
+        },
+      },
+      {
+        id: 1,
+        userId: 1,
+        course: {
+          name: "for the people",
+          color: "#549C30",
+          progress: "100%",
+        },
+      },
+    ],
+    [
+      {
+        id: 1,
+        userId: 2,
+        course: {
+          name: "by the people",
+          color: "#f7b500",
+          progress: "50%",
+        },
+      },
+      {
+        id: 2,
+        userId: 2,
+        course: {
+          name: "some of the people",
+          color: "#ae0000",
+          progress: "0%",
+        },
+      },
+      {
+        id: 3,
+        userId: 2,
+        course: {
+          name: "of the people",
+          color: "#549C30",
+          progress: "100%",
+        },
+      },
+      {
+        id: 4,
+        userId: 2,
+        course: {
+          name: "for the people",
+          color: "#f7b500",
+          progress: "50%",
+        },
+      },
+    ],
+    [
+      {
+        id: 1,
+        userId: 3,
+        course: {
+          name: "some of the people",
+          color: "#ae0000",
+          progress: "0%",
+        },
+      },
+      {
+        id: 1,
+        userId: 3,
+        course: {
+          name: "for the people",
+          color: "#f7b500",
+          progress: "50%",
+        },
+      },
+      {
+        id: 1,
+        userId: 3,
+        course: {
+          name: "of the people",
+          color: "#549C30",
+          progress: "100%",
+        },
+      },
+      {
+        id: 1,
+        userId: 3,
+        course: {
+          name: "by the people",
+          color: "#549C30",
+          progress: "100%",
+        },
+      },
+    ],
+    [
+      {
+        id: 1,
+        userId: 4,
+        course: {
+          name: "by the people",
+          color: "#f7b500",
+          progress: "50%",
+        },
+      },
+      {
+        id: 1,
+        userId: 4,
+        course: {
+          name: "some of the people",
+          color: "#ae0000",
+          progress: "0%",
+        },
+      },
+      {
+        id: 1,
+        userId: 4,
+        course: {
+          name: "of the people",
+          color: "#549C30",
+          progress: "100%",
+        },
+      },
+      {
+        id: 1,
+        userId: 4,
+        course: {
+          name: "for the people",
+          color: "#549C30",
+          progress: "100%",
+        },
+      },
+    ],
+  ];
 
-const CourseMatrix = () => {
-  // const childRef = useRef();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [checked, setChecked] = useState([]);
+  // const courseName = [
+  //   "some of the people",
+  //   "by the people",
+  //   "of the people",
+  //   "for the people",
+  // ];
+
   const makeRequest = fetchData();
-  const [unchecked, setUnChecked] = useState(true);
+  const [courseName, setCourseName] = useState([]);
+  const [userName, setUserName] = useState([]);
+  const [course, setCourse] = useState([]);
+  const [managers, setManagers] = useState([]);
+  const [companies, setCompanies] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [manager, setManager] = useState(0);
 
-  const handleChecked = (id) => {
-    let temp = checked.map((data) => {
-      if (id === data.id) {
-        return { ...data, inputchecked: !data.inputchecked };
-      }
-      return data;
-    });
-    setChecked(temp);
-  };
-  const handleCheckedAll = (value) => {
-    let temp = checked.map((data) => {
-      return { ...data, inputchecked: value };
-    });
-    setChecked(temp);
-    setUnChecked(!unchecked);
-  };
+  function removeDuplicates(arr) {
+    return arr.filter((item, index) => arr.indexOf(item) === index);
+  }
 
   useEffect(() => {
-    console.log("hi");
-    makeRequest("GET", "/certificate/get-all-certificates")
+    makeRequest("GET", "/info/get-all-users")
       .then((res) => {
-        setChecked(res.data.Response.reverse());
+        setUsers(res.data.response);
+        setCompanies(res.data.response.filter(item => item.type_of_account == "company"));
+        setManagers(res.data.response.filter(item => item.type_of_account == "manager"));
+        setManager(res.data.response.find(item => item.type_of_account == "manager")?.id);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+  useEffect(() => {
+    const form = new FormData();
+    form.append("manager_id", manager);
+    makeRequest("POST", "/course/get-manager-matrix-course", form)
+      .then((res) => {
+        let temp = {
+          color: "gray",
+          progress: "",
+        };
+        // console.log(res.data.response);
+        let users = res.data.response;
+        let course_name = [];
+        let user_name = [];
+        users.forEach((item) => {
+          let assigned = item.matrix_assigned.reverse();
+          let enrolled = item.matrix.reverse();
 
-  const recordsPage = 15;
-  const lastIndex = currentPage * recordsPage;
-  const firstIndex = lastIndex - recordsPage;
-  const records = checked.slice(firstIndex, lastIndex);
-  const npage = Math.ceil(checked.length / recordsPage);
-  const number = [...Array(npage + 1).keys()].slice(1);
-  function prePage() {
-    if (currentPage !== 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  }
-  function changeCPage(id) {
-    setCurrentPage(id);
-  }
-  function nextPage() {
-    if (currentPage !== npage) {
-      setCurrentPage(currentPage + 1);
-    }
-  }
+          user_name.push(item.first_name + " " + item.last_name);
+
+          let allCourses = [...assigned, ...enrolled];
+
+          let CNames = allCourses.map((course) => {
+            return course.course_name;
+          });
+
+          let courses = [];
+
+          let newCName = [...removeDuplicates(CNames)];
+
+          if (course_name.length < newCName.length) {
+            course_name = newCName;
+          } else if (course_name.length <= 0) {
+            course_name = newCName;
+          }
+
+          allCourses.forEach((course) => {
+            if (!courses.find((i) => i?.course_name == course?.course_name)) {
+              course_name.forEach((item, id) => {
+                if (item == course?.course_name) {
+                  courses[id] = course;
+                }
+              });
+            }
+          });
+
+          item["course"] = courses;
+
+          // delete item.matrix_assigned;
+          // delete item.matrix;
+        });
+
+        let tempCourses = [];
+        course_name.forEach(() => {
+          tempCourses.push(temp);
+        });
+        console.log(users);
+
+        users.forEach((item) => {
+          let temp = [...tempCourses];
+          let course = item["course"];
+          course_name.forEach((name, idx) => {
+            course.forEach((c) => {
+              if (c.course_name === name) {
+                temp[idx] = c;
+              }
+            });
+          });
+          item["course"] = temp;
+        });
+        setCourseName(course_name);
+        setUserName(user_name);
+        setCourse(users);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [manager]);
   return (
-    <>
-      <div className="row">
-        <div className="col-xl-12">
-          <div className="row">
-            <div className="col-xl-12">
-              <div className="page-title flex-wrap">
-                <div className="input-group search-area mb-md-0 mb-3">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search Company..."
-                  />
-                  <span className="input-group-text">
-                    <Link to={"#"}>
-                      <svg
-                        width="15"
-                        height="15"
-                        viewBox="0 0 18 18"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M17.5605 15.4395L13.7527 11.6317C14.5395 10.446 15 9.02625 15 7.5C15 3.3645 11.6355 0 7.5 0C3.3645 0 0 3.3645 0 7.5C0 11.6355 3.3645 15 7.5 15C9.02625 15 10.446 14.5395 11.6317 13.7527L15.4395 17.5605C16.0245 18.1462 16.9755 18.1462 17.5605 17.5605C18.1462 16.9747 18.1462 16.0252 17.5605 15.4395V15.4395ZM2.25 7.5C2.25 4.605 4.605 2.25 7.5 2.25C10.395 2.25 12.75 4.605 12.75 7.5C12.75 10.395 10.395 12.75 7.5 12.75C4.605 12.75 2.25 10.395 2.25 7.5V7.5Z"
-                          fill="#01A3FF"
-                        />
-                      </svg>
-                    </Link>
-                  </span>
-                </div>
-                <div className="d-flex">
-                <Form.Select   className="form-control"  aria-label="Default select example">
-            <option>Select Manager</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </Form.Select>
-              
-                </div>
-              </div>
+    <div className="row p-3">
+      <div style={{ position: "relative" }} className="dash-neww ">
+        <div style={{ position: "absolute" }} className="">
+          <span className="m-1" style={{ display: "flex" }}>
+            <div
+              style={{
+                height: "1.5rem",
+                width: "3rem",
+                background: "#ae0000",
+                color: "white",
+                textAlign: "center",
+              }}
+              className="redd"
+            >
+              0%
             </div>
-            <div className="col-xl-12 wow fadeInUp" data-wow-delay="1.5s">
-              <div className="table-responsive full-data">
-                <div
-                  id="example-student_wrapper"
-                  className="dataTables_wrapper no-footer"
-                >
-                  <Table
-                    responsive
-                    id="example-student"
-                  >
-                    <thead>
-                        <tr style={{background:"#212a50"}}>
-                           
-                            <th colSpan={57} style={{textAlign:'center'}}>Course Name</th>
-                        </tr>
-                      <tr style={{ textAlign: "center", background: "#212A50", color:"#fff" }}>
-                    
-                        <th>User Name</th>
-                        <th>Name 1</th>
-                        <th>Name 2</th>
-                        <th>Name 3</th>
-                        <th>Name 4</th>
-                        <th>Name 5</th>
-                      </tr>
-                    </thead>
-                    <tbody style={{background:"white"}}>
-                      {records.map((item, ind) => (
-                        <tr key={ind} style={{ textAlign: "center" }}>
-                     
-                          <td>
-                            <span className="text-primary font-w600">
-                              ID {item.id}
-                            </span>
-                          </td>
-                          <td>
-                            <div className="">
-                              <h4>{item.user_name}</h4>
-                            </div>
-                          </td>
-                          <td>
-                            <div className="email">{item.course_name}</div>
-                            {/* user_id
-                                user_name */}
-                          </td>
-                          <td>
-                            <h6 className="mb-0">{item.percentage}</h6>
-                          </td>
-                          <td>
-                            <h6 className="mb-0">{new Date(item.date).toLocaleDateString()}</h6>
-                          </td>
-                          <td>
-                            <Button
-                              className="me-2"
-                              variant="success btn-icon-xxs"
-                            >
-                              <FaEye />
-                            </Button>
-                            <Button
-                              className="me-2"
-                              variant="danger btn-icon-xxs"
-                            >
-                              <RiChatDeleteFill />
-                            </Button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </Table>
-                  <div className="d-sm-flex text-center justify-content-between align-items-center">
-                    <div className="dataTables_info">
-                      Showing {lastIndex - recordsPage + 1} to{" "}
-                      {tableData.length < lastIndex
-                        ? tableData.length
-                        : lastIndex}{" "}
-                      of {tableData.length} entries
-                    </div>
-                    <div
-                      className="dataTables_paginate paging_simple_numbers justify-content-center"
-                      id="example-student_wrapper"
-                    >
-                      <Link
-                        className="paginate_button previous disabled"
-                        to="#"
-                        onClick={prePage}
-                      >
-                        <i className="fa-solid fa-angle-left" />
-                      </Link>
-                      <span>
-                        {number.map((n, i) => (
-                          <Link
-                            className={`paginate_button ${
-                              currentPage === n ? "current" : ""
-                            } `}
-                            key={i}
-                            onClick={() => changeCPage(n)}
-                          >
-                            {n}
-                          </Link>
-                        ))}
-                      </span>
-                      <Link
-                        className="paginate_button next"
-                        to="#"
-                        onClick={nextPage}
-                      >
-                        <i className="fa-solid fa-angle-right" />
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div
+              style={{
+                height: "1.5rem",
+                width: "3rem",
+                background: "#f7b500",
+                color: "white",
+                textAlign: "center",
+              }}
+              className="redd"
+            >
+              50%
+            </div>
+            <div
+              style={{
+                height: "1.5rem",
+                width: "3rem",
+                background: "#549C30",
+                color: "white",
+                textAlign: "center",
+              }}
+              className="redd"
+            >
+              100%
+            </div>
+          </span>
+        </div>
+        <div className="col-12 p-2 m-2">
+          <div style={{ position: "relative" }}>
+            <div className="d-flex justify-content-center my-2 ">
+              <h4>Course Matrix</h4>
+            </div>
+
+            <div
+              style={{ position: "absolute", top: "0", right: "0" }}
+              className="col-4 p-1 m- d-flex"
+            >
+              <Form.Select
+                onChange={(e) => {
+                  console.log(e.target.value);
+                  setManagers(users.filter(item => item.created_by == e.target.value));
+                }}
+                size=""
+                style={{ border: ".1px solid #212a50" }}
+                aria-label="Default select example"
+              >
+                <option value={null}>Select Company</option>
+                {companies.map((item) => (
+                  <option value={item.id}>
+                    {item.first_name + " " + item.last_name}
+                  </option>
+                ))}
+              </Form.Select>
+              <Form.Select
+                onChange={(e) => {
+                  console.log(e.target.value);
+                  setManager(e.target.value);
+                }}
+                size=""
+                style={{ border: ".1px solid #212a50" }}
+                aria-label="Default select example"
+              >
+                <option value={null}>Select Manager</option>
+                {managers.map((item) => (
+                  <option value={item.id}>
+                    {item.first_name + " " + item.last_name}
+                  </option>
+                ))}
+              </Form.Select>
             </div>
           </div>
+
+          <Table
+            style={{ marginTop: ".5rem" }}
+            responsive
+            bordered
+            variant="light"
+          >
+            <thead>
+              <tr style={{ textAlign: "center" }}>
+                <th
+                  style={{ background: "#212a50", color: "white" }}
+                  colSpan={60}
+                >
+                  Course Name
+                </th>
+              </tr>
+            </thead>
+            <thead>
+              <tr style={{ textAlign: "center" }}>
+                <th
+                  style={{
+                    padding: "0 0.5rem",
+                    color: "#fff",
+                    background: "#212a50",
+                  }}
+                >
+                  Individual
+                </th>
+                {courseName.map((item) => (
+                  <th
+                    style={{
+                      padding: "0 0.5rem",
+                      color: "#fff",
+                      background: "#212a50",
+                    }}
+                  >
+                    {item}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {course.map((item, i) => {
+                return (
+                  <tr>
+                    {item.course.map((course, idx) => {
+                      if (idx == 0) {
+                        return (
+                          <>
+                            <td
+                              style={{
+                                padding: "0 0.5rem",
+                                color: "white",
+                                background: "#212450",
+                                textAlign: "center",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              {userName[i]}
+                            </td>
+                            <td
+                              style={{
+                                padding: "0 0.5rem",
+                                color: "#3a3b3c",
+                                backgroundColor: course?.color,
+                                textAlign: "center",
+                              }}
+                            >
+                              {course.progress ? course.progress + "%" : "0%"}
+                            </td>
+                          </>
+                        );
+                      } else {
+                        return (
+                          <td
+                            style={{
+                              padding: "0 0.5rem",
+                              color: "#3a3b3c",
+                              backgroundColor: course.color,
+                              textAlign: "center",
+                            }}
+                          >
+                            {course.progress ? course.progress + "%" : "0%"}
+                          </td>
+                        );
+                      }
+                    })}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
         </div>
       </div>
-      {/* <BasicModal ref={childRef} /> */}
-    </>
+    </div>
   );
 };
 
-export default CourseMatrix;
+export default ManCoursMatrix;
