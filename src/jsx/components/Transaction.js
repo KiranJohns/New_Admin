@@ -24,7 +24,7 @@ const Transactions = () => {
   const makeRequest = fetchData();
   const [exams, setExams] = useState([]);
   useEffect(() => {
-    makeRequest("GET", "/info/get-individual-report")
+    makeRequest("GET", "/info/get-all-transactions")
       .then((res) => {
         console.log(res.data.response);
         setExams(res.data.response);
@@ -81,16 +81,16 @@ const Transactions = () => {
                     <strong>Individual ID</strong>
                   </th>
                   <th>
-                    <strong> Name</strong>
+                    <strong>Name</strong>
                   </th>
                   <th>
-                    <strong>No of courses</strong>
+                    <strong>Date</strong>
                   </th>
                   <th>
-                    <strong>No of bundles</strong>
+                    <strong>Count</strong>
                   </th>
                   <th>
-                    <strong>Certificates</strong>
+                    <strong>Amount</strong>
                   </th>
                   <th>
                     <strong>Status</strong>
@@ -98,14 +98,14 @@ const Transactions = () => {
                 </tr>
               </thead>
               <tbody>
-                {exams && exams.map(item => <tr style={{textAlign:'center'}}>
+                {exams && exams.map((item,id) => <tr style={{textAlign:'center'}}>
                   <td>
-                    <strong>{item.id}</strong>
+                    <strong>{id}</strong>
                   </td>
-                  <td>{item?.first_name + " " + item?.last_name}</td>
-                  <td>{item?.assigned_course_count + item?.purchased_course_count}</td>
-                  <td>{item?.purchased_bundle_count + item?.assigned_bundle_count}</td>
-                  <td>{item?.certificates}</td>
+                  <td>{item?.name}</td>
+                  <td>{new Date(item?.date).toLocaleDateString()}</td>
+                  <td>{item?.count}</td>
+                  <td>{item?.amount}</td>
                   <td>Active</td>
                 </tr>)}
               </tbody>

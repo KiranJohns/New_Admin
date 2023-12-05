@@ -23,7 +23,7 @@ const BundleMatrix = () => {
   }
 
   useEffect(() => {
-    makeRequest("GET", "/info/get-all-users")
+    makeRequest("GET", "/certificate/get-all-certificates")
       .then((res) => {
         setUsers(res.data.response);
         setCompanies(res.data.response.filter(item => item.type_of_account == "company"));

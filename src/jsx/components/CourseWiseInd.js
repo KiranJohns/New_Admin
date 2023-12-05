@@ -24,7 +24,7 @@ const CourseWiseInd = () => {
   const makeRequest = fetchData();
   const [exams, setExams] = useState([]);
   useEffect(() => {
-    makeRequest("GET", "/info/get-individual-report")
+    makeRequest("GET", "/info/get-course-wise-individual-reports")
       .then((res) => {
         console.log(res.data.response);
         setExams(res.data.response);
@@ -78,7 +78,7 @@ const CourseWiseInd = () => {
               <thead>
                 <tr style={{ textAlign: "center", background: "#212A50", color:"#fff" }}>
                 <th className="width80">
-                    <strong>Course ID</strong>
+                    <strong>SL</strong>
                   </th>
                   <th>
                     <strong>Course Name</strong>
@@ -87,23 +87,23 @@ const CourseWiseInd = () => {
                     <strong>No of Individuals</strong>
                   </th>
                
-                  <th>
+                  {/* <th>
                     <strong>No of Certificates</strong>
-                  </th>
+                  </th> */}
                   <th>
                     <strong>Status</strong>
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {exams && exams.map(item => <tr style={{textAlign:'center'}}>
+                {exams && exams.map((item,id) => <tr style={{textAlign:'center'}}>
                   <td>
-                    <strong>{item.id}</strong>
+                    <strong>{id}</strong>
                   </td>
-                  <td>{item?.first_name + " " + item?.last_name}</td>
-                  <td>{item?.assigned_course_count + item?.purchased_course_count}</td>
+                  <td>{item?.course_name}</td>
+                  <td>{item?.count}</td>
                  
-                  <td>{item?.certificates}</td>
+                  {/* <td>{item?.certificates}</td> */}
                   <td>Active</td>
                 </tr>)}
               </tbody>
