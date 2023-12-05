@@ -52,7 +52,6 @@ const Home = () => {
             number: res.data.response.company_users_count,
             change: "teach-data",
           },
-         
           {
             title: "Managers",
             svg: SVGICON.user2,
