@@ -158,7 +158,7 @@ const BundleMatrix = () => {
         <div className="col-12 p-2 m-2">
           <div style={{ position: "relative" }}>
             <div className="d-flex justify-content-center my-2 ">
-              <h4>Course Matrix</h4>
+              <h4>Bundle Matrix</h4>
             </div>
 
             <div
@@ -267,7 +267,7 @@ const BundleMatrix = () => {
                                 textAlign: "center",
                               }}
                             >
-                              {course.progress ? course.progress + "%" : "0%"}
+                              {course?.color == "red" && "not started" || course?.color == "yellow" && "in progress" || course?.color == "green" && "finished" || course?.color == "gray" && "" }
                             </td>
                           </>
                         );
@@ -281,7 +281,7 @@ const BundleMatrix = () => {
                               textAlign: "center",
                             }}
                           >
-                            {course.progress ? course.progress + "%" : "0%"} 
+                       {course?.color == "red" && "not started" || course?.color == "yellow" && "in progress" || course?.color == "green" && "finished" || course?.color == "gray" && "" }
                           </td>
                         );
                       }

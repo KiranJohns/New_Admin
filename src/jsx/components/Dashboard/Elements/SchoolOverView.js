@@ -5,7 +5,7 @@ import fetchDate from "../../../../axios/index";
 import { useEffect } from "react";
 const chartHeaderData = [
   // { title: "day", type: "day" },
-  { title: "Month", type: "month" },
+  // { title: "Month", type: "month" },0
   // { title: "Year", type: "year" },
 ];
 

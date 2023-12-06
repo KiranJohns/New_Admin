@@ -160,8 +160,8 @@ import { ThemeContext } from "../context/ThemeContext";
 
 const Markup = () => {
   const routhPath = [
-    {url:"Course-Individuals", component:<CourseWiseInd/>}, 
-    {url:"Course-Managers", component:<CourseWiseManager/>}, 
+    {url:"Individual-Course", component:<CourseWiseInd/>}, 
+    {url:"Manager-Course", component:<CourseWiseManager/>}, 
     {url:"Transactions", component:<Transactions/>},
     {url:"individual-reports", component:<CourseIndReport/>},
     {url:"manager-reports", component:<CourseManReport/>},
