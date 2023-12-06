@@ -78,7 +78,7 @@ const Transactions = () => {
               <thead>
                 <tr style={{ textAlign: "center", background: "#212A50", color:"#fff" }}>
                   <th className="width80">
-                    <strong>Individual ID</strong>
+                    <strong>Sl</strong>
                   </th>
                   <th>
                     <strong>Name</strong>
@@ -100,7 +100,7 @@ const Transactions = () => {
               <tbody>
                 {exams && exams.map((item,id) => <tr style={{textAlign:'center'}}>
                   <td>
-                    <strong>{id}</strong>
+                    <strong>{++id}</strong>
                   </td>
                   <td>{item?.name}</td>
                   <td>{new Date(item?.date).toLocaleDateString()}</td>

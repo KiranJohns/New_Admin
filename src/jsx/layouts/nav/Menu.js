@@ -251,12 +251,12 @@ export const MenuList = [
             {   
                 title:'Individual Course',        
                 iconStyle: <i className="material-icons">assessment</i>,
-                to: 'Course-Individuals',
+                to: 'Individual-Course',
             },
             {   
                 title:'Manager Course',        
                 iconStyle: <i className="material-icons">assessment</i>,
-                to: 'Course-Managers',
+                to: 'Manager-Course',
             },
             {   
                 title:'Transaction',        

@@ -78,7 +78,7 @@ const  CourseWiseManager = () => {
               <thead>
                 <tr style={{ textAlign: "center", background: "#212A50", color:"#fff" }}>
                   <th className="width80">
-                    <strong>Sl No</strong>
+                    <strong>Sl </strong>
                   </th>
                   <th>
                     <strong>Course Name</strong>
@@ -97,7 +97,7 @@ const  CourseWiseManager = () => {
               <tbody>
                 {exams && exams.map((item,id) => <tr style={{textAlign:'center'}}>
                   <td>
-                    <strong>{id}</strong>
+                    <strong>{++id}</strong>
                   </td>
                   <td>{item?.course_name}</td>
                   <td>{item?.managers_count}</td>

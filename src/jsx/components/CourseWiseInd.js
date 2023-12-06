@@ -78,7 +78,7 @@ const CourseWiseInd = () => {
               <thead>
                 <tr style={{ textAlign: "center", background: "#212A50", color:"#fff" }}>
                 <th className="width80">
-                    <strong>SL</strong>
+                    <strong>Sl</strong>
                   </th>
                   <th>
                     <strong>Course Name</strong>
@@ -98,7 +98,7 @@ const CourseWiseInd = () => {
               <tbody>
                 {exams && exams.map((item,id) => <tr style={{textAlign:'center'}}>
                   <td>
-                    <strong>{id}</strong>
+                    <strong>{++id}</strong>
                   </td>
                   <td>{item?.course_name}</td>
                   <td>{item?.count}</td>
