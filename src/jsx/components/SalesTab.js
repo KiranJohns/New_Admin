@@ -31,6 +31,8 @@ const svg1 = (
   </svg>
 );
 
+
+
 const tabledata = [
   {
     image: IMAGES.food1,
@@ -160,6 +162,20 @@ const SalesTab = () => {
   const [groupByYear, setGroupByYear] = useState([]);
   const [filteredGroupByYear, setFilteredGroupByYear] = useState([]);
   const [type, setType] = useState("day");
+  var monthNames = {
+    "1":"January",
+    "2":"February",
+    "3":"March",
+    "4":"April",
+    "5":"May",
+    "6":"June",
+    "7":"July",
+    "8":"August",
+    "9":"September",
+    "10":"October",
+    "12":"November",
+    "12":"December"
+  }
   const makeRequest = fetchData();
   useEffect(() => {
     makeRequest("GET", "/course/get-all-purchased-course-group-by")
@@ -426,7 +442,7 @@ const SalesTab = () => {
                                 {item.total_course_count}
                               </td>
                               <td style={{ textAlign: "center" }}>
-                                {item.month}
+                                {monthNames[item.month]}
                               </td>
                               <td style={{ textAlign: "center" }}>
                                 {item.year}
