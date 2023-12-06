@@ -238,12 +238,12 @@ export const MenuList = [
         iconStyle: <i className="material-symbols-outlined">assessment</i>,
         content: [
             {   
-                title:'Manager   Report',        
+                title:'Manager Report',        
                 iconStyle: <i className="material-icons">assessment</i>,
                 to: 'manager-reports',
             },
             {   
-                title:'Individual  Report',        
+                title:'Individual Report',        
                 iconStyle: <i className="material-icons">assessment</i>,
                 to: 'individual-reports',
             },
