@@ -19,6 +19,7 @@ import { Row, Col, Card, Badge, ProgressBar } from "react-bootstrap";
 import fetchData from "../../axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import { date } from "yup";
 
 const svg1 = (
   <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1">
@@ -30,8 +31,6 @@ const svg1 = (
     </g>
   </svg>
 );
-
-
 
 const tabledata = [
   {
@@ -163,19 +162,19 @@ const SalesTab = () => {
   const [filteredGroupByYear, setFilteredGroupByYear] = useState([]);
   const [type, setType] = useState("day");
   var monthNames = {
-    "1":"January",
-    "2":"February",
-    "3":"March",
-    "4":"April",
-    "5":"May",
-    "6":"June",
-    "7":"July",
-    "8":"August",
-    "9":"September",
-    "10":"October",
-    "12":"November",
-    "12":"December"
-  }
+    1: "January",
+    2: "February",
+    3: "March",
+    4: "April",
+    5: "May",
+    6: "June",
+    7: "July",
+    8: "August",
+    9: "September",
+    10: "October",
+    12: "November",
+    12: "December",
+  };
   const makeRequest = fetchData();
   useEffect(() => {
     makeRequest("GET", "/course/get-all-purchased-course-group-by")
@@ -190,6 +189,26 @@ const SalesTab = () => {
         console.log("error", err);
       });
   }, []);
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
+
+  useEffect(() => {
+    setFilteredGroupByDay(() => {
+      if (month != "" && year != "") {
+        return groupByDay.filter((data) => {
+          if (data.month == month && data.year == year) {
+            return data
+          }
+        });
+      } else if (month != "") {
+        return groupByDay.filter((data) => data.month == month);
+      } else if (year != "") {
+        return groupByDay.filter((data) => data.year == year);
+      } else {
+        return groupByDay
+      }
+    });
+  }, [month, year]);
   return (
     <div className="card">
       <Col xl={12}>
@@ -271,15 +290,7 @@ const SalesTab = () => {
                     {" "}
                     <div className="input-group search-area mb-md-0 mb-3">
                       <select
-                        onChange={(e) =>
-                          setFilteredGroupByDay(
-                            e.target.value
-                              ? groupByDay.filter(
-                                  (data) => data.month == e.target.value
-                                )
-                              : groupByDay
-                          )
-                        }
+                        onChange={(e) => setMonth(e.target.value)}
                         class="form-select"
                         aria-label="Default select example"
                       >
@@ -296,6 +307,17 @@ const SalesTab = () => {
                         <option value="10">Oct</option>
                         <option value="11">Nov</option>
                         <option value="12">Dec</option>
+                      </select>
+                      <select
+                        onChange={(e) => setYear(e.target.value)}
+                        class="form-select"
+                        aria-label="Default select example"
+                      >
+                        <option value="">Select Year</option>
+                        {groupByYear &&
+                          groupByYear.map((item) => (
+                            <option value={item.year}>{item.year}</option>
+                          ))}
                       </select>
                       <span className="input-group-text">
                         <Link to={"#"}>
