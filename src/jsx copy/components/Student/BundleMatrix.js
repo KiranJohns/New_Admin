@@ -267,7 +267,7 @@ const BundleMatrix = () => {
                                 textAlign: "center",
                               }}
                             >
-                              {course.progress ? course.progress + "%" : "0%"}
+                              {course?.color == "red" && "not started" || course?.color == "yellow" && "in progress" || course?.color == "green" && "finished" || course?.color == "gray" && "" }
                             </td>
                           </>
                         );
@@ -281,7 +281,7 @@ const BundleMatrix = () => {
                               textAlign: "center",
                             }}
                           >
-                            {course.progress ? course.progress + "%" : "0%"} 
+                       {course?.color == "red" && "not started" || course?.color == "yellow" && "in progress" || course?.color == "green" && "finished" || course?.color == "gray" && "" }
                           </td>
                         );
                       }
