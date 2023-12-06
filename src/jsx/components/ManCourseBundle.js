@@ -17,14 +17,6 @@ const CourseManReport = () => {
       .then((res) => {
         console.log(res.data.response);
         setExams(res.data.response);
-        // assigned_bundle_count
-        // assigned_course_count
-        // first_name
-        // id
-        // individuals_count
-        // last_name
-        // purchased_bundle_count
-        // purchased_course_count
       })
       .catch((err) => {
         console.log(err);

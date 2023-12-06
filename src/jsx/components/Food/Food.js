@@ -166,18 +166,20 @@ const Food = () => {
   }, []);
 
   function getBlogs() {
+    console.log('res.data.response');
     makeRequest("GET", "/blog/get-all-blog")
       .then((res) => {
+        console.log('res.data.response');
         console.log(res.data.response);
         setBlogs(res.data.response.reverse());
         setPublishedBlog(
           res.data.response.filter((blog) => blog.state == "published")
         );
         setTrashedBlog(
-          res.data.response.filter((blog) => blog.state == "draft")
+          res.data.response.filter((blog) => blog.state == "trash")
         );
         setDraftedBlog(
-          res.data.response.filter((blog) => blog.state == "trash")
+          res.data.response.filter((blog) => blog.state == "draft")
         );
       })
       .catch((err) => {
@@ -208,7 +210,7 @@ const Food = () => {
       .then((res) => {
         getBlogs()
         console.log(res);
-        swal("Done!", "blog moved to trash", "success");
+        swal("Done!", `blog moved to ${status}`, "success");
       })
       .catch((err) => {
         swal("Oops!", err?.errors[0]?.error, "error");
@@ -224,7 +226,7 @@ const Food = () => {
           id="uncontrolled-tab-example"
           className="mb-3 mt-5"
         >
-          <Tab eventKey="blogs" title="All Blogs(1)">
+          <Tab eventKey="blogs" title={`All Blogs(${blogs.length})`}>
             <Card>
               <Card.Header>
                 <Card.Title>All Blogs</Card.Title>
@@ -371,16 +373,17 @@ const Food = () => {
               </Card.Body>
             </Card>
           </Tab>
-          <Tab eventKey="published" title="Published(0)">
-            <PublishedBlog />
+
+          <Tab eventKey="published" title={`Published(${publishedBlog.length})`}>
+            <PublishedBlog publishedBlog={publishedBlog} getBlogs={getBlogs} />
           </Tab>
 
-          <Tab eventKey="draft" title="Draft(0)">
-            <BlogDraft />
+          <Tab eventKey="draft" title={`Draft(${draftedBlogs.length})`}>
+            <BlogDraft draftedBlogs={draftedBlogs} getBlogs={getBlogs} />
           </Tab>
 
-          <Tab eventKey="trash" title=" Trash(0)">
-            <BlogTrash />
+          <Tab eventKey="trash" title={`Trash(${trashedBlogs.length})`}>
+            <BlogTrash trashedBlogs={trashedBlogs} getBlogs={getBlogs} />
           </Tab>
         </Tabs>
       </Col>

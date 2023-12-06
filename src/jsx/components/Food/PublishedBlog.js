@@ -149,18 +149,18 @@ const tabledata4 = [
   },
 ];
 
-const PublishedBlog = () => {
+const PublishedBlog = ({publishedBlog,getBlogs}) => {
   const makeRequest = fetchData();
   const navigate = useNavigate();
 
-  const [blogs, setBlogs] = useState([]);
-  makeRequest("GET", "/blog/get-all-blog")
-    .then((res) => {
-      setBlogs(res.data.response.filter((item) => item.state == "published"));
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  // const [blogs, setBlogs] = useState([]);
+  // makeRequest("GET", "/blog/get-all-blog")
+  //   .then((res) => {
+  //     setBlogs(res.data.response.filter((item) => item.state == "published"));
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
 
   function changeBlogState(id) {
     makeRequest("POST", "/blog/update-blog-status", {
@@ -168,9 +168,7 @@ const PublishedBlog = () => {
       status: "trash",
     })
       .then((res) => {
-        setBlogs((prev) => {
-          return prev.filter((item) => item.id != id);
-        });
+        getBlogs()
         swal("Done!", "blog moved to trash", "success");
       })
       .catch((err) => {
@@ -193,23 +191,7 @@ const PublishedBlog = () => {
         console.log(err);
       });
   }
-  function deleteHandler(id) {
-    console.log(id);
-    makeRequest("DELETE", "/blog/delete-blog", {
-      blog_id: id,
-    })
-      .then((res) => {
-        console.log(res);
-        setBlogs((prev) => {
-          return prev.filter((item) => item.id != id);
-        });
-        swal("Done!", "blog deleted", "success");
-      })
-      .catch((err) => {
-        swal("Done!", err?.errors[0]?.error, "success");
-        console.log(err);
-      });
-  }
+
   return (
     <Card>
       {/* <div style={{ display: "flex", marginLeft: "10rem" }}>
@@ -326,8 +308,8 @@ const PublishedBlog = () => {
             </tr>
           </thead>
           <tbody>
-            {blogs &&
-              blogs.map((item) => {
+            {publishedBlog &&
+              publishedBlog.map((item) => {
                 let date = new Date(item.date)
                   .toLocaleDateString()
                   .split("/")

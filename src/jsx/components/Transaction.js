@@ -111,11 +111,7 @@ const Transactions = () => {
                       </td>
                       <td>{item?.name}</td>
                       <td>
-                        {new Date(item.date).toLocaleString("en-US", {
-                          hour: "numeric",
-                          minute: "numeric",
-                          hour12: true,
-                        })}
+                        {new Date(item.date).toLocaleDateString()}
                       </td>
                       <td>{item?.count}</td>
                       <td>{item?.amount}</td>

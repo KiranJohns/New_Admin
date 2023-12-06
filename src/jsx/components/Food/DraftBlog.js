@@ -149,18 +149,18 @@ const tabledata4 = [
   },
 ];
 
-const BlogDraft = () => {
+const BlogDraft = ({draftedBlogs, getBlogs}) => {
   const makeRequest = fetchData();
   const navigate = useNavigate()
 
-  const [blogs, setBlogs] = useState([]);
-  makeRequest("GET", "/blog/get-all-blog")
-    .then((res) => {
-      setBlogs(res.data.response);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  // const [blogs, setBlogs] = useState([]);
+  // makeRequest("GET", "/blog/get-all-blog")
+  //   .then((res) => {
+  //     setBlogs(res.data.response);
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
 
   function deleteHandler(id) {
     console.log(id);
@@ -169,9 +169,10 @@ const BlogDraft = () => {
     })
       .then((res) => {
         console.log(res);
-        setBlogs((prev) => {
-          return prev.filter((item) => item.id != id);
-        });
+        getBlogs()
+        // setBlogs((prev) => {
+        //   return prev.filter((item) => item.id != id);
+        // });
         swal("Done!", "blog deleted", "success");
       })
       .catch((err) => {
@@ -179,6 +180,22 @@ const BlogDraft = () => {
         console.log(err);
       });
   }
+  function blogStatusHandler(id, status) {
+    makeRequest("POST", "/blog/update-blog-status", {
+      id,
+      status,
+    })
+      .then((res) => {
+        getBlogs()
+        console.log(res);
+        swal("Done!", `blog moved to ${status}`, "success");
+      })
+      .catch((err) => {
+        swal("Oops!", err?.errors[0]?.error, "error");
+        console.log(err);
+      });
+  }
+
   return (
   
         <Card>
@@ -228,8 +245,8 @@ const BlogDraft = () => {
                 </tr>
               </thead>
               <tbody>
-                {blogs &&
-                  blogs.map((item) => {
+                {draftedBlogs &&
+                  draftedBlogs.map((item) => {
                     let date = new Date(item.date)
                       .toLocaleDateString()
                       .split("/")
@@ -259,7 +276,7 @@ const BlogDraft = () => {
                           <Button
                             className="me-2"
                             variant="primary btn-icon-xxs"
-                            // onClick={() => navigate("/edit-blog",{state:{id:item.id}})}
+                            onClick={() => blogStatusHandler(item.id,"published")}
                           >
                          <MdPublish />
                           </Button>
@@ -267,6 +284,7 @@ const BlogDraft = () => {
                           <Button
                             className=""
                             variant="secondary btn-icon-xxs"
+                            onClick={() => blogStatusHandler(item.id,"trash")}
                           >
                           <FaTrash />
                           </Button>

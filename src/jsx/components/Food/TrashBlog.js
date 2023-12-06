@@ -16,151 +16,18 @@ import { FaTrashRestore } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
-
-const svg1 = (
-  <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1">
-    <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-      <rect x="0" y="0" width="24" height="24"></rect>
-      <circle fill="#000000" cx="5" cy="12" r="2"></circle>
-      <circle fill="#000000" cx="12" cy="12" r="2"></circle>
-      <circle fill="#000000" cx="19" cy="12" r="2"></circle>
-    </g>
-  </svg>
-);
-
-const tabledata = [
-  {
-    image: IMAGES.food1,
-    title: "Beef Steak with Fried Potato",
-    subtitle: "Dinner",
-    rating: "5.0",
-    sales: "1,210",
-    intrest: "20%",
-  },
-  {
-    image: IMAGES.food2,
-    title: "Pancake with Honey",
-    subtitle: "Breakfast",
-    rating: "4.9",
-    sales: "1,110",
-    intrest: "13&",
-  },
-  {
-    image: IMAGES.food3,
-    title: "Japanese Beef Ramen",
-    subtitle: "Lunch",
-    rating: "4.8",
-    sales: "1,050",
-    intrest: "18%",
-  },
-  {
-    image: IMAGES.food4,
-    title: "Mixed Salad",
-    subtitle: "Lunch",
-    rating: "5.0",
-    sales: "1,400",
-    intrest: "17%",
-  },
-  {
-    image: IMAGES.food5,
-    title: "Snack Beef Meatball with Vegetable",
-    subtitle: "Snack",
-    rating: "4.8",
-    sales: "1,456",
-    intrest: "15%",
-  },
-];
-const tabledata2 = [
-  {
-    image: IMAGES.food5,
-    title: "Beef Steak with Fried Potato",
-    subtitle: "Breakfast",
-    rating: "5.0",
-    sales: "1,210",
-    intrest: "20%",
-  },
-  {
-    image: IMAGES.food2,
-    title: "Pancake with Honey",
-    subtitle: "Breakfast",
-    rating: "4.9",
-    sales: "1,110",
-    intrest: "13&",
-  },
-  {
-    image: IMAGES.food3,
-    title: "Japanese Beef Ramen",
-    subtitle: "Breakfast",
-    rating: "4.8",
-    sales: "1,050",
-    intrest: "18%",
-  },
-];
-const tabledata3 = [
-  {
-    image: IMAGES.food2,
-    title: "Beef Steak with Fried Potato",
-    subtitle: "Lunch",
-    rating: "5.0",
-    sales: "1,210",
-    intrest: "20%",
-  },
-  {
-    image: IMAGES.food2,
-    title: "Pancake with Honey",
-    subtitle: "Lunch",
-    rating: "4.9",
-    sales: "1,110",
-    intrest: "13&",
-  },
-  {
-    image: IMAGES.food3,
-    title: "Japanese Beef Ramen",
-    subtitle: "Lunch",
-    rating: "4.8",
-    sales: "1,050",
-    intrest: "18%",
-  },
-  {
-    image: IMAGES.food4,
-    title: "Mixed Salad",
-    subtitle: "Lunch",
-    rating: "5.0",
-    sales: "1,400",
-    intrest: "17%",
-  },
-];
-const tabledata4 = [
-  {
-    image: IMAGES.food3,
-    title: "Mixed Salad",
-    subtitle: "Snack",
-    rating: "5.0",
-    sales: "1,400",
-    intrest: "17%",
-  },
-  {
-    image: IMAGES.food5,
-    title: "Snack Beef Meatball with Vegetable",
-    subtitle: "Snack",
-    rating: "4.8",
-    sales: "1,456",
-    intrest: "15%",
-  },
-];
-
-const BlogTrash = () => {
+const BlogTrash = ({trashedBlogs, getBlogs}) => {
   const makeRequest = fetchData();
   const navigate = useNavigate()
 
-  const [blogs, setBlogs] = useState([]);
-  makeRequest("GET", "/blog/get-all-blog")
-    .then((res) => {
-      setBlogs(res.data.response);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  // const [blogs, setBlogs] = useState([]);
+  // makeRequest("GET", "/blog/get-all-blog")
+  //   .then((res) => {
+  //     setBlogs(res.data.response);
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
 
   function deleteHandler(id) {
     console.log(id);
@@ -169,9 +36,7 @@ const BlogTrash = () => {
     })
       .then((res) => {
         console.log(res);
-        setBlogs((prev) => {
-          return prev.filter((item) => item.id != id);
-        });
+        getBlogs()
         swal("Done!", "blog deleted", "success");
       })
       .catch((err) => {
@@ -228,8 +93,8 @@ const BlogTrash = () => {
                 </tr>
               </thead>
               <tbody>
-                {blogs &&
-                  blogs.map((item) => {
+                {trashedBlogs &&
+                  trashedBlogs.map((item) => {
                     let date = new Date(item.date)
                       .toLocaleDateString()
                       .split("/")
@@ -259,7 +124,7 @@ const BlogTrash = () => {
                           <Button
                             className="me-2"
                             variant="primary btn-icon-xxs"
-                            // onClick={() => navigate("/edit-blog",{state:{id:item.id}})}
+                            onClick={() => deleteHandler(item.id)}
                           >
                           <FaTrashRestore />
                           </Button>
