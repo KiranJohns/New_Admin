@@ -19,7 +19,6 @@ const svg1 = (
   </svg>
 );
 
-
 const Transactions = () => {
   const makeRequest = fetchData();
   const [exams, setExams] = useState([]);
@@ -76,7 +75,13 @@ const Transactions = () => {
           <Card.Body>
             <Table responsive>
               <thead>
-                <tr style={{ textAlign: "center", background: "#212A50", color:"#fff" }}>
+                <tr
+                  style={{
+                    textAlign: "center",
+                    background: "#212A50",
+                    color: "#fff",
+                  }}
+                >
                   <th className="width80">
                     <strong>Sl</strong>
                   </th>
@@ -98,16 +103,25 @@ const Transactions = () => {
                 </tr>
               </thead>
               <tbody>
-                {exams && exams.map((item,id) => <tr style={{textAlign:'center'}}>
-                  <td>
-                    <strong>{++id}</strong>
-                  </td>
-                  <td>{item?.name}</td>
-                  <td>{new Date(item?.date).toLocaleDateString()}</td>
-                  <td>{item?.count}</td>
-                  <td>{item?.amount}</td>
-                  <td>Active</td>
-                </tr>)}
+                {exams &&
+                  exams.map((item, id) => (
+                    <tr style={{ textAlign: "center" }}>
+                      <td>
+                        <strong>{++id}</strong>
+                      </td>
+                      <td>{item?.name}</td>
+                      <td>
+                        {new Date(item.date).toLocaleString("en-US", {
+                          hour: "numeric",
+                          minute: "numeric",
+                          hour12: true,
+                        })}
+                      </td>
+                      <td>{item?.count}</td>
+                      <td>{item?.amount}</td>
+                      <td>Active</td>
+                    </tr>
+                  ))}
               </tbody>
             </Table>
           </Card.Body>

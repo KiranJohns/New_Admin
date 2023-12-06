@@ -57,7 +57,7 @@ const MyBundle = () => {
 
     makeRequest("POST", "/info/assign-bundle", form)
       .then((res) => {
-        swal("Deleted!", "Bundle assigned", "success");
+        swal("Assigned!", "Bundle assigned", "success");
         console.log(res);
       })
       .catch((err) => {

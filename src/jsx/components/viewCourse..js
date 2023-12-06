@@ -177,7 +177,7 @@ const ViewCourse = () => {
 
     makeRequest("POST", "/info/assign-bundle", form) // assign bundle and assign course is same route
       .then((res) => {
-        swal("Deleted!", "Course Assigned", "success");
+        swal("Assigned!", "Course Assigned", "success");
         console.log(res);
       })
       .catch((err) => {
