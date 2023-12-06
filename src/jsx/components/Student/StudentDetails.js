@@ -116,7 +116,7 @@ const StudentDetails = () => {
               <div className="user">
                 <div className="user-media">
                   <img
-                    src={userData.profile_image}
+                    src={userData.profile_image || profile}
                     alt=""
                     className="avatar avatar-xxl"
                   />
