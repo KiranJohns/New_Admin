@@ -29,6 +29,22 @@ const BlogTrash = ({trashedBlogs, getBlogs}) => {
   //     console.log(err);
   //   });
 
+  function blogStatusHandler(id, status) {
+    makeRequest("POST", "/blog/update-blog-status", {
+      id,
+      status,
+    })
+      .then((res) => {
+        getBlogs()
+        console.log(res);
+        swal("Done!", `blog moved to ${status}`, "success");
+      })
+      .catch((err) => {
+        swal("Oops!", err?.errors[0]?.error, "error");
+        console.log(err);
+      });
+  }
+  
   function deleteHandler(id) {
     console.log(id);
     makeRequest("DELETE", "/blog/delete-blog", {
@@ -124,17 +140,17 @@ const BlogTrash = ({trashedBlogs, getBlogs}) => {
                           <Button
                             className="me-2"
                             variant="primary btn-icon-xxs"
-                            onClick={() => deleteHandler(item.id)}
-                          >
+                            onClick={() => blogStatusHandler(item.id,"draft")}
+                            >
                           <FaTrashRestore />
                           </Button>
                       
                        
 
                           <Button
-                          
                             className=""
                             variant="secondary btn-icon-xxs"
+                            onClick={() => deleteHandler(item.id)}
                           >
                           <FaTrash />
                           </Button>
