@@ -23,7 +23,7 @@ const StudentDetails = () => {
   useEffect(() => {
     makeRequest("GET", `/info/get-user-data-by-id/${state.id}`)
       .then((res) => {
-        console.log(res);
+        console.log(res.data.response);
         setUserData(res.data.response[0]);
         setBasicDetail([
           { title: "ID", subtitle: res.data.response[0]?.id, image: profile },
@@ -116,7 +116,7 @@ const StudentDetails = () => {
               <div className="user">
                 <div className="user-media">
                   <img
-                    src={IMAGES.avat9}
+                    src={userData.profile_image || profile}
                     alt=""
                     className="avatar avatar-xxl"
                   />

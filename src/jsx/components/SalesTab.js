@@ -31,6 +31,8 @@ const svg1 = (
   </svg>
 );
 
+
+
 const tabledata = [
   {
     image: IMAGES.food1,
@@ -160,11 +162,25 @@ const SalesTab = () => {
   const [groupByYear, setGroupByYear] = useState([]);
   const [filteredGroupByYear, setFilteredGroupByYear] = useState([]);
   const [type, setType] = useState("day");
+  var monthNames = {
+    "1":"January",
+    "2":"February",
+    "3":"March",
+    "4":"April",
+    "5":"May",
+    "6":"June",
+    "7":"July",
+    "8":"August",
+    "9":"September",
+    "10":"October",
+    "12":"November",
+    "12":"December"
+  }
   const makeRequest = fetchData();
   useEffect(() => {
     makeRequest("GET", "/course/get-all-purchased-course-group-by")
       .then((res) => {
-        setFilteredGroupByDay(res.data.response.groupByDay.reverse())
+        setFilteredGroupByDay(res.data.response.groupByDay.reverse());
         setDaily(res.data.response.dailyReport.reverse());
         setGroupByDay(res.data.response.groupByDay.reverse());
         setFilteredGroupByYear(res.data.response.groupByYear.reverse());
@@ -192,17 +208,23 @@ const SalesTab = () => {
                 <Card.Body>
                   <Table responsive>
                     <thead>
-                      <tr style={{background:'#212a50',color:"#fff"}}>
-                        <th style={{ color:"#fff" }} className="width80">
-                          <strong>ID</strong>
+                      <tr style={{ background: "#212a50", color: "#fff" }}>
+                        <th style={{ color: "#fff" }} className="width80">
+                          <strong>SL</strong>
                         </th>
-                        <th style={{ textAlign: "center",color:"#fff" }}>
-                          <strong >Course Count</strong>
+                        <th style={{ textAlign: "center", color: "#fff" }}>
+                          <strong>User</strong>
                         </th>
-                        <th style={{ textAlign: "center",color:"#fff" }}>
+                        <th style={{ textAlign: "center", color: "#fff" }}>
+                          <strong>Course Count</strong>
+                        </th>
+                        <th style={{ textAlign: "center", color: "#fff" }}>
+                          <strong>Time</strong>
+                        </th>
+                        <th style={{ textAlign: "center", color: "#fff" }}>
                           <strong>Date</strong>
                         </th>
-                        <th style={{ textAlign: "center",color:"#fff"  }}>
+                        <th style={{ textAlign: "center", color: "#fff" }}>
                           <strong>Amount</strong>
                         </th>
                       </tr>
@@ -213,10 +235,16 @@ const SalesTab = () => {
                           return (
                             <tr>
                               <td>
-                                <strong>{i}</strong>
+                                <strong>{++i}</strong>
                               </td>
-                              <td style={{ textAlign: "center", }}>
+                              <td style={{ textAlign: "center" }}>
+                                {item.first_name + " " + item.last_name}
+                              </td>
+                              <td style={{ textAlign: "center" }}>
                                 {item.fake_course_count}
+                              </td>
+                              <td style={{ textAlign: "center" }}>
+                                {new Date(item.date).toLocaleTimeString()}
                               </td>
                               <td style={{ textAlign: "center" }}>
                                 {new Date(item.date).toLocaleDateString()}
@@ -239,46 +267,70 @@ const SalesTab = () => {
               <Card>
                 <Card.Header>
                   <Card.Title></Card.Title>
-                  <div>  <div className="input-group search-area mb-md-0 mb-3">
-                  <input
-                    type="text"
-                    className="form-control"
-                    onChange={(e) => setFilteredGroupByDay(e.target.value ? groupByDay.filter(data => data.month == e.target.value) : groupByDay)}
-                    placeholder="Search by month..."
-                  />
-                  <span className="input-group-text">
-                    <Link to={"#"}>
-                      <svg
-                        width="15"
-                        height="15"
-                        viewBox="0 0 18 18"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
+                  <div>
+                    {" "}
+                    <div className="input-group search-area mb-md-0 mb-3">
+                      <select
+                        onChange={(e) =>
+                          setFilteredGroupByDay(
+                            e.target.value
+                              ? groupByDay.filter(
+                                  (data) => data.month == e.target.value
+                                )
+                              : groupByDay
+                          )
+                        }
+                        class="form-select"
+                        aria-label="Default select example"
                       >
-                        <path
-                          d="M17.5605 15.4395L13.7527 11.6317C14.5395 10.446 15 9.02625 15 7.5C15 3.3645 11.6355 0 7.5 0C3.3645 0 0 3.3645 0 7.5C0 11.6355 3.3645 15 7.5 15C9.02625 15 10.446 14.5395 11.6317 13.7527L15.4395 17.5605C16.0245 18.1462 16.9755 18.1462 17.5605 17.5605C18.1462 16.9747 18.1462 16.0252 17.5605 15.4395V15.4395ZM2.25 7.5C2.25 4.605 4.605 2.25 7.5 2.25C10.395 2.25 12.75 4.605 12.75 7.5C12.75 10.395 10.395 12.75 7.5 12.75C4.605 12.75 2.25 10.395 2.25 7.5V7.5Z"
-                          fill="#01A3FF"
-                        />
-                      </svg>
-                    </Link>
-                  </span>
-                </div></div>
+                        <option calue="">Select Month</option>
+                        <option value="1">Jan</option>
+                        <option value="2">Feb</option>
+                        <option value="3">Mar</option>
+                        <option value="4">Apr</option>
+                        <option value="5">May</option>
+                        <option value="6">Jun</option>
+                        <option value="7">Jul</option>
+                        <option value="8">Agu</option>
+                        <option value="9">Sep</option>
+                        <option value="10">Oct</option>
+                        <option value="11">Nov</option>
+                        <option value="12">Dec</option>
+                      </select>
+                      <span className="input-group-text">
+                        <Link to={"#"}>
+                          <svg
+                            width="15"
+                            height="15"
+                            viewBox="0 0 18 18"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M17.5605 15.4395L13.7527 11.6317C14.5395 10.446 15 9.02625 15 7.5C15 3.3645 11.6355 0 7.5 0C3.3645 0 0 3.3645 0 7.5C0 11.6355 3.3645 15 7.5 15C9.02625 15 10.446 14.5395 11.6317 13.7527L15.4395 17.5605C16.0245 18.1462 16.9755 18.1462 17.5605 17.5605C18.1462 16.9747 18.1462 16.0252 17.5605 15.4395V15.4395ZM2.25 7.5C2.25 4.605 4.605 2.25 7.5 2.25C10.395 2.25 12.75 4.605 12.75 7.5C12.75 10.395 10.395 12.75 7.5 12.75C4.605 12.75 2.25 10.395 2.25 7.5V7.5Z"
+                              fill="#01A3FF"
+                            />
+                          </svg>
+                        </Link>
+                      </span>
+                    </div>
+                  </div>
                 </Card.Header>
-            
+
                 <Card.Body>
                   <Table responsive>
                     <thead>
-                      <tr style={{color:"#fff",background:'#212a50'}}>
-                        <th className="width80" style={{color:"#fff"}}>
+                      <tr style={{ color: "#fff", background: "#212a50" }}>
+                        <th className="width80" style={{ color: "#fff" }}>
                           <strong>ID</strong>
                         </th>
-                        <th style={{ textAlign: "center",color:"#fff" }}>
+                        <th style={{ textAlign: "center", color: "#fff" }}>
                           <strong>Course Count</strong>
                         </th>
-                        <th style={{ textAlign: "center",color:"#fff" }}>
+                        <th style={{ textAlign: "center", color: "#fff" }}>
                           <strong>Date</strong>
                         </th>
-                        <th style={{ textAlign: "center",color:"#fff" }}>
+                        <th style={{ textAlign: "center", color: "#fff" }}>
                           <strong>Amount</strong>
                         </th>
                       </tr>
@@ -289,7 +341,7 @@ const SalesTab = () => {
                           return (
                             <tr>
                               <td>
-                                <strong>{i}</strong>
+                                <strong>{++i}</strong>
                               </td>
                               <td style={{ textAlign: "center" }}>
                                 {item.total_course_count}
@@ -298,7 +350,7 @@ const SalesTab = () => {
                                 {item.day + "/" + item.month + "/" + item.year}
                               </td>
                               <td style={{ textAlign: "center" }}>
-                                £ {" "}{item.total_amount}
+                                £ {parseInt(item.total_amount)}
                               </td>
                             </tr>
                           );
@@ -316,36 +368,51 @@ const SalesTab = () => {
                 <Card.Header>
                   <Card.Title></Card.Title>
 
-                  <div>  <div className="input-group search-area mb-md-0 mb-3">
-                  <input
-                    type="text"
-                    className="form-control"
-                    onChange={(e) => setFilteredGroupByYear(e.target.value ? groupByYear.filter(data => data.year == e.target.value) : groupByYear)}
-                    placeholder="Search by year..."
-                  />
-                  <span className="input-group-text">
-                    <Link to={"#"}>
-                      <svg
-                        width="15"
-                        height="15"
-                        viewBox="0 0 18 18"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
+                  <div>
+                    {" "}
+                    <div className="input-group search-area mb-md-0 mb-3">
+                      <select
+                        onChange={(e) =>
+                          setFilteredGroupByYear(
+                            e.target.value
+                              ? groupByYear.filter(
+                                  (data) => data.year == e.target.value
+                                )
+                              : groupByYear
+                          )
+                        }
+                        class="form-select"
+                        aria-label="Default select example"
                       >
-                        <path
-                          d="M17.5605 15.4395L13.7527 11.6317C14.5395 10.446 15 9.02625 15 7.5C15 3.3645 11.6355 0 7.5 0C3.3645 0 0 3.3645 0 7.5C0 11.6355 3.3645 15 7.5 15C9.02625 15 10.446 14.5395 11.6317 13.7527L15.4395 17.5605C16.0245 18.1462 16.9755 18.1462 17.5605 17.5605C18.1462 16.9747 18.1462 16.0252 17.5605 15.4395V15.4395ZM2.25 7.5C2.25 4.605 4.605 2.25 7.5 2.25C10.395 2.25 12.75 4.605 12.75 7.5C12.75 10.395 10.395 12.75 7.5 12.75C4.605 12.75 2.25 10.395 2.25 7.5V7.5Z"
-                          fill="#01A3FF"
-                        />
-                      </svg>
-                    </Link>
-                  </span>
-                </div></div>
-
+                        <option value="">Select Year</option>
+                        {groupByYear &&
+                          groupByYear.map((item) => (
+                            <option value={item.year}>{item.year}</option>
+                          ))}
+                      </select>
+                      <span className="input-group-text">
+                        <Link to={"#"}>
+                          <svg
+                            width="15"
+                            height="15"
+                            viewBox="0 0 18 18"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M17.5605 15.4395L13.7527 11.6317C14.5395 10.446 15 9.02625 15 7.5C15 3.3645 11.6355 0 7.5 0C3.3645 0 0 3.3645 0 7.5C0 11.6355 3.3645 15 7.5 15C9.02625 15 10.446 14.5395 11.6317 13.7527L15.4395 17.5605C16.0245 18.1462 16.9755 18.1462 17.5605 17.5605C18.1462 16.9747 18.1462 16.0252 17.5605 15.4395V15.4395ZM2.25 7.5C2.25 4.605 4.605 2.25 7.5 2.25C10.395 2.25 12.75 4.605 12.75 7.5C12.75 10.395 10.395 12.75 7.5 12.75C4.605 12.75 2.25 10.395 2.25 7.5V7.5Z"
+                              fill="#01A3FF"
+                            />
+                          </svg>
+                        </Link>
+                      </span>
+                    </div>
+                  </div>
                 </Card.Header>
                 <Card.Body>
                   <Table responsive>
                     <thead>
-                      <tr style={{background:"#212a50"}}>
+                      <tr style={{ background: "#212a50" }}>
                         <th className="width80">
                           <strong>ID</strong>
                         </th>
@@ -369,19 +436,19 @@ const SalesTab = () => {
                           return (
                             <tr>
                               <td>
-                                <strong>{i}</strong>
+                                <strong>{++i}</strong>
                               </td>
                               <td style={{ textAlign: "center" }}>
                                 {item.total_course_count}
                               </td>
                               <td style={{ textAlign: "center" }}>
-                                {item.month}
+                                {monthNames[item.month]}
                               </td>
                               <td style={{ textAlign: "center" }}>
                                 {item.year}
                               </td>
                               <td style={{ textAlign: "center" }}>
-                              £{" "} {item.total_amount}
+                                £ {item.total_amount}
                               </td>
                             </tr>
                           );
