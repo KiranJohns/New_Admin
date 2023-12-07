@@ -58,6 +58,7 @@ const CreateCoupon = () => {
     makeRequest("POST", "/coupon/create-coupon", coupon)
       .then((res) => {
         swal("Done!", "coupon created", "success");
+        window.location="/coupon-list"
       })
       .catch((err) => {
         let error = err?.data?.errors[0]?.error
@@ -133,7 +134,7 @@ const CreateCoupon = () => {
 
                   <div style={{}}>
                     <div className="card-body">
-                      <h4 className="">Minimum Purchase</h4>
+                      <h4 className="">Minimum Purchase (£)</h4>
                       <div className=" mb-3">
                         <input
                           name="minimum_purchase"

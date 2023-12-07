@@ -161,7 +161,7 @@ const CouponList = () => {
         setCoupons((prev) => {
           return prev.filter((item) => item.id !== id);
         });
-        swal("Done!", "coupon deleted", "success");
+        swal("Done!", "Coupon Updated", "success");
       })
       .catch((err) => console.log(err));
   }
@@ -412,40 +412,40 @@ const CouponList = () => {
                               </td>
                               <td>
                                 <div className="">
-                                  <h4>{item.coupon_code}</h4>
+                                  <h4>{item?.coupon_code}</h4>
                                 </div>
                               </td>
                               <td>
                                 <span className="text-primary font-w600">
-                                  {item.coupon_type}
+                                  {item?.coupon_type}
                                 </span>
                               </td>
                               <td>
                                 <div className="email">
-                                  {item.minimum_purchase}
+                                  {item?.minimum_purchase}
                                 </div>
                               </td>
                               <td>
-                                <h6 className="mb-0">{item.amount}</h6>
+                                <h6 className="mb-0">{item?.amount}</h6>
                               </td>
                               <td>
                                 <h6 className="mb-0">
                                   {new Date(
-                                    item.valid_till
+                                    item?.valid_till
                                   ).toLocaleDateString()}
                                 </h6>
                               </td>
 
                               <td>
                                 <div
-                                  className={`badge bg-${new Date(item.valid_till) > new Date()
+                                  className={`badge bg-${new Date(item?.valid_till) > new Date()
                                     ? "success"
                                     : "warning"
                                     }`}
                                 >
-                                  {new Date(item.valid_till) > new Date()
-                                    ? "active"
-                                    : "inactive"}
+                                  {new Date(item?.valid_till) > new Date()
+                                    ? "Active"
+                                    : "Inactive"}
                                 </div>
                               </td>
                               <td>

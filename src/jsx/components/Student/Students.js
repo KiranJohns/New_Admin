@@ -441,7 +441,7 @@ const Students = () => {
                               </td>
 
                               <td>
-                                <div
+                    {item.type_of_account && <div
                                   class={`badge bg-${
                                     item.type_of_account === "company"
                                       ? "secondary"
@@ -450,8 +450,8 @@ const Students = () => {
                                       : "warning"
                                   }`}
                                 >
-                                  {item.type_of_account}
-                                </div>
+                              Individual
+                                </div>}
                               </td>
                               <td>
                                 <Button

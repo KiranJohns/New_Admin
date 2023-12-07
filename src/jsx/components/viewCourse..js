@@ -14,6 +14,8 @@ import swal from "sweetalert";
 import { useEffect } from "react";
 import CourseModal from "./Food/CourseModals";
 import { MdAssignmentAdd } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
+import { FaTrash } from "react-icons/fa";
 // const svg1 = (
 //   <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1">
 //     <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
@@ -288,7 +290,8 @@ const ViewCourse = () => {
                             className="me-2"
                             variant="danger btn-icon-xxs"
                           >
-                            <RiChatDeleteFill
+                            <FaTrash 
+                            style={{fontSize:'1rem'}}
                               onClick={() => handleDelete(item.id)}
                             />
                           </Button>

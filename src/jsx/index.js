@@ -322,7 +322,11 @@ function Layout1(){
                 <Outlet />
               </div>  
             </div> 
-            <Footer changeFooter="footer-outer"/> 
+            <div className="row">
+            
+            <Footer className="col-12" changeFooter="footer-outer"/> 
+     
+            </div>
             <WalletBar />           
           </div>
       </div>            

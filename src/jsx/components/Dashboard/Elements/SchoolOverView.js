@@ -35,7 +35,7 @@ const SchoolOverView = () => {
     {
       name: "Revenue",
       type: "column",
-      data: graphData,
+      data: graphData||[],
     },
   ];
   useEffect(() => {
@@ -43,7 +43,7 @@ const SchoolOverView = () => {
       .then((res) => {
         try {
           
-          setPurchaseList(res.data.response.graph_data.reverse());
+          setPurchaseList(res?.data?.response?.graph_data.reverse());
         let data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         let month = [
           "Jan",
@@ -59,11 +59,11 @@ const SchoolOverView = () => {
           "Nov",
           "Dec",
         ];
-        console.log(res.data.response.graph_data);
-        res.data.response.graph_data
-          .reverse()?.slice(0, 12)?.map((item, i) => {
-            data[data.length - 1+i] = parseInt(item.total_purchases);
-            month[month.length - 1+i] = item.month_name.slice(0,3);
+        console.log(res?.data?.response?.graph_data);
+        res?.data?.response?.graph_data
+          ?.reverse()?.slice(0, 12)?.map((item, i) => {
+            data[data?.length - 1+i] = parseInt(item?.total_purchases);
+            month[month?.length - 1+i] = item?.month_name.slice(0,3);
           });
           setGraphData(data);
         setGraphMonth(month);
@@ -157,7 +157,7 @@ const SchoolOverView = () => {
       },
     },
     colors: ["var(--primary)", "#3AC977", "#FF5E5E"],
-    labels: graphMonth,
+    labels: graphMonth || [],
     markers: {
       size: 0,
     },
@@ -249,13 +249,13 @@ const SchoolOverView = () => {
         <div className="card-header border-0 pb-0 flex-wrap">
           <h4 className="heading mb-0">Revenue Overview</h4>
           <Nav as="ul" className="nav nav-pills mix-chart-tab">
-            {chartHeaderData.map((item, index) => (
+            {chartHeaderData?.map((item, index) => (
               <Nav.Item as="li" className="nav-item" key={index}>
                 <Nav.Link
-                  eventKey={item.title}
-                  onClick={() => dataSeries(item.type)}
+                  eventKey={item?.title}
+                  onClick={() => dataSeries(item?.type)}
                 >
-                  {item.title}
+                  {item?.title}
                 </Nav.Link>
               </Nav.Item>
             ))}

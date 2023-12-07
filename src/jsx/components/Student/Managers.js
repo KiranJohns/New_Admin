@@ -431,24 +431,24 @@ const ManagerTable = () => {
                               <div className="">
                                 {/* <img src={item.image} alt="" className="avatar avatar-sm me-3" /> */}
                                 <h4>
-                                  {item.first_name + " " + item.last_name}
+                                  {item?.first_name + " " + item?.last_name}
                                 </h4>
                               </div>
                             </td>
                             <td>
-                              <div className="email">{item.email}</div>
+                              <div className="email">{item?.email}</div>
                             </td>
                             <td>
-                              <h6 className="mb-0">{item.phone}</h6>
+                              <h6 className="mb-0">{item?.phone}</h6>
                             </td>
                             <td>
-                              <h6 className="mb-0">{item.city}</h6>
+                              <h6 className="mb-0">{item?.city}</h6>
                             </td>
 
                             <td>
-                              <div className={`badge bg-warning`}>
-                                {item.type_of_account}
-                              </div>
+                            {item?.type_of_account && <div className={`badge bg-warning`}>
+                               Manager
+                              </div>}
                             </td>
                             <td>
                               <Button

@@ -85,15 +85,15 @@ const Home = () => {
           <div className="card">
             <div className="card-body pb-xl-4 pb-sm-3 pb-0">
               <div className="row">
-                {cardBlog.map((item, ind) => (
+                {cardBlog?.map((item, ind) => (
                   <div className="col-xl-3 col-6" key={ind}>
                     <div className="content-box">
-                      <div className={`icon-box icon-box-xl ${item.change}`}>
-                        {item.svg}
+                      <div className={`icon-box icon-box-xl ${item?.change}`}>
+                        {item?.svg}
                       </div>
                       <div className="chart-num">
-                        <p>{item.title}</p>
-                        <h2 className="font-w700 mb-0">{item.number}</h2>
+                        <p>{item?.title}</p>
+                        <h2 className="font-w700 mb-0">{item?.number}</h2>
                       </div>
                     </div>
                   </div>

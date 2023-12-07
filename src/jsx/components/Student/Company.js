@@ -441,8 +441,8 @@ const CompanyTable = () => {
                               </td>
 
                               <td>
-                                <div
-                                  class={`badge bg-${
+                              {item.type_of_account &&  <div
+                                  className={`badge bg-${
                                     item.type_of_account === "company"
                                       ? "secondary"
                                       : item.type_of_account === "individual"
@@ -450,8 +450,8 @@ const CompanyTable = () => {
                                       : "warning"
                                   }`}
                                 >
-                                  {item.type_of_account}
-                                </div>
+                                  Company
+                                </div>}
                               </td>
                               <td>
                                 <Button

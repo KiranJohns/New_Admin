@@ -123,12 +123,12 @@ const SchoolPerformance = () => {
 
     xaxis: {
       categories: [
-        "Week 01",
-        "Week 02",
-        "Week 03",
-        "Week 04",
-        "Week 05",
-        "Week 06",
+        "Day 01",
+        "Day 02",
+        "Day 03",
+        "Day 04",
+        "Day 05",
+        "Day 06",
       ],
       labels: {
         style: {

@@ -13,12 +13,13 @@ import { ImCross } from "react-icons/im";
 import { FaDownload } from "react-icons/fa";
 import { BiSolidEdit } from "react-icons/bi";
 import { RiChatDeleteFill } from "react-icons/ri";
+import "../scss/care.css"
 
 import PageTitle from "../layouts/PageTitle";
 import { Row, Col, Card, Badge, ProgressBar } from "react-bootstrap";
 import fetchData from "../../axios";
 import { useEffect } from "react";
-import { useState } from "react";
+import { useState } from "react"
 import { date } from "yup";
 
 const svg1 = (
@@ -288,10 +289,11 @@ const SalesTab = () => {
                   <Card.Title></Card.Title>
                   <div>
                     {" "}
-                    <div className="input-group search-area mb-md-0 mb-3">
+                    <div className="d-flex mb-md-0 mb-3 ">
                       <select
+                       style={{backgroundColor:"#5a9676", color:"white"}}
                         onChange={(e) => setMonth(e.target.value)}
-                        class="form-select"
+                        className="form-select mr-3"
                         aria-label="Default select example"
                       >
                         <option calue="">Select Month</option>
@@ -309,8 +311,9 @@ const SalesTab = () => {
                         <option value="12">Dec</option>
                       </select>
                       <select
+                       style={{backgroundColor:"#5a9676", color:"white"}}
                         onChange={(e) => setYear(e.target.value)}
-                        class="form-select"
+                        className="form-select"
                         aria-label="Default select example"
                       >
                         <option value="">Select Year</option>
@@ -377,8 +380,9 @@ const SalesTab = () => {
 
                   <div>
                     {" "}
-                    <div className="input-group search-area mb-md-0 mb-3">
+                    <div className="input-group  mb-md-0 mb-3">
                       <select
+                       style={{backgroundColor:"#5a9676", color:"white"}}
                         onChange={(e) =>
                           setFilteredGroupByYear(
                             e.target.value

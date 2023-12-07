@@ -9029,7 +9029,7 @@ div, span, ol, ul {
     .footer .copyright a {
       color: var(--primary); }
   .footer.footer-outer {
-    width: calc(100% - 43.225rem);
+    /* width: calc(100% - 43.225rem); */
     margin-right: 23.875rem;
     margin-left: auto; }
     @media only screen and (max-width: 87.5rem) {

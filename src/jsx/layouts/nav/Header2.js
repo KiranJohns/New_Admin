@@ -27,11 +27,13 @@ const searchList = [
 	{image: avatar5, title:'Admin'},
 ];
 
+
+
 export function  SideBarAdd(){
 	setTimeout(()=>{	
 		let walletopen = document.querySelector(".wallet-open");
-		if(walletopen.classList.contains('active')){
-			walletopen.classList.remove("active");
+		if(walletopen?.classList.contains('active')){
+			walletopen?.classList.remove("active");
 		}else{
 			walletopen.classList.add("active");
 		}
@@ -50,6 +52,13 @@ const Header2 = ({ onNote }) => {
 			changeBackground({ value: "dark", label: "Dark" });
 		}
 	}
+
+	useEffect(() => {
+		let walletopen = document.querySelector(".wallet-open");
+
+			walletopen?.classList?.remove("active");
+	}, [])
+	
 
   //For header fixed 
   	const [headerFix, setheaderFix] = useState(false);
@@ -114,9 +123,10 @@ const Header2 = ({ onNote }) => {
     : filterName.includes("editor")
     ? filterName.filter((f) => f !== "editor")
     : filterName;
-  
+
   
   return ( 
+	
     <div className={`header ${ headerFix ? "sticky" : ""}`}>
       <div className="header-content">
         <nav className="navbar navbar-expand">
@@ -170,7 +180,7 @@ const Header2 = ({ onNote }) => {
 					</Dropdown.Menu>
 				</Dropdown> */}
 				
-                <li className="nav-item dropdown notification_dropdown">
+                <li style={{display:"none"}} className="nav-item dropdown notification_dropdown">
                     <Link to={"#"} className="nav-link  menu-wallet" onClick={()=>SideBarAdd()}>
 						<svg id="Layer_2" enableBackground="new 0 0 512 512" height="18" viewBox="0 0 512 512" width="18" xmlns="http://www.w3.org/2000/svg"><g><path d="m174 240h-108c-36.393 0-66-29.607-66-66v-108c0-36.393 29.607-66 66-66h108c36.393 0 66 29.607 66 66v108c0 36.393-29.607 66-66 66zm-108-208c-18.748 0-34 15.252-34 34v108c0 18.748 15.252 34 34 34h108c18.748 0 34-15.252 34-34v-108c0-18.748-15.252-34-34-34z"/><path d="m446 240h-108c-36.393 0-66-29.607-66-66v-108c0-36.393 29.607-66 66-66h108c36.393 0 66 29.607 66 66v108c0 36.393-29.607 66-66 66zm-108-208c-18.748 0-34 15.252-34 34v108c0 18.748 15.252 34 34 34h108c18.748 0 34-15.252 34-34v-108c0-18.748-15.252-34-34-34z"/><path d="m392 512c-66.168 0-120-53.832-120-120s53.832-120 120-120 120 53.832 120 120-53.832 120-120 120zm0-208c-48.523 0-88 39.477-88 88s39.477 88 88 88 88-39.477 88-88-39.477-88-88-88z"/><path d="m174 512h-108c-36.393 0-66-29.607-66-66v-108c0-36.393 29.607-66 66-66h108c36.393 0 66 29.607 66 66v108c0 36.393-29.607 66-66 66zm-108-208c-18.748 0-34 15.252-34 34v108c0 18.748 15.252 34 34 34h108c18.748 0 34-15.252 34-34v-108c0-18.748-15.252-34-34-34z"/></g></svg>
                     </Link>

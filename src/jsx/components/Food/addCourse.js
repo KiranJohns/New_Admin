@@ -7,50 +7,7 @@ import quotes from "./../../../images/quotes.svg";
 import fetchData from "../../../axios";
 import swal from "sweetalert";
 
-const inputBlog = [
-  {
-    inputid: "1234",
-    lable: "Calories: 217.",
-    inputid2: "23456",
-    lable2: "2 tablespoons butter, softened, divided",
-  },
-  {
-    inputid: "1235",
-    lable: "Water: 61%",
-    inputid2: "23457",
-    lable2: "1 teaspoon minced fresh parsley",
-  },
-  {
-    inputid: "1236",
-    lable: "Protein: 26.1 grams.",
-    inputid2: "23458",
-    lable2: "1/2 teaspoon minced garlic",
-  },
-  {
-    inputid: "1237",
-    lable: "Carbs: 0 grams.",
-    inputid2: "23459",
-    lable2: "1/4 teaspoon reduced-sodium soy sauce",
-  },
-  {
-    inputid: "1238",
-    lable: "Sugar: 0 grams.",
-    inputid2: "23460",
-    lable2: "1 beef flat iron steak or boneless top sirloin steak (3/4 pound)",
-  },
-  {
-    inputid: "1239",
-    lable: "Fiber: 0 grams.",
-    inputid2: "23461",
-    lable2: "1/8 teaspoon salt",
-  },
-  {
-    inputid: "1240",
-    lable: "Vitamin: 10 grams.",
-    inputid2: "23462",
-    lable2: "1/8 teaspoon pepper",
-  },
-];
+
 
 const cardBlog = [
   { image: IMAGES.avatarpng1, title: "Samantha W." },
@@ -58,24 +15,6 @@ const cardBlog = [
   { image: IMAGES.avatarpng3, title: "Tony Soap" },
 ];
 
-const tabledata = [
-  {
-    image: IMAGES.food3,
-    title: "Beef Steak with Fried Potato",
-    subtitle: "Snack",
-    rating: "5.0",
-    sales: "1,400",
-    intrest: "17%",
-  },
-  {
-    image: IMAGES.food5,
-    title: "Pancake with Honey",
-    subtitle: "Snack",
-    rating: "4.8",
-    sales: "1,456",
-    intrest: "15%",
-  },
-];
 
 const AddCourse = () => {
   const makeRequest = fetchData();
@@ -189,19 +128,30 @@ const AddCourse = () => {
                     <h4 className="" style={{ textAlign: "center" }}>
                       Course Price:
                     </h4>
-                    <div className=" mb-3 ">
+                    <div className="input-group mb-3 ">
+                    <span style={{background:"#212A50", color:"white"}} className="input-group-text">£</span>
                       <input
                         name="price"
                         value={course.price}
-                        onChange={handleChange}
-                        type="number"
-                        step=".01"
+                        
+                        onChange={(e) => {
+                          setCourse((prev) => {
+                            
+                            return {
+                              ...prev,
+                              [e.target.name]:e.target.value ,
+                            };
+                          });
+                        }}
+                        type="text"
                         className="form-control input-default "
-                        placeholder="£"
+                        placeholder="0.00"
                       />
                     </div>
                   </div>
                 </div>
+
+             
 
                 <div className="col-4" style={{}}>
                   <div className="card-body">
