@@ -338,18 +338,21 @@ const ManCoursMatrix = () => {
             <div className="d-flex justify-content-center my-2 ">
               <h4>Course Matrix</h4>
             </div>
+           
+          
 
             <div
               style={{ position: "absolute", top: "0", right: "0" }}
               className="col-4 p-1 m- d-flex"
             >
-              <Form.Select
+               
+              <select style={{background:"#5a9676", color:"#fff"}} className="form-control"
                 onChange={(e) => {
                   console.log(e.target.value);
                   setManagers(users.filter(item => item.created_by == e.target.value));
                 }}
                 size=""
-                style={{ border: ".1px solid #212a50" }}
+               
                 aria-label="Default select example"
               >
                 <option value={null}>Select Company</option>
@@ -358,14 +361,14 @@ const ManCoursMatrix = () => {
                     {item.first_name + " " + item.last_name}
                   </option>
                 ))}
-              </Form.Select>
+              </select>
               <Form.Select
                 onChange={(e) => {
                   console.log(e.target.value);
                   setManager(e.target.value);
                 }}
                 size=""
-                style={{ border: ".1px solid #212a50" }}
+                select style={{background:"#5a9676", color:"#fff"}} className="form-control"
                 aria-label="Default select example"
               >
                 <option value={null}>Select Manager</option>

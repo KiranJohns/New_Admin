@@ -123,33 +123,7 @@ const AddCourse = () => {
                   </div>
                 </div>
 
-                <div className="col-4" style={{}}>
-                  <div className="card-body">
-                    <h4 className="" style={{ textAlign: "center" }}>
-                      Course Price:
-                    </h4>
-                    <div className="input-group mb-3 ">
-                    <span style={{background:"#212A50", color:"white"}} className="input-group-text">£</span>
-                      <input
-                        name="price"
-                        value={course.price}
-                        
-                        onChange={(e) => {
-                          setCourse((prev) => {
-                            
-                            return {
-                              ...prev,
-                              [e.target.name]:e.target.value ,
-                            };
-                          });
-                        }}
-                        type="text"
-                        className="form-control input-default "
-                        placeholder="0.00"
-                      />
-                    </div>
-                  </div>
-                </div>
+               
 
              
 
@@ -183,6 +157,166 @@ const AddCourse = () => {
                     </div>
                   </div>
                 </div>
+
+                <div className="col-4" style={{}}>
+                  <div className="card-body">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      Selling Price Price:
+                    </h4>
+                    <div className="input-group mb-3 ">
+                    <span style={{background:"#212A50", color:"white"}} className="input-group-text">£</span>
+                      <input
+                        name="price"
+                        value={course.price}
+                        
+                        onChange={(e) => {
+                          setCourse((prev) => {
+                            
+                            return {
+                              ...prev,
+                              [e.target.name]:e.target.value ,
+                            };
+                          });
+                        }}
+                        type="text"
+                        className="form-control input-default "
+                        placeholder="0.00"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+              <div className="row">
+
+              <div className="col-4" style={{}}>
+                  <div className="card-body">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                     RRP
+                    </h4>
+                    <div className="input-group mb-3 ">
+                    <span style={{background:"#212A50", color:"white"}} className="input-group-text">£</span>
+                      <input
+                        name="price"
+                        value={course.price}
+                        
+                        onChange={(e) => {
+                          setCourse((prev) => {
+                            
+                            return {
+                              ...prev,
+                              [e.target.name]:e.target.value ,
+                            };
+                          });
+                        }}
+                        type="text"
+                        className="form-control input-default "
+                        placeholder="0.00"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+
+                <div className="col-4" style={{}}>
+                  <div className="card-body">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      Course Type:
+                    </h4>
+                    <div className=" mb-3 ">
+                      <input
+                        type="text"
+                        name="name"
+                        // value={course.name}
+                        // onChange={handleChange}
+                        className="form-control input-default "
+                        placeholder="Online"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+               <div className="col-4" style={{}}>
+                  <div className="card-body">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      Duration:
+                    </h4>
+                    <div className=" mb-3 ">
+                      <input
+                        type="text"
+                        name="name"
+                        // value={course.name}
+                        // onChange={handleChange}
+                        className="form-control input-default "
+                        placeholder="Time for completion"
+                      />
+                    </div>
+                  </div>
+                </div>   
+
+              </div>
+
+              
+              <div className="row">
+
+
+                <div className="col-4" style={{}}>
+                  <div className="card-body">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      Course Level:
+                    </h4>
+                    <div className=" mb-3 ">
+                      <input
+                        type="text"
+                        name="name"
+                        // value={course.name}
+                        // onChange={handleChange}
+                        className="form-control input-default "
+                        placeholder="Advanced/Intermediate"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+               <div className="col-4" style={{}}>
+                  <div className="card-body">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                     Certificate
+                    </h4>
+                    <div className=" mb-3 ">
+                      <input
+                        type="text"
+                        name="name"
+                        // value={course.name}
+                        // onChange={handleChange}
+                        className="form-control input-default "
+                        placeholder="Details"
+                      />
+                    </div>
+                  </div>
+                </div>   
+
+                <div className="col-4" style={{}}>
+                  <div className="card-body">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      Course Code:
+                    </h4>
+                    <div className=" mb-3 ">
+                      <input
+                        type="text"
+                        name="name"
+                        // value={course.name}
+                        // onChange={handleChange}
+                        className="form-control input-default "
+                        placeholder="LFC01"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+
               </div>
 
               <div style={{ display: "flex", justifyContent: "center" }}>

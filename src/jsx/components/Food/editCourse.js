@@ -88,6 +88,31 @@ const EditCourse = () => {
     thumbnail: "",
   });
 
+  const [course, setCourse] = useState({
+    name: "",
+    description: "",
+    category: "",
+    price: "",
+    video: "",
+    intro_video: "",
+    thumbnail: "",
+    resource: "",
+    ppt: "",
+    assessment: "",
+    certificate: "",
+    objective_define: "",
+    What_you_will_learn: "",
+    aims: "",
+    who_should_attend: "",
+    objectives_point: "",
+    what_you_will_learn_point: ""
+  });
+
+  const [aims, setAims] = useState([]);
+  const [who_should_attend, setWhoShouldSttend] = useState([]);
+  const [objectives_point, setObjectivesPoint] = useState([]);
+  const [what_you_will_learn, setWhatYouWillLearn] = useState([]);
+
   const { state } = useLocation();
 
   const [video, setVideo] = useState(null);
@@ -220,8 +245,8 @@ const EditCourse = () => {
                       <input
                         type="text"
                         name="name"
-                        value={courseInfo.name}
-                        onChange={handleChange}
+                        // value={courseInfo.name}
+                        // onChange={handleChange}
                         className="form-control input-default "
                         placeholder="course name"
                       />
@@ -237,8 +262,8 @@ const EditCourse = () => {
                     <div className=" mb-3 ">
                       <input
                         name="price"
-                        value={courseInfo.price}
-                        onChange={handleChange}
+                        // value={courseInfo.price}
+                        // onChange={handleChange}
                         type="number"
                         className="form-control input-default "
                         placeholder="course price"
@@ -277,6 +302,138 @@ const EditCourse = () => {
                   </div>
                 </div>
               </div>
+
+
+              <div className="row">
+
+                <div className="col-4" style={{}}>
+                  <div className="card-body">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      RRP
+                    </h4>
+                    <div className="input-group mb-3 ">
+                      <span style={{ background: "#212A50", color: "white" }} className="input-group-text">£</span>
+                      <input
+                        name="price"
+                        // value={course?.price}
+
+                        // onChange={(e) => {
+                        //   setCourse((prev) => {
+
+                        //     return {
+                        //       ...prev,
+                        //       [e.target.name]:e.target.value ,
+                        //     };
+                        //   });
+                        // }}
+                        type="text"
+                        className="form-control input-default "
+                        placeholder="0.00"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+
+                <div className="col-4" style={{}}>
+                  <div className="card-body">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      Course Type:
+                    </h4>
+                    <div className=" mb-3 ">
+                      <input
+                        type="text"
+                        name="name"
+                        // value={course.name}
+                        // onChange={handleChange}
+                        className="form-control input-default "
+                        placeholder="Online"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-4" style={{}}>
+                  <div className="card-body">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      Duration:
+                    </h4>
+                    <div className=" mb-3 ">
+                      <input
+                        type="text"
+                        name="name"
+                        // value={course.name}
+                        // onChange={handleChange}
+                        className="form-control input-default "
+                        placeholder="Online"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div className="row">
+
+
+                <div className="col-4" style={{}}>
+                  <div className="card-body">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      Course Level:
+                    </h4>
+                    <div className=" mb-3 ">
+                      <input
+                        type="text"
+                        name="name"
+                        // value={course.name}
+                        // onChange={handleChange}
+                        className="form-control input-default "
+                        placeholder="Advanced/Intermediate"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-4" style={{}}>
+                  <div className="card-body">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      Certificate
+                    </h4>
+                    <div className=" mb-3 ">
+                      <input
+                        type="text"
+                        name="name"
+                        // value={course.name}
+                        // onChange={handleChange}
+                        className="form-control input-default "
+                        placeholder="Details"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-4" style={{}}>
+                  <div className="card-body">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      Course Code:
+                    </h4>
+                    <div className=" mb-3 ">
+                      <input
+                        type="text"
+                        name="name"
+                        // value={course.name}
+                        // onChange={handleChange}
+                        className="form-control input-default "
+                        placeholder="LFC01"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+
+
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <div className="card-body">
                   <h4 className="" style={{ textAlign: "center" }}>
@@ -284,8 +441,8 @@ const EditCourse = () => {
                   </h4>
                   <div className="form-group ">
                     <textarea
-                      value={courseInfo.description}
-                      onChange={handleChange}
+                      // value={courseInfo.description}
+                      // onChange={handleChange}
                       name="description"
                       className="form-control"
                       rows="4"
@@ -295,6 +452,404 @@ const EditCourse = () => {
                   </div>
                 </div>
               </div>
+
+              <div className="row">
+                <div className="col-6">
+                  <div style={{}}>
+                    <div className="card-body">
+                      <h4 className="" style={{ textAlign: "center" }}>
+                        Aims:
+                      </h4>
+                      <div className="">
+                        <label
+                          htmlFor="formFile"
+                          className="form-label"
+                        ></label>
+                        <textarea
+                          name="aims"
+                          // value={courseInfo.aims}
+                          // onChange={handlePointsChange}
+                          className="form-control"
+                          rows="4"
+                          id="comment"
+                          placeholder="Content"
+                        ></textarea>
+                      </div>
+                      <div
+                        style={{ display: "flex", justifyContent: "center" }}
+                        className="m-2 p-2 "
+                      >
+                        <Button
+                          className=""
+                          variant="primary"
+                        // onClick={() => {
+                        //   if(!courseInfo.aims) return
+                        //   setAims((prev) => {
+                        //     return [...prev, courseInfo.aims];
+                        //   });
+                        //   setCourseInfo((prev) => {
+                        //     return {
+                        //       ...prev,
+                        //       aims: "",
+                        //     };
+                        //   });
+                        // }}
+                        >
+                          ADD
+                        </Button>
+                        {aims.length > 0 && (
+                          <Button
+                            className="mx-2"
+                            variant="danger"
+                            onClick={() => {
+                              setCourseInfo((prev) => {
+                                return {
+                                  ...prev,
+                                  aims: "",
+                                };
+                              });
+                              setAims([]);
+                            }}
+                          >
+                            CLEAR {aims.length}
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{}}>
+                    <div className="card-body">
+                      <h4 className="" style={{ textAlign: "center" }}>
+                        Objectives(points)
+                      </h4>
+                      <div className="">
+                        <label
+                          htmlFor="formFile"
+                          className="form-label"
+                        ></label>
+                        <textarea
+                          name="objectives_point"
+                          // value={courseInfo.objectives_point}
+                          // onChange={handlePointsChange}
+                          className="form-control"
+                          rows="4"
+                          id="comment"
+                          placeholder="Content"
+                        ></textarea>
+                      </div>
+                      <div
+                        style={{ display: "flex", justifyContent: "center" }}
+                        className="m-2 p-2 "
+                      >
+                        <Button
+                          className=""
+                          variant="primary"
+                          onClick={() => {
+                            if (!courseInfo.objectives_point) return
+                            setObjectivesPoint((prev) => {
+                              return [...prev, courseInfo.objectives_point];
+                            });
+                            setCourseInfo((prev) => {
+                              return {
+                                ...prev,
+                                objectives_point: "",
+                              };
+                            });
+                          }}
+                        >
+                          ADD
+                        </Button>
+                        {/* {objectives_point.length > 0 && (
+                          <Button
+                            className="mx-2"
+                            variant="danger"
+                            onClick={() => {
+                              setCourseInfo((prev) => {
+                                return {
+                                  ...prev,
+                                  objectives_point: "",
+                                };
+                              });
+                              setObjectivesPoint([]);
+                            }}
+                          >
+                            CLEAR {objectives_point.length}
+                          </Button>
+                        )} */}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{}}>
+                    <div className="card-body">
+                      <h4 className="" style={{ textAlign: "center" }}>
+                        Objectives(define)
+                      </h4>
+                      <div className="">
+                        <label
+                          htmlFor="formFile"
+                          className="form-label"
+                        ></label>
+                        <textarea
+                          value={course.objective_define}
+                          onChange={handleChange}
+                          name="objective_define"
+                          className="form-control"
+                          rows="4"
+                          id="comment"
+                          placeholder="Content"
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{}}>
+                    <div className="card-body">
+                      <h4 className="" style={{ textAlign: "center" }}>
+                        Upload Course Image:
+                      </h4>
+                      <div className="">
+                        <label
+                          htmlFor="formFile"
+                          className="form-label"
+                        ></label>
+                        <input
+                          className="form-control"
+                          type="file"
+                          id="formFile"
+                          onChange={(e) =>
+                            setCourse({
+                              ...course,
+                              thumbnail: e.target.files[0],
+                            })
+                          }
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <div className="card-body">
+                      <h4 className="" style={{ textAlign: "center" }}>
+                        Upload Course Video:
+                      </h4>
+                      <div className="">
+                        <label
+                          htmlFor="formFile"
+                          className="form-label"
+                        ></label>
+                        <input
+                          className="form-control"
+                          type="file"
+                          onChange={(e) =>
+                            setCourse({ ...course, video: e.target.files[0] })
+                          }
+                          id="formFile"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-6">
+                  <div style={{}}>
+                    <div className="card-body">
+                      <h4 className="" style={{ textAlign: "center" }}>
+                        Who should attend?
+                      </h4>
+                      <div className="">
+                        <label
+                          htmlFor="formFile"
+                          className="form-label"
+                        ></label>
+                        <textarea
+                          value={courseInfo.who_should_attend}
+                          name="who_should_attend"
+                          // onChange={handlePointsChange}
+                          className="form-control"
+                          rows="4"
+                          id="comment"
+                          placeholder="Content"
+                        ></textarea>
+                      </div>
+                      <div
+                        style={{ display: "flex", justifyContent: "center" }}
+                        className="m-2 p-2 "
+                      >
+                        <Button
+                          className=""
+                          variant="primary"
+                          onClick={() => {
+                            if (!courseInfo.who_should_attend) return
+                            setWhoShouldSttend((prev) => {
+                              return [...prev, courseInfo.who_should_attend];
+                            });
+                            setCourseInfo((prev) => {
+                              return {
+                                ...prev,
+                                who_should_attend: "",
+                              };
+                            });
+                          }}
+                        >
+                          ADD
+                        </Button>
+                        {who_should_attend.length > 0 && (
+                          <Button
+                            className="mx-2"
+                            variant="danger"
+                            onClick={() => {
+                              setCourseInfo((prev) => {
+                                return {
+                                  ...prev,
+                                  who_should_attend: "",
+                                };
+                              });
+                              setWhoShouldSttend([]);
+                            }}
+                          >
+                            CLEAR {who_should_attend.length}
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{}}>
+                    <div className="card-body">
+                      <h4 className="" style={{ textAlign: "center" }}>
+                        What you will learn?(points)
+                      </h4>
+                      <div className="">
+                        <label
+                          htmlFor="formFile"
+                          className="form-label"
+                        ></label>
+                        <textarea
+                          value={courseInfo.what_you_will_learn}
+                          name="what_you_will_learn"
+                          // onChange={handlePointsChange}
+                          className="form-control"
+                          rows="4"
+                          id="comment"
+                          placeholder="Content"
+                        ></textarea>
+                      </div>
+                      <div
+                        style={{ display: "flex", justifyContent: "center" }}
+                        className="m-2 p-2 "
+                      >
+                        <Button
+                          className=""
+                          variant="primary"
+                          onClick={() => {
+                            if (!courseInfo.what_you_will_learn) return
+                            setWhatYouWillLearn((prev) => {
+                              return [...prev, courseInfo.what_you_will_learn];
+                            });
+                            setCourseInfo((prev) => {
+                              return {
+                                ...prev,
+                                what_you_will_learn: "",
+                              };
+                            });
+                          }}
+                        >
+                          ADD
+                        </Button>
+                        {what_you_will_learn.length > 0 && (
+                          <Button
+                            className="mx-2"
+                            variant="danger"
+                            onClick={() => {
+                              setCourseInfo((prev) => {
+                                return {
+                                  ...prev,
+                                  what_you_will_learn: "",
+                                };
+                              });
+                              setWhatYouWillLearn([]);
+                            }}
+                          >
+                            CLEAR {what_you_will_learn.length}
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{}}>
+                    <div className="card-body">
+                      <h4 className="" style={{ textAlign: "center" }}>
+                        What you will learn?
+                      </h4>
+                      <div className="">
+                        <label
+                          htmlFor="formFile"
+                          className="form-label"
+                        ></label>
+                        <textarea
+                          value={course.What_you_will_learn}
+                          onChange={handleChange}
+                          name="What_you_will_learn"
+                          className="form-control"
+                          rows="4"
+                          id="comment"
+                          placeholder="Content"
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <div className="card-body">
+                      <h4 className="" style={{ textAlign: "center" }}>
+                        Upload Course ppt:
+                      </h4>
+                      <div className="">
+                        <label
+                          htmlFor="formFile"
+                          className="form-label"
+                        ></label>
+                        <input
+                          className="form-control"
+                          multiple={true}
+                          onChange={(e) =>
+                            setCourse({ ...course, ppt: e.target.files })
+                          }
+                          type="file"
+                          id="formFile"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <div className="card-body">
+                      <h4 className="" style={{ textAlign: "center" }}>
+                        Upload Course Resource:
+                      </h4>
+                      <div className="">
+                        <label
+                          htmlFor="formFileMultiple"
+                          className="form-label"
+                        ></label>
+                        <input
+                          onChange={(e) =>
+                            setCourse({ ...course, resource: e.target.files })
+                          }
+                          className="form-control"
+                          type="file"
+                          id="formFileMultiple"
+                          multiple
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <div className="m-2 p-2 ">
                   <Button

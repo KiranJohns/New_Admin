@@ -170,8 +170,7 @@ const BundleMatrix = () => {
                   console.log(e.target.value);
                   setManagers(users.filter(item => item.created_by == e.target.value));
                 }}
-                size=""
-                style={{ border: ".1px solid #212a50" }}
+                style={{background:"#5a9676", color:"#fff"}} className="form-control"
                 aria-label="Default select example"
               >
                 <option value={null}>Select Company</option>
@@ -187,7 +186,7 @@ const BundleMatrix = () => {
                   setManager(e.target.value);
                 }}
                 size=""
-                style={{ border: ".1px solid #212a50" }}
+                style={{background:"#5a9676", color:"#fff"}} className="form-control"
                 aria-label="Default select example"
               >
                 <option value={null}>Select Manager</option>

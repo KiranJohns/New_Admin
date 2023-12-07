@@ -289,14 +289,14 @@ const SalesTab = () => {
                   <Card.Title></Card.Title>
                   <div>
                     {" "}
-                    <div className="d-flex mb-md-0 mb-3 ">
+                    <div className="d-flex mb-md-0 mb-3 form-group">
                       <select
                        style={{backgroundColor:"#5a9676", color:"white"}}
                         onChange={(e) => setMonth(e.target.value)}
-                        className="form-select mr-3"
+                        className="form-control"
                         aria-label="Default select example"
                       >
-                        <option calue="">Select Month</option>
+                        <option  value="">Select Month </option>
                         <option value="1">Jan</option>
                         <option value="2">Feb</option>
                         <option value="3">Mar</option>
@@ -313,7 +313,7 @@ const SalesTab = () => {
                       <select
                        style={{backgroundColor:"#5a9676", color:"white"}}
                         onChange={(e) => setYear(e.target.value)}
-                        className="form-select"
+                        className="form-control"
                         aria-label="Default select example"
                       >
                         <option value="">Select Year</option>
@@ -380,7 +380,7 @@ const SalesTab = () => {
 
                   <div>
                     {" "}
-                    <div className="input-group  mb-md-0 mb-3">
+                    <div className="form-group  mb-md-0 mb-3">
                       <select
                        style={{backgroundColor:"#5a9676", color:"white"}}
                         onChange={(e) =>
@@ -392,7 +392,7 @@ const SalesTab = () => {
                               : groupByYear
                           )
                         }
-                        class="form-select"
+                        className="form-control"
                         aria-label="Default select example"
                       >
                         <option value="">Select Year</option>
