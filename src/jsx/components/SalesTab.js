@@ -291,24 +291,24 @@ const SalesTab = () => {
                     {" "}
                     <div className="d-flex mb-md-0 mb-3 form-group">
                       <select
-                       style={{backgroundColor:"#5a9676", color:"white"}}
+                       style={{backgroundColor:"#5a9676", color:"white", textAlign:"center"}}
                         onChange={(e) => setMonth(e.target.value)}
-                        className="form-control"
+                        className="form-control mr-2"
                         aria-label="Default select example"
                       >
                         <option  value="">Select Month </option>
-                        <option value="1">Jan</option>
-                        <option value="2">Feb</option>
-                        <option value="3">Mar</option>
-                        <option value="4">Apr</option>
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
                         <option value="5">May</option>
-                        <option value="6">Jun</option>
-                        <option value="7">Jul</option>
-                        <option value="8">Agu</option>
-                        <option value="9">Sep</option>
-                        <option value="10">Oct</option>
-                        <option value="11">Nov</option>
-                        <option value="12">Dec</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">Sepetember</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
                       </select>
                       <select
                        style={{backgroundColor:"#5a9676", color:"white"}}
@@ -332,7 +332,7 @@ const SalesTab = () => {
                     <thead>
                       <tr style={{ color: "#fff", background: "#212a50" }}>
                         <th className="width80" style={{ color: "#fff" }}>
-                          <strong>ID</strong>
+                          <strong>SL No</strong>
                         </th>
                         <th style={{ textAlign: "center", color: "#fff" }}>
                           <strong>Course Count</strong>
@@ -410,7 +410,7 @@ const SalesTab = () => {
                     <thead>
                       <tr style={{ background: "#212a50" }}>
                         <th className="width80">
-                          <strong>ID</strong>
+                          <strong>SL No</strong>
                         </th>
                         <th style={{ textAlign: "center" }}>
                           <strong>Course Count</strong>

@@ -18,6 +18,7 @@ import LightGallery from "lightgallery/react";
 import Highlight from "react-highlight";
 import { BiSolidEdit } from "react-icons/bi";
 import swal from "sweetalert";
+import { Suspense } from 'react';
 
 // import styles
 import "lightgallery/css/lightgallery.css";
@@ -321,13 +322,16 @@ const SingleProfile = () => {
 
   // function profileOnMouse
   return (
+    
     <Fragment>
+
       <PageTitle activeMenu="Profile" motherMenu="App" />
       <div className="row">
         <div className="col-lg-12">
           <div className="profile card card-body px-3 pt-3 pb-0">
             <div className="profile-head">
               <div className="photo-content ">
+              <Suspense fallback={<Loading />}>
                 <div
                   className="cover-photo rounded "
                   style={{
@@ -357,6 +361,7 @@ const SingleProfile = () => {
                     }}
                   />
                 </div>
+                </Suspense>
               </div>
               <div className="profile-info">
                 <div  
@@ -365,12 +370,14 @@ const SingleProfile = () => {
                   onMouseOver={() => setShowEditProfileBtn(true)}
                   onMouseLeave={() => setShowEditProfileBtn(false)}
                 >
+                  <Suspense fallback={<Loading />}>
                   <img      
                     style={{ width: "8.5rem", height: "7rem"   }}
                     src={changeProfile ? URL.createObjectURL(profile) : profile}
                     className="img-fluid rounded-circle"
                     alt="profile"
                   />
+                  </Suspense> 
                   <input
                     type="file"
                     ref={profileRef}
@@ -1024,8 +1031,12 @@ const SingleProfile = () => {
           </div>
         </div>
       </Modal>
+     
     </Fragment>
   );
 };
 
 export default SingleProfile;
+function Loading() {
+  return <h2>🌀 Loading...</h2>;
+}

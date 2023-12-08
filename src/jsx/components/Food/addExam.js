@@ -168,7 +168,7 @@ const AddExam = () => {
                       >
                         <option>Select</option>
                         <option value="Care Course">Care Course</option>
-                        <option value="Mandatory Care Courses">
+                        <option value="Mandatory Care Course">
                           Mandatory Care Course
                         </option>
                         <option value="Specialized Care Course">
@@ -256,7 +256,7 @@ const AddExam = () => {
                     <div className="col-6">
                       <div className="p-3">
                         <h4 className="" style={{ textAlign: "center" }}>
-                          option a
+                          Option A
                         </h4>
                         <div
                           style={{
@@ -279,14 +279,14 @@ const AddExam = () => {
                             style={{ width: "80%" }}
                             className="form-control"
                             type="text"
-                            placeholder="option 1"
+                            placeholder="option A"
                           />
                         </div>
                       </div>
 
                       <div className="p-3">
                         <h4 className="" style={{ textAlign: "center" }}>
-                          option b
+                          Option C
                         </h4>
                         <div
                           style={{
@@ -303,13 +303,13 @@ const AddExam = () => {
                         onChange={() => setAnswer("option2")}
                       /> */}
                           <input
-                            value={data.option2}
+                            value={data.option3}
                             onChange={handleOnchange}
-                            name="option2"
+                            name="option3"
                             style={{ width: "80%" }}
                             className="form-control"
                             type="text"
-                            placeholder="option 2"
+                            placeholder="option B"
                           />
                         </div>
                       </div>
@@ -317,7 +317,7 @@ const AddExam = () => {
                     <div className="col-6">
                       <div className="p-3">
                         <h4 className="" style={{ textAlign: "center" }}>
-                          option c
+                          Option B
                         </h4>
                         <div
                           style={{
@@ -327,20 +327,20 @@ const AddExam = () => {
                           }}
                         >
                           <input
-                            value={data.option3}
+                            value={data.option2}
                             onChange={handleOnchange}
-                            name="option3"
+                            name="option2"
                             style={{ width: "80%" }}
                             className="form-control"
                             type="text"
-                            placeholder="option 3"
+                            placeholder="option C"
                           />
                         </div>
                       </div>
 
                       <div className="p-3">
                         <h4 className="" style={{ textAlign: "center" }}>
-                          option d
+                          Option D
                         </h4>
                         <div
                           style={{
@@ -356,7 +356,7 @@ const AddExam = () => {
                             style={{ width: "80%" }}
                             className="form-control"
                             type="text"
-                            placeholder="option 4"
+                            placeholder="option D"
                           />
                         </div>
                       </div>
@@ -366,7 +366,7 @@ const AddExam = () => {
                     {optionCount >= 1 && <div className="col-6">
                       <div className="p-3">
                         <h4 className="" style={{ textAlign: "center" }}>
-                          option e
+                        Option E
                         </h4>
                         <div
                           style={{
@@ -382,7 +382,7 @@ const AddExam = () => {
                             style={{ width: "80%" }}
                             className="form-control"
                             type="text"
-                            placeholder="option 5"
+                            placeholder="option E"
                           />
                         </div>
                       </div>
@@ -390,7 +390,7 @@ const AddExam = () => {
                     {optionCount >= 2 &&<div className="col-6">
                       <div className="p-3">
                         <h4 className="" style={{ textAlign: "center" }}>
-                          option f
+                          Option F
                         </h4>
                         <div
                           style={{
@@ -406,7 +406,7 @@ const AddExam = () => {
                             style={{ width: "80%" }}
                             className="form-control"
                             type="text"
-                            placeholder="option 6"
+                            placeholder="option F"
                           />
                         </div>
                       </div>

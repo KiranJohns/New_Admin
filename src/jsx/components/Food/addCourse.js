@@ -343,6 +343,7 @@ const AddCourse = () => {
                       id="comment"
                       placeholder="Content"
                     ></textarea>
+                   
                   </div>
                 </div>
               </div>
@@ -368,6 +369,7 @@ const AddCourse = () => {
                           id="comment"
                           placeholder="Content"
                         ></textarea>
+                        <small style={{padding:'.1rem'}}>press add button after adding each point</small>
                       </div>
                       <div
                         style={{ display: "flex", justifyContent: "center" }}
@@ -431,6 +433,7 @@ const AddCourse = () => {
                           id="comment"
                           placeholder="Content"
                         ></textarea>
+                        <small style={{padding:'.1rem'}}>press add button after adding each point</small>
                       </div>
                       <div
                         style={{ display: "flex", justifyContent: "center" }}
@@ -566,6 +569,7 @@ const AddCourse = () => {
                           id="comment"
                           placeholder="Content"
                         ></textarea>
+                        <small style={{padding:'.1rem'}}>press add button after adding each point</small>
                       </div>
                       <div
                         style={{ display: "flex", justifyContent: "center" }}
@@ -629,6 +633,7 @@ const AddCourse = () => {
                           id="comment"
                           placeholder="Content"
                         ></textarea>
+                        <small style={{padding:'.1rem'}}>press add button after adding each point</small>
                       </div>
                       <div
                         style={{ display: "flex", justifyContent: "center" }}
@@ -676,7 +681,7 @@ const AddCourse = () => {
                   <div style={{}}>
                     <div className="card-body">
                       <h4 className="" style={{ textAlign: "center" }}>
-                        What you will learn?
+                        What you will learn?(define)
                       </h4>
                       <div className="">
                         <label

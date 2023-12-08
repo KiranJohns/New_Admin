@@ -259,7 +259,7 @@ export const MenuList = [
                 to: 'Manager-Course',
             },
             {   
-                title:'Transaction',        
+                title:'Transaction Report',        
                 iconStyle: <i className="material-icons">assessment</i>,
                 to: 'Transactions',
             },

@@ -307,7 +307,7 @@ const CouponList = () => {
 
                         <div style={{}}>
                           <div className="card-body">
-                            <h4 className="">Minimum Purchase</h4>
+                            <h4 className="">Minimum Purchase(£)</h4>
                             <div className=" mb-3">
                               <input
                                 name="minimum_purchase"

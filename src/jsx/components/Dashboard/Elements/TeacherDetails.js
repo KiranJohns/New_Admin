@@ -22,6 +22,7 @@ const tableData = [
 ];
 
 export const TeacherDetails = ({companies}) => {
+    companies = companies.reverse();
     const [currentPage , setCurrentPage] = useState(1);  
     const recordsPage = 8;
     const lastIndex = currentPage * recordsPage;
