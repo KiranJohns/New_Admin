@@ -6,6 +6,7 @@ import { Row, Col, Card, Button, ButtonGroup } from "react-bootstrap";
 import quotes from "./../../../images/quotes.svg";
 import fetchData from "../../../axios";
 import swal from "sweetalert";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -35,8 +36,16 @@ const AddCourse = () => {
     aims: "",
     who_should_attend: "",
     objectives_point: "",
-    what_you_will_learn_point: ""
+    what_you_will_learn_point: "",
+    selling_price: "",
+    RRP: "",
+    course_type: "",
+    duration: "",
+    course_level: "",
+    certificate: "",
+    course_code: ""
   });
+  const navigate = useNavigate()
   const [courseInfo, setCourseInfo] = useState({
     aims: "",
     who_should_attend: "",
@@ -47,6 +56,7 @@ const AddCourse = () => {
   const [who_should_attend, setWhoShouldSttend] = useState([]);
   const [objectives_point, setObjectivesPoint] = useState([]);
   const [what_you_will_learn, setWhatYouWillLearn] = useState([]);
+
   function handlePointsChange(e) {
     setCourseInfo((prev) => {
       return {
@@ -67,19 +77,23 @@ const AddCourse = () => {
   function submit() {
     setCourse(prev => {
       return {
-        ...prev, 
+        ...prev,
         aims: JSON.stringify(aims),
         who_should_attend: JSON.stringify(who_should_attend),
         objectives_point: JSON.stringify(objectives_point),
         what_you_will_learn_point: JSON.stringify(what_you_will_learn),  
       }
     })
+
+    console.log(course);
+
     makeRequest("POST", "/course/create-course", {
       ...course,
       price: Number(course.price),
     })
       .then((res) => {
         swal("Success", "course created", "success");
+        navigate("/view-course")
       })
       .catch((err) => {
         console.log(err);
@@ -122,11 +136,6 @@ const AddCourse = () => {
                     </div>
                   </div>
                 </div>
-
-               
-
-             
-
                 <div className="col-4" style={{}}>
                   <div className="card-body">
                     <h4 className="" style={{ textAlign: "center" }}>
@@ -161,20 +170,20 @@ const AddCourse = () => {
                 <div className="col-4" style={{}}>
                   <div className="card-body">
                     <h4 className="" style={{ textAlign: "center" }}>
-                      Selling Price Price:
+                      Selling Price:
                     </h4>
                     <div className="input-group mb-3 ">
                     <span style={{background:"#212A50", color:"white"}} className="input-group-text">£</span>
                       <input
-                        name="price"
-                        value={course.price}
+                        name="selling_price"
+                        value={course.selling_price}
                         
                         onChange={(e) => {
                           setCourse((prev) => {
-                            
+                            console.log(e.target.name);
                             return {
                               ...prev,
-                              [e.target.name]:e.target.value ,
+                              [e.target.name]:e.target.value,
                             };
                           });
                         }}
@@ -199,12 +208,12 @@ const AddCourse = () => {
                     <div className="input-group mb-3 ">
                     <span style={{background:"#212A50", color:"white"}} className="input-group-text">£</span>
                       <input
-                        name="price"
-                        value={course.price}
+                        name="RRP"
+                        value={course.RRP}
                         
                         onChange={(e) => {
                           setCourse((prev) => {
-                            
+                            console.log(e.target.name);
                             return {
                               ...prev,
                               [e.target.name]:e.target.value ,
@@ -228,9 +237,9 @@ const AddCourse = () => {
                     <div className=" mb-3 ">
                       <input
                         type="text"
-                        name="name"
-                        // value={course.name}
-                        // onChange={handleChange}
+                        name="course_type"
+                        value={course.course_type}
+                        onChange={handleChange}
                         className="form-control input-default "
                         placeholder="Online"
                       />
@@ -246,9 +255,9 @@ const AddCourse = () => {
                     <div className=" mb-3 ">
                       <input
                         type="text"
-                        name="name"
-                        // value={course.name}
-                        // onChange={handleChange}
+                        name="duration"
+                        value={course.duration}
+                        onChange={handleChange}
                         className="form-control input-default "
                         placeholder="Time for completion"
                       />
@@ -270,9 +279,9 @@ const AddCourse = () => {
                     <div className=" mb-3 ">
                       <input
                         type="text"
-                        name="name"
-                        // value={course.name}
-                        // onChange={handleChange}
+                        name="course_level"
+                        value={course.course_level}
+                        onChange={handleChange}
                         className="form-control input-default "
                         placeholder="Advanced/Intermediate"
                       />
@@ -288,9 +297,9 @@ const AddCourse = () => {
                     <div className=" mb-3 ">
                       <input
                         type="text"
-                        name="name"
-                        // value={course.name}
-                        // onChange={handleChange}
+                        name="certificate"
+                        value={course.certificate}
+                        onChange={handleChange}
                         className="form-control input-default "
                         placeholder="Details"
                       />
@@ -306,9 +315,9 @@ const AddCourse = () => {
                     <div className=" mb-3 ">
                       <input
                         type="text"
-                        name="name"
-                        // value={course.name}
-                        // onChange={handleChange}
+                        name="course_code"
+                        value={course.course_code}
+                        onChange={handleChange}
                         className="form-control input-default "
                         placeholder="LFC01"
                       />

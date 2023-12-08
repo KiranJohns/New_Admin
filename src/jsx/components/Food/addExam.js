@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Nav, Dropdown, Tab, Table } from "react-bootstrap";
 import { IMAGES, SVGICON } from "../Dashboard/Content";
 import circle from "./../../../images/circle.svg";
@@ -22,6 +22,7 @@ const AddExam = () => {
   const makeRequest = fetchData();
   const [answer, setAnswer] = useState();
   const [optionCount, setOptionCount] = useState(0);
+  let navigate = useNavigate()
 
   const [data, setData] = useState({
     question: "",
@@ -116,6 +117,7 @@ const AddExam = () => {
         setCourse(res.data);
         setExam([])
         swal("Done!", "A new exam created", "success");
+        navigate('/view-exam')
       })
       .catch((err) => {
         console.log(err);
@@ -481,7 +483,7 @@ const AddExam = () => {
                           exam.map((item, id) => (
                             <tr key={id}>
                               <td>
-                                <strong>01</strong>
+                                <strong>{++id}</strong>
                               </td>
                               <td>{item.question.slice(0, 30)}</td>
                               <td>{item.options.length}</td>

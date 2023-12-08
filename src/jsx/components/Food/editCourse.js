@@ -80,14 +80,6 @@ const tabledata = [
 ];
 
 const EditCourse = () => {
-  const [courseInfo, setCourseInfo] = useState({
-    name: "",
-    description: "",
-    category: "",
-    price: "",
-    thumbnail: "",
-  });
-
   const [course, setCourse] = useState({
     name: "",
     description: "",
@@ -105,7 +97,14 @@ const EditCourse = () => {
     aims: "",
     who_should_attend: "",
     objectives_point: "",
-    what_you_will_learn_point: ""
+    what_you_will_learn_point: "",
+    selling_price: "",
+    RRP: "",
+    course_type: "",
+    duration: "",
+    course_level: "",
+    certificate: "",
+    course_code: "",
   });
 
   const [aims, setAims] = useState([]);
@@ -119,6 +118,8 @@ const EditCourse = () => {
   const [thumbnail, setThumbnail] = useState(null);
   const [resource, setResource] = useState(null);
   const [ppt, setPpt] = useState(null);
+
+  const makeRequest = fetchData();
 
   function handleThumbnailSubmitHandler() {
     let form = new FormData();
@@ -159,7 +160,7 @@ const EditCourse = () => {
   function handleResourceSubmitHandler() {
     let form = new FormData();
     form.append("course_id", state.id);
-    let res = []
+    let res = [];
     for (let i = 0; i < resource?.length; i++) {
       form.append("resource", resource[i]);
     }
@@ -176,38 +177,55 @@ const EditCourse = () => {
   function updateCourseData() {
     let form = new FormData();
     form.append("course_id", state.id);
-    form.append("name", courseInfo.name);
-    form.append("description", courseInfo.description);
-    form.append("category", courseInfo.category);
-    form.append("price", courseInfo.price);
-    form.append("thumbnail", courseInfo.thumbnail);
+    form.append("name", course.name);
+    form.append("description", course.description);
+    form.append("category", course.category);
+    form.append("price", course.price);
+    form.append("thumbnail", course.thumbnail);
 
+    form.append("assessment", course.assessment);
+    form.append("certificate", course.certificate);
+    form.append("objective_define", course.objective_define);
+    form.append("What_you_will_learn", course.What_you_will_learn);
+    form.append("aims", course.aims);
+    form.append("who_should_attend", course.who_should_attend);
+    form.append("objectives_point", course.objectives_point);
+    form.append("what_you_will_learn_point", course.what_you_will_learn_point);
+    form.append("selling_price", course.selling_price);
+    form.append("RRP", course.RRP);
+    form.append("course_type", course.course_type);
+    form.append("duration", course.duration);
+    form.append("course_level", course.course_level);
+    form.append("certificate", course.certificate);
+    form.append("course_code", course.course_code);
 
-    makeRequest("POST", "/course/update-course-resource", form)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    console.log(course);
+    // makeRequest("POST", "/course/update-course-resource", form)
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }
 
   useEffect(() => {
     makeRequest("GET", `/course/get-single-course/${state.id}`)
       .then((res) => {
-        console.log(res);
+        console.log(typeof res.data.response[0].aims);
         let course = res.data.response[0];
-        setCourseInfo({ ...course });
+        console.log();
+        setCourse({
+          ...course
+        });
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  const makeRequest = fetchData();
-
   function handleChange(e) {
-    setCourseInfo((prev) => {
+    setCourse((prev) => {
       return {
         ...prev,
         [e.target.name]: e.target.value,
@@ -245,8 +263,8 @@ const EditCourse = () => {
                       <input
                         type="text"
                         name="name"
-                        // value={courseInfo.name}
-                        // onChange={handleChange}
+                        value={course.name}
+                        onChange={handleChange}
                         className="form-control input-default "
                         placeholder="course name"
                       />
@@ -257,13 +275,13 @@ const EditCourse = () => {
                 <div className="col-4" style={{}}>
                   <div className="card-body">
                     <h4 className="" style={{ textAlign: "center" }}>
-                      Course Price:
+                      Selling Price:
                     </h4>
                     <div className=" mb-3 ">
                       <input
-                        name="price"
-                        // value={courseInfo.price}
-                        // onChange={handleChange}
+                        name="selling_price"
+                        value={course.selling_price}
+                        onChange={handleChange}
                         type="number"
                         className="form-control input-default "
                         placeholder="course price"
@@ -283,7 +301,7 @@ const EditCourse = () => {
                         name="category"
                         className="form-control form-control"
                       >
-                        <option>{courseInfo.category}</option>
+                        <option>{course.category}</option>
                         <option value="Care Course">Care Course</option>
                         <option value="Mandatory Care Course">
                           Mandatory Care Course
@@ -303,29 +321,23 @@ const EditCourse = () => {
                 </div>
               </div>
 
-
               <div className="row">
-
                 <div className="col-4" style={{}}>
                   <div className="card-body">
                     <h4 className="" style={{ textAlign: "center" }}>
                       RRP
                     </h4>
                     <div className="input-group mb-3 ">
-                      <span style={{ background: "#212A50", color: "white" }} className="input-group-text">£</span>
+                      <span
+                        style={{ background: "#212A50", color: "white" }}
+                        className="input-group-text"
+                      >
+                        £
+                      </span>
                       <input
-                        name="price"
-                        // value={course?.price}
-
-                        // onChange={(e) => {
-                        //   setCourse((prev) => {
-
-                        //     return {
-                        //       ...prev,
-                        //       [e.target.name]:e.target.value ,
-                        //     };
-                        //   });
-                        // }}
+                        name="RRP"
+                        value={course?.RRP}
+                        onChange={handleChange}
                         type="text"
                         className="form-control input-default "
                         placeholder="0.00"
@@ -333,7 +345,6 @@ const EditCourse = () => {
                     </div>
                   </div>
                 </div>
-
 
                 <div className="col-4" style={{}}>
                   <div className="card-body">
@@ -343,9 +354,9 @@ const EditCourse = () => {
                     <div className=" mb-3 ">
                       <input
                         type="text"
-                        name="name"
-                        // value={course.name}
-                        // onChange={handleChange}
+                        name="course_type"
+                        value={course.course_type}
+                        onChange={handleChange}
                         className="form-control input-default "
                         placeholder="Online"
                       />
@@ -361,21 +372,18 @@ const EditCourse = () => {
                     <div className=" mb-3 ">
                       <input
                         type="text"
-                        name="name"
-                        // value={course.name}
-                        // onChange={handleChange}
-                        className="form-control input-default "
+                        name="duration"
+                        value={course.duration}
+                        onChange={handleChange}
+                        className="form-control input-default"
                         placeholder="Online"
                       />
                     </div>
                   </div>
                 </div>
-
               </div>
 
               <div className="row">
-
-
                 <div className="col-4" style={{}}>
                   <div className="card-body">
                     <h4 className="" style={{ textAlign: "center" }}>
@@ -384,9 +392,9 @@ const EditCourse = () => {
                     <div className=" mb-3 ">
                       <input
                         type="text"
-                        name="name"
-                        // value={course.name}
-                        // onChange={handleChange}
+                        name="course_level"
+                        value={course.course_level}
+                        onChange={handleChange}
                         className="form-control input-default "
                         placeholder="Advanced/Intermediate"
                       />
@@ -402,9 +410,9 @@ const EditCourse = () => {
                     <div className=" mb-3 ">
                       <input
                         type="text"
-                        name="name"
-                        // value={course.name}
-                        // onChange={handleChange}
+                        name="certificate"
+                        value={course.certificate}
+                        onChange={handleChange}
                         className="form-control input-default "
                         placeholder="Details"
                       />
@@ -420,19 +428,16 @@ const EditCourse = () => {
                     <div className=" mb-3 ">
                       <input
                         type="text"
-                        name="name"
-                        // value={course.name}
-                        // onChange={handleChange}
+                        name="course_code"
+                        value={course.course_code}
+                        onChange={handleChange}
                         className="form-control input-default "
                         placeholder="LFC01"
                       />
                     </div>
                   </div>
                 </div>
-
-
               </div>
-
 
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <div className="card-body">
@@ -441,8 +446,8 @@ const EditCourse = () => {
                   </h4>
                   <div className="form-group ">
                     <textarea
-                      // value={courseInfo.description}
-                      // onChange={handleChange}
+                      value={course.description}
+                      onChange={handleChange}
                       name="description"
                       className="form-control"
                       rows="4"
@@ -467,8 +472,8 @@ const EditCourse = () => {
                         ></label>
                         <textarea
                           name="aims"
-                          // value={courseInfo.aims}
-                          // onChange={handlePointsChange}
+                          value={course.aims}
+                          onChange={handleChange}
                           className="form-control"
                           rows="4"
                           id="comment"
@@ -478,43 +483,7 @@ const EditCourse = () => {
                       <div
                         style={{ display: "flex", justifyContent: "center" }}
                         className="m-2 p-2 "
-                      >
-                        <Button
-                          className=""
-                          variant="primary"
-                        // onClick={() => {
-                        //   if(!courseInfo.aims) return
-                        //   setAims((prev) => {
-                        //     return [...prev, courseInfo.aims];
-                        //   });
-                        //   setCourseInfo((prev) => {
-                        //     return {
-                        //       ...prev,
-                        //       aims: "",
-                        //     };
-                        //   });
-                        // }}
-                        >
-                          ADD
-                        </Button>
-                        {aims.length > 0 && (
-                          <Button
-                            className="mx-2"
-                            variant="danger"
-                            onClick={() => {
-                              setCourseInfo((prev) => {
-                                return {
-                                  ...prev,
-                                  aims: "",
-                                };
-                              });
-                              setAims([]);
-                            }}
-                          >
-                            CLEAR {aims.length}
-                          </Button>
-                        )}
-                      </div>
+                      ></div>
                     </div>
                   </div>
 
@@ -530,8 +499,8 @@ const EditCourse = () => {
                         ></label>
                         <textarea
                           name="objectives_point"
-                          // value={courseInfo.objectives_point}
-                          // onChange={handlePointsChange}
+                          value={course.objectives_point}
+                          onChange={handleChange}
                           className="form-control"
                           rows="4"
                           id="comment"
@@ -541,43 +510,7 @@ const EditCourse = () => {
                       <div
                         style={{ display: "flex", justifyContent: "center" }}
                         className="m-2 p-2 "
-                      >
-                        <Button
-                          className=""
-                          variant="primary"
-                          onClick={() => {
-                            if (!courseInfo.objectives_point) return
-                            setObjectivesPoint((prev) => {
-                              return [...prev, courseInfo.objectives_point];
-                            });
-                            setCourseInfo((prev) => {
-                              return {
-                                ...prev,
-                                objectives_point: "",
-                              };
-                            });
-                          }}
-                        >
-                          ADD
-                        </Button>
-                        {/* {objectives_point.length > 0 && (
-                          <Button
-                            className="mx-2"
-                            variant="danger"
-                            onClick={() => {
-                              setCourseInfo((prev) => {
-                                return {
-                                  ...prev,
-                                  objectives_point: "",
-                                };
-                              });
-                              setObjectivesPoint([]);
-                            }}
-                          >
-                            CLEAR {objectives_point.length}
-                          </Button>
-                        )} */}
-                      </div>
+                      ></div>
                     </div>
                   </div>
 
@@ -664,9 +597,9 @@ const EditCourse = () => {
                           className="form-label"
                         ></label>
                         <textarea
-                          value={courseInfo.who_should_attend}
+                          value={course.who_should_attend}
                           name="who_should_attend"
-                          // onChange={handlePointsChange}
+                          onChange={handleChange}
                           className="form-control"
                           rows="4"
                           id="comment"
@@ -676,43 +609,7 @@ const EditCourse = () => {
                       <div
                         style={{ display: "flex", justifyContent: "center" }}
                         className="m-2 p-2 "
-                      >
-                        <Button
-                          className=""
-                          variant="primary"
-                          onClick={() => {
-                            if (!courseInfo.who_should_attend) return
-                            setWhoShouldSttend((prev) => {
-                              return [...prev, courseInfo.who_should_attend];
-                            });
-                            setCourseInfo((prev) => {
-                              return {
-                                ...prev,
-                                who_should_attend: "",
-                              };
-                            });
-                          }}
-                        >
-                          ADD
-                        </Button>
-                        {who_should_attend.length > 0 && (
-                          <Button
-                            className="mx-2"
-                            variant="danger"
-                            onClick={() => {
-                              setCourseInfo((prev) => {
-                                return {
-                                  ...prev,
-                                  who_should_attend: "",
-                                };
-                              });
-                              setWhoShouldSttend([]);
-                            }}
-                          >
-                            CLEAR {who_should_attend.length}
-                          </Button>
-                        )}
-                      </div>
+                      ></div>
                     </div>
                   </div>
 
@@ -727,7 +624,7 @@ const EditCourse = () => {
                           className="form-label"
                         ></label>
                         <textarea
-                          value={courseInfo.what_you_will_learn}
+                          value={course.what_you_will_learn}
                           name="what_you_will_learn"
                           // onChange={handlePointsChange}
                           className="form-control"
@@ -739,43 +636,7 @@ const EditCourse = () => {
                       <div
                         style={{ display: "flex", justifyContent: "center" }}
                         className="m-2 p-2 "
-                      >
-                        <Button
-                          className=""
-                          variant="primary"
-                          onClick={() => {
-                            if (!courseInfo.what_you_will_learn) return
-                            setWhatYouWillLearn((prev) => {
-                              return [...prev, courseInfo.what_you_will_learn];
-                            });
-                            setCourseInfo((prev) => {
-                              return {
-                                ...prev,
-                                what_you_will_learn: "",
-                              };
-                            });
-                          }}
-                        >
-                          ADD
-                        </Button>
-                        {what_you_will_learn.length > 0 && (
-                          <Button
-                            className="mx-2"
-                            variant="danger"
-                            onClick={() => {
-                              setCourseInfo((prev) => {
-                                return {
-                                  ...prev,
-                                  what_you_will_learn: "",
-                                };
-                              });
-                              setWhatYouWillLearn([]);
-                            }}
-                          >
-                            CLEAR {what_you_will_learn.length}
-                          </Button>
-                        )}
-                      </div>
+                      ></div>
                     </div>
                   </div>
 
@@ -885,7 +746,7 @@ const EditCourse = () => {
                           src={
                             thumbnail
                               ? URL.createObjectURL(thumbnail)
-                              : courseInfo.thumbnail
+                              : course.thumbnail
                           }
                         />
                         {thumbnail && (

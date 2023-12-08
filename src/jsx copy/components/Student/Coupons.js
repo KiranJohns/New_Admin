@@ -145,7 +145,7 @@ const CouponList = () => {
 
   makeRequest("GET", "/coupon/list-coupons").then((res) => {
     if (res?.data.response) {
-      setCoupons(res?.data.response);
+      setCoupons(res?.data.response.reverse());
     }
   }).catch(err => {
     console.log(err);

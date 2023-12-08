@@ -29,6 +29,7 @@ export const TeacherDetails = ({companies}) => {
     const records = companies?.slice(firstIndex, lastIndex);
     const npage = Math.ceil(tableData?.length / recordsPage)
     const number = [...Array(npage + 1).keys()].slice(1)
+    console.log(companies);
     function prePage (){
         if(currentPage !== 1){
             setCurrentPage(currentPage - 1)
@@ -63,9 +64,9 @@ export const TeacherDetails = ({companies}) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {records && records.map((item, ind)=>(
-                            <tr style={{textAlign:"center"}} key={ind}>
-                                <td>{item.id}</td>
+                        {records && records.map((item, idx)=>(
+                            <tr style={{textAlign:"center"}} key={++idx}>
+                                <td>{++idx}</td>
                                 <td>{item.first_name + " " + item.last_name}</td>
                                 <td>{item.email}</td>
                                 <td>{item.city}</td>
@@ -76,16 +77,15 @@ export const TeacherDetails = ({companies}) => {
                                 {/* <td className="text-end"><span className={`badge badge-sm light badge-${item.status === "Good" ?  'success' : 'danger' }`}>{item.status}</span></td> */}
                             </tr>
                         ))}
-                        
                     </tbody>
                 </Table>
                 <div className="d-sm-flex text-center justify-content-between align-items-center">                           
-                    <div className='dataTables_info'>
+                    {/* <div className='dataTables_info'>
                         Showing {lastIndex-recordsPage + 1} to{" "}
                         {tableData?.length < lastIndex ? tableData?.length : lastIndex}
                         {" "}of {tableData?.length} entries
-                    </div>
-                    <div
+                    </div> */}
+                    {/* <div
                         className="dataTables_paginate paging_simple_numbers justify-content-center"
                         id="example2_paginate"
                     >
@@ -113,7 +113,7 @@ export const TeacherDetails = ({companies}) => {
                         >
                             <i className="fa-solid fa-angle-right" />
                         </Link>
-                    </div>
+                    </div> */}
                 </div> 
             </div>	
         </div>
