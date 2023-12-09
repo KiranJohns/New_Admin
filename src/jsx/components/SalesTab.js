@@ -293,7 +293,7 @@ const SalesTab = () => {
                 </Card.Header> */}
                 
                 <div  className="row">
-                   <div className="col-8"></div>
+                   <div className="col-7"></div>
                     <div className="col-2 mb-md-0 mb-3 form-group ">
                       <select
                        style={{backgroundColor:"#5a9676", color:"white", textAlign:"center"}}
@@ -316,7 +316,7 @@ const SalesTab = () => {
                         <option value="12">December</option>
                       </select>
                       </div>
-                      <div className="col-1">
+                      <div className="col-2">
                       <select
                        style={{backgroundColor:"#5a9676", color:"white", textAlign:"center"}}
                         onChange={(e) => setYear(e.target.value)}
