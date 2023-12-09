@@ -323,7 +323,7 @@ const SalesTab = () => {
                         className="form-control"
                         aria-label="Default select example"
                       >
-                        <option value=""> Year</option>
+                        <option value="">Select Year</option>
                         {groupByYear &&
                           groupByYear.map((item) => (
                             <option value={item.year}>{item.year}</option>
