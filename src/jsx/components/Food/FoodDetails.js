@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Nav, Dropdown, Tab } from "react-bootstrap";
 import { IMAGES, SVGICON } from "../Dashboard/Content";
 import circle from "./../../../images/circle.svg";
@@ -89,6 +89,7 @@ const FoodDetails = () => {
     image: null,
   });
 
+  const navigate = useNavigate()
   function handleChange(e) {
     setBlog((prev) => {
       return {
@@ -100,6 +101,7 @@ const FoodDetails = () => {
   function Submit() {
     makeRequest("POST", "/blog/create-blog", blog)
       .then((res) => {
+        navigate('/view-blog')
         swal("Done!", "blog created", "success");
       })
       .catch((err) => {
@@ -111,6 +113,7 @@ const FoodDetails = () => {
       });
     console.log(blog);
   }
+
   return (
     <div className="row">
       <div className="col-xl-11">

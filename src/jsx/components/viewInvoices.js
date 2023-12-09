@@ -150,7 +150,7 @@ const ViewInvoice = () => {
     makeRequest("GET", "/invoice/get-all-invoice")
       .then((res) => {
         console.log(res);
-        setInvoice(res.data.response);
+        setInvoice(res.data.response.reverse());
       })
       .catch((err) => {
         console.log(err);
@@ -168,16 +168,19 @@ const ViewInvoice = () => {
               <thead>
                 <tr style={{ background: "#212a50" }}>
                   <th className="width80">
-                    <strong>ID</strong>
+                    <strong>SL</strong>
                   </th>
                   <th style={{ textAlign: "center" }}>
+                    <strong>Invoice No</strong>
+                  </th>
+                  {/* <th style={{ textAlign: "center" }}>
                     <strong>Code</strong>
+                  </th> */}
+                  <th style={{ textAlign: "center" }}>
+                    <strong>Date</strong>
                   </th>
                   <th style={{ textAlign: "center" }}>
                     <strong>Time</strong>
-                  </th>
-                  <th style={{ textAlign: "center" }}>
-                    <strong>Date</strong>
                   </th>
                   <th style={{ textAlign: "center" }}>
                     {" "}
@@ -192,22 +195,24 @@ const ViewInvoice = () => {
                       <td>
                         <strong>{id}</strong>
                       </td>
+                      <td style={{ textAlign: "center" }}>{id}</td>
                       <td style={{ textAlign: "center" }}>
-                        {id}
-                      </td>
-                      <td style={{ textAlign: "center" }}>
-                        {new Date(item.date).toLocaleString("en-US", {
-                          hour: "numeric",
-                          minute: "numeric",
-                          hour12: true,
+                        {new Date(item.date).toLocaleTimeString("en-GB", {
+                          timeZone: "Europe/London",
                         })}
                       </td>
-                      <td style={{ textAlign: "center" }}>{new Date(item.date).toLocaleDateString()}</td>
                       <td style={{ textAlign: "center" }}>
-                      <a target="_blank" href={item.img}>  
-                      <Button className="me-2" variant="success btn-icon-xxs">
-                          <FaEye />
-                        </Button></a>
+                        {new Date(item.date).toLocaleDateString()}
+                      </td>
+                      <td style={{ textAlign: "center" }}>
+                        <a target="_blank" href={item.img}>
+                          <Button
+                            className="me-2"
+                            variant="success btn-icon-xxs"
+                          >
+                            <FaEye />
+                          </Button>
+                        </a>
                       </td>
                     </tr>
                   ))}

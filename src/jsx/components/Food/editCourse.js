@@ -180,23 +180,20 @@ const EditCourse = () => {
     form.append("name", course.name);
     form.append("description", course.description);
     form.append("category", course.category);
-    form.append("price", course.price);
     form.append("thumbnail", course.thumbnail);
-
     form.append("assessment", course.assessment);
     form.append("certificate", course.certificate);
     form.append("objective_define", course.objective_define);
     form.append("What_you_will_learn", course.What_you_will_learn);
     form.append("aims", course.aims);
     form.append("who_should_attend", course.who_should_attend);
-    form.append("objectives_point", course.objectives_point);
+    form.append("objectives_point", JSON.stringify(course.objectives_point));
     form.append("what_you_will_learn_point", course.what_you_will_learn_point);
     form.append("selling_price", course.selling_price);
     form.append("RRP", course.RRP);
     form.append("course_type", course.course_type);
     form.append("duration", course.duration);
     form.append("course_level", course.course_level);
-    form.append("certificate", course.certificate);
     form.append("course_code", course.course_code);
 
     console.log(course);

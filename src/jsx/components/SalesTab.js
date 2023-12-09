@@ -265,7 +265,7 @@ const SalesTab = () => {
                                 {item.fake_course_count}
                               </td>
                               <td style={{ textAlign: "center" }}>
-                                {new Date(item.date).toLocaleTimeString()}
+                                {new Date(item.date).toLocaleTimeString("en-GB", {timeZone: "Europe/London"})}
                               </td>
                               <td style={{ textAlign: "center" }}>
                                 {new Date(item.date).toLocaleDateString()}
