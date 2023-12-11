@@ -233,11 +233,11 @@ const EditCourse = () => {
         let course = res.data.response[0];
         console.log(course);
 
-        setAims(JSON.parse(course.aims).join(","));
-        setWhoShouldSttend(JSON.parse(course.who_should_attend).join(","));
-        setObjectivesPoint(JSON.parse(course.objectives_point).join(","));
+        setAims(course.aims.join(","));
+        setWhoShouldSttend(course.who_should_attend.join(","));
+        setObjectivesPoint(course.objectives_point.join(","));
         setWhatYouWillLearn(
-          JSON.parse(course.what_you_will_learn_point).join(",")
+          course.what_you_will_learn_point.join(",")
         );
 
         setCourse({
