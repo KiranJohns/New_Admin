@@ -97,7 +97,6 @@ const EditCourse = () => {
     who_should_attend: [],
     objectives_point: [],
     what_you_will_learn_point: [],
-    selling_price: "",
     RRP: "",
     course_type: "",
     duration: "",
@@ -342,8 +341,8 @@ const EditCourse = () => {
                         £
                       </span>
                       <input
-                        name="selling_price"
-                        value={course.selling_price}
+                        name="price"
+                        value={course.price}
                         onChange={(e) => {
                           setCourse((prev) => {
                             console.log(e.target.name);
