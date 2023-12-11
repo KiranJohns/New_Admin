@@ -161,7 +161,7 @@ const EditCourse = () => {
       "what_you_will_learn_point",
       updatedCourse.what_you_will_learn_point
     );
-    form.append("selling_price", updatedCourse.price);
+    form.append("price", updatedCourse.price);
     form.append("course_type", updatedCourse.course_type);
     form.append("duration", updatedCourse.duration);
     form.append("course_level", updatedCourse.course_level);
@@ -233,11 +233,11 @@ const EditCourse = () => {
         let course = res.data.response[0];
         console.log(course);
 
-        setAims(course.aims.join(","));
-        setWhoShouldSttend(course.who_should_attend.join(","));
-        setObjectivesPoint(course.objectives_point.join(","));
+        setAims(JSON.parse(course.aims).join(","));
+        setWhoShouldSttend(JSON.parse(course.who_should_attend).join(","));
+        setObjectivesPoint(JSON.parse(course.objectives_point).join(","));
         setWhatYouWillLearn(
-          course.what_you_will_learn_point.join(",")
+          JSON.parse(course.what_you_will_learn_point).join(",")
         );
 
         setCourse({
