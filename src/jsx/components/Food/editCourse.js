@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import { IMAGES, SVGICON } from "../Dashboard/Content";
 import circle from "./../../../images/circle.svg";
 import { Row, Col, Card, Button, ButtonGroup } from "react-bootstrap";
@@ -94,23 +93,23 @@ const EditCourse = () => {
     certificate: "",
     objective_define: "",
     What_you_will_learn: "",
-    aims: "",
-    who_should_attend: "",
-    objectives_point: "",
-    what_you_will_learn_point: "",
+    aims: [],
+    who_should_attend: [],
+    objectives_point: [],
+    what_you_will_learn_point: [],
     selling_price: "",
     RRP: "",
     course_type: "",
     duration: "",
     course_level: "",
-    certificate: "",
+    certificate_line: "",
     course_code: "",
   });
 
-  const [aims, setAims] = useState([]);
-  const [who_should_attend, setWhoShouldSttend] = useState([]);
-  const [objectives_point, setObjectivesPoint] = useState([]);
-  const [what_you_will_learn, setWhatYouWillLearn] = useState([]);
+  const [aims, setAims] = useState("");
+  const [who_should_attend, setWhoShouldSttend] = useState("");
+  const [objectives_point, setObjectivesPoint] = useState("");
+  const [what_you_will_learn, setWhatYouWillLearn] = useState("");
 
   const { state } = useLocation();
 
@@ -133,6 +132,51 @@ const EditCourse = () => {
         console.log(err);
       });
   }
+
+  function handleCourseInfoSubmit() {
+    let form = new FormData();
+    let updatedCourse = {
+      ...course,
+      aims: JSON.stringify(aims.split(",")),
+      who_should_attend: JSON.stringify(who_should_attend.split(",")),
+      objectives_point: JSON.stringify(objectives_point.split(",")),
+      what_you_will_learn_point: JSON.stringify(what_you_will_learn.split(",")),
+    };
+
+    console.log(updatedCourse);
+
+    form.append("RRP", updatedCourse.RRP);
+    form.append("course_id", state.id);
+    form.append("name", updatedCourse.name);
+    form.append("description", updatedCourse.description);
+    form.append("category", updatedCourse.category);
+    form.append("thumbnail", updatedCourse.thumbnail);
+    form.append("assessment", updatedCourse.assessment);
+    form.append("certificate", updatedCourse.certificate);
+    form.append("objective_define", updatedCourse.objective_define);
+    form.append("What_you_will_learn", updatedCourse.What_you_will_learn);
+    form.append("aims", updatedCourse.aims);
+    form.append("who_should_attend", updatedCourse.who_should_attend);
+    form.append("objectives_point", updatedCourse.objectives_point);
+    form.append(
+      "what_you_will_learn_point",
+      updatedCourse.what_you_will_learn_point
+    );
+    form.append("selling_price", updatedCourse.price);
+    form.append("course_type", updatedCourse.course_type);
+    form.append("duration", updatedCourse.duration);
+    form.append("course_level", updatedCourse.course_level);
+    form.append("course_code", updatedCourse.course_code);
+    form.append("certificate_line", updatedCourse.certificate_line);
+
+    makeRequest("POST", "/course/update-course-data", form)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   function handleVideoSubmitHandler() {
     let form = new FormData();
     form.append("course_id", state.id);
@@ -148,7 +192,9 @@ const EditCourse = () => {
   function handlePptSubmitHandler() {
     let form = new FormData();
     form.append("course_id", state.id);
-    form.append("ppt", ppt);
+    for (let i = 0; i < ppt?.length; i++) {
+      form.append("image", ppt[i]);
+    }
     makeRequest("POST", "/course/update-course-ppt", form)
       .then((res) => {
         console.log(res);
@@ -160,7 +206,6 @@ const EditCourse = () => {
   function handleResourceSubmitHandler() {
     let form = new FormData();
     form.append("course_id", state.id);
-    let res = [];
     for (let i = 0; i < resource?.length; i++) {
       form.append("resource", resource[i]);
     }
@@ -176,44 +221,28 @@ const EditCourse = () => {
 
   function updateCourseData() {
     let form = new FormData();
-    form.append("course_id", state.id);
-    form.append("name", course.name);
-    form.append("description", course.description);
-    form.append("category", course.category);
-    form.append("thumbnail", course.thumbnail);
-    form.append("assessment", course.assessment);
-    form.append("certificate", course.certificate);
-    form.append("objective_define", course.objective_define);
-    form.append("What_you_will_learn", course.What_you_will_learn);
-    form.append("aims", course.aims);
-    form.append("who_should_attend", course.who_should_attend);
-    form.append("objectives_point", JSON.stringify(course.objectives_point));
-    form.append("what_you_will_learn_point", course.what_you_will_learn_point);
-    form.append("selling_price", course.selling_price);
-    form.append("RRP", course.RRP);
-    form.append("course_type", course.course_type);
-    form.append("duration", course.duration);
-    form.append("course_level", course.course_level);
-    form.append("course_code", course.course_code);
 
     console.log(course);
-    // makeRequest("POST", "/course/update-course-resource", form)
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    //
   }
 
   useEffect(() => {
+    console.clear();
     makeRequest("GET", `/course/get-single-course/${state.id}`)
       .then((res) => {
         console.log(typeof res.data.response[0].aims);
         let course = res.data.response[0];
-        console.log();
+        console.log(course);
+
+        setAims(JSON.parse(course.aims).join(","));
+        setWhoShouldSttend(JSON.parse(course.who_should_attend).join(","));
+        setObjectivesPoint(JSON.parse(course.objectives_point).join(","));
+        setWhatYouWillLearn(
+          JSON.parse(course.what_you_will_learn_point).join(",")
+        );
+
         setCourse({
-          ...course
+          ...course,
         });
       })
       .catch((err) => {
@@ -236,7 +265,6 @@ const EditCourse = () => {
         <div
           className="card"
           style={{
-            padding: "3rem 1rem",
             boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
             background: "#f5f5f7",
           }}
@@ -268,25 +296,6 @@ const EditCourse = () => {
                     </div>
                   </div>
                 </div>
-
-                <div className="col-4" style={{}}>
-                  <div className="card-body">
-                    <h4 className="" style={{ textAlign: "center" }}>
-                      Selling Price:
-                    </h4>
-                    <div className=" mb-3 ">
-                      <input
-                        name="selling_price"
-                        value={course.selling_price}
-                        onChange={handleChange}
-                        type="number"
-                        className="form-control input-default "
-                        placeholder="course price"
-                      />
-                    </div>
-                  </div>
-                </div>
-
                 <div className="col-4" style={{}}>
                   <div className="card-body">
                     <h4 className="" style={{ textAlign: "center" }}>
@@ -295,10 +304,13 @@ const EditCourse = () => {
                     <div className="form-group mb-3">
                       <select
                         onChange={handleChange}
+                        defaultValue={"option"}
                         name="category"
                         className="form-control form-control"
                       >
-                        <option>{course.category}</option>
+                        <option value={course.category}>
+                          {course.category}
+                        </option>
                         <option value="Care Course">Care Course</option>
                         <option value="Mandatory Care Course">
                           Mandatory Care Course
@@ -313,6 +325,38 @@ const EditCourse = () => {
                           Child Care Course
                         </option>
                       </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-4" style={{}}>
+                  <div className="card-body">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      Selling Price:
+                    </h4>
+                    <div className="input-group mb-3 ">
+                      <span
+                        style={{ background: "#212A50", color: "white" }}
+                        className="input-group-text"
+                      >
+                        £
+                      </span>
+                      <input
+                        name="selling_price"
+                        value={course.selling_price}
+                        onChange={(e) => {
+                          setCourse((prev) => {
+                            console.log(e.target.name);
+                            return {
+                              ...prev,
+                              [e.target.name]: e.target.value,
+                            };
+                          });
+                        }}
+                        type="text"
+                        className="form-control input-default "
+                        placeholder="0.00"
+                      />
                     </div>
                   </div>
                 </div>
@@ -333,8 +377,15 @@ const EditCourse = () => {
                       </span>
                       <input
                         name="RRP"
-                        value={course?.RRP}
-                        onChange={handleChange}
+                        value={course.RRP}
+                        onChange={(e) => {
+                          setCourse((prev) => {
+                            return {
+                              ...prev,
+                              [e.target.name]: e.target.value,
+                            };
+                          });
+                        }}
                         type="text"
                         className="form-control input-default "
                         placeholder="0.00"
@@ -372,8 +423,8 @@ const EditCourse = () => {
                         name="duration"
                         value={course.duration}
                         onChange={handleChange}
-                        className="form-control input-default"
-                        placeholder="Online"
+                        className="form-control input-default "
+                        placeholder="Time for completion"
                       />
                     </div>
                   </div>
@@ -407,8 +458,8 @@ const EditCourse = () => {
                     <div className=" mb-3 ">
                       <input
                         type="text"
-                        name="certificate"
-                        value={course.certificate}
+                        name="certificate_line"
+                        value={course.certificate_line}
                         onChange={handleChange}
                         className="form-control input-default "
                         placeholder="Details"
@@ -469,8 +520,10 @@ const EditCourse = () => {
                         ></label>
                         <textarea
                           name="aims"
-                          value={course.aims}
-                          onChange={handleChange}
+                          value={aims}
+                          onChange={(e) => {
+                            setAims(e.target.value);
+                          }}
                           className="form-control"
                           rows="4"
                           id="comment"
@@ -496,8 +549,10 @@ const EditCourse = () => {
                         ></label>
                         <textarea
                           name="objectives_point"
-                          value={course.objectives_point}
-                          onChange={handleChange}
+                          value={objectives_point}
+                          onChange={(e) => {
+                            setObjectivesPoint(e.target.value);
+                          }}
                           className="form-control"
                           rows="4"
                           id="comment"
@@ -533,53 +588,6 @@ const EditCourse = () => {
                       </div>
                     </div>
                   </div>
-
-                  <div style={{}}>
-                    <div className="card-body">
-                      <h4 className="" style={{ textAlign: "center" }}>
-                        Upload Course Image:
-                      </h4>
-                      <div className="">
-                        <label
-                          htmlFor="formFile"
-                          className="form-label"
-                        ></label>
-                        <input
-                          className="form-control"
-                          type="file"
-                          id="formFile"
-                          onChange={(e) =>
-                            setCourse({
-                              ...course,
-                              thumbnail: e.target.files[0],
-                            })
-                          }
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div style={{ display: "flex", justifyContent: "center" }}>
-                    <div className="card-body">
-                      <h4 className="" style={{ textAlign: "center" }}>
-                        Upload Course Video:
-                      </h4>
-                      <div className="">
-                        <label
-                          htmlFor="formFile"
-                          className="form-label"
-                        ></label>
-                        <input
-                          className="form-control"
-                          type="file"
-                          onChange={(e) =>
-                            setCourse({ ...course, video: e.target.files[0] })
-                          }
-                          id="formFile"
-                        />
-                      </div>
-                    </div>
-                  </div>
                 </div>
 
                 <div className="col-6">
@@ -594,9 +602,11 @@ const EditCourse = () => {
                           className="form-label"
                         ></label>
                         <textarea
-                          value={course.who_should_attend}
+                          value={who_should_attend}
                           name="who_should_attend"
-                          onChange={handleChange}
+                          onChange={(e) => {
+                            setWhoShouldSttend(e.target.value);
+                          }}
                           className="form-control"
                           rows="4"
                           id="comment"
@@ -621,9 +631,11 @@ const EditCourse = () => {
                           className="form-label"
                         ></label>
                         <textarea
-                          value={course.what_you_will_learn}
+                          value={what_you_will_learn}
                           name="what_you_will_learn"
-                          // onChange={handlePointsChange}
+                          onChange={(e) => {
+                            setWhatYouWillLearn(e.target.value);
+                          }}
                           className="form-control"
                           rows="4"
                           id="comment"
@@ -640,7 +652,7 @@ const EditCourse = () => {
                   <div style={{}}>
                     <div className="card-body">
                       <h4 className="" style={{ textAlign: "center" }}>
-                        What you will learn?
+                        What you will learn?(define)
                       </h4>
                       <div className="">
                         <label
@@ -659,7 +671,119 @@ const EditCourse = () => {
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
 
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <div className="card-body">
+                  <h4 className="" style={{ textAlign: "center" }}>
+                    Assessment:
+                  </h4>
+                  <div className="form-group ">
+                    <textarea
+                      value={course.assessment}
+                      onChange={handleChange}
+                      name="assessment"
+                      className="form-control"
+                      rows="4"
+                      id="comment"
+                      placeholder="Content"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <div className="card-body">
+                  <h4 className="" style={{ textAlign: "center" }}>
+                    Certificate:
+                  </h4>
+                  <div className="form-group ">
+                    <textarea
+                      value={course.certificate}
+                      onChange={handleChange}
+                      name="certificate"
+                      className="form-control"
+                      rows="4"
+                      id="comment"
+                      placeholder="Content"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div
+                classNAme="row"
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                <button
+                  className="btn btn-primary"
+                  onClick={handleCourseInfoSubmit}
+                >
+                  submit
+                </button>
+              </div>
+
+              <div className="row">
+                <div className="col-6">
+                  <div style={{}}>
+                    <div className="card-body">
+                      <h4 className="" style={{ textAlign: "center" }}>
+                        Upload Course Image:
+                      </h4>
+                      <div className="">
+                        <label
+                          htmlFor="formFile"
+                          className="form-label"
+                        ></label>
+                        <input
+                          className="form-control"
+                          type="file"
+                          id="formFile"
+                          onChange={(e) => setThumbnail(e.target.files[0])}
+                        />
+                      </div>
+                      {thumbnail && (
+                        <button
+                          className="btn btn-success"
+                          onClick={handleThumbnailSubmitHandler}
+                        >
+                          submit
+                        </button>
+                      )}
+                    </div>
+                  </div>
+
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <div className="card-body">
+                      <h4 className="" style={{ textAlign: "center" }}>
+                        Upload Course Video:
+                      </h4>
+                      <div className="">
+                        <label
+                          htmlFor="formFile"
+                          className="form-label"
+                        ></label>
+                        <input
+                          className="form-control"
+                          type="file"
+                          onChange={(e) => {
+                            setVideo(e.target.files[0])
+                          }}
+                          id="formFile"
+                        />
+                        {ppt && (
+                        <button
+                          className="btn btn-success"
+                          onClick={handleVideoSubmitHandler}
+                        >
+                          submit
+                        </button>
+                      )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-6">
                   <div style={{ display: "flex", justifyContent: "center" }}>
                     <div className="card-body">
                       <h4 className="" style={{ textAlign: "center" }}>
@@ -674,165 +798,25 @@ const EditCourse = () => {
                           className="form-control"
                           multiple={true}
                           onChange={(e) =>
-                            setCourse({ ...course, ppt: e.target.files })
+                            setPpt(e.target.files)
                           }
-                          type="file"
-                          id="formFile"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div style={{ display: "flex", justifyContent: "center" }}>
-                    <div className="card-body">
-                      <h4 className="" style={{ textAlign: "center" }}>
-                        Upload Course Resource:
-                      </h4>
-                      <div className="">
-                        <label
-                          htmlFor="formFileMultiple"
-                          className="form-label"
-                        ></label>
-                        <input
-                          onChange={(e) =>
-                            setCourse({ ...course, resource: e.target.files })
-                          }
-                          className="form-control"
-                          type="file"
-                          id="formFileMultiple"
-                          multiple
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <div className="m-2 p-2 ">
-                  <Button
-                    className=""
-                    variant="primary"
-                    type="button"
-                    onClick={updateCourseData}
-                  >
-                    Submit
-                  </Button>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-6">
-                  <div style={{}}>
-                    <div className="card-body">
-                      <h4 className="" style={{ textAlign: "center" }}>
-                        Upload Course Image:
-                      </h4>
-                      <div className="" style={{ position: "relative" }}>
-                        <label
-                          htmlFor="formFile"
-                          className="form-label"
-                        ></label>
-                        <input
-                          className="form-control"
-                          type="file"
-                          id="formFile"
-                          onChange={(e) => setThumbnail(e.target.files[0])}
-                        />
-                        <img
-                          style={{ width: "6rem", position: "absolute" }}
-                          src={
-                            thumbnail
-                              ? URL.createObjectURL(thumbnail)
-                              : course.thumbnail
-                          }
-                        />
-                        {thumbnail && (
-                          <a
-                            onClick={handleThumbnailSubmitHandler}
-                            style={{
-                              position: "absolute",
-                              right: "0",
-                              top: "4.6rem",
-                            }}
-                            className="btn btn-primary"
-                          >
-                            upload
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div style={{ display: "flex", justifyContent: "center" }}>
-                    <div className="card-body" style={{ position: "relative" }}>
-                      <h4 className="" style={{ textAlign: "center" }}>
-                        Upload Course Video:
-                      </h4>
-                      <div className="">
-                        <label
-                          htmlFor="formFile"
-                          className="form-label"
-                        ></label>
-                        <input
-                          className="form-control"
-                          type="file"
-                          onChange={(e) => setVideo(e.target.files[0])}
-                          id="formFile"
-                        />
-                        {video && (
-                          <a
-                            onClick={handleVideoSubmitHandler}
-                            style={{
-                              right: "2rem",
-                              top: "9rem",
-                              position: "absolute",
-                            }}
-                            className="btn btn-primary"
-                          >
-                            upload
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-6">
-                  <div style={{ display: "flex", justifyContent: "center" }}>
-                    <div className="card-body" style={{ position: "relative" }}>
-                      <h4 className="" style={{ textAlign: "center" }}>
-                        Upload Course ppt:
-                      </h4>
-                      <div className="">
-                        <label
-                          htmlFor="formFile"
-                          className="form-label"
-                        ></label>
-                        <input
-                          className="form-control"
-                          onChange={(e) => setPpt(e.target.files[0])}
                           type="file"
                           id="formFile"
                         />
                         {ppt && (
-                          <a
-                            onClick={handlePptSubmitHandler}
-                            style={{
-                              right: "2rem",
-                              top: "9rem",
-                              position: "absolute",
-                            }}
-                            className="btn btn-primary"
-                          >
-                            upload
-                          </a>
-                        )}
+                        <button
+                          className="btn btn-success"
+                          onClick={handlePptSubmitHandler}
+                        >
+                          submit
+                        </button>
+                      )}
                       </div>
                     </div>
                   </div>
 
                   <div style={{ display: "flex", justifyContent: "center" }}>
-                    <div className="card-body" style={{ position: "relative" }}>
+                    <div className="card-body">
                       <h4 className="" style={{ textAlign: "center" }}>
                         Upload Course Resource:
                       </h4>
@@ -848,22 +832,30 @@ const EditCourse = () => {
                           id="formFileMultiple"
                           multiple
                         />
-                        {resource && (
-                          <a
-                            onClick={handleResourceSubmitHandler}
-                            style={{
-                              right: "2rem",
-                              top: "9rem",
-                              position: "absolute",
-                            }}
-                            className="btn btn-primary"
-                          >
-                            upload
-                          </a>
-                        )}
                       </div>
+                      {resource && (
+                        <button
+                          className="btn btn-success"
+                          onClick={handleResourceSubmitHandler}
+                        >
+                          submit
+                        </button>
+                      )}
                     </div>
                   </div>
+                </div>
+              </div>
+
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <div className="m-2 p-2 ">
+                  <Button
+                    className=""
+                    variant="primary"
+                    type="button"
+                    // onClick={submit}
+                  >
+                    Submit
+                  </Button>
                 </div>
               </div>
             </form>

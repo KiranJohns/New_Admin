@@ -42,8 +42,8 @@ const AddCourse = () => {
     course_type: "",
     duration: "",
     course_level: "",
-    certificate: "",
-    course_code: ""
+    certificate_line: "",
+    course_code: "",
   });
   const navigate = useNavigate()
   const [courseInfo, setCourseInfo] = useState({
@@ -297,8 +297,8 @@ const AddCourse = () => {
                     <div className=" mb-3 ">
                       <input
                         type="text"
-                        name="certificate"
-                        value={course.certificate}
+                        name="certificate_line"
+                        value={course.certificate_line}
                         onChange={handleChange}
                         className="form-control input-default "
                         placeholder="Details"

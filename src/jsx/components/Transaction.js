@@ -83,10 +83,10 @@ const Transactions = () => {
                   }}
                 >
                   <th className="width80">
-                    <strong>Sl</strong>
+                    <strong>SL</strong>
                   </th>
                   <th>
-                    <strong>Name</strong>
+                    <strong>Transaction ID</strong>
                   </th>
                   <th>
                     <strong>Date</strong>
@@ -109,7 +109,7 @@ const Transactions = () => {
                       <td>
                         <strong>{++id}</strong>
                       </td>
-                      <td>{item?.name}</td>
+                      <td>{++id}</td>
                       <td>
                         {new Date(item.date).toLocaleDateString()}
                       </td>
