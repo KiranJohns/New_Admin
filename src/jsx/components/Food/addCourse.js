@@ -175,8 +175,8 @@ const AddCourse = () => {
                     <div className="input-group mb-3 ">
                     <span style={{background:"#212A50", color:"white"}} className="input-group-text">£</span>
                       <input
-                        name="selling_price"
-                        value={course.selling_price}
+                        name="price"
+                        value={course.price}
                         
                         onChange={(e) => {
                           setCourse((prev) => {
