@@ -286,17 +286,17 @@ const SalesTab = () => {
           <Tab eventKey="qualification" title="Monthly">
             <Col lg={12}>
               <Card>
-                {/* <Card.Header>
+                 {/* <Card.Header>
                   <Card.Title></Card.Title>
                
               
                 </Card.Header> */}
-                
-                <div  className="row">
-                   <div className="col-7"></div>
-                    <div className="col-2 mb-md-0 mb-3 form-group ">
+                 
+                <div style={{display:"flex", flexDirection:'row',justifyContent:'end',marginRight:"2.4rem"}}  className="">
+                 
+                    <div className=" mb-md-0 mb-3 form-group ">
                       <select
-                       style={{backgroundColor:"#5a9676", color:"white", textAlign:"center"}}
+                       style={{backgroundColor:"#5a9676", color:"white", textAlign:"left",}}
                         onChange={(e) => setMonth(e.target.value)}
                         className="form-control mr-2"
                         aria-label="Default select example"
@@ -316,9 +316,9 @@ const SalesTab = () => {
                         <option value="12">December</option>
                       </select>
                       </div>
-                      <div className="col-2">
+                      <div className="">
                       <select
-                       style={{backgroundColor:"#5a9676", color:"white", textAlign:"center"}}
+                       style={{backgroundColor:"#5a9676", color:"white", textAlign:"left",marginLeft:".2rem"}}
                         onChange={(e) => setYear(e.target.value)}
                         className="form-control"
                         aria-label="Default select example"

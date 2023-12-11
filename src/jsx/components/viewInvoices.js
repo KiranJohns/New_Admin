@@ -168,7 +168,7 @@ const ViewInvoice = () => {
               <thead>
                 <tr style={{ background: "#212a50" }}>
                   <th className="width80">
-                    <strong>SL</strong>
+                    <strong>SL No</strong>
                   </th>
                   <th style={{ textAlign: "center" }}>
                     <strong>Invoice No</strong>
@@ -181,6 +181,12 @@ const ViewInvoice = () => {
                   </th>
                   <th style={{ textAlign: "center" }}>
                     <strong>Time</strong>
+                  </th>
+                  <th className="width80">
+                    <strong>Transaction ID</strong>
+                  </th>
+                  <th className="width80">
+                    <strong>Amount</strong>
                   </th>
                   <th style={{ textAlign: "center" }}>
                     {" "}
@@ -203,6 +209,12 @@ const ViewInvoice = () => {
                       </td>
                       <td style={{ textAlign: "center" }}>
                         {new Date(item.date).toLocaleDateString()}
+                      </td> 
+                      <td style={{ textAlign: "center" }}>
+                   
+                      </td>
+                      <td style={{ textAlign: "center" }}>
+                      
                       </td>
                       <td style={{ textAlign: "center" }}>
                         <a target="_blank" href={item.img}>
