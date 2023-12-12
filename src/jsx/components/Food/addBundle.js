@@ -66,6 +66,7 @@ const AddBundle = () => {
       .then((res) => {
         setLoading(false);
         console.log(res);
+        swal("Bundle Added")
         navigate("/view-bundles");
       })
       .catch((err) => {
