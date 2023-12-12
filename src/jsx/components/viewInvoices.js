@@ -211,10 +211,10 @@ const ViewInvoice = () => {
                         {new Date(item.date).toLocaleDateString()}
                       </td> 
                       <td style={{ textAlign: "center" }}>
-                   
+                        {item.transaction_id}
                       </td>
                       <td style={{ textAlign: "center" }}>
-                      
+                        {item.total_price}
                       </td>
                       <td style={{ textAlign: "center" }}>
                         <a target="_blank" href={item.img}>

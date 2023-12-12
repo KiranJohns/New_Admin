@@ -8,14 +8,11 @@ import fetchData from "../../../axios";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 
-
-
 const cardBlog = [
   { image: IMAGES.avatarpng1, title: "Samantha W." },
   { image: IMAGES.avatarpng2, title: "Karen Hope." },
   { image: IMAGES.avatarpng3, title: "Tony Soap" },
 ];
-
 
 const AddCourse = () => {
   const makeRequest = fetchData();
@@ -45,7 +42,7 @@ const AddCourse = () => {
     certificate_line: "",
     course_code: "",
   });
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [courseInfo, setCourseInfo] = useState({
     aims: "",
     who_should_attend: "",
@@ -56,6 +53,7 @@ const AddCourse = () => {
   const [who_should_attend, setWhoShouldSttend] = useState([]);
   const [objectives_point, setObjectivesPoint] = useState([]);
   const [what_you_will_learn, setWhatYouWillLearn] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   function handlePointsChange(e) {
     setCourseInfo((prev) => {
@@ -75,28 +73,30 @@ const AddCourse = () => {
   }
 
   function submit() {
-    setCourse(prev => {
+    setCourse((prev) => {
       return {
         ...prev,
         aims: JSON.stringify(aims),
         who_should_attend: JSON.stringify(who_should_attend),
         objectives_point: JSON.stringify(objectives_point),
-        what_you_will_learn_point: JSON.stringify(what_you_will_learn),  
-      }
-    })
+        what_you_will_learn_point: JSON.stringify(what_you_will_learn),
+      };
+    });
 
     console.log(course);
-
+    setLoading(true);
     makeRequest("POST", "/course/create-course", {
       ...course,
       price: Number(course.price),
     })
       .then((res) => {
+        setLoading(false);
         swal("Success", "course created", "success");
-        navigate("/view-course")
+        navigate("/view-course");
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
       });
   }
   return (
@@ -173,17 +173,21 @@ const AddCourse = () => {
                       Selling Price:
                     </h4>
                     <div className="input-group mb-3 ">
-                    <span style={{background:"#212A50", color:"white"}} className="input-group-text">£</span>
+                      <span
+                        style={{ background: "#212A50", color: "white" }}
+                        className="input-group-text"
+                      >
+                        £
+                      </span>
                       <input
                         name="price"
                         value={course.price}
-                        
                         onChange={(e) => {
                           setCourse((prev) => {
                             console.log(e.target.name);
                             return {
                               ...prev,
-                              [e.target.name]:e.target.value,
+                              [e.target.name]: e.target.value,
                             };
                           });
                         }}
@@ -194,29 +198,30 @@ const AddCourse = () => {
                     </div>
                   </div>
                 </div>
-
               </div>
 
-
               <div className="row">
-
-              <div className="col-4" style={{}}>
+                <div className="col-4" style={{}}>
                   <div className="card-body">
                     <h4 className="" style={{ textAlign: "center" }}>
-                     RRP
+                      RRP
                     </h4>
                     <div className="input-group mb-3 ">
-                    <span style={{background:"#212A50", color:"white"}} className="input-group-text">£</span>
+                      <span
+                        style={{ background: "#212A50", color: "white" }}
+                        className="input-group-text"
+                      >
+                        £
+                      </span>
                       <input
                         name="RRP"
                         value={course.RRP}
-                        
                         onChange={(e) => {
                           setCourse((prev) => {
                             console.log(e.target.name);
                             return {
                               ...prev,
-                              [e.target.name]:e.target.value ,
+                              [e.target.name]: e.target.value,
                             };
                           });
                         }}
@@ -227,7 +232,6 @@ const AddCourse = () => {
                     </div>
                   </div>
                 </div>
-
 
                 <div className="col-4" style={{}}>
                   <div className="card-body">
@@ -247,7 +251,7 @@ const AddCourse = () => {
                   </div>
                 </div>
 
-               <div className="col-4" style={{}}>
+                <div className="col-4" style={{}}>
                   <div className="card-body">
                     <h4 className="" style={{ textAlign: "center" }}>
                       Duration:
@@ -263,14 +267,10 @@ const AddCourse = () => {
                       />
                     </div>
                   </div>
-                </div>   
-
+                </div>
               </div>
 
-              
               <div className="row">
-
-
                 <div className="col-4" style={{}}>
                   <div className="card-body">
                     <h4 className="" style={{ textAlign: "center" }}>
@@ -289,10 +289,10 @@ const AddCourse = () => {
                   </div>
                 </div>
 
-               <div className="col-4" style={{}}>
+                <div className="col-4" style={{}}>
                   <div className="card-body">
                     <h4 className="" style={{ textAlign: "center" }}>
-                     Certificate
+                      Certificate
                     </h4>
                     <div className=" mb-3 ">
                       <input
@@ -305,7 +305,7 @@ const AddCourse = () => {
                       />
                     </div>
                   </div>
-                </div>   
+                </div>
 
                 <div className="col-4" style={{}}>
                   <div className="card-body">
@@ -324,8 +324,6 @@ const AddCourse = () => {
                     </div>
                   </div>
                 </div>
-
-
               </div>
 
               <div style={{ display: "flex", justifyContent: "center" }}>
@@ -343,7 +341,6 @@ const AddCourse = () => {
                       id="comment"
                       placeholder="Content"
                     ></textarea>
-                   
                   </div>
                 </div>
               </div>
@@ -369,7 +366,9 @@ const AddCourse = () => {
                           id="comment"
                           placeholder="Content"
                         ></textarea>
-                        <small style={{padding:'.1rem'}}>press add button after adding each point</small>
+                        <small style={{ padding: ".1rem" }}>
+                          press add button after adding each point
+                        </small>
                       </div>
                       <div
                         style={{ display: "flex", justifyContent: "center" }}
@@ -379,7 +378,7 @@ const AddCourse = () => {
                           className=""
                           variant="primary"
                           onClick={() => {
-                            if(!courseInfo.aims) return
+                            if (!courseInfo.aims) return;
                             setAims((prev) => {
                               return [...prev, courseInfo.aims];
                             });
@@ -433,7 +432,9 @@ const AddCourse = () => {
                           id="comment"
                           placeholder="Content"
                         ></textarea>
-                        <small style={{padding:'.1rem'}}>press add button after adding each point</small>
+                        <small style={{ padding: ".1rem" }}>
+                          press add button after adding each point
+                        </small>
                       </div>
                       <div
                         style={{ display: "flex", justifyContent: "center" }}
@@ -443,7 +444,7 @@ const AddCourse = () => {
                           className=""
                           variant="primary"
                           onClick={() => {
-                            if(!courseInfo.objectives_point) return
+                            if (!courseInfo.objectives_point) return;
                             setObjectivesPoint((prev) => {
                               return [...prev, courseInfo.objectives_point];
                             });
@@ -569,7 +570,9 @@ const AddCourse = () => {
                           id="comment"
                           placeholder="Content"
                         ></textarea>
-                        <small style={{padding:'.1rem'}}>press add button after adding each point</small>
+                        <small style={{ padding: ".1rem" }}>
+                          press add button after adding each point
+                        </small>
                       </div>
                       <div
                         style={{ display: "flex", justifyContent: "center" }}
@@ -579,7 +582,7 @@ const AddCourse = () => {
                           className=""
                           variant="primary"
                           onClick={() => {
-                            if(!courseInfo.who_should_attend) return
+                            if (!courseInfo.who_should_attend) return;
                             setWhoShouldSttend((prev) => {
                               return [...prev, courseInfo.who_should_attend];
                             });
@@ -633,7 +636,9 @@ const AddCourse = () => {
                           id="comment"
                           placeholder="Content"
                         ></textarea>
-                        <small style={{padding:'.1rem'}}>press add button after adding each point</small>
+                        <small style={{ padding: ".1rem" }}>
+                          press add button after adding each point
+                        </small>
                       </div>
                       <div
                         style={{ display: "flex", justifyContent: "center" }}
@@ -643,7 +648,7 @@ const AddCourse = () => {
                           className=""
                           variant="primary"
                           onClick={() => {
-                            if(!courseInfo.what_you_will_learn) return
+                            if (!courseInfo.what_you_will_learn) return;
                             setWhatYouWillLearn((prev) => {
                               return [...prev, courseInfo.what_you_will_learn];
                             });
@@ -789,14 +794,24 @@ const AddCourse = () => {
 
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <div className="m-2 p-2 ">
-                  <Button
-                    className=""
-                    variant="primary"
-                    type="button"
-                    onClick={submit}
-                  >
-                    Submit
-                  </Button>
+                  {!loading ? (
+                    <Button
+                      class="btn btn-primary"
+                      type="button"
+                      variant="primary"
+                      onClick={submit}
+                    >
+                      submit
+                    </Button>
+                  ) : (
+                    <button class="btn btn-primary" type="button" disabled>
+                      <span
+                        class="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
+                    </button>
+                  )}
                 </div>
               </div>
             </form>

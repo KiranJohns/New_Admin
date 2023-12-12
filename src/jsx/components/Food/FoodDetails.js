@@ -81,7 +81,8 @@ const tabledata = [
 
 const FoodDetails = () => {
   const makeRequest = fetchData();
-  const [blog, setBlog] = useState({
+  const [loading, setLoading] = useState(false)
+    const [blog, setBlog] = useState({
     header: "",
     content: "",
     author: "",
@@ -98,19 +99,24 @@ const FoodDetails = () => {
       };
     });
   }
-  function Submit() {
+  function submit() {
+    setLoading(true)
     makeRequest("POST", "/blog/create-blog", blog)
       .then((res) => {
         navigate('/view-blog')
         swal("Done!", "blog created", "success");
       })
       .catch((err) => {
+        setLoading(false)
         let error = err?.data?.errors[0]?.error
-          ? err?.data?.errors[0]?.error
-          : err?.data?.errors[0]?.message;
+        ? err?.data?.errors[0]?.error
+        : err?.data?.errors[0]?.message;
         swal("Oops!", error, "error");
         console.log(err?.data?.errors[0]);
-      });
+    }).catch(err => {
+        console.log(err);
+        setLoading(false)
+    });
     console.log(blog);
   }
 
@@ -228,14 +234,24 @@ const FoodDetails = () => {
 
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <div className="m-2 p-2 ">
-                  <Button
-                    className=""
-                    variant="primary"
-                    onClick={Submit}
-                    type="button"
-                  >
-                    Submit
-                  </Button>
+                {!loading ? (
+                    <Button
+                      class="btn btn-primary"
+                      type="button"
+                      variant="primary"
+                      onClick={submit}
+                    >
+                      submit
+                    </Button>
+                  ) : (
+                    <button class="btn btn-primary" type="button" disabled>
+                      <span
+                        class="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
+                    </button>
+                  )}
                 </div>
               </div>
             </form>
