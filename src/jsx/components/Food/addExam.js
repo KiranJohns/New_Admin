@@ -309,7 +309,7 @@ const AddExam = () => {
                             style={{ width: "80%" }}
                             className="form-control"
                             type="text"
-                            placeholder="option B"
+                            placeholder="option C"
                           />
                         </div>
                       </div>
@@ -333,7 +333,7 @@ const AddExam = () => {
                             style={{ width: "80%" }}
                             className="form-control"
                             type="text"
-                            placeholder="option C"
+                            placeholder="option B"
                           />
                         </div>
                       </div>
