@@ -45,6 +45,7 @@ const Home = () => {
     makeRequest("GET", "/info/super-admin-dashboard-data")
       .then((res) => {
         setDashboardData(res.data.response);
+        console.log(res.data.response?.new_company_users);
         setCardBlog([
           {
             title: "Companies",
@@ -182,7 +183,7 @@ const Home = () => {
               <h4 className="heading m-0">New Companies</h4>
             </div>
             <div className="card-body p-0">
-              {dashboardData && (
+              {dashboardData?.new_company_users && (
                 <TeacherDetails companies={dashboardData?.new_company_users} />
               )}
             </div>
