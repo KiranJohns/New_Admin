@@ -113,6 +113,11 @@ const EditCourse = () => {
   const { state } = useLocation();
 
   const [video, setVideo] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [loadingPpt, setLoadingPpt] = useState(false);
+  const [loadingRes, setLoadingRes] = useState(false);
+  const [loadingVideo, setLoadingVideo] = useState(false);
+  const [loadingThumb, setLoadingThumb] = useState(false);
   const [thumbnail, setThumbnail] = useState(null);
   const [resource, setResource] = useState(null);
   const [ppt, setPpt] = useState(null);
@@ -123,11 +128,14 @@ const EditCourse = () => {
     let form = new FormData();
     form.append("course_id", state.id);
     form.append("thumbnail", thumbnail);
+    setThumbnail(true);
     makeRequest("POST", "/course/update-course-thumbnail", form)
       .then((res) => {
+        setThumbnail(false);
         console.log(res);
       })
       .catch((err) => {
+        setThumbnail(false);
         console.log(err);
       });
   }
@@ -136,10 +144,10 @@ const EditCourse = () => {
     let form = new FormData();
     let updatedCourse = {
       ...course,
-      aims: JSON.stringify(aims.split(",")),
-      who_should_attend: JSON.stringify(who_should_attend.split(",")),
-      objectives_point: JSON.stringify(objectives_point.split(",")),
-      what_you_will_learn_point: JSON.stringify(what_you_will_learn.split(",")),
+      aims: JSON.stringify(aims.split("#")),
+      who_should_attend: JSON.stringify(who_should_attend.split("#")),
+      objectives_point: JSON.stringify(objectives_point.split("#")),
+      what_you_will_learn_point: JSON.stringify(what_you_will_learn.split("#")),
     };
 
     console.log(updatedCourse);
@@ -168,11 +176,15 @@ const EditCourse = () => {
     form.append("course_code", updatedCourse.course_code);
     form.append("certificate_line", updatedCourse.certificate_line);
 
+    setLoading(true);
     makeRequest("POST", "/course/update-course-data", form)
       .then((res) => {
+        setLoading(false);
+        swal("course text fields updated");
         console.log(res);
       })
       .catch((err) => {
+        setLoading(false);
         console.log(err);
       });
   }
@@ -233,12 +245,10 @@ const EditCourse = () => {
         let course = res.data.response[0];
         console.log(course);
 
-        setAims(course.aims.join(","));
-        setWhoShouldSttend(course.who_should_attend.join(","));
-        setObjectivesPoint(course.objectives_point.join(","));
-        setWhatYouWillLearn(
-          course.what_you_will_learn_point.join(",")
-        );
+        setAims(course.aims.join("#"));
+        setWhoShouldSttend(course.who_should_attend.join("#"));
+        setObjectivesPoint(course.objectives_point.join("#"));
+        setWhatYouWillLearn(course.what_you_will_learn_point.join("#"));
 
         setCourse({
           ...course,
@@ -714,12 +724,24 @@ const EditCourse = () => {
                 classNAme="row"
                 style={{ display: "flex", justifyContent: "center" }}
               >
-                <button
-                  className="btn btn-primary"
-                  onClick={handleCourseInfoSubmit}
-                >
-                  submit
-                </button>
+                {!loading ? (
+                  <Button
+                    class="btn btn-primary"
+                    type="button"
+                    variant="primary"
+                    onClick={handleCourseInfoSubmit}
+                  >
+                    submit
+                  </Button>
+                ) : (
+                  <button class="btn btn-primary" type="button" disabled>
+                    <span
+                      class="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"
+                    ></span>
+                  </button>
+                )}
               </div>
 
               <div className="row">
@@ -741,12 +763,22 @@ const EditCourse = () => {
                           onChange={(e) => setThumbnail(e.target.files[0])}
                         />
                       </div>
-                      {thumbnail && (
-                        <button
-                          className="btn btn-success"
+                      {!thumbnail || loadingThumb ? (
+                        <Button
+                          class="btn btn-primary"
+                          type="button"
+                          variant="primary"
                           onClick={handleThumbnailSubmitHandler}
                         >
                           submit
+                        </Button>
+                      ) : (
+                        <button class="btn btn-primary" type="button" disabled>
+                          <span
+                            class="spinner-border spinner-border-sm"
+                            role="status"
+                            aria-hidden="true"
+                          ></span>
                         </button>
                       )}
                     </div>
@@ -766,18 +798,32 @@ const EditCourse = () => {
                           className="form-control"
                           type="file"
                           onChange={(e) => {
-                            setVideo(e.target.files[0])
+                            setVideo(e.target.files[0]);
                           }}
                           id="formFile"
                         />
-                        {ppt && (
-                        <button
-                          className="btn btn-success"
-                          onClick={handleVideoSubmitHandler}
-                        >
-                          submit
-                        </button>
-                      )}
+                        {!video || loadingVideo ? (
+                          <Button
+                            class="btn btn-primary"
+                            type="button"
+                            variant="primary"
+                            onClick={handleVideoSubmitHandler}
+                          >
+                            submit
+                          </Button>
+                        ) : (
+                          <button
+                            class="btn btn-primary"
+                            type="button"
+                            disabled
+                          >
+                            <span
+                              class="spinner-border spinner-border-sm"
+                              role="status"
+                              aria-hidden="true"
+                            ></span>
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -788,6 +834,7 @@ const EditCourse = () => {
                       <h4 className="" style={{ textAlign: "center" }}>
                         Upload Course ppt:
                       </h4>
+                      <span>*images</span>
                       <div className="">
                         <label
                           htmlFor="formFile"
@@ -796,20 +843,32 @@ const EditCourse = () => {
                         <input
                           className="form-control"
                           multiple={true}
-                          onChange={(e) =>
-                            setPpt(e.target.files)
-                          }
+                          onChange={(e) => setPpt(e.target.files)}
                           type="file"
                           id="formFile"
                         />
-                        {ppt && (
-                        <button
-                          className="btn btn-success"
-                          onClick={handlePptSubmitHandler}
-                        >
-                          submit
-                        </button>
-                      )}
+                        {!ppt || loadingPpt ? (
+                          <Button
+                            class="btn btn-primary"
+                            type="button"
+                            variant="primary"
+                            onClick={handlePptSubmitHandler}
+                          >
+                            submit
+                          </Button>
+                        ) : (
+                          <button
+                            class="btn btn-primary"
+                            type="button"
+                            disabled
+                          >
+                            <span
+                              class="spinner-border spinner-border-sm"
+                              role="status"
+                              aria-hidden="true"
+                            ></span>
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -819,6 +878,7 @@ const EditCourse = () => {
                       <h4 className="" style={{ textAlign: "center" }}>
                         Upload Course Resource:
                       </h4>
+                      <span>*ppt *video *images</span>
                       <div className="">
                         <label
                           htmlFor="formFileMultiple"
@@ -832,12 +892,22 @@ const EditCourse = () => {
                           multiple
                         />
                       </div>
-                      {resource && (
-                        <button
-                          className="btn btn-success"
+                      {!resource || loadingRes ? (
+                        <Button
+                          class="btn btn-primary"
+                          type="button"
+                          variant="primary"
                           onClick={handleResourceSubmitHandler}
                         >
                           submit
+                        </Button>
+                      ) : (
+                        <button class="btn btn-primary" type="button" disabled>
+                          <span
+                            class="spinner-border spinner-border-sm"
+                            role="status"
+                            aria-hidden="true"
+                          ></span>
                         </button>
                       )}
                     </div>

@@ -83,7 +83,7 @@ const AddCourse = () => {
       };
     });
 
-    console.log(course);
+
     setLoading(true);
     makeRequest("POST", "/course/create-course", {
       ...course,
