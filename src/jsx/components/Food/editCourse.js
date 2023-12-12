@@ -179,6 +179,7 @@ const EditCourse = () => {
     setLoading(true);
     makeRequest("POST", "/course/update-course-data", form)
       .then((res) => {
+        location.href = "/view-course"
         setLoading(false);
         swal("course text fields updated");
         console.log(res);
