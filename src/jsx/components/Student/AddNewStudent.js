@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import { IMAGES } from "../Dashboard/Content";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
+import { BsFillEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import swal from "sweetalert";
 import {
   Row,
@@ -19,6 +20,7 @@ import fetchData from "../../../axios";
 
 const AddNewStudent = () => {
   const makeRequest = fetchData();
+  const [showPassword, setShowPassword] = useState(false);
   const [userData, setUserData] = useState({
     email: "",
     first_name: "",
@@ -130,9 +132,10 @@ const AddNewStudent = () => {
                         >
                           Password<span className="required">*</span>
                         </label>
+                        <div style={{position:'relative'}}>
                         <input
                           style={{ background: "#f7fafc" }}
-                          type="text"
+                          type={showPassword ? "text" : "password"}
                           name="password"
                           value={userData.password}
                           onChange={handleOnchange}
@@ -140,6 +143,18 @@ const AddNewStudent = () => {
                           id="exampleFormControlInput4"
                           placeholder="Password"
                         />
+                        <div
+                        style={{position:"absolute", cursor:"pointer",top:".85rem", right:".7rem" }}
+                        id="pasToggle"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                      >
+                        {showPassword ? (
+                          <BsEyeSlashFill />
+                        ) : (
+                          <BsFillEyeFill />
+                        )}
+                      </div>
+                      </div>
                       </div>
                     </div>
                     <div className="col-xl-6 col-sm-6">
@@ -218,9 +233,9 @@ const AddNewStudent = () => {
                             <option value="company">
                               company
                             </option>
-                            <option value="manager">
+                            {/* <option value="manager">
                               manager
-                            </option>
+                            </option> */}
                           </select>
                         </div>
                       </div>

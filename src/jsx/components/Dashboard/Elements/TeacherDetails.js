@@ -203,8 +203,9 @@ export const TeacherDetails = ({ companies }) => {
         <div className="d-sm-flex text-center justify-content-between align-items-center">
           <div className="dataTables_info">
             Showing {lastIndex - recordsPage + 1} to{" "}
-            {company?.length < lastIndex ? company?.length : lastIndex} of{" "}
-            {company?.length} entries
+            {company?.length < lastIndex ? company?.length : lastIndex}{" "}
+            Companies
+            {/* {company?.length} entries */}
           </div>
           <div
             className="dataTables_paginate paging_simple_numbers justify-content-center"

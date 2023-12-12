@@ -215,6 +215,30 @@ const FoodDetails = () => {
              
               </div>
 
+           <div style={{display:'flex', justifyContent:"center"}}>
+              <div className="col-5" style={{}}>
+                  <div className="card-body">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      Blog Status:
+                    </h4>
+                    <div className="form-group mb-3">
+                      <select
+                        name="category"
+                        className="form-control form-control"
+                      >
+                        <option value="">Select</option>
+                        <option value="Care Course">Published</option>
+                        <option value="Mandatory Care Courses">
+                        Draft
+                        </option>
+                      
+                       
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                </div>
+
               <div style={{  }}>
                 <div className="card-body">
                   <h4 style={{textAlign:"center"}} className="">Blog Content:</h4>

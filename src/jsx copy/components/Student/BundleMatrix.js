@@ -207,6 +207,12 @@ const BundleMatrix = () => {
           >
             <thead>
               <tr style={{ textAlign: "center" }}>
+              <th
+                  style={{ background: "#212a50", color: "white" }}
+                  colSpan={1}
+                >
+                 
+                </th>
                 <th
                   style={{ background: "#212a50", color: "white" }}
                   colSpan={60}
@@ -250,8 +256,8 @@ const BundleMatrix = () => {
                             <td
                               style={{
                                 padding: "0 0.5rem",
-                                color: "white",
-                                background: "#212450",
+                                color: "#212450",
+                                background: "#fff",
                                 textAlign: "center",
                                 fontWeight: "bold",
                               }}
