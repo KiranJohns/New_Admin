@@ -23,6 +23,7 @@ const tableData = [
 
 export const TeacherDetails = ({companies}) => {
     companies = companies?.reverse();
+    
     const [currentPage , setCurrentPage] = useState(1);  
     const recordsPage = 8;
     const lastIndex = currentPage * recordsPage;
@@ -81,12 +82,12 @@ export const TeacherDetails = ({companies}) => {
                     </tbody>
                 </Table>
                 <div className="d-sm-flex text-center justify-content-between align-items-center">                           
-                    {/* <div className='dataTables_info'>
+                    <div className='dataTables_info'>
                         Showing {lastIndex-recordsPage + 1} to{" "}
                         {tableData?.length < lastIndex ? tableData?.length : lastIndex}
                         {" "}of {tableData?.length} entries
-                    </div> */}
-                    {/* <div
+                    </div>
+                    <div
                         className="dataTables_paginate paging_simple_numbers justify-content-center"
                         id="example2_paginate"
                     >
@@ -114,7 +115,7 @@ export const TeacherDetails = ({companies}) => {
                         >
                             <i className="fa-solid fa-angle-right" />
                         </Link>
-                    </div> */}
+                    </div> 
                 </div> 
             </div>	
         </div>

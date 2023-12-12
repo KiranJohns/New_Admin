@@ -8,6 +8,7 @@ import { Button, ButtonGroup } from "react-bootstrap";
 import { BiSolidEdit } from "react-icons/bi";
 import { RiChatDeleteFill } from "react-icons/ri";
 import fetchData from "../../../axios/index";
+import { FaDownload } from "react-icons/fa";
 import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
 
 const tableData = [
@@ -444,6 +445,14 @@ const ViewCertificates = () => {
                                 <FaEye />
                               </Button>
                             </a>
+                            {/* <a href={item.image} download style={{color: 'white'}}>
+                              <Button
+                                className="me-2"
+                                variant="primary btn-icon-xxs"
+                              >
+                               <FaDownload />
+                              </Button>
+                            </a> */}
                           </td>
                         </tr>
                       ))}
