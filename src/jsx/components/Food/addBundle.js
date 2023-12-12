@@ -7,6 +7,7 @@ import quotes from "./../../../images/quotes.svg";
 import { RiChatDeleteFill } from "react-icons/ri";
 import fetchData from "../../../axios";
 import swal from "sweetalert";
+import { useNavigate } from "react-router-dom";
 
 const AddBundle = () => {
   const [course, setCourse] = useState({
@@ -22,9 +23,11 @@ const AddBundle = () => {
   });
   const [filteredCourse, setFilteredCourse] = useState([]);
   const [allCourse, setAllCourse] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState([]);
   const categoryRef = useRef();
   const courseRef = useRef();
+  const navigate = useNavigate();
   const [category, setCAtegory] = useState(null);
   const [bundle, setBundle] = useState({
     name: "",
@@ -51,6 +54,7 @@ const AddBundle = () => {
 
     console.log(bundle);
 
+    setLoading(true);
     const form = new FormData();
     form.append("name", bundle.name);
     form.append("price", bundle.price);
@@ -60,9 +64,12 @@ const AddBundle = () => {
 
     makeRequest("POST", "/bundle/create-bundle", form)
       .then((res) => {
+        setLoading(false);
         console.log(res);
+        navigate("/view-bundles");
       })
       .catch((err) => {
+        setLoading(false);
         console.log(err);
       });
   }
@@ -346,14 +353,24 @@ const AddBundle = () => {
 
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <div className="m-2 p-2 ">
-                  <Button
-                    className=""
-                    variant="primary"
-                    type="button"
-                    onClick={handleSubmit}
-                  >
-                    Submit
-                  </Button>
+                  {!loading ? (
+                    <Button
+                      class="btn btn-primary"
+                      type="button"
+                      variant="primary"
+                      onClick={handleSubmit}
+                    >
+                      submit
+                    </Button>
+                  ) : (
+                    <button class="btn btn-primary" type="button" disabled>
+                      <span
+                        class="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
+                    </button>
+                  )}
                 </div>
               </div>
             </form>

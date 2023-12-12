@@ -162,14 +162,14 @@ const PublishedBlog = ({publishedBlog,getBlogs}) => {
   //     console.log(err);
   //   });
 
-  function changeBlogState(id) {
+  function changeBlogState(id,state) {
     makeRequest("POST", "/blog/update-blog-status", {
       id,
-      status: "trash",
+      status: state,
     })
       .then((res) => {
         getBlogs()
-        swal("Done!", "blog moved to trash", "success");
+        swal("Done!", `blog moved to ${state}`, "success");
       })
       .catch((err) => {
         swal("Oops!", err?.errors[0]?.error, "error");
@@ -345,17 +345,18 @@ const PublishedBlog = ({publishedBlog,getBlogs}) => {
                       <Button
                         className="me-2"
                         variant="primary btn-icon-xxs"
+                        // title="to draft"
                         // onClick={() => navigate("/edit-blog",{state:{id:item.id}})}
-                        onClick={() => changeBlogState(item.id)}
+                        onClick={() => changeBlogState(item.id,"draft")}
                       >
                         <FaDownload />
                       </Button>
 
                       <Button
                         className=""
-                        changeBlogState
                         variant="secondary btn-icon-xxs"
-                        onClick={() => deleteHandler(item.id)}
+                        // title="to trash"
+                        onClick={() => changeBlogState(item.id,"trash")}
                       >
                         <FaTrash />
                       </Button>

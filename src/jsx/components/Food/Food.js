@@ -320,6 +320,7 @@ const Food = () => {
                                 <Button
                                   className="me-2"
                                   variant="success btn-icon-xxs"
+                                  // title="view"
                                 >
                                   <FaEye />
                                 </Button>
@@ -327,6 +328,7 @@ const Food = () => {
                               <Button
                                 className="me-2"
                                 variant="primary btn-icon-xxs"
+                                // title="edit"
                                 onClick={() =>
                                   navigate("/edit-blog", {
                                     state: { id: item.id },
@@ -338,6 +340,7 @@ const Food = () => {
                               <Button
                                 className="me-2"
                                 variant="dark btn-icon-xxs"
+                                // title="to draft"
                                 onClick={() =>
                                   blogStatusHandler(item.id, "draft")
                                 }
@@ -347,6 +350,7 @@ const Food = () => {
                               <Button
                                 className="me-2"
                                 variant="secondary btn-icon-xxs"
+                                // title="to trash"
                                 onClick={() =>
                                   blogStatusHandler(item.id, "trash")
                                 }
@@ -355,14 +359,11 @@ const Food = () => {
                               </Button>
                               <Button
                                 className="btn btn-danger"
+                                // title="delete"
                                 onClick={() => deleteHandler(item.id)}
                                 variant="danger btn-icon-xxs"
                               >
                                 <RiChatDeleteFill />
-                                {/* <MdDelete
-                              onClick={() => deleteHandler(item.id)}
-                              title="Delete"
-                            /> */}
                               </Button>
                             </td>
                           </tr>
