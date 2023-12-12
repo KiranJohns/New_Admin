@@ -50,7 +50,7 @@ const BundleModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle
       <div style={{ maxHeight: "100rem" }}>
           <div>
           <div>
-              <h4 style={{textAlign:'center', padding:'.5rem', background:"#5a9676",color:"#fff"}}>Assign Bundle: {" "}{name}</h4>
+              <h4 style={{textAlign:'center', padding:'.5rem', background:"#212a50",color:"#fff"}}>Assign Bundle: {" "}{name}</h4>
             </div>
             <div
               className="form-control d-flex gap-3"
@@ -113,6 +113,16 @@ const BundleModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle
                 />
               </div>
             </div>
+
+            <div style={{padding:".7rem", background:'#212A50', color:'white', fontWeight:'bold', marginTop:'1rem'}}>
+              <ul style={{display:'flex', justifyContent:'space-between'}}>
+                <li style={{marginLeft:'1.5rem'}}>Name</li>
+                <li>Email</li>
+                <li style={{marginRight:'2.3rem'}}>Action</li>
+              </ul>
+             </div>
+
+            <div style={{background:'white'}}>
             <div
               className="list-group bg-white"
               style={{ height: "20rem", overflow: "auto" }}
@@ -139,6 +149,7 @@ const BundleModal = ({ setOpenModalForWorkExp, openModalForWorkExp, assignBundle
                     );
                   })}
               </ul>
+            </div>
             </div>
           </div>
       </div>
