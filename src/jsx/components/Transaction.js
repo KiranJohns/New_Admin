@@ -109,7 +109,7 @@ const Transactions = () => {
                       <td>
                         <strong>{++id}</strong>
                       </td>
-                      <td>{++id}</td>
+                      <td>{item.transition_id}</td>
                       <td>
                         {new Date(item.date).toLocaleDateString()}
                       </td>
