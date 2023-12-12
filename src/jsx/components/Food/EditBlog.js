@@ -9,6 +9,7 @@ import fetchData from "../../../axios";
 import { useState } from "react";
 import swal from "sweetalert";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const inputBlog = [
   {
@@ -90,6 +91,8 @@ const EditBlog = () => {
     img: null,
   });
 
+  let navigate = useNavigate()
+
   const { state } = useLocation();
 
   const [selectedImage, setSelectedImage] = useState("");
@@ -124,7 +127,8 @@ const EditBlog = () => {
       blog_id: blog?.id,
     })
       .then((res) => {
-        swal("Done!", "blog data updated", "success");
+        swal("Done!", "Blog Updated", "success"); 
+        navigate('/view-blog')
       })
       .catch((err) => {
         console.log(err?.data);

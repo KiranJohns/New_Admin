@@ -104,7 +104,7 @@ const FoodDetails = () => {
     makeRequest("POST", "/blog/create-blog", blog)
       .then((res) => {
         navigate('/view-blog')
-        swal("Done!", "blog created", "success");
+        swal("Done!", "Blog Created", "success");
       })
       .catch((err) => {
         setLoading(false)

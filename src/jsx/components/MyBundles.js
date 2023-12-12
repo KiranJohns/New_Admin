@@ -145,9 +145,9 @@ const MyBundle = () => {
                           <Button
                             className="me-2"
                             variant="danger btn-icon-xxs"
+                            onClick={() => handleDelete(item.id)}
                           >
                             <RiChatDeleteFill
-                              onClick={() => handleDelete(item.id)}
                             />
                           </Button>
                         </td>

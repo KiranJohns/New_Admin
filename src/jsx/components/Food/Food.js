@@ -193,8 +193,9 @@ const Food = () => {
       blog_id: id,
     })
       .then((res) => {
-        console.log(res);
-        swal("Done!", "blog deleted", "success");
+        navigate('/view-blog');
+        swal("Done!", "Blog Deleted", "success");
+        
       })
       .catch((err) => {
         swal("Done!", err?.errors[0]?.error, "success");
@@ -210,7 +211,7 @@ const Food = () => {
       .then((res) => {
         getBlogs()
         console.log(res);
-        swal("Done!", `blog moved to ${status}`, "success");
+        swal("Done!", `Blog Moved to ${status}`, "success");
       })
       .catch((err) => {
         swal("Oops!", err?.errors[0]?.error, "error");
@@ -301,7 +302,7 @@ const Food = () => {
                                 target="_blank"
                                 href={`https://test.learnforcare.co.uk/blog/${item.id}`}
                               >
-                                {item.header}{" "}
+                                {item.header.slice(0, 60)}..{" "}
                               </a>
                             </td>
                             <td>{item.author}</td>

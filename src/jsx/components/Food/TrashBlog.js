@@ -172,7 +172,7 @@ const BlogTrash = ({ trashedBlogs, getBlogs }) => {
                         variant="secondary btn-icon-xxs"
                         onClick={() => deleteHandler(item.id)}
                       >
-                        <FaTrash />
+                        < RiChatDeleteFill />
                       </Button>
                     </td>
                   </tr>
