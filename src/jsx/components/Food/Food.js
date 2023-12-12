@@ -229,7 +229,7 @@ const Food = () => {
           <Tab eventKey="blogs" title={`All Blogs(${blogs.length})`}>
             <Card>
               <Card.Header>
-                <Card.Title>All Blogs</Card.Title>
+                <Card.Title></Card.Title>
                 <div className="input-group search-area mb-md-0 mb-3">
                   <input
                     type="text"

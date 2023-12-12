@@ -7,6 +7,7 @@ import fetchData from "../../../axios";
 import swal from "sweetalert";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import {useNavigate  } from "react-router-dom";
 
 const inputBlog = [
   {
@@ -121,6 +122,7 @@ const EditCourse = () => {
   const [thumbnail, setThumbnail] = useState(null);
   const [resource, setResource] = useState(null);
   const [ppt, setPpt] = useState(null);
+  const navigate = useNavigate
 
   const makeRequest = fetchData();
 
@@ -179,7 +181,7 @@ const EditCourse = () => {
     setLoading(true);
     makeRequest("POST", "/course/update-course-data", form)
       .then((res) => {
-        location.href = "/view-course"
+       navigate ("/view-course");
         setLoading(false);
         swal("course text fields updated");
         console.log(res);
