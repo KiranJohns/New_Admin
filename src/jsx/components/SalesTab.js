@@ -180,11 +180,11 @@ const SalesTab = () => {
   useEffect(() => {
     makeRequest("GET", "/course/get-all-purchased-course-group-by")
       .then((res) => {
+        setDaily(res.data.response.dailyReport);
         setFilteredGroupByDay(res.data.response.groupByDay.reverse());
-        setDaily(res.data.response.dailyReport.reverse());
         setGroupByDay(res.data.response.groupByDay.reverse());
-        setFilteredGroupByYear(res.data.response.groupByYear.reverse());
-        setGroupByYear(res.data.response.groupByYear.reverse());
+        setFilteredGroupByYear(res.data.response.groupByYear);
+        setGroupByYear(res.data.response.groupByYear);
       })
       .catch((err) => {
         console.log("error", err);
@@ -200,13 +200,13 @@ const SalesTab = () => {
           if (data.month == month && data.year == year) {
             return data
           }
-        });
+        }).reverse();
       } else if (month != "") {
-        return groupByDay.filter((data) => data.month == month);
+        return groupByDay.filter((data) => data.month == month).reverse();
       } else if (year != "") {
-        return groupByDay.filter((data) => data.year == year);
+        return groupByDay.filter((data) => data.year == year).reverse();
       } else {
-        return groupByDay
+        return groupByDay.reverse()
       }
     });
   }, [month, year]);
