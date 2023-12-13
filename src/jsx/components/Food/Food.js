@@ -285,16 +285,11 @@ const Food = () => {
                   </thead>
                   <tbody>
                     {blogs &&
-                      blogs.map((item) => {
-                        let date = new Date(item.date)
-                          .toLocaleDateString()
-                          .split("/")
-                          .map((d) => (d.length <= 1 ? "0" + d : d));
-                        date = date[1] + "-" + date[0] + "-" + date[2];
+                      blogs.map((item,idx) => {
                         return (
                           <tr style={{ textAlign: "center" }}>
                             <td>
-                              <strong>01</strong>
+                              <strong>{++idx}</strong>
                             </td>
                             <td>
                               {" "}
@@ -306,7 +301,7 @@ const Food = () => {
                               </a>
                             </td>
                             <td>{item.author}</td>
-                            <td>{date}</td>
+                            <td>{item.date}</td>
                             <td>{item.views}</td>
                             <td>
                               <span className="badge badge-primary">
