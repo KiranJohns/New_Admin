@@ -21,7 +21,7 @@ import { useEffect } from "react";
 const AddCertificate = () => {
   const makeRequest = fetchData();
   const [userData, setUserData] = useState({
-    user_id: Number("0"),
+    user_id: "",
     course_name: "",
     user_name: "",
     percentage: "",
@@ -43,6 +43,7 @@ const AddCertificate = () => {
   useEffect(() => {
     makeRequest("GET", "/course/get-all-course")
       .then((res) => {
+        console.log(res.data.response);
         setCourses(res.data.response);
       })
       .catch((err) => {
@@ -109,9 +110,9 @@ const AddCertificate = () => {
                         </label>
                         <input
                           type="text"
-                          name="id"
+                          name="user_id"
+                          onChange={handleOnchange}
                           value={userData.user_id}
-                          disabled
                           className="form-control"
                           id="exampleFormControlInput1"
                           placeholder="ID"
@@ -135,18 +136,18 @@ const AddCertificate = () => {
                             }}
                             className="form-control"
                           >
-                            <option>Select</option>
+                            <option value="">Select</option>
                             <option value="Care Course">Care Course</option>
-                            <option value="Mandatory Care Courses">
+                            <option value="Mandatory Care Course">
                               Mandatory Care Course
                             </option>
-                            <option value="Specialised Care Courses">
+                            <option value="Specialized Care Course">
                               Specialised Care Course
                             </option>
-                            <option value="Recovery Care Courses">
+                            <option value="Recovery Care Course">
                               Recovery Care Course
                             </option>
-                            <option value="Child Care Courses">
+                            <option value="Child Care Course">
                               Child Care Courses
                             </option>
                           </select>

@@ -110,7 +110,7 @@ const AddExam = () => {
   function submit() {
     console.log(exam,courseId);
     let form = new FormData()
-    form.append("course_id",courseId)
+    form.append("course_id",courseId.slice(3,courseId.length))
     form.append("questions",JSON.stringify([...exam]))
     makeRequest("POST", "/exam/create-exam", form)
       .then((res) => {
@@ -192,7 +192,7 @@ const AddExam = () => {
                     </h4>
                     <div className="form-group mb-3">
                       <select
-                        onChange={(e) => setCourseId(e.target.value)}
+                        onChange={(e) => setCourseId("LFC"+e.target.value)}
                         defaultValue={"option"}
                         className="form-control form-control-lg"
                       >
