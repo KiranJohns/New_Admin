@@ -272,10 +272,14 @@ const SalesTab = () => {
                                 )}
                               </td>
                               <td style={{ textAlign: "center" }}>
-                                {new Date(item.date).toLocaleDateString()}
+                                {new Date(item.date).toLocaleDateString().split("/")[0]+
+                                "/"
+                                +new Date(item.date).toLocaleDateString().split("/")[1]+
+                                "/"+
+                                new Date(item.date).toLocaleDateString().split("/")[2]}
                               </td>
                               <td style={{ textAlign: "center" }}>
-                                £ {item.amount}
+                                £ {parseFloat(item.amount).toFixed(2)}
                               </td>
                             </tr>
                           );
@@ -384,7 +388,7 @@ const SalesTab = () => {
                                 {item.day + "/" + item.month + "/" + item.year}
                               </td>
                               <td style={{ textAlign: "center" }}>
-                                £ {parseInt(item.total_amount)}
+                                £ {parseFloat(item.total_amount).toFixed(2)}
                               </td>
                             </tr>
                           );
