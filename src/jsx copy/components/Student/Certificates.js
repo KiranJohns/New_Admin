@@ -433,7 +433,7 @@ const ViewCertificates = () => {
                           </td>
                           <td>
                             <h6 className="mb-0">
-                              {new Date(item.date).toLocaleDateString()}
+                              {item.date}
                             </h6>
                           </td>
                           <td>
