@@ -380,7 +380,7 @@ const CouponList = () => {
 
                         <th>Coupon Code</th>
                         <th>Coupon Type</th>
-                        <th>Maxmimum Purchased</th>
+                        <th>Minimum Purchased</th>
                         <th>Amount</th>
                         <th>Valid till</th>
                         <th>Status</th>
