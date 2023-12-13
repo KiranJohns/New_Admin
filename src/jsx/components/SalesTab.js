@@ -266,17 +266,15 @@ const SalesTab = () => {
                                 {item.fake_course_count}
                               </td>
                               <td style={{ textAlign: "center" }}>
-                                {new Date(item.date).toLocaleTimeString(
-                                  "en-GB",
-                                  { timeZone: "Europe/London" }
-                                )}
+                                {item.time}
                               </td>
                               <td style={{ textAlign: "center" }}>
-                                {new Date(item.date).toLocaleDateString().split("/")[1]+
+                                {/* {new Date(item.date).toLocaleDateString().split("/")[1]+
                                 "/"
                                 +new Date(item.date).toLocaleDateString().split("/")[0]+
                                 "/"+
-                                new Date(item.date).toLocaleDateString().split("/")[2]}
+                                new Date(item.date).toLocaleDateString().split("/")[2]} */}
+                                {item.date}
                               </td>
                               <td style={{ textAlign: "center" }}>
                                 £ {parseFloat(item.amount).toFixed(2)}
