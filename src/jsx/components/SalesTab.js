@@ -272,9 +272,9 @@ const SalesTab = () => {
                                 )}
                               </td>
                               <td style={{ textAlign: "center" }}>
-                                {new Date(item.date).toLocaleDateString().split("/")[0]+
+                                {new Date(item.date).toLocaleDateString().split("/")[1]+
                                 "/"
-                                +new Date(item.date).toLocaleDateString().split("/")[1]+
+                                +new Date(item.date).toLocaleDateString().split("/")[0]+
                                 "/"+
                                 new Date(item.date).toLocaleDateString().split("/")[2]}
                               </td>
