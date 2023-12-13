@@ -239,14 +239,26 @@ const AddCourse = () => {
                       Course Type:
                     </h4>
                     <div className=" mb-3 ">
-                      <input
+                      {/* <input
                         type="text"
                         name="course_type"
                         value={course.course_type}
                         onChange={handleChange}
                         className="form-control input-default "
                         placeholder="Online"
-                      />
+                      /> */}
+                        <select
+                        onChange={handleChange}
+                        defaultValue={"option"}
+                        name="category"
+                        className="form-control form-control"
+                      >
+                        <option>Select</option>
+                        <option value="">Online </option>
+                        <option value="">
+                        Offline
+                        </option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -257,14 +269,23 @@ const AddCourse = () => {
                       Duration:
                     </h4>
                     <div className=" mb-3 ">
-                      <input
+                      {/* <input
                         type="text"
                         name="duration"
                         value={course.duration}
                         onChange={handleChange}
                         className="form-control input-default "
                         placeholder="Time for completion"
-                      />
+                      /> */}
+                       <select
+                        onChange={handleChange}
+                        defaultValue={"option"}
+                        name="category"
+                        className="form-control form-control"
+                      >
+                        <option>Select</option>
+                        <option value="">Variable</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -277,14 +298,26 @@ const AddCourse = () => {
                       Course Level:
                     </h4>
                     <div className=" mb-3 ">
-                      <input
+                      {/* <input
                         type="text"
                         name="course_level"
                         value={course.course_level}
                         onChange={handleChange}
                         className="form-control input-default "
                         placeholder="Advanced/Intermediate"
-                      />
+                      /> */}
+                       <select
+                        onChange={handleChange}
+                        defaultValue={"option"}
+                        name="category"
+                        className="form-control form-control"
+                      >
+                        <option>Select</option>
+                        <option value="">Intermediate</option>
+                        <option value="">
+                       Advanced
+                        </option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -295,14 +328,24 @@ const AddCourse = () => {
                       Certificate
                     </h4>
                     <div className=" mb-3 ">
-                      <input
+                      {/* <input
                         type="text"
                         name="certificate_line"
                         value={course.certificate_line}
                         onChange={handleChange}
                         className="form-control input-default "
                         placeholder="Details"
-                      />
+                      /> */}
+                       <select
+                        onChange={handleChange}
+                        defaultValue={"option"}
+                        name="category"
+                        className="form-control form-control"
+                      >
+                        <option>Select</option>
+                        <option value="">Certificate of completion</option>
+                       
+                      </select>
                     </div>
                   </div>
                 </div>
