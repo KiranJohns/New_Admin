@@ -48,7 +48,6 @@ const AddExam = () => {
   }
 
   function add() {
-    console.log(answer);
     let options = [
       data.option1,
       data.option2,
@@ -487,7 +486,7 @@ const AddExam = () => {
                               </td>
                               <td>{item.question.slice(0, 30)}</td>
                               <td>{item.options.length}</td>
-                              <td>{item.answer}</td>
+                              <td>{String.fromCharCode(65 + item.options.indexOf(item.answer))}</td>
                               <td>
                                 <Button
                                   className="me-2"

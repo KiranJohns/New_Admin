@@ -13,13 +13,13 @@ import { ImCross } from "react-icons/im";
 import { FaDownload } from "react-icons/fa";
 import { BiSolidEdit } from "react-icons/bi";
 import { RiChatDeleteFill } from "react-icons/ri";
-import "../scss/care.css"
+import "../scss/care.css";
 
 import PageTitle from "../layouts/PageTitle";
 import { Row, Col, Card, Badge, ProgressBar } from "react-bootstrap";
 import fetchData from "../../axios";
 import { useEffect } from "react";
-import { useState } from "react"
+import { useState } from "react";
 import { date } from "yup";
 
 const svg1 = (
@@ -177,12 +177,14 @@ const SalesTab = () => {
     12: "December",
   };
   const makeRequest = fetchData();
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
   useEffect(() => {
     makeRequest("GET", "/course/get-all-purchased-course-group-by")
       .then((res) => {
         setDaily(res.data.response.dailyReport);
         setFilteredGroupByDay(res.data.response.groupByDay.reverse());
-        setGroupByDay(res.data.response.groupByDay.reverse());
+        setGroupByDay(res.data.response.groupByDay);
         setFilteredGroupByYear(res.data.response.groupByYear);
         setGroupByYear(res.data.response.groupByYear);
       })
@@ -190,23 +192,22 @@ const SalesTab = () => {
         console.log("error", err);
       });
   }, []);
-  const [month, setMonth] = useState("");
-  const [year, setYear] = useState("");
 
   useEffect(() => {
     setFilteredGroupByDay(() => {
       if (month != "" && year != "") {
-        return groupByDay.filter((data) => {
-          if (data.month == month && data.year == year) {
-            return data
-          }
-        }).reverse();
+        return groupByDay
+          .filter((data) => {
+            if (data.month == month && data.year == year) {
+              return data;
+            }
+          });
       } else if (month != "") {
-        return groupByDay.filter((data) => data.month == month).reverse();
+        return groupByDay.filter((data) => data.month == month);
       } else if (year != "") {
-        return groupByDay.filter((data) => data.year == year).reverse();
+        return groupByDay.filter((data) => data.year == year);
       } else {
-        return groupByDay.reverse()
+        return groupByDay;
       }
     });
   }, [month, year]);
@@ -225,7 +226,7 @@ const SalesTab = () => {
                 <Card.Header>
                   <Card.Title></Card.Title>
                 </Card.Header>
-                
+
                 <Card.Body>
                   <Table responsive>
                     <thead>
@@ -265,7 +266,10 @@ const SalesTab = () => {
                                 {item.fake_course_count}
                               </td>
                               <td style={{ textAlign: "center" }}>
-                                {new Date(item.date).toLocaleTimeString("en-GB", {timeZone: "Europe/London"})}
+                                {new Date(item.date).toLocaleTimeString(
+                                  "en-GB",
+                                  { timeZone: "Europe/London" }
+                                )}
                               </td>
                               <td style={{ textAlign: "center" }}>
                                 {new Date(item.date).toLocaleDateString()}
@@ -286,54 +290,68 @@ const SalesTab = () => {
           <Tab eventKey="qualification" title="Monthly">
             <Col lg={12}>
               <Card>
-                 {/* <Card.Header>
+                {/* <Card.Header>
                   <Card.Title></Card.Title>
                
               
                 </Card.Header> */}
-                 
-                <div style={{display:"flex", flexDirection:'row',justifyContent:'end',marginRight:"2.4rem"}}  className="">
-                 
-                    <div className=" mb-md-0 mb-3 form-group ">
-                      <select
-                       style={{backgroundColor:"#5a9676", color:"white", textAlign:"left",}}
-                        onChange={(e) => setMonth(e.target.value)}
-                        className="form-control mr-2"
-                        aria-label="Default select example"
-                      >
-                        <option  value="">Select Month </option>
-                        <option value="1">January</option>
-                        <option value="2">February</option>
-                        <option value="3">March</option>
-                        <option value="4">April</option>
-                        <option value="5">May</option>
-                        <option value="6">June</option>
-                        <option value="7">July</option>
-                        <option value="8">August</option>
-                        <option value="9">Sepetember</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option>
-                      </select>
-                      </div>
-                      <div className="">
-                      <select
-                       style={{backgroundColor:"#5a9676", color:"white", textAlign:"left",marginLeft:".2rem"}}
-                        onChange={(e) => setYear(e.target.value)}
-                        className="form-control"
-                        aria-label="Default select example"
-                      >
-                        <option value="">Select Year</option>
-                        {groupByYear &&
-                          groupByYear.map((item) => (
-                            <option value={item.year}>{item.year}</option>
-                          ))}
-                      </select>
-                      </div>
-                    </div>
-                <Card.Body>
 
-                  
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "end",
+                    marginRight: "2.4rem",
+                  }}
+                  className=""
+                >
+                  <div className=" mb-md-0 mb-3 form-group ">
+                    <select
+                      style={{
+                        backgroundColor: "#5a9676",
+                        color: "white",
+                        textAlign: "left",
+                      }}
+                      onChange={(e) => setMonth(e.target.value)}
+                      className="form-control mr-2"
+                      aria-label="Default select example"
+                    >
+                      <option value="">Select Month </option>
+                      <option value="1">January</option>
+                      <option value="2">February</option>
+                      <option value="3">March</option>
+                      <option value="4">April</option>
+                      <option value="5">May</option>
+                      <option value="6">June</option>
+                      <option value="7">July</option>
+                      <option value="8">August</option>
+                      <option value="9">Sepetember</option>
+                      <option value="10">October</option>
+                      <option value="11">November</option>
+                      <option value="12">December</option>
+                    </select>
+                  </div>
+                  <div className="">
+                    <select
+                      style={{
+                        backgroundColor: "#5a9676",
+                        color: "white",
+                        textAlign: "left",
+                        marginLeft: ".2rem",
+                      }}
+                      onChange={(e) => setYear(e.target.value)}
+                      className="form-control"
+                      aria-label="Default select example"
+                    >
+                      <option value="">Select Year</option>
+                      {groupByYear &&
+                        groupByYear.map((item) => (
+                          <option value={item.year}>{item.year}</option>
+                        ))}
+                    </select>
+                  </div>
+                </div>
+                <Card.Body>
                   <Table responsive>
                     <thead>
                       <tr style={{ color: "#fff", background: "#212a50" }}>
@@ -388,7 +406,7 @@ const SalesTab = () => {
                     {" "}
                     <div className="form-group  mb-md-0 mb-3">
                       <select
-                       style={{backgroundColor:"#5a9676", color:"white"}}
+                        style={{ backgroundColor: "#5a9676", color: "white" }}
                         onChange={(e) =>
                           setFilteredGroupByYear(
                             e.target.value
@@ -407,7 +425,6 @@ const SalesTab = () => {
                             <option value={item.year}>{item.year}</option>
                           ))}
                       </select>
-                
                     </div>
                   </div>
                 </Card.Header>

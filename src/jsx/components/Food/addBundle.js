@@ -47,6 +47,27 @@ const AddBundle = () => {
     });
   }
   function handleSubmit() {
+    if (!bundle.name) {
+      swal("please provide name");
+      return;
+    }
+    if (!bundle.price) {
+      swal("please provide price");
+      return;
+    }
+    if (!bundle.description) {
+      swal("please provide description");
+      return;
+    }
+    if (!bundle.image) {
+      swal("please provide image");
+      return;
+    }
+    if (arr.length <= 0) {
+      swal("please add courses");
+      return;
+    }
+
     let arr = [];
     selectedCourse.forEach((item) => {
       arr.push(item.id);
@@ -61,12 +82,11 @@ const AddBundle = () => {
     form.append("description", bundle.description);
     form.append("courses", arr);
     form.append("image", bundle.image);
-
     makeRequest("POST", "/bundle/create-bundle", form)
       .then((res) => {
         setLoading(false);
         console.log(res);
-        swal("Bundle Added")
+        swal("Bundle Added");
         navigate("/view-bundles");
       })
       .catch((err) => {
