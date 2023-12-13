@@ -203,12 +203,10 @@ const ViewInvoice = () => {
                       </td>
                       <td style={{ textAlign: "center" }}>{id}</td>
                       <td style={{ textAlign: "center" }}>
-                        {new Date(item.date).toLocaleTimeString("en-GB", {
-                          timeZone: "Europe/London",
-                        })}
+                        {item.time}
                       </td>
                       <td style={{ textAlign: "center" }}>
-                        {new Date(item.date).toLocaleDateString()}
+                        {item.date}
                       </td> 
                       <td style={{ textAlign: "center" }}>
                         {item.transaction_id}

@@ -111,7 +111,7 @@ const Transactions = () => {
                       </td>
                       <td>{item.transition_id}</td>
                       <td>
-                        {new Date(item.date).toLocaleDateString()}
+                        {item.date}
                       </td>
                       <td>{item?.count}</td>
                       <td>{item?.amount}</td>
