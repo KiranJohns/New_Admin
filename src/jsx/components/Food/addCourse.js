@@ -250,14 +250,12 @@ const AddCourse = () => {
                         <select
                         onChange={handleChange}
                         defaultValue={"option"}
-                        name="category"
+                        name="course_type"
                         className="form-control form-control"
                       >
                         <option>Select</option>
-                        <option value="">Online </option>
-                        <option value="">
-                        Offline
-                        </option>
+                        <option value="online">Online</option>
+                        <option value="offline">Offline</option>
                       </select>
                     </div>
                   </div>
@@ -280,11 +278,11 @@ const AddCourse = () => {
                        <select
                         onChange={handleChange}
                         defaultValue={"option"}
-                        name="category"
+                        name="duration"
                         className="form-control form-control"
                       >
                         <option>Select</option>
-                        <option value="">Variable</option>
+                        <option value="variable">Variable</option>
                       </select>
                     </div>
                   </div>
@@ -309,14 +307,12 @@ const AddCourse = () => {
                        <select
                         onChange={handleChange}
                         defaultValue={"option"}
-                        name="category"
+                        name="course_level"
                         className="form-control form-control"
                       >
                         <option>Select</option>
-                        <option value="">Intermediate</option>
-                        <option value="">
-                       Advanced
-                        </option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
                       </select>
                     </div>
                   </div>
@@ -339,11 +335,11 @@ const AddCourse = () => {
                        <select
                         onChange={handleChange}
                         defaultValue={"option"}
-                        name="category"
+                        name="certificate_line"
                         className="form-control form-control"
                       >
                         <option>Select</option>
-                        <option value="">Certificate of completion</option>
+                        <option value="certificate of completion">Certificate of completion</option>
                        
                       </select>
                     </div>

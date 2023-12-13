@@ -81,16 +81,17 @@ const tabledata = [
 
 const FoodDetails = () => {
   const makeRequest = fetchData();
-  const [loading, setLoading] = useState(false)
-    const [blog, setBlog] = useState({
+  const [loading, setLoading] = useState(false);
+  const [blog, setBlog] = useState({
     header: "",
     content: "",
     author: "",
     tags: "",
     image: null,
+    state: "",
   });
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   function handleChange(e) {
     setBlog((prev) => {
       return {
@@ -100,24 +101,25 @@ const FoodDetails = () => {
     });
   }
   function submit() {
-    setLoading(true)
+    console.log(blog);
+    setLoading(true);
     makeRequest("POST", "/blog/create-blog", blog)
       .then((res) => {
-        navigate('/view-blog')
+        navigate("/view-blog");
         swal("Done!", "Blog Created", "success");
       })
       .catch((err) => {
-        setLoading(false)
+        setLoading(false);
         let error = err?.data?.errors[0]?.error
-        ? err?.data?.errors[0]?.error
-        : err?.data?.errors[0]?.message;
+          ? err?.data?.errors[0]?.error
+          : err?.data?.errors[0]?.message;
         swal("Oops!", error, "error");
         console.log(err?.data?.errors[0]);
-    }).catch(err => {
+      })
+      .catch((err) => {
         console.log(err);
-        setLoading(false)
-    });
-    console.log(blog);
+        setLoading(false);
+      });
   }
 
   return (
@@ -139,109 +141,102 @@ const FoodDetails = () => {
             }}
           >
             <form type="button" onSubmit={(e) => e.preventDefault()}>
-              <div  style={{}}>
-               
-                  <div className="row">
-                    <div className="col-6">
-                        
-              <div style={{  }}>
-                <div className="card-body">
-                  <h4 className="">Add Blog Image:</h4>
-                  <div className="mb-3 ">
-                    <input
-                      className="form-control input-default "
-                      type="file"
-                      id="formFile"
-                      onChange={(e) =>
-                        setBlog({ ...blog, image: e.target.files[0] })
-                      }
-                    />
-                  </div>
-                  </div>
-               </div>
-                  
-          
-       
-              <div style={{  }} className="">
-                <div className="card-body">
-                  <h4 className="">Blog Title:</h4>
-                  <div className=" mb-3 ">
-                    <input
-                      type="text"
-                      className="form-control  input-default "
-                      placeholder="Title"
-                      name="header"
-                      value={blog.header}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
-              </div>
-              </div>
-             
-              <div className="col-6" style={{  }}>
-                <div className="card-body">
-                  <h4 className="">Blog Author:</h4>
-                  <div className=" mb-3 ">
-                    <input
-                      name="author"
-                      value={blog.author}
-                      onChange={handleChange}
-                      type="text"
-                      className="form-control input-default "
-                      placeholder="Author"
-                    />
-                  </div>
-                </div>
-           
+              <div style={{}}>
+                <div className="row">
+                  <div className="col-6">
+                    <div style={{}}>
+                      <div className="card-body">
+                        <h4 className="">Add Blog Image:</h4>
+                        <div className="mb-3 ">
+                          <input
+                            className="form-control input-default "
+                            type="file"
+                            id="formFile"
+                            onChange={(e) =>
+                              setBlog({ ...blog, image: e.target.files[0] })
+                            }
+                          />
+                        </div>
+                      </div>
+                    </div>
 
-              <div style={{ }}>
-                <div className="card-body">
-                  <h4 className="">Blog Tags:</h4>
-                  <div className=" mb-3">
-                    <input
-                      name="tags"
-                      value={blog.tags}
-                      onChange={handleChange}
-                      type="text"
-                      className="form-control input-default "
-                      placeholder="Tag1, Tag2, Tag3.."
-                    />
+                    <div style={{}} className="">
+                      <div className="card-body">
+                        <h4 className="">Blog Title:</h4>
+                        <div className=" mb-3 ">
+                          <input
+                            type="text"
+                            className="form-control  input-default "
+                            placeholder="Title"
+                            name="header"
+                            value={blog.header}
+                            onChange={handleChange}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="col-6" style={{}}>
+                    <div className="card-body">
+                      <h4 className="">Blog Author:</h4>
+                      <div className=" mb-3 ">
+                        <input
+                          name="author"
+                          value={blog.author}
+                          onChange={handleChange}
+                          type="text"
+                          className="form-control input-default "
+                          placeholder="Author"
+                        />
+                      </div>
+                    </div>
+
+                    <div style={{}}>
+                      <div className="card-body">
+                        <h4 className="">Blog Tags:</h4>
+                        <div className=" mb-3">
+                          <input
+                            name="tags"
+                            value={blog.tags}
+                            onChange={handleChange}
+                            type="text"
+                            className="form-control input-default "
+                            placeholder="Tag1, Tag2, Tag3.."
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                </div>
-              </div>
-              </div>
-             
               </div>
 
-           <div style={{display:'flex', justifyContent:"center"}}>
-              <div className="col-5" style={{}}>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <div className="col-5" style={{}}>
                   <div className="card-body">
                     <h4 className="" style={{ textAlign: "center" }}>
                       Blog Status:
                     </h4>
                     <div className="form-group mb-3">
                       <select
-                        name="category"
+                        name="state"
+                        onChange={handleChange}
                         className="form-control form-control"
                       >
                         <option value="">Select</option>
-                        <option value="Care Course">Published</option>
-                        <option value="Mandatory Care Courses">
-                        Draft
-                        </option>
-                      
-                       
+                        <option value="published">Published</option>
+                        <option value="draft">Draft</option>
                       </select>
                     </div>
                   </div>
                 </div>
-                </div>
+              </div>
 
-              <div style={{  }}>
+              <div style={{}}>
                 <div className="card-body">
-                  <h4 style={{textAlign:"center"}} className="">Blog Content:</h4>
+                  <h4 style={{ textAlign: "center" }} className="">
+                    Blog Content:
+                  </h4>
                   <div className="form-group ">
                     <textarea
                       className="form-control"
@@ -258,7 +253,7 @@ const FoodDetails = () => {
 
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <div className="m-2 p-2 ">
-                {!loading ? (
+                  {!loading ? (
                     <Button
                       class="btn btn-primary"
                       type="button"

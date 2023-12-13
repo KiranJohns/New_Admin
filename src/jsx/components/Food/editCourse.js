@@ -154,7 +154,7 @@ const EditCourse = () => {
 
     console.log(updatedCourse);
 
-    form.append("RRP", updatedCourse.RRP);
+    form.append("RRP", parseFloat(updatedCourse.RRP).toFixed(2));
     form.append("course_id", state.id);
     form.append("name", updatedCourse.name);
     form.append("description", updatedCourse.description);
@@ -171,7 +171,7 @@ const EditCourse = () => {
       "what_you_will_learn_point",
       updatedCourse.what_you_will_learn_point
     );
-    form.append("price", updatedCourse.price);
+    form.append("price", parseFloat(updatedCourse.price).toFixed(2));
     form.append("course_type", updatedCourse.course_type);
     form.append("duration", updatedCourse.duration);
     form.append("course_level", updatedCourse.course_level);
