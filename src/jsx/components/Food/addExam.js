@@ -278,7 +278,7 @@ const AddExam = () => {
                             style={{ width: "80%" }}
                             className="form-control"
                             type="text"
-                            placeholder="option A"
+                            placeholder="Option A"
                           />
                         </div>
                       </div>
@@ -308,7 +308,7 @@ const AddExam = () => {
                             style={{ width: "80%" }}
                             className="form-control"
                             type="text"
-                            placeholder="option B"
+                            placeholder="Option C"
                           />
                         </div>
                       </div>
@@ -332,7 +332,7 @@ const AddExam = () => {
                             style={{ width: "80%" }}
                             className="form-control"
                             type="text"
-                            placeholder="option C"
+                            placeholder="Option B"
                           />
                         </div>
                       </div>
@@ -355,7 +355,7 @@ const AddExam = () => {
                             style={{ width: "80%" }}
                             className="form-control"
                             type="text"
-                            placeholder="option D"
+                            placeholder="Option D"
                           />
                         </div>
                       </div>
@@ -381,7 +381,7 @@ const AddExam = () => {
                             style={{ width: "80%" }}
                             className="form-control"
                             type="text"
-                            placeholder="option E"
+                            placeholder="Option E"
                           />
                         </div>
                       </div>
@@ -405,7 +405,7 @@ const AddExam = () => {
                             style={{ width: "80%" }}
                             className="form-control"
                             type="text"
-                            placeholder="option F"
+                            placeholder="Option F"
                           />
                         </div>
                       </div>
