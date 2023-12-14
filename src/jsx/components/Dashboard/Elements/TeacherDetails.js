@@ -146,7 +146,7 @@ export const TeacherDetails = ({ companies }) => {
   const number = [...Array(npage + 1).keys()].slice(1);
 
   useEffect(() => {
-    setCompanies(companies);
+    setCompanies([...companies].reverse());
   }, []);
   function prePage() {
     if (currentPage !== 1) {

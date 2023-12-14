@@ -9,7 +9,6 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 const cardBlog = [
   { image: IMAGES.avatarpng1, title: "Samantha W." },
   { image: IMAGES.avatarpng2, title: "Karen Hope." },
@@ -78,7 +77,7 @@ const EditCourse = () => {
   const [thumbnail, setThumbnail] = useState(null);
   const [resource, setResource] = useState(null);
   const [ppt, setPpt] = useState(null);
-  const navigate = useNavigate;
+  const navigate = useNavigate();
 
   const makeRequest = fetchData();
 
@@ -86,13 +85,13 @@ const EditCourse = () => {
     let form = new FormData();
     form.append("course_id", state.id);
     form.append("thumbnail", thumbnail);
-    setThumbnail(true);
+    setLoadingThumb(true);
     makeRequest("POST", "/course/update-course-thumbnail", form)
       .then((res) => {
-        setThumbnail(false);
-        setLoadingThumb(false)
+        setThumbnail(null);
+        setLoadingThumb(false);
         navigate("/view-course");
-        swal("thumbnail updated");
+        swal("Done!", "updated thumbnail", "success");
         console.log(res);
       })
       .catch((err) => {
@@ -102,6 +101,7 @@ const EditCourse = () => {
   }
 
   function handleCourseInfoSubmit() {
+    console.log(aims.split("#").filter((item) => item.replace(/\n/g, "")));
     let form = new FormData();
     let updatedCourse = {
       ...course,
@@ -111,7 +111,7 @@ const EditCourse = () => {
       what_you_will_learn_point: JSON.stringify(what_you_will_learn.split("#")),
     };
 
-    console.log(updatedCourse);
+    // console.log(updatedCourse);
 
     form.append("RRP", parseFloat(updatedCourse.RRP).toFixed(2));
     form.append("course_id", state.id);
@@ -142,7 +142,7 @@ const EditCourse = () => {
       .then((res) => {
         navigate("/view-course");
         setLoading(false);
-        swal("course text fields updated");
+        swal("Done!", "updated course info", "success");
         console.log(res);
       })
       .catch((err) => {
@@ -154,14 +154,16 @@ const EditCourse = () => {
     let form = new FormData();
     form.append("course_id", state.id);
     form.append("video", video);
+    setLoadingVideo(true);
     makeRequest("POST", "/course/update-course-video", form)
       .then((res) => {
-        setLoadingVideo(false)
+        setLoadingVideo(false);
         navigate("/view-course");
-        swal("video updated");
+        swal("Done!", "updated video", "success");
         console.log(res);
       })
       .catch((err) => {
+        setLoadingVideo(false);
         console.log(err);
       });
   }
@@ -171,14 +173,16 @@ const EditCourse = () => {
     for (let i = 0; i < ppt?.length; i++) {
       form.append("image", ppt[i]);
     }
+    setLoadingPpt(true);
     makeRequest("POST", "/course/update-course-ppt", form)
       .then((res) => {
         console.log(res);
-        setLoadingPpt(false)
+        setLoadingPpt(false);
         navigate("/view-course");
-        swal("ppt updated");
+        swal("Done!", "updated ppt", "success");
       })
       .catch((err) => {
+        setLoadingPpt(false);
         console.log(err);
       });
   }
@@ -189,14 +193,16 @@ const EditCourse = () => {
       form.append("resource", resource[i]);
     }
 
+    setLoadingRes(true);
     makeRequest("POST", "/course/update-course-resource", form)
       .then((res) => {
         console.log(res);
-        setLoadingRes(false)
+        setLoadingRes(false);
         navigate("/view-course");
-        swal("resource updated");
+        swal("Done!", "updated resource", "success");
       })
       .catch((err) => {
+        setLoadingRes(false);
         console.log(err);
       });
   }
@@ -214,12 +220,44 @@ const EditCourse = () => {
       .then((res) => {
         console.log(typeof res.data.response[0].aims);
         let course = res.data.response[0];
-        console.log(course);
+        console.log(course.aims);
 
-        setAims(course.aims.join("#"));
-        setWhoShouldSttend(course.who_should_attend.join("#"));
-        setObjectivesPoint(course.objectives_point.join("#"));
-        setWhatYouWillLearn(course.what_you_will_learn_point.join("#"));
+        setAims(
+          course.aims
+            .map((item) => {
+              if (item) {
+                return "#" + item;
+              }
+            })
+            .join("")
+        );
+        setWhoShouldSttend(
+          course.who_should_attend
+            .map((item) => {
+              if (item) {
+                return "#" + item;
+              }
+            })
+            .join("")
+        );
+        setObjectivesPoint(
+          course.objectives_point
+            .map((item) => {
+              if (item) {
+                return "#" + item;
+              }
+            })
+            .join("")
+        );
+        setWhatYouWillLearn(
+          course.what_you_will_learn_point
+            .map((item) => {
+              if (item) {
+                return "#" + item;
+              }
+            })
+            .join("")
+        );
 
         setCourse({
           ...course,
@@ -722,14 +760,13 @@ const EditCourse = () => {
                       <h4 className="" style={{ textAlign: "center" }}>
                         Upload Course Image:
                       </h4>
-                      <small style={{visibility:'hidden'}}>*images</small>
+                      <small style={{ visibility: "hidden" }}>*images</small>
                       <div className="">
-                      
                         <label
                           htmlFor="formFile"
                           className="form-label"
                         ></label>
-                            
+
                         <input
                           className="form-control"
                           type="file"
@@ -737,7 +774,7 @@ const EditCourse = () => {
                           onChange={(e) => setThumbnail(e.target.files[0])}
                         />
                       </div>
-                      {!thumbnail || loadingThumb ? (
+                      {!thumbnail || !loadingThumb ? (
                         <Button
                           class="btn btn-primary"
                           type="button"
@@ -776,7 +813,7 @@ const EditCourse = () => {
                           }}
                           id="formFile"
                         />
-                        {!video || loadingVideo ? (
+                        {!video || !loadingVideo ? (
                           <Button
                             class="btn btn-primary"
                             type="button"
@@ -821,7 +858,7 @@ const EditCourse = () => {
                           type="file"
                           id="formFile"
                         />
-                        {!ppt || loadingPpt ? (
+                        {!ppt || !loadingPpt ? (
                           <Button
                             class="btn btn-primary"
                             type="button"
@@ -866,7 +903,7 @@ const EditCourse = () => {
                           multiple
                         />
                       </div>
-                      {!resource || loadingRes ? (
+                      {!resource || !loadingRes ? (
                         <Button
                           class="btn btn-primary"
                           type="button"
