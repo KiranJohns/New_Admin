@@ -310,11 +310,6 @@ const PublishedBlog = ({publishedBlog,getBlogs}) => {
           <tbody>
             {publishedBlog &&
               publishedBlog.map((item) => {
-                let date = new Date(item.date)
-                  .toLocaleDateString()
-                  .split("/")
-                  .map((d) => (d.length <= 1 ? "0" + d : d));
-                date = date[1] + "-" + date[0] + "-" + date[2];
                 return (
                   <tr style={{ textAlign: "center" }}>
                     <td>
@@ -330,7 +325,7 @@ const PublishedBlog = ({publishedBlog,getBlogs}) => {
                       </a>
                     </td>
                     <td>{item.author}</td>
-                    <td>{date}</td>
+                    <td>{item.date}</td>
                     <td>0</td>
                     <td>{item?.tags ? JSON.parse(item.tags).join(",") : ""}</td>
                     <td>
