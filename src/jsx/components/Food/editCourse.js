@@ -9,50 +9,6 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const inputBlog = [
-  {
-    inputid: "1234",
-    lable: "Calories: 217.",
-    inputid2: "23456",
-    lable2: "2 tablespoons butter, softened, divided",
-  },
-  {
-    inputid: "1235",
-    lable: "Water: 61%",
-    inputid2: "23457",
-    lable2: "1 teaspoon minced fresh parsley",
-  },
-  {
-    inputid: "1236",
-    lable: "Protein: 26.1 grams.",
-    inputid2: "23458",
-    lable2: "1/2 teaspoon minced garlic",
-  },
-  {
-    inputid: "1237",
-    lable: "Carbs: 0 grams.",
-    inputid2: "23459",
-    lable2: "1/4 teaspoon reduced-sodium soy sauce",
-  },
-  {
-    inputid: "1238",
-    lable: "Sugar: 0 grams.",
-    inputid2: "23460",
-    lable2: "1 beef flat iron steak or boneless top sirloin steak (3/4 pound)",
-  },
-  {
-    inputid: "1239",
-    lable: "Fiber: 0 grams.",
-    inputid2: "23461",
-    lable2: "1/8 teaspoon salt",
-  },
-  {
-    inputid: "1240",
-    lable: "Vitamin: 10 grams.",
-    inputid2: "23462",
-    lable2: "1/8 teaspoon pepper",
-  },
-];
 
 const cardBlog = [
   { image: IMAGES.avatarpng1, title: "Samantha W." },
@@ -134,6 +90,9 @@ const EditCourse = () => {
     makeRequest("POST", "/course/update-course-thumbnail", form)
       .then((res) => {
         setThumbnail(false);
+        setLoadingThumb(false)
+        navigate("/view-course");
+        swal("thumbnail updated");
         console.log(res);
       })
       .catch((err) => {
@@ -197,6 +156,9 @@ const EditCourse = () => {
     form.append("video", video);
     makeRequest("POST", "/course/update-course-video", form)
       .then((res) => {
+        setLoadingVideo(false)
+        navigate("/view-course");
+        swal("video updated");
         console.log(res);
       })
       .catch((err) => {
@@ -212,6 +174,9 @@ const EditCourse = () => {
     makeRequest("POST", "/course/update-course-ppt", form)
       .then((res) => {
         console.log(res);
+        setLoadingPpt(false)
+        navigate("/view-course");
+        swal("ppt updated");
       })
       .catch((err) => {
         console.log(err);
@@ -227,6 +192,9 @@ const EditCourse = () => {
     makeRequest("POST", "/course/update-course-resource", form)
       .then((res) => {
         console.log(res);
+        setLoadingRes(false)
+        navigate("/view-course");
+        swal("resource updated");
       })
       .catch((err) => {
         console.log(err);
