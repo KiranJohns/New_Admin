@@ -47,6 +47,10 @@ const AddBundle = () => {
     });
   }
   function handleSubmit() {
+    let arr = [];
+    selectedCourse.forEach((item) => {
+      arr.push(item.id);
+    });
     if (!bundle.name) {
       swal("please provide name");
       return;
@@ -63,15 +67,12 @@ const AddBundle = () => {
       swal("please provide image");
       return;
     }
-    if (arr.length <= 0) {
+    if (arr?.length <= 0) {
       swal("please add courses");
       return;
     }
 
-    let arr = [];
-    selectedCourse.forEach((item) => {
-      arr.push(item.id);
-    });
+  
 
     console.log(bundle);
 
