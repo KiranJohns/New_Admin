@@ -192,6 +192,7 @@ const ViewCourse = () => {
       .then((res) => {
         setCourse((prev) => prev.filter((item) => item.id != Number(id)));
         swal("Done!", "successfully deleted", "success");
+        location.reload()
       })
       .catch((err) => {
         console.log(err);
