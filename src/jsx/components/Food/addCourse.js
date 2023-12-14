@@ -73,21 +73,20 @@ const AddCourse = () => {
   }
 
   function submit() {
-    setCourse((prev) => {
-      return {
-        ...prev,
-        aims: JSON.stringify(aims),
-        who_should_attend: JSON.stringify(who_should_attend),
-        objectives_point: JSON.stringify(objectives_point),
-        what_you_will_learn_point: JSON.stringify(what_you_will_learn),
-      };
-    });
-
+    let newData = {
+      ...course,
+      aims: JSON.stringify(aims),
+      who_should_attend: JSON.stringify(who_should_attend),
+      what_you_will_learn_point: JSON.stringify(what_you_will_learn),
+      objectives_point: JSON.stringify(objectives_point),
+    }
+    setCourse({...newData});
 
     setLoading(true);
     makeRequest("POST", "/course/create-course", {
       ...course,
-      price: Number(course.price),
+      price: parseFloat(course.price).toFixed(2),
+      RRP: parseFloat(course.RRP).toFixed(2),
     })
       .then((res) => {
         setLoading(false);
