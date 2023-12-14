@@ -551,7 +551,7 @@ const AppProfile = () => {
 								</div>
 								<div className="col-lg-12">
 									<div className="form-group mb-3">
-										<input type="submit" value="Post Comment" className="submit btn btn-primary" name="submit"/>
+										<input type="Submit" value="Post Comment" className="submit btn btn-primary" name="submit"/>
 									</div>
 								</div>
 							</div>

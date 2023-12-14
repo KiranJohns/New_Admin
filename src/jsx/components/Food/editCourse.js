@@ -702,7 +702,7 @@ const EditCourse = () => {
                     variant="primary"
                     onClick={handleCourseInfoSubmit}
                   >
-                    submit
+                    Submit
                   </Button>
                 ) : (
                   <button class="btn btn-primary" type="button" disabled>
@@ -741,7 +741,7 @@ const EditCourse = () => {
                           variant="primary"
                           onClick={handleThumbnailSubmitHandler}
                         >
-                          submit
+                          Submit
                         </Button>
                       ) : (
                         <button class="btn btn-primary" type="button" disabled>
@@ -780,7 +780,7 @@ const EditCourse = () => {
                             variant="primary"
                             onClick={handleVideoSubmitHandler}
                           >
-                            submit
+                            Submit
                           </Button>
                         ) : (
                           <button
@@ -825,7 +825,7 @@ const EditCourse = () => {
                             variant="primary"
                             onClick={handlePptSubmitHandler}
                           >
-                            submit
+                            Submit
                           </Button>
                         ) : (
                           <button
@@ -870,7 +870,7 @@ const EditCourse = () => {
                           variant="primary"
                           onClick={handleResourceSubmitHandler}
                         >
-                          submit
+                          Submit
                         </Button>
                       ) : (
                         <button class="btn btn-primary" type="button" disabled>

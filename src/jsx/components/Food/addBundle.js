@@ -381,7 +381,7 @@ const AddBundle = () => {
                       variant="primary"
                       onClick={handleSubmit}
                     >
-                      submit
+                      Submit
                     </Button>
                   ) : (
                     <button class="btn btn-primary" type="button" disabled>

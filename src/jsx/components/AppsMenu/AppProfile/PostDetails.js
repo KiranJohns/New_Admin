@@ -211,7 +211,7 @@ const PostDetails = () => {
                                     </div>
                                     <div className="col-lg-12">
                                       <div className="form-group mb-3">
-                                      <input type="submit" value="Post Comment" className="submit btn btn-primary" name="submit"/>
+                                      <input type="Submit" value="Post Comment" className="submit btn btn-primary" name="Submit"/>
                                       </div>
                                     </div>
                                     </div>
@@ -479,7 +479,7 @@ const PostDetails = () => {
                                   value="Post Comment"
                                   className="submit btn btn-primary"
                                   id="submit"
-                                  name="submit"
+                                  name="Submit"
                                 />
                               </div>
                             </div>
