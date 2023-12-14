@@ -327,7 +327,7 @@ const EditCourse = () => {
                         <option value="Mandatory Care Course">
                           Mandatory Care Course
                         </option>
-                        <option value="Specialized Care Course">
+                        <option value="Specialised Care Course">
                           Specialized Care Course
                         </option>
                         <option value="Recovery Care Course">
