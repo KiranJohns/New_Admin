@@ -722,11 +722,14 @@ const EditCourse = () => {
                       <h4 className="" style={{ textAlign: "center" }}>
                         Upload Course Image:
                       </h4>
+                      <small style={{visibility:'hidden'}}>*images</small>
                       <div className="">
+                      
                         <label
                           htmlFor="formFile"
                           className="form-label"
                         ></label>
+                            
                         <input
                           className="form-control"
                           type="file"
@@ -805,7 +808,7 @@ const EditCourse = () => {
                       <h4 className="" style={{ textAlign: "center" }}>
                         Upload Course ppt:
                       </h4>
-                      <span>*images</span>
+                      <small>*images</small>
                       <div className="">
                         <label
                           htmlFor="formFile"
@@ -849,7 +852,7 @@ const EditCourse = () => {
                       <h4 className="" style={{ textAlign: "center" }}>
                         Upload Course Resource:
                       </h4>
-                      <span>*ppt *video *images</span>
+                      {/* <span >*ppt *video *images</span> */}
                       <div className="">
                         <label
                           htmlFor="formFileMultiple"
@@ -886,7 +889,7 @@ const EditCourse = () => {
                 </div>
               </div>
 
-              <div style={{ display: "flex", justifyContent: "center" }}>
+              {/* <div style={{ display: "flex", justifyContent: "center" }}>
                 <div className="m-2 p-2 ">
                   <Button
                     className=""
@@ -897,7 +900,7 @@ const EditCourse = () => {
                     Submit
                   </Button>
                 </div>
-              </div>
+              </div> */}
             </form>
           </div>
         </div>
