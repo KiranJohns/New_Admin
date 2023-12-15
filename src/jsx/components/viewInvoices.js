@@ -199,7 +199,7 @@ const ViewInvoice = () => {
                   invoice.map((item, id) => (
                     <tr>
                       <td>
-                        <strong>{id}</strong>
+                        <strong>{++id}</strong>
                       </td>
                       <td style={{ textAlign: "center" }}>{id}</td>
                       <td style={{ textAlign: "center" }}>
