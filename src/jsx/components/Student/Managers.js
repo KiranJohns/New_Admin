@@ -17,6 +17,7 @@ const ManagerTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   // const [checked, setChecked] = useState(tableData);
   const [users, setUsers] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
   const makeRequest = fetchData();
   const navigate = useNavigate();
 
@@ -41,6 +42,9 @@ const ManagerTable = () => {
       .then((res) => {
         console.log(res);
         setUsers(
+          res.data.response.filter((item) => item.type_of_account == "manager").reverse().filter(item => !item.block)
+        );
+        setAllUsers(
           res.data.response.filter((item) => item.type_of_account == "manager").reverse().filter(item => !item.block)
         );
       })
@@ -90,6 +94,17 @@ const ManagerTable = () => {
                     type="text"
                     className="form-control"
                     placeholder="Search here..."
+                    onChange={(e) => {
+                      if (e.target.value != "") {
+                        return setUsers(
+                          allUsers.filter((user) => {
+                            return user.first_name.toLocaleLowerCase().startsWith(e.target.value.toLocaleLowerCase());
+                          })
+                        );
+                      } else {
+                        return setUsers(allUsers);
+                      }
+                    }}
                   />
                   <span className="input-group-text">
                     <Link to={"#"}>
