@@ -162,7 +162,7 @@ const ViewCourse = () => {
   useEffect(() => {
     makeRequest("GET", "/course/get-all-course")
       .then((res) => {
-        setCourse(res.data.response);
+        setCourse(res.data.response.reverse());
       })
       .catch((err) => {
         console.log(err);
@@ -191,7 +191,7 @@ const ViewCourse = () => {
     makeRequest("DELETE", `/course/delete/${id}`)
       .then((res) => {
         setCourse((prev) => prev.filter((item) => item.id != Number(id)));
-        swal("Done!", "successfully deleted", "success");
+        swal("Done!", "Successfully Deleted", "success");
         window.location.reload()
       })
       .catch((err) => {
