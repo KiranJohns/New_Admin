@@ -11,126 +11,34 @@ import fetchData from "../../../axios";
 import swal from "sweetalert";
 import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
 
-const tableData = [
-  {
-    id: "1",
-    image: IMAGES.trans1,
-    name: "Samantha William",
-    tabid: "123456789",
-    email: "samantha@gmail.com",
-    phone: "68523652",
-    city: "Jakarta",
-    type: "Active",
-  },
-  {
-    id: "2",
-    image: IMAGES.trans2,
-    name: "Tony Soap",
-    tabid: "123453254",
-    email: "tony@gmail.com",
-    phone: "52523652",
-    city: "Phoenix",
-    type: "Active",
-  },
-  {
-    id: "3",
-    image: IMAGES.trans3,
-    name: "Karen Hope",
-    tabid: "123456452",
-    email: "jkaren@hotmail.com",
-    phone: "78525265",
-    city: "Texas",
-    type: "Active",
-  },
-  {
-    id: "4",
-    image: IMAGES.trans4,
-    name: "Jordan Nico",
-    tabid: "123442584",
-    email: "jkaren@hotmail.com",
-    phone: "98525265",
-    city: "Dallas",
-    type: "Active",
-  },
-  {
-    id: "5",
-    image: IMAGES.trans5,
-    name: "Nadila Adja",
-    tabid: "654781357",
-    email: "nadila@hotmail.com",
-    phone: "10125265",
-    city: "Houston",
-    type: "Active",
-  },
-  {
-    id: "6",
-    image: IMAGES.trans6,
-    name: "Johnny Ahmad",
-    tabid: "123454555",
-    email: "johhnny@hotmail.com",
-    phone: "22125265",
-    city: "Chicago",
-    type: "Expired",
-  },
-  {
-    id: "7",
-    image: IMAGES.trans7,
-    name: "Dakota Farral",
-    tabid: "235456789",
-    email: "dakota@hotmail.com",
-    phone: "55125265",
-    city: "Philadelphia",
-    type: "Expired",
-  },
-  {
-    id: "8",
-    image: IMAGES.trans8,
-    name: "Dimitres Viga",
-    tabid: "568756789",
-    email: "samantha@gmail.com",
-    phone: "52523652",
-    city: "Sharjah",
-    type: "Expired",
-  },
-  {
-    id: "9",
-    image: IMAGES.trans9,
-    name: "Samantha William",
-    tabid: "999956789",
-    email: "jkaren@hotmail.com",
-    phone: "68523652",
-    city: "Ajman",
-    type: "Expired",
-  },
-];
 
 const CouponList = () => {
   const [showModal, setShowModal] = useState(false);
   // const childRef = useRef();
   const [currentPage, setCurrentPage] = useState(1);
-  const [checked, setChecked] = useState(tableData);
+  // const [checked, setChecked] = useState(tableData);
   const [unchecked, setUnChecked] = useState(true);
   const [coupons, setCoupons] = useState([]);
   const [coupon, setCoupon] = useState({amount: "", coupon_code: "", coupon_type: "", id: "", minimum_purchase: "", valid_till: ""});
   const navigate = useNavigate();
   const makeRequest = fetchData();
 
-  const handleChecked = (id) => {
-    let temp = checked.map((data) => {
-      if (id === data.id) {
-        return { ...data, inputchecked: !data.inputchecked };
-      }
-      return data;
-    });
-    setChecked(temp);
-  };
-  const handleCheckedAll = (value) => {
-    let temp = checked.map((data) => {
-      return { ...data, inputchecked: value };
-    });
-    setChecked(temp);
-    setUnChecked(!unchecked);
-  };
+  // const handleChecked = (id) => {
+  //   let temp = checked.map((data) => {
+  //     if (id === data.id) {
+  //       return { ...data, inputchecked: !data.inputchecked };
+  //     }
+  //     return data;
+  //   });
+  //   setChecked(temp);
+  // };
+  // const handleCheckedAll = (value) => {
+  //   let temp = checked.map((data) => {
+  //     return { ...data, inputchecked: value };
+  //   });
+  //   setChecked(temp);
+  //   setUnChecked(!unchecked);
+  // };
 
   function handleDelete(id) {
     makeRequest("DELETE", `/coupon/delete-coupon/${id}`)
@@ -178,8 +86,8 @@ const CouponList = () => {
   const recordsPage = 15;
   const lastIndex = currentPage * recordsPage;
   const firstIndex = lastIndex - recordsPage;
-  const records = checked.slice(firstIndex, lastIndex);
-  const npage = Math.ceil(checked.length / recordsPage);
+  const records = coupons.slice(firstIndex, lastIndex);
+  const npage = Math.ceil(coupons.length / recordsPage);
   const number = [...Array(npage + 1).keys()].slice(1);
   function prePage() {
     if (currentPage !== 1) {
@@ -374,7 +282,7 @@ const CouponList = () => {
                             type="checkbox"
                             className="form-check-input"
                             id="checkAll"
-                            onClick={() => handleCheckedAll(unchecked)}
+                            // onClick={() => handleCheckedAll(unchecked)}
                           />
                         </th>
 
@@ -401,7 +309,7 @@ const CouponList = () => {
                                       className="form-check-input"
                                       id={`stud-${item.id}`}
                                       checked={item.inputchecked}
-                                      onChange={() => handleChecked(item.id)}
+                                      // onChange={() => handleChecked(item.id)}
                                     />
                                     <label
                                       className="custom-control-label"
@@ -430,9 +338,7 @@ const CouponList = () => {
                               </td>
                               <td>
                                 <h6 className="mb-0">
-                                  {new Date(
-                                    item?.valid_till
-                                  ).toLocaleDateString()}
+                                  {item?.date}
                                 </h6>
                               </td>
 
@@ -475,10 +381,10 @@ const CouponList = () => {
                   <div className="d-sm-flex text-center justify-content-between align-items-center">
                     <div className="dataTables_info">
                       Showing {lastIndex - recordsPage + 1} to{" "}
-                      {tableData.length < lastIndex
-                        ? tableData.length
+                      {coupons.length < lastIndex
+                        ? coupons.length
                         : lastIndex}{" "}
-                      of {tableData.length} entries
+                      of {coupons.length} entries
                     </div>
                     <div
                       className="dataTables_paginate paging_simple_numbers justify-content-center"

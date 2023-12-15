@@ -11,248 +11,6 @@ import fetchData from "../../../axios/index";
 import { FaDownload } from "react-icons/fa";
 import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
 
-const tableData = [
-  {
-    id: "1",
-    image: IMAGES.trans1,
-    name: "Samantha William",
-    tabid: "123456789",
-    email: "samantha@gmail.com",
-    phone: "68523652",
-    city: "Jakarta",
-    type: "Individual",
-  },
-  {
-    id: "2",
-    image: IMAGES.trans2,
-    name: "Tony Soap",
-    tabid: "123453254",
-    email: "tony@gmail.com",
-    phone: "52523652",
-    city: "Phoenix",
-    type: "Individual",
-  },
-  {
-    id: "3",
-    image: IMAGES.trans3,
-    name: "Karen Hope",
-    tabid: "123456452",
-    email: "jkaren@hotmail.com",
-    phone: "78525265",
-    city: "Texas",
-    type: "Company",
-  },
-  {
-    id: "4",
-    image: IMAGES.trans4,
-    name: "Jordan Nico",
-    tabid: "123442584",
-    email: "jkaren@hotmail.com",
-    phone: "98525265",
-    city: "Dallas",
-    type: "Individual",
-  },
-  {
-    id: "5",
-    image: IMAGES.trans5,
-    name: "Nadila Adja",
-    tabid: "654781357",
-    email: "nadila@hotmail.com",
-    phone: "10125265",
-    city: "Houston",
-    type: "Individual",
-  },
-  {
-    id: "6",
-    image: IMAGES.trans6,
-    name: "Johnny Ahmad",
-    tabid: "123454555",
-    email: "johhnny@hotmail.com",
-    phone: "22125265",
-    city: "Chicago",
-    type: "Individual",
-  },
-  {
-    id: "7",
-    image: IMAGES.trans7,
-    name: "Dakota Farral",
-    tabid: "235456789",
-    email: "dakota@hotmail.com",
-    phone: "55125265",
-    city: "Philadelphia",
-    type: "Company",
-  },
-  {
-    id: "8",
-    image: IMAGES.trans8,
-    name: "Dimitres Viga",
-    tabid: "568756789",
-    email: "samantha@gmail.com",
-    phone: "52523652",
-    city: "Sharjah",
-    type: "Individual",
-  },
-  {
-    id: "9",
-    image: IMAGES.trans9,
-    name: "Samantha William",
-    tabid: "999956789",
-    email: "jkaren@hotmail.com",
-    phone: "68523652",
-    city: "Ajman",
-    type: "Company",
-  },
-  {
-    id: "10",
-    image: IMAGES.trans5,
-    name: "Samantha William",
-    tabid: "882356789",
-    email: "Aug 25, 2023",
-    phone: "10125265",
-    city: "Umm",
-    type: "Individual",
-  },
-  {
-    id: "11",
-    image: IMAGES.trans2,
-    name: "Samantha William",
-    tabid: "123456789",
-    email: "samantha@gmail.com",
-    phone: "68523652",
-    city: "Jakarta",
-    type: "Individual",
-  },
-  {
-    id: "12",
-    image: IMAGES.trans1,
-    name: "Tony Soap",
-    tabid: "123453254",
-    email: "tony@gmail.com",
-    phone: "52523652",
-    city: "Phoenix",
-    type: "Individual",
-  },
-  {
-    id: "13",
-    image: IMAGES.trans5,
-    name: "Karen Hope",
-    tabid: "123456452",
-    email: "jkaren@hotmail.com",
-    phone: "78525265",
-    city: "Texas",
-    type: "Company",
-  },
-  {
-    id: "14",
-    image: IMAGES.trans3,
-    name: "Jordan Nico",
-    tabid: "123442584",
-    email: "jkaren@hotmail.com",
-    phone: "98525265",
-    city: "Dallas",
-    type: "Individual",
-  },
-  {
-    id: "15",
-    image: IMAGES.trans5,
-    name: "Nadila Adja",
-    tabid: "654781357",
-    email: "nadila@hotmail.com",
-    phone: "10125265",
-    city: "Houston",
-    type: "Individual",
-  },
-  {
-    id: "16",
-    image: IMAGES.trans6,
-    name: "Johnny Ahmad",
-    tabid: "123454555",
-    email: "johhnny@hotmail.com",
-    phone: "22125265",
-    city: "Chicago",
-    type: "Individual",
-  },
-  {
-    id: "17",
-    image: IMAGES.trans7,
-    name: "Dakota Farral",
-    tabid: "235456789",
-    email: "dakota@hotmail.com",
-    phone: "55125265",
-    city: "Philadelphia",
-    type: "Company",
-  },
-  {
-    id: "18",
-    image: IMAGES.trans8,
-    name: "Dimitres Viga",
-    tabid: "568756789",
-    email: "samantha@gmail.com",
-    phone: "52523652",
-    city: "Sharjah",
-    type: "Individual",
-  },
-  {
-    id: "19",
-    image: IMAGES.trans9,
-    name: "Samantha William",
-    tabid: "999956789",
-    email: "jkaren@hotmail.com",
-    phone: "68523652",
-    city: "Ajman",
-    type: "Company",
-  },
-  {
-    id: "20",
-    image: IMAGES.trans1,
-    name: "Samantha William",
-    tabid: "882356789",
-    email: "Aug 25, 2023",
-    phone: "10125265",
-    city: "Umm",
-    type: "Individual",
-  },
-  {
-    id: "15",
-    image: IMAGES.trans9,
-    name: "Samantha William",
-    tabid: "999956789",
-    email: "jkaren@hotmail.com",
-    phone: "68523652",
-    city: "Ajman",
-    type: "Company",
-  },
-  {
-    id: "16",
-    image: IMAGES.trans5,
-    name: "Samantha William",
-    tabid: "882356789",
-    email: "Aug 25, 2023",
-    phone: "10125265",
-    city: "Umm",
-    type: "Individual",
-  },
-  {
-    id: "17",
-    image: IMAGES.trans2,
-    name: "Samantha William",
-    tabid: "123456789",
-    email: "samantha@gmail.com",
-    phone: "68523652",
-    city: "Jakarta",
-    type: "Individual",
-  },
-  {
-    id: "18",
-    image: IMAGES.trans1,
-    name: "Tony Soap",
-    tabid: "123453254",
-    email: "tony@gmail.com",
-    phone: "52523652",
-    city: "Phoenix",
-    type: "Individual",
-  },
-];
 
 const ViewCertificates = () => {
   // const childRef = useRef();
@@ -261,22 +19,22 @@ const ViewCertificates = () => {
   const makeRequest = fetchData();
   const [unchecked, setUnChecked] = useState(true);
 
-  const handleChecked = (id) => {
-    let temp = checked.map((data) => {
-      if (id === data.id) {
-        return { ...data, inputchecked: !data.inputchecked };
-      }
-      return data;
-    });
-    setChecked(temp);
-  };
-  const handleCheckedAll = (value) => {
-    let temp = checked.map((data) => {
-      return { ...data, inputchecked: value };
-    });
-    setChecked(temp);
-    setUnChecked(!unchecked);
-  };
+  // const handleChecked = (id) => {
+  //   let temp = checked.map((data) => {
+  //     if (id === data.id) {
+  //       return { ...data, inputchecked: !data.inputchecked };
+  //     }
+  //     return data;
+  //   });
+  //   setChecked(temp);
+  // };
+  // const handleCheckedAll = (value) => {
+  //   let temp = checked.map((data) => {
+  //     return { ...data, inputchecked: value };
+  //   });
+  //   setChecked(temp);
+  //   setUnChecked(!unchecked);
+  // };
 
   useEffect(() => {
     makeRequest("GET", "/certificate/get-all-certificates")
@@ -382,7 +140,7 @@ const ViewCertificates = () => {
                             type="checkbox"
                             className="form-check-input"
                             id="checkAll"
-                            onClick={() => handleCheckedAll(unchecked)}
+                            // onClick={() => handleCheckedAll(unchecked)}
                           />
                         </th>
                         <th>ID</th>
@@ -404,7 +162,7 @@ const ViewCertificates = () => {
                                   className="form-check-input"
                                   id={`stud-${item.id}`}
                                   checked={item.inputchecked}
-                                  onChange={() => handleChecked(item.id)}
+                                  // onChange={() => handleChecked(item.id)}
                                 />
                                 <label
                                   className="custom-control-label"
@@ -461,10 +219,10 @@ const ViewCertificates = () => {
                   <div className="d-sm-flex text-center justify-content-between align-items-center">
                     <div className="dataTables_info">
                       Showing {lastIndex - recordsPage + 1} to{" "}
-                      {tableData.length < lastIndex
-                        ? tableData.length
+                      {records.length < lastIndex
+                        ? records.length
                         : lastIndex}{" "}
-                      of {tableData.length} entries
+                      of {records.length} entries
                     </div>
                     <div
                       className="dataTables_paginate paging_simple_numbers justify-content-center"
