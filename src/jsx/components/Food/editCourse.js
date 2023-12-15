@@ -91,7 +91,7 @@ const EditCourse = () => {
         setThumbnail(null);
         setLoadingThumb(false);
         navigate("/view-course");
-        swal("Done!", "updated thumbnail", "success");
+        swal("Done!", "Course Updated", "success");
         console.log(res);
       })
       .catch((err) => {
@@ -142,7 +142,7 @@ const EditCourse = () => {
       .then((res) => {
         navigate("/view-course");
         setLoading(false);
-        swal("Done!", "updated course info", "success");
+        swal("Done!", "Course Updated", "success");
         console.log(res);
       })
       .catch((err) => {
@@ -159,7 +159,7 @@ const EditCourse = () => {
       .then((res) => {
         setLoadingVideo(false);
         navigate("/view-course");
-        swal("Done!", "updated video", "success");
+        swal("Done!", "Cousre Updated", "success");
         console.log(res);
       })
       .catch((err) => {
@@ -179,7 +179,7 @@ const EditCourse = () => {
         console.log(res);
         setLoadingPpt(false);
         navigate("/view-course");
-        swal("Done!", "updated ppt", "success");
+        swal("Done!", "Cousre Updated", "success");
       })
       .catch((err) => {
         setLoadingPpt(false);
@@ -199,7 +199,7 @@ const EditCourse = () => {
         console.log(res);
         setLoadingRes(false);
         navigate("/view-course");
-        swal("Done!", "updated resource", "success");
+        swal("Done!", "Course Updated", "success");
       })
       .catch((err) => {
         setLoadingRes(false);
@@ -547,6 +547,7 @@ const EditCourse = () => {
                           id="comment"
                           placeholder="Content"
                         ></textarea>
+                        <small>use # to seperate points</small>
                       </div>
                       <div
                         style={{ display: "flex", justifyContent: "center" }}
@@ -576,6 +577,7 @@ const EditCourse = () => {
                           id="comment"
                           placeholder="Content"
                         ></textarea>
+                        <small>use # to seperate points</small>
                       </div>
                       <div
                         style={{ display: "flex", justifyContent: "center" }}
@@ -603,6 +605,7 @@ const EditCourse = () => {
                           id="comment"
                           placeholder="Content"
                         ></textarea>
+                       
                       </div>
                     </div>
                   </div>
@@ -630,6 +633,7 @@ const EditCourse = () => {
                           id="comment"
                           placeholder="Content"
                         ></textarea>
+                         <small>use # to seperate points</small>
                       </div>
                       <div
                         style={{ display: "flex", justifyContent: "center" }}
@@ -659,6 +663,7 @@ const EditCourse = () => {
                           id="comment"
                           placeholder="Content"
                         ></textarea>
+                        <small>use # to seperate points</small>
                       </div>
                       <div
                         style={{ display: "flex", justifyContent: "center" }}
