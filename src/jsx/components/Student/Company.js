@@ -16,6 +16,7 @@ const CompanyTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   // const [checked, setChecked] = useState(tableData);
   const [users, setUsers] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
   const makeRequest = fetchData();
   const navigate = useNavigate();
 
@@ -41,6 +42,11 @@ const CompanyTable = () => {
         const response = await makeRequest("GET", "/info/get-all-users");
         console.log(response);
         setUsers(
+          response.data.response
+            .reverse()
+            .filter((item) => !item.block && item.type_of_account == "company")
+        );
+        setAllUsers(
           response.data.response
             .reverse()
             .filter((item) => !item.block && item.type_of_account == "company")
@@ -94,6 +100,17 @@ const CompanyTable = () => {
                     type="text"
                     className="form-control"
                     placeholder="Search here..."
+                    onChange={(e) => {
+                      if (e.target.value != "") {
+                        return setUsers(
+                          allUsers.filter((user) => {
+                            return user.first_name.toLocaleLowerCase().startsWith(e.target.value.toLocaleLowerCase());
+                          })
+                        );
+                      } else {
+                        return setUsers(allUsers);
+                      }
+                    }}
                   />
                   <span className="input-group-text">
                     <Link to={"#"}>
@@ -244,10 +261,8 @@ const CompanyTable = () => {
                   <div className="d-sm-flex text-center justify-content-between align-items-center">
                     <div className="dataTables_info">
                       Showing {lastIndex - recordsPage + 1} to{" "}
-                      {users.length < lastIndex
-                        ? users.length
-                        : lastIndex}{" "}
-                      of {users.length} entries
+                      {users.length < lastIndex ? users.length : lastIndex} of{" "}
+                      {users.length} entries
                     </div>
                     <div
                       className="dataTables_paginate paging_simple_numbers justify-content-center"

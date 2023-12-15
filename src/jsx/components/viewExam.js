@@ -7,6 +7,7 @@ import { RiChatDeleteFill } from "react-icons/ri";
 import PageTitle from "../layouts/PageTitle";
 import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
 import fetchData from "../../axios";
+import swal from "sweetalert";
 
 const svg1 = (
   <svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1">
@@ -154,6 +155,7 @@ const ViewExam = () => {
   function deleteExam(id) {
     makeRequest("DELETE",`/exam/delete-exam/${id}`).then(res => {
       setExams(exams.filter(item => item.id != id))
+      swal("Done!", "Bundle Deleted", "success")
     }).catch(err => {
       console.log(err);
     })
