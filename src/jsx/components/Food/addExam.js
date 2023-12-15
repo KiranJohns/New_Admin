@@ -170,14 +170,14 @@ const AddExam = () => {
                         <option value="Mandatory Care Course">
                           Mandatory Care Course
                         </option>
-                        <option value="Specialized Care Course">
-                          Specialised Care Course
+                        <option value="Specialised Care Course">
+                          Specialized Care Course
                         </option>
-                        <option value="Recovery Care Courses">
+                        <option value="Recovery Care Course">
                           Recovery Care Course
                         </option>
-                        <option value="Child Care Courses">
-                          Child Care Courses
+                        <option value="Child Care Course">
+                          Child Care Course
                         </option>
                       </select>
                     </div>
