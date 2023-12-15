@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { IMAGES } from "../Dashboard/Content";
 import { Dropdown, Modal } from "react-bootstrap";
@@ -11,7 +11,6 @@ import fetchData from "../../../axios";
 import swal from "sweetalert";
 import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
 
-
 const CouponList = () => {
   const [showModal, setShowModal] = useState(false);
   // const childRef = useRef();
@@ -19,7 +18,15 @@ const CouponList = () => {
   // const [checked, setChecked] = useState(tableData);
   const [unchecked, setUnChecked] = useState(true);
   const [coupons, setCoupons] = useState([]);
-  const [coupon, setCoupon] = useState({amount: "", coupon_code: "", coupon_type: "", id: "", minimum_purchase: "", valid_till: ""});
+  const [allCoupons, setAllCoupons] = useState([]);
+  const [coupon, setCoupon] = useState({
+    amount: "",
+    coupon_code: "",
+    coupon_type: "",
+    id: "",
+    minimum_purchase: "",
+    valid_till: "",
+  });
   const navigate = useNavigate();
   const makeRequest = fetchData();
 
@@ -51,21 +58,27 @@ const CouponList = () => {
       .catch((err) => console.log(err));
   }
 
-  makeRequest("GET", "/coupon/list-coupons").then((res) => {
-    if (res?.data.response) {
-      setCoupons(res?.data.response.reverse());
-    }
-  }).catch(err => {
-    console.log(err);
-  });
+  useEffect(() => {
+    makeRequest("GET", "/coupon/list-coupons")
+      .then((res) => {
+        if (res?.data.response) {
+          console.log(res?.data.response);
+          setCoupons(res?.data.response.reverse());
+          setAllCoupons(res?.data.response.reverse());
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   function handelEdit(id) {
-    makeRequest("PATCH", `/coupon/edit-coupon`,{
+    makeRequest("PATCH", `/coupon/edit-coupon`, {
       ...coupon,
-      coupon_id: coupon.id
+      coupon_id: coupon.id,
     })
       .then((res) => {
-        setShowModal(false)
+        setShowModal(false);
         setCoupons((prev) => {
           return prev.filter((item) => item.id !== id);
         });
@@ -75,12 +88,12 @@ const CouponList = () => {
   }
 
   function handleChange(e) {
-    setCoupon(prev => {
+    setCoupon((prev) => {
       return {
         ...prev,
-        [e.target.name]:e.target.value
-      }
-    })
+        [e.target.name]: e.target.value,
+      };
+    });
   }
 
   const recordsPage = 15;
@@ -114,6 +127,19 @@ const CouponList = () => {
                     type="text"
                     className="form-control"
                     placeholder="Search here..."
+                    onChange={(e) => {
+                      if (e.target.value != "") {
+                        return setCoupons(
+                          allCoupons.filter((coupon) => {
+                            return coupon.coupon_code
+                              .toLocaleLowerCase()
+                              .startsWith(e.target.value.toLocaleLowerCase());
+                          })
+                        );
+                      } else {
+                        return setCoupons(allCoupons);
+                      }
+                    }}
                   />
                   <span className="input-group-text">
                     <Link to={"#"}>
@@ -141,23 +167,27 @@ const CouponList = () => {
                       <Dropdown.Item>Newest</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
-                  <a href="/create-coupon">  <button
-                    type="button"
-                    className="btn btn-primary"
+                  <a href="/create-coupon">
+                    {" "}
+                    <button
+                      type="button"
+                      className="btn btn-primary"
 
-                  // onClick={() => childRef.current.openModal()}
-                  >
-                    + New Coupon
-                  </button></a>
+                      // onClick={() => childRef.current.openModal()}
+                    >
+                      + New Coupon
+                    </button>
+                  </a>
                 </div>
               </div>
             </div>
             <div className="col-xl-12 wow fadeInUp" data-wow-delay="1.5s">
-
               <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <div className="">
                   <div style={{ background: "#212A50" }} className="">
-                    <h4 style={{ color: "#fff", padding: ".6rem" }}>Edit Coupon</h4>
+                    <h4 style={{ color: "#fff", padding: ".6rem" }}>
+                      Edit Coupon
+                    </h4>
                   </div>
                   <form type="button" action="">
                     <div className="row">
@@ -171,8 +201,8 @@ const CouponList = () => {
                                 className="form-control  input-default "
                                 placeholder="LFC152"
                                 name="coupon_code"
-                              value={coupon.coupon_code}
-                              // onChange={handleChange}
+                                value={coupon.coupon_code}
+                                // onChange={handleChange}
                               />
                             </div>
                           </div>
@@ -186,9 +216,11 @@ const CouponList = () => {
                                 // onChange={handleChange}
                                 name="coupon_type"
                                 className="form-control"
-                              onChange={handleChange}
+                                onChange={handleChange}
                               >
-                                <option value={coupon.coupon_type}>{coupon.coupon_type}</option>
+                                <option value={coupon.coupon_type}>
+                                  {coupon.coupon_type}
+                                </option>
                                 <option value="Cash">Cash</option>
                                 <option value="Percent">Percent</option>
                               </select>
@@ -205,7 +237,9 @@ const CouponList = () => {
 
                             <input
                               name="valid_till"
-                              value={new Date(coupon.valid_till).toLocaleDateString('en-CA')}
+                              value={new Date(
+                                coupon.valid_till
+                              ).toLocaleDateString("en-CA")}
                               onChange={handleChange}
                               type="date"
                               className="form-control input-default "
@@ -230,7 +264,7 @@ const CouponList = () => {
                         </div>
                       </div>
                     </div>
-                    <div>  </div>
+                    <div> </div>
 
                     <div style={{}}>
                       <div className="card-body col-6">
@@ -262,7 +296,6 @@ const CouponList = () => {
                       </div>
                     </div>
                   </form>
-
                 </div>
               </Modal>
 
@@ -271,12 +304,16 @@ const CouponList = () => {
                   id="example-student_wrapper"
                   className="dataTables_wrapper no-footer"
                 >
-                  <Table
-                     responsive
-                     id="example-student"
-                  >
+                  <Table responsive id="example-student">
                     <thead>
-                      <tr style={{ textAlign: "center", background: "#212A50", color:"#fff", fontWeight:'bold'  }}>
+                      <tr
+                        style={{
+                          textAlign: "center",
+                          background: "#212A50",
+                          color: "#fff",
+                          fontWeight: "bold",
+                        }}
+                      >
                         <th>
                           <input
                             type="checkbox"
@@ -296,12 +333,12 @@ const CouponList = () => {
                         <th className="">Action</th>
                       </tr>
                     </thead>
-                    <tbody style={{background:"white"}}>
+                    <tbody style={{ background: "white" }}>
                       {coupons &&
                         coupons.map((item, ind) => {
                           return (
                             <tr style={{ textAlign: "center" }} key={ind}>
-                              <td >
+                              <td>
                                 <div className="checkbox me-0 align-self-center">
                                   <div className="custom-control custom-checkbox ">
                                     <input
@@ -337,17 +374,16 @@ const CouponList = () => {
                                 <h6 className="mb-0">{item?.amount}</h6>
                               </td>
                               <td>
-                                <h6 className="mb-0">
-                                  {item?.date}
-                                </h6>
+                                <h6 className="mb-0">{item?.date}</h6>
                               </td>
 
                               <td>
                                 <div
-                                  className={`badge bg-${new Date(item?.valid_till) > new Date()
-                                    ? "success"
-                                    : "warning"
-                                    }`}
+                                  className={`badge bg-${
+                                    new Date(item?.valid_till) > new Date()
+                                      ? "success"
+                                      : "warning"
+                                  }`}
                                 >
                                   {new Date(item?.valid_till) > new Date()
                                     ? "Active"
@@ -358,9 +394,11 @@ const CouponList = () => {
                                 <Button
                                   className="me-2"
                                   variant="primary btn-icon-xxs"
-                                  onClick={() =>{
-                                    setCoupon(coupons.find(c => c.id === item.id))
-                                    setShowModal(true)
+                                  onClick={() => {
+                                    setCoupon(
+                                      coupons.find((c) => c.id === item.id)
+                                    );
+                                    setShowModal(true);
                                   }}
                                 >
                                   <BiSolidEdit />
@@ -381,9 +419,7 @@ const CouponList = () => {
                   <div className="d-sm-flex text-center justify-content-between align-items-center">
                     <div className="dataTables_info">
                       Showing {lastIndex - recordsPage + 1} to{" "}
-                      {coupons.length < lastIndex
-                        ? coupons.length
-                        : lastIndex}{" "}
+                      {coupons.length < lastIndex ? coupons.length : lastIndex}{" "}
                       of {coupons.length} entries
                     </div>
                     <div
@@ -400,8 +436,9 @@ const CouponList = () => {
                       <span>
                         {number.map((n, i) => (
                           <Link
-                            className={`paginate_button ${currentPage === n ? "current" : ""
-                              } `}
+                            className={`paginate_button ${
+                              currentPage === n ? "current" : ""
+                            } `}
                             key={i}
                             onClick={() => changeCPage(n)}
                           >
