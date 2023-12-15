@@ -9,281 +9,42 @@ import { BiSolidEdit } from "react-icons/bi";
 import { RiChatDeleteFill } from "react-icons/ri";
 import { Button, ButtonGroup } from "react-bootstrap";
 import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
-import swal from 'sweetalert2'
-
-const tableData = [
-  {
-    id: "1",
-    image: IMAGES.trans1,
-    name: "Samantha William",
-    tabid: "123456789",
-    email: "samantha@gmail.com",
-    phone: "68523652",
-    city: "Jakarta",
-    type: "Individual",
-  },
-  {
-    id: "2",
-    image: IMAGES.trans2,
-    name: "Tony Soap",
-    tabid: "123453254",
-    email: "tony@gmail.com",
-    phone: "52523652",
-    city: "Phoenix",
-    type: "Individual",
-  },
-  {
-    id: "3",
-    image: IMAGES.trans3,
-    name: "Karen Hope",
-    tabid: "123456452",
-    email: "jkaren@hotmail.com",
-    phone: "78525265",
-    city: "Texas",
-    type: "Company",
-  },
-  {
-    id: "4",
-    image: IMAGES.trans4,
-    name: "Jordan Nico",
-    tabid: "123442584",
-    email: "jkaren@hotmail.com",
-    phone: "98525265",
-    city: "Dallas",
-    type: "Individual",
-  },
-  {
-    id: "5",
-    image: IMAGES.trans5,
-    name: "Nadila Adja",
-    tabid: "654781357",
-    email: "nadila@hotmail.com",
-    phone: "10125265",
-    city: "Houston",
-    type: "Individual",
-  },
-  {
-    id: "6",
-    image: IMAGES.trans6,
-    name: "Johnny Ahmad",
-    tabid: "123454555",
-    email: "johhnny@hotmail.com",
-    phone: "22125265",
-    city: "Chicago",
-    type: "Individual",
-  },
-  {
-    id: "7",
-    image: IMAGES.trans7,
-    name: "Dakota Farral",
-    tabid: "235456789",
-    email: "dakota@hotmail.com",
-    phone: "55125265",
-    city: "Philadelphia",
-    type: "Company",
-  },
-  {
-    id: "8",
-    image: IMAGES.trans8,
-    name: "Dimitres Viga",
-    tabid: "568756789",
-    email: "samantha@gmail.com",
-    phone: "52523652",
-    city: "Sharjah",
-    type: "Individual",
-  },
-  {
-    id: "9",
-    image: IMAGES.trans9,
-    name: "Samantha William",
-    tabid: "999956789",
-    email: "jkaren@hotmail.com",
-    phone: "68523652",
-    city: "Ajman",
-    type: "Company",
-  },
-  {
-    id: "10",
-    image: IMAGES.trans5,
-    name: "Samantha William",
-    tabid: "882356789",
-    email: "Aug 25, 2023",
-    phone: "10125265",
-    city: "Umm",
-    type: "Individual",
-  },
-  {
-    id: "11",
-    image: IMAGES.trans2,
-    name: "Samantha William",
-    tabid: "123456789",
-    email: "samantha@gmail.com",
-    phone: "68523652",
-    city: "Jakarta",
-    type: "Individual",
-  },
-  {
-    id: "12",
-    image: IMAGES.trans1,
-    name: "Tony Soap",
-    tabid: "123453254",
-    email: "tony@gmail.com",
-    phone: "52523652",
-    city: "Phoenix",
-    type: "Individual",
-  },
-  {
-    id: "13",
-    image: IMAGES.trans5,
-    name: "Karen Hope",
-    tabid: "123456452",
-    email: "jkaren@hotmail.com",
-    phone: "78525265",
-    city: "Texas",
-    type: "Company",
-  },
-  {
-    id: "14",
-    image: IMAGES.trans3,
-    name: "Jordan Nico",
-    tabid: "123442584",
-    email: "jkaren@hotmail.com",
-    phone: "98525265",
-    city: "Dallas",
-    type: "Individual",
-  },
-  {
-    id: "15",
-    image: IMAGES.trans5,
-    name: "Nadila Adja",
-    tabid: "654781357",
-    email: "nadila@hotmail.com",
-    phone: "10125265",
-    city: "Houston",
-    type: "Individual",
-  },
-  {
-    id: "16",
-    image: IMAGES.trans6,
-    name: "Johnny Ahmad",
-    tabid: "123454555",
-    email: "johhnny@hotmail.com",
-    phone: "22125265",
-    city: "Chicago",
-    type: "Individual",
-  },
-  {
-    id: "17",
-    image: IMAGES.trans7,
-    name: "Dakota Farral",
-    tabid: "235456789",
-    email: "dakota@hotmail.com",
-    phone: "55125265",
-    city: "Philadelphia",
-    type: "Company",
-  },
-  {
-    id: "18",
-    image: IMAGES.trans8,
-    name: "Dimitres Viga",
-    tabid: "568756789",
-    email: "samantha@gmail.com",
-    phone: "52523652",
-    city: "Sharjah",
-    type: "Individual",
-  },
-  {
-    id: "19",
-    image: IMAGES.trans9,
-    name: "Samantha William",
-    tabid: "999956789",
-    email: "jkaren@hotmail.com",
-    phone: "68523652",
-    city: "Ajman",
-    type: "Company",
-  },
-  {
-    id: "20",
-    image: IMAGES.trans1,
-    name: "Samantha William",
-    tabid: "882356789",
-    email: "Aug 25, 2023",
-    phone: "10125265",
-    city: "Umm",
-    type: "Individual",
-  },
-  {
-    id: "15",
-    image: IMAGES.trans9,
-    name: "Samantha William",
-    tabid: "999956789",
-    email: "jkaren@hotmail.com",
-    phone: "68523652",
-    city: "Ajman",
-    type: "Company",
-  },
-  {
-    id: "16",
-    image: IMAGES.trans5,
-    name: "Samantha William",
-    tabid: "882356789",
-    email: "Aug 25, 2023",
-    phone: "10125265",
-    city: "Umm",
-    type: "Individual",
-  },
-  {
-    id: "17",
-    image: IMAGES.trans2,
-    name: "Samantha William",
-    tabid: "123456789",
-    email: "samantha@gmail.com",
-    phone: "68523652",
-    city: "Jakarta",
-    type: "Individual",
-  },
-  {
-    id: "18",
-    image: IMAGES.trans1,
-    name: "Tony Soap",
-    tabid: "123453254",
-    email: "tony@gmail.com",
-    phone: "52523652",
-    city: "Phoenix",
-    type: "Individual",
-  },
-];
+import swal from "sweetalert2";
 
 const CompanyTable = () => {
   const childRef = useRef();
   const [currentPage, setCurrentPage] = useState(1);
-  const [checked, setChecked] = useState(tableData);
+  // const [checked, setChecked] = useState(tableData);
   const [users, setUsers] = useState([]);
   const makeRequest = fetchData();
   const navigate = useNavigate();
 
-  const handleChecked = (id) => {
-    let temp = checked.map((data) => {
-      if (id === data.id) {
-        return { ...data, inputchecked: !data.inputchecked };
-      }
-      return data;
-    });
-    setChecked(temp);
-  };
-  const handleCheckedAll = (value) => {
-    let temp = checked.map((data) => {
-      return { ...data, inputchecked: value };
-    });
-    setChecked(temp);
-  };
+  // const handleChecked = (id) => {
+  //   let temp = checked.map((data) => {
+  //     if (id === data.id) {
+  //       return { ...data, inputchecked: !data.inputchecked };
+  //     }
+  //     return data;
+  //   });
+  //   setChecked(temp);
+  // };
+  // const handleCheckedAll = (value) => {
+  //   let temp = checked.map((data) => {
+  //     return { ...data, inputchecked: value };
+  //   });
+  //   setChecked(temp);
+  // };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await makeRequest("GET", "/info/get-all-users");
         console.log(response);
-        setUsers(response.data.response.reverse().filter(item => !item.block));
+        setUsers(
+          response.data.response
+            .reverse()
+            .filter((item) => !item.block && item.type_of_account == "company")
+        );
       } catch (error) {
         console.log(error);
       }
@@ -295,7 +56,7 @@ const CompanyTable = () => {
   async function blockHandler(id) {
     try {
       const response = await makeRequest("GET", `/info/block-user/${id}`);
-      setUsers(users.reverse().filter(item => item.id != id));
+      setUsers(users.reverse().filter((item) => item.id != id));
       swal("Done!", "user successfully deleted", "success");
     } catch (error) {
       console.log(error);
@@ -305,8 +66,8 @@ const CompanyTable = () => {
   const recordsPage = 15;
   const lastIndex = currentPage * recordsPage;
   const firstIndex = lastIndex - recordsPage;
-  const records = checked.slice(firstIndex, lastIndex);
-  const npage = Math.ceil(checked.length / recordsPage);
+  const records = users.slice(firstIndex, lastIndex);
+  const npage = Math.ceil(users.length / recordsPage);
   const number = [...Array(npage + 1).keys()].slice(1);
   function prePage() {
     if (currentPage !== 1) {
@@ -397,51 +158,51 @@ const CompanyTable = () => {
                     </thead>
                     <tbody style={{ background: "white" }}>
                       {users.map((item, ind) => {
-                        if (item.type_of_account == "company") {
-                          return (
-                            <tr key={ind} style={{ textAlign: "center" }}>
-                              <td>
-                                <div className="checkbox me-0 align-self-center">
-                                  <div className="custom-control custom-checkbox ">
-                                    <input
-                                      type="checkbox"
-                                      className="form-check-input"
-                                      id={`stud-${item.id}`}
-                                      checked={item.inputchecked}
-                                      onChange={() => handleChecked(item.id)}
-                                    />
-                                    <label
-                                      className="custom-control-label"
-                                      htmlFor={`stud-${item.id}`}
-                                    ></label>
-                                  </div>
+                        return (
+                          <tr key={ind} style={{ textAlign: "center" }}>
+                            <td>
+                              <div className="checkbox me-0 align-self-center">
+                                <div className="custom-control custom-checkbox ">
+                                  <input
+                                    type="checkbox"
+                                    className="form-check-input"
+                                    id={`stud-${item.id}`}
+                                    checked={item.inputchecked}
+                                    // onChange={() => handleChecked(item.id)}
+                                  />
+                                  <label
+                                    className="custom-control-label"
+                                    htmlFor={`stud-${item.id}`}
+                                  ></label>
                                 </div>
-                              </td>
-                              <td>
-                                <span className="text-primary font-w600">
-                                  {item?.id}
-                                </span>
-                              </td>
-                              <td>
-                                <div className="">
-                                  {/* <img src={item.image} alt="" className="avatar avatar-sm me-3" /> */}
-                                  <h4>
-                                    {item?.first_name + " " + item?.last_name}
-                                  </h4>
-                                </div>
-                              </td>
-                              <td>
-                                <div className="email">{item?.email}</div>
-                              </td>
-                              <td>
-                                <h6 className="mb-0">{item?.phone}</h6>
-                              </td>
-                              <td>
-                                <h6 className="mb-0">{item?.city}</h6>
-                              </td>
+                              </div>
+                            </td>
+                            <td>
+                              <span className="text-primary font-w600">
+                                {item?.id}
+                              </span>
+                            </td>
+                            <td>
+                              <div className="">
+                                {/* <img src={item.image} alt="" className="avatar avatar-sm me-3" /> */}
+                                <h4>
+                                  {item?.first_name + " " + item?.last_name}
+                                </h4>
+                              </div>
+                            </td>
+                            <td>
+                              <div className="email">{item?.email}</div>
+                            </td>
+                            <td>
+                              <h6 className="mb-0">{item?.phone}</h6>
+                            </td>
+                            <td>
+                              <h6 className="mb-0">{item?.city}</h6>
+                            </td>
 
-                              <td>
-                              {item.type_of_account &&  <div
+                            <td>
+                              {item.type_of_account && (
+                                <div
                                   className={`badge bg-${
                                     item.type_of_account === "company"
                                       ? "secondary"
@@ -451,47 +212,42 @@ const CompanyTable = () => {
                                   }`}
                                 >
                                   Company
-                                </div>}
-                              </td>
-                              <td>
-                                <Button
-                                  onClick={() => {
-                                    navigate("/user-detail", {
-                                      state: { id: item.id },
-                                    });
-                                  }}
-                                  className="me-2"
-                                  variant="success btn-icon-xxs"
-                                >
-                                  <FaEye />
-                                </Button>
+                                </div>
+                              )}
+                            </td>
+                            <td>
+                              <Button
+                                onClick={() => {
+                                  navigate("/user-detail", {
+                                    state: { id: item.id },
+                                  });
+                                }}
+                                className="me-2"
+                                variant="success btn-icon-xxs"
+                              >
+                                <FaEye />
+                              </Button>
 
-
-
-                                <Button
-                                  className="me-2"
-                                  variant="danger btn-icon-xxs"
-                                  onClick={() => blockHandler(item.id)}
-                                >
-                                  <RiChatDeleteFill />
-                                </Button>
-
-                              </td>
-                            </tr>
-                          );
-                        } else {
-                          return null;
-                        }
+                              <Button
+                                className="me-2"
+                                variant="danger btn-icon-xxs"
+                                onClick={() => blockHandler(item.id)}
+                              >
+                                <RiChatDeleteFill />
+                              </Button>
+                            </td>
+                          </tr>
+                        );
                       })}
                     </tbody>
                   </Table>
                   <div className="d-sm-flex text-center justify-content-between align-items-center">
                     <div className="dataTables_info">
                       Showing {lastIndex - recordsPage + 1} to{" "}
-                      {tableData.length < lastIndex
-                        ? tableData.length
+                      {users.length < lastIndex
+                        ? users.length
                         : lastIndex}{" "}
-                      of {tableData.length} entries
+                      of {users.length} entries
                     </div>
                     <div
                       className="dataTables_paginate paging_simple_numbers justify-content-center"
