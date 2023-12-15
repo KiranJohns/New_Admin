@@ -79,12 +79,20 @@ const AddCourse = () => {
       who_should_attend: JSON.stringify(who_should_attend),
       what_you_will_learn_point: JSON.stringify(what_you_will_learn),
       objectives_point: JSON.stringify(objectives_point),
-    }
-    setCourse({...newData});
+    };
+    console.log(who_should_attend);
+    console.log(what_you_will_learn);
+    console.log(objectives_point);
+    console.log(aims);
+    setCourse({ ...newData });
 
     setLoading(true);
     makeRequest("POST", "/course/create-course", {
       ...course,
+      aims: JSON.stringify(aims),
+      who_should_attend: JSON.stringify(who_should_attend),
+      what_you_will_learn_point: JSON.stringify(what_you_will_learn),
+      objectives_point: JSON.stringify(objectives_point),
       price: parseFloat(course.price).toFixed(2),
       RRP: parseFloat(course.RRP).toFixed(2),
     })
@@ -246,7 +254,7 @@ const AddCourse = () => {
                         className="form-control input-default "
                         placeholder="Online"
                       /> */}
-                        <select
+                      <select
                         onChange={handleChange}
                         defaultValue={"option"}
                         name="course_type"
@@ -274,7 +282,7 @@ const AddCourse = () => {
                         className="form-control input-default "
                         placeholder="Time for completion"
                       /> */}
-                       <select
+                      <select
                         onChange={handleChange}
                         defaultValue={"option"}
                         name="duration"
@@ -303,7 +311,7 @@ const AddCourse = () => {
                         className="form-control input-default "
                         placeholder="Advanced/Intermediate"
                       /> */}
-                       <select
+                      <select
                         onChange={handleChange}
                         defaultValue={"option"}
                         name="course_level"
@@ -331,15 +339,16 @@ const AddCourse = () => {
                         className="form-control input-default "
                         placeholder="Details"
                       /> */}
-                       <select
+                      <select
                         onChange={handleChange}
                         defaultValue={"option"}
                         name="certificate_line"
                         className="form-control form-control"
                       >
                         <option>Select</option>
-                        <option value="certificate of completion">Certificate of completion</option>
-                       
+                        <option value="certificate of completion">
+                          Certificate of completion
+                        </option>
                       </select>
                     </div>
                   </div>
