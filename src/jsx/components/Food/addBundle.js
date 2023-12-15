@@ -187,17 +187,17 @@ const AddBundle = () => {
                       >
                         <option value="">Select</option>
                         <option value="Care Course">Care Course</option>
-                        <option value="Mandatory Care Courses">
+                        <option value="Mandatory Care Course">
                           Mandatory Care Course
                         </option>
-                        <option value="Specialized Care Course">
-                          Specialised Care Courses
+                        <option value="Specialised Care Course">
+                          Specialized Care Course
                         </option>
                         <option value="Recovery Care Course">
                           Recovery Care Course
                         </option>
                         <option value="Child Care Course">
-                          Child Care Courses
+                          Child Care Course
                         </option>
                       </select>
                     </div>
