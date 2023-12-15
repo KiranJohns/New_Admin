@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { IMAGES } from "../Dashboard/Content";
 import { Dropdown } from "react-bootstrap";
@@ -9,13 +9,14 @@ import { BiSolidEdit } from "react-icons/bi";
 import { RiChatDeleteFill } from "react-icons/ri";
 import { Button, ButtonGroup } from "react-bootstrap";
 import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
-import swal from 'sweetalert2'
+import swal from "sweetalert2";
 
 const Students = () => {
   const childRef = useRef();
   const [currentPage, setCurrentPage] = useState(1);
   // const [checked, setChecked] = useState(tableData);
   const [users, setUsers] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
   const makeRequest = fetchData();
   const navigate = useNavigate();
 
@@ -35,13 +36,28 @@ const Students = () => {
   //   setChecked(temp);
   // };
 
-  makeRequest("GET", "/info/get-all-users")
-    .then((res) => {
-      setUsers(res.data.response.reverse().filter((item) => !item.block && item.type_of_account == "individual"));
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  useEffect(() => {
+    makeRequest("GET", "/info/get-all-users")
+      .then((res) => {
+        setUsers(
+          res.data.response
+            .reverse()
+            .filter(
+              (item) => !item.block && item.type_of_account == "individual"
+            )
+        );
+        setAllUsers(
+          res.data.response
+            .reverse()
+            .filter(
+              (item) => !item.block && item.type_of_account == "individual"
+            )
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   const recordsPage = 15;
   const lastIndex = currentPage * recordsPage;
   const firstIndex = lastIndex - recordsPage;
@@ -65,7 +81,7 @@ const Students = () => {
   async function blockHandler(id) {
     try {
       const response = await makeRequest("GET", `/info/block-user/${id}`);
-      setUsers(users.reverse().filter(item => item.id != id));
+      setUsers(users.reverse().filter((item) => item.id != id));
       swal("Done!", "user successfully deleted", "success");
     } catch (error) {
       console.log(error);
@@ -83,6 +99,19 @@ const Students = () => {
                     type="text"
                     className="form-control"
                     placeholder="Search here..."
+                    onChange={(e) => {
+                      if (e.target.value != "") {
+                        return setUsers(
+                          allUsers.filter((user) => {
+                            return user.first_name
+                              .toLocaleLowerCase()
+                              .startsWith(e.target.value.toLocaleLowerCase());
+                          })
+                        );
+                      } else {
+                        return setUsers(allUsers);
+                      }
+                    }}
                   />
                   <span className="input-group-text">
                     <Link to={"#"}>
@@ -128,12 +157,15 @@ const Students = () => {
                   id="example-student_wrapper"
                   className="dataTables_wrapper no-footer"
                 >
-                   <Table
-                   responsive
-                   id="example-student"
-                  >
+                  <Table responsive id="example-student">
                     <thead>
-                      <tr style={{ textAlign: "center", background: "#212A50", color:"#fff" }}>
+                      <tr
+                        style={{
+                          textAlign: "center",
+                          background: "#212A50",
+                          color: "#fff",
+                        }}
+                      >
                         <th>
                           <input
                             type="checkbox"
@@ -152,53 +184,53 @@ const Students = () => {
                         <th>Action</th>
                       </tr>
                     </thead>
-                    <tbody style={{background:"white"}}>
+                    <tbody style={{ background: "white" }}>
                       {users.map((item, ind) => {
-                        if (item.type_of_account == "individual") {
-                          return (
-                            <tr key={ind} style={{ textAlign: "center" }}>
-                              <td>
-                                <div className="checkbox me-0 align-self-center">
-                                  <div className="custom-control custom-checkbox ">
-                                    <input
-                                      type="checkbox"
-                                      className="form-check-input"
-                                      id={`stud-${item.id}`}
-                                      checked={item.inputchecked}
-                                      // onChange={() => handleChecked(item.id)}
-                                    />
-                                    <label
-                                      className="custom-control-label"
-                                      htmlFor={`stud-${item.id}`}
-                                    ></label>
-                                  </div>
+                        return (
+                          <tr key={ind} style={{ textAlign: "center" }}>
+                            <td>
+                              <div className="checkbox me-0 align-self-center">
+                                <div className="custom-control custom-checkbox ">
+                                  <input
+                                    type="checkbox"
+                                    className="form-check-input"
+                                    id={`stud-${item.id}`}
+                                    checked={item.inputchecked}
+                                    // onChange={() => handleChecked(item.id)}
+                                  />
+                                  <label
+                                    className="custom-control-label"
+                                    htmlFor={`stud-${item.id}`}
+                                  ></label>
                                 </div>
-                              </td>
-                              <td>
-                                <span className="text-primary font-w600">
-                                  {item.id}
-                                </span>
-                              </td>
-                              <td>
-                                <div className="">
-                                  {/* <img src={item.image} alt="" className="avatar avatar-sm me-3" /> */}
-                                  <h4>
-                                    {item.first_name + " " + item.last_name}
-                                  </h4>
-                                </div>
-                              </td>
-                              <td>
-                                <div className="email">{item.email}</div>
-                              </td>
-                              <td>
-                                <h6 className="mb-0">{item.phone}</h6>
-                              </td>
-                              <td>
-                                <h6 className="mb-0">{item.city}</h6>
-                              </td>
+                              </div>
+                            </td>
+                            <td>
+                              <span className="text-primary font-w600">
+                                {item.id}
+                              </span>
+                            </td>
+                            <td>
+                              <div className="">
+                                {/* <img src={item.image} alt="" className="avatar avatar-sm me-3" /> */}
+                                <h4>
+                                  {item.first_name + " " + item.last_name}
+                                </h4>
+                              </div>
+                            </td>
+                            <td>
+                              <div className="email">{item.email}</div>
+                            </td>
+                            <td>
+                              <h6 className="mb-0">{item.phone}</h6>
+                            </td>
+                            <td>
+                              <h6 className="mb-0">{item.city}</h6>
+                            </td>
 
-                              <td>
-                    {item.type_of_account && <div
+                            <td>
+                              {item.type_of_account && (
+                                <div
                                   class={`badge bg-${
                                     item.type_of_account === "company"
                                       ? "secondary"
@@ -207,37 +239,38 @@ const Students = () => {
                                       : "warning"
                                   }`}
                                 >
-                              Individual
-                                </div>}
-                              </td>
-                              <td>
-                                <Button
-                                  onClick={() => {
-                                    navigate("/user-detail", {
-                                      state: { id: item.id },
-                                    });
-                                  }}
-                                  className="me-2"
-                                  variant="success btn-icon-xxs"
-                                >
-                                  <FaEye />
-                                </Button>
+                                  Individual
+                                </div>
+                              )}
+                            </td>
+                            <td>
+                              <Button
+                                onClick={() => {
+                                  navigate("/user-detail", {
+                                    state: { id: item.id },
+                                  });
+                                }}
+                                className="me-2"
+                                variant="success btn-icon-xxs"
+                              >
+                                <FaEye />
+                              </Button>
 
-                                {/* <Button
+                              {/* <Button
                                   className="me-2"
                                   variant="primary btn-icon-xxs"
                                 >
                                   <BiSolidEdit />
                                 </Button> */}
 
-                                <Button
-                                  className="me-2"
-                                  variant="danger btn-icon-xxs"
-                                  onClick={() => blockHandler(item.id)}
-                                >
-                                  <RiChatDeleteFill />
-                                </Button>
-                                {/* <Dropdown className="custom-dropdown float-end">
+                              <Button
+                                className="me-2"
+                                variant="danger btn-icon-xxs"
+                                onClick={() => blockHandler(item.id)}
+                              >
+                                <RiChatDeleteFill />
+                              </Button>
+                              {/* <Dropdown className="custom-dropdown float-end">
                               <Dropdown.Toggle
                                 className="i-false btn sharp tp-btn "
                                 as="div"
@@ -264,12 +297,9 @@ const Students = () => {
                                 <Dropdown.Item>Option 3</Dropdown.Item>
                               </Dropdown.Menu>
                             </Dropdown> */}
-                              </td>
-                            </tr>
-                          );
-                        } else {
-                          return null;
-                        }
+                            </td>
+                          </tr>
+                        );
                       })}
                     </tbody>
                   </Table>
@@ -277,10 +307,8 @@ const Students = () => {
                   <div className="d-sm-flex text-center justify-content-between align-items-center">
                     <div className="dataTables_info">
                       Showing {lastIndex - recordsPage + 1} to{" "}
-                      {users.length < lastIndex
-                        ? users.length
-                        : lastIndex}{" "}
-                      of {users.length} entries
+                      {users.length < lastIndex ? users.length : lastIndex} of{" "}
+                      {users.length} entries
                     </div>
                     <div
                       className="dataTables_paginate paging_simple_numbers justify-content-center"
