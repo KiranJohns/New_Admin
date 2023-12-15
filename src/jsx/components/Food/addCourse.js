@@ -90,7 +90,7 @@ const AddCourse = () => {
     })
       .then((res) => {
         setLoading(false);
-        swal("Success", "course created", "success");
+        swal("Success", "Course Created", "success");
         navigate("/view-course");
       })
       .catch((err) => {
