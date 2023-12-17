@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Nav, Tab, Dropdown } from "react-bootstrap";
 import { IMAGES, SVGICON } from "./Dashboard/Content";
@@ -8,20 +8,36 @@ import PageTitle from "../layouts/PageTitle";
 import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
 import fetchData from "../../axios";
 
-
 const CourseManReport = () => {
-  const makeRequest = fetchData()
-  const [exams, setExams] = useState([])
+  const makeRequest = fetchData();
+  const [managerReport, setManagerReport] = useState([]);
+  const [allManagerReport, setAllManagerReport] = useState([]);
+  const [searchString, setSearchString] = useState("");
+
+  useEffect(() => {
+    setManagerReport(
+      searchString
+        ? allManagerReport.filter((item) =>
+            String(item.first_name)
+              .toLowerCase()
+              .startsWith(searchString.toLowerCase())
+          )
+        : allManagerReport
+    );
+  }, [searchString]);
+
   useEffect(() => {
     makeRequest("GET", "/info/get-manager-report")
       .then((res) => {
         console.log(res.data.response);
-        setExams(res.data.response);
+        setManagerReport(res.data.response);
+        setAllManagerReport(res.data.response);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+
 
   return (
     <div className="card">
@@ -34,6 +50,8 @@ const CourseManReport = () => {
                 type="text"
                 className="form-control"
                 placeholder="Search here..."
+                value={searchString}
+                onChange={(e) => setSearchString(e.target.value)}
               />
               <span className="input-group-text">
                 <Link to={"#"}>
@@ -56,7 +74,7 @@ const CourseManReport = () => {
           <Card.Body>
             <Table responsive>
               <thead>
-                <tr style={{background:"#212A50", textAlign:'center'}}>
+                <tr style={{ background: "#212A50", textAlign: "center" }}>
                   <th className="width80">
                     <strong>Manager ID</strong>
                   </th>
@@ -75,15 +93,24 @@ const CourseManReport = () => {
                 </tr>
               </thead>
               <tbody>
-                {exams && exams.map(item => <tr style={{textAlign:'center'}}>
-                  <td>
-                    <strong>{item.id}</strong>
-                  </td>
-                  <td>{item?.first_name + " " + item?.last_name}</td>
-                  <td>{item?.individuals_count}</td>
-                  <td>{item?.assigned_bundle_count + item?.purchased_bundle_count}</td>
-                  <td>{item?.assigned_course_count + item?.purchased_course_count}</td>
-                </tr>)}
+                {managerReport &&
+                  managerReport.map((item) => (
+                    <tr style={{ textAlign: "center" }}>
+                      <td>
+                        <strong>{item.id}</strong>
+                      </td>
+                      <td>{item?.first_name + " " + item?.last_name}</td>
+                      <td>{item?.individuals_count}</td>
+                      <td>
+                        {item?.assigned_bundle_count +
+                          item?.purchased_bundle_count}
+                      </td>
+                      <td>
+                        {item?.assigned_course_count +
+                          item?.purchased_course_count}
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </Table>
           </Card.Body>
