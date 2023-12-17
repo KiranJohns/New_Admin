@@ -169,13 +169,13 @@ const Food = () => {
   }, []);
 
   function getBlogs() {
-    console.log('res.data.response');
+    console.log("res.data.response");
     makeRequest("GET", "/blog/get-all-blog")
       .then((res) => {
-        console.log('res.data.response');
+        console.log("res.data.response");
         console.log(res.data.response);
         setBlogs(res.data.response.reverse());
-        setAllBlogs(res.data.response.reverse())
+        setAllBlogs(res.data.response.reverse());
         setPublishedBlog(
           res.data.response.filter((blog) => blog.state == "published")
         );
@@ -192,8 +192,14 @@ const Food = () => {
   }
 
   useEffect(() => {
-    setBlogs(searchString ? allBlogs.filter(item => item.header.toLowerCase().startsWith(searchString)) : allBlogs)
-  },[searchString])
+    setBlogs(
+      searchString
+        ? allBlogs.filter((item) =>
+            item.header.toLowerCase().startsWith(searchString)
+          )
+        : allBlogs
+    );
+  }, [searchString]);
 
   function deleteHandler(id) {
     console.log(id);
@@ -201,9 +207,9 @@ const Food = () => {
       blog_id: id,
     })
       .then((res) => {
-        navigate('/view-blog');
+        getBlogs();
+        // navigate("/view-blog");
         swal("Done!", "Blog Deleted", "success");
-        
       })
       .catch((err) => {
         swal("Done!", err?.errors[0]?.error, "success");
@@ -217,7 +223,7 @@ const Food = () => {
       status,
     })
       .then((res) => {
-        getBlogs()
+        getBlogs();
         console.log(res);
         swal("Done!", `Blog Moved to ${status}`, "success");
       })
@@ -229,7 +235,6 @@ const Food = () => {
   return (
     <div className="card">
       <Col lg={12}>
-        
         <Tabs
           defaultActiveKey="blogs"
           id="uncontrolled-tab-example"
@@ -295,7 +300,7 @@ const Food = () => {
                   </thead>
                   <tbody>
                     {blogs &&
-                      blogs.map((item,idx) => {
+                      blogs.map((item, idx) => {
                         return (
                           <tr style={{ textAlign: "center" }}>
                             <td>
@@ -381,7 +386,10 @@ const Food = () => {
             </Card>
           </Tab>
 
-          <Tab eventKey="published" title={`Published(${publishedBlog.length})`}>
+          <Tab
+            eventKey="published"
+            title={`Published(${publishedBlog.length})`}
+          >
             <PublishedBlog publishedBlog={publishedBlog} getBlogs={getBlogs} />
           </Tab>
 
