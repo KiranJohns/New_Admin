@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Nav, Tab, Dropdown } from "react-bootstrap";
 import { IMAGES, SVGICON } from "../Dashboard/Content";
@@ -153,14 +153,19 @@ const PublishedBlog = ({publishedBlog,getBlogs}) => {
   const makeRequest = fetchData();
   const navigate = useNavigate();
 
-  // const [blogs, setBlogs] = useState([]);
-  // makeRequest("GET", "/blog/get-all-blog")
-  //   .then((res) => {
-  //     setBlogs(res.data.response.filter((item) => item.state == "published"));
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
+  const [searchString, setSearchString] = useState("");
+  const [blogs, setBlogs] = useState(publishedBlog);
+  const [allBlogs, setAllBlogs] = useState(publishedBlog);
+
+  useEffect(() => {
+    setBlogs(publishedBlog)
+    setAllBlogs(publishedBlog)
+  },[publishedBlog])
+
+  useEffect(() => {
+    setBlogs(searchString ? allBlogs.filter(item => item.header.toLowerCase().startsWith(searchString.toLowerCase())) : allBlogs)
+  },[searchString])
+
 
   function changeBlogState(id,state) {
     makeRequest("POST", "/blog/update-blog-status", {
@@ -254,12 +259,14 @@ const PublishedBlog = ({publishedBlog,getBlogs}) => {
       </div> */}
 
       <Card.Header>
-        <Card.Title>All Blogs</Card.Title>
+        <Card.Title></Card.Title>
         <div className="input-group search-area mb-md-0 mb-3">
           <input
             type="text"
             className="form-control"
             placeholder="Search here..."
+            value={searchString}
+            onChange={(e) => setSearchString(e.target.value)}
           />
           <span className="input-group-text">
             <Link to={"#"}>
@@ -308,8 +315,8 @@ const PublishedBlog = ({publishedBlog,getBlogs}) => {
             </tr>
           </thead>
           <tbody>
-            {publishedBlog &&
-              publishedBlog.map((item) => {
+            {blogs &&
+              blogs.map((item) => {
                 return (
                   <tr style={{ textAlign: "center" }}>
                     <td>

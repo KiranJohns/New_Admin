@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Nav, Tab, Dropdown } from "react-bootstrap";
 import { IMAGES, SVGICON } from "../Dashboard/Content";
@@ -28,6 +28,19 @@ const BlogTrash = ({ trashedBlogs, getBlogs }) => {
   //   .catch((err) => {
   //     console.log(err);
   //   });
+
+  const [searchString, setSearchString] = useState("");
+  const [blogs, setBlogs] = useState(trashedBlogs);
+  const [allBlogs, setAllBlogs] = useState(trashedBlogs);
+
+  useEffect(() => {
+    setBlogs(trashedBlogs)
+    setAllBlogs(trashedBlogs)  
+  },[trashedBlogs])
+
+  useEffect(() => {
+    setBlogs(searchString ? allBlogs.filter(item => item.header.toLowerCase().startsWith(searchString.toLowerCase())) : allBlogs)
+  },[searchString])
 
   function blogStatusHandler(id, status) {
     makeRequest("POST", "/blog/update-blog-status", {
@@ -75,6 +88,8 @@ const BlogTrash = ({ trashedBlogs, getBlogs }) => {
             type="text"
             className="form-control"
             placeholder="Search here..."
+            value={searchString}
+            onChange={(e) => setSearchString(e.target.value)}
           />
           <span className="input-group-text">
             <Link to={"#"}>
@@ -123,8 +138,8 @@ const BlogTrash = ({ trashedBlogs, getBlogs }) => {
             </tr>
           </thead>
           <tbody>
-            {trashedBlogs &&
-              trashedBlogs.map((item) => {
+            {blogs &&
+              blogs.map((item) => {
                 return (
                   <tr style={{ textAlign: "center" }}>
                     <td>

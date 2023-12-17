@@ -159,8 +159,11 @@ const Food = () => {
   const [publishedBlog, setPublishedBlog] = useState([]);
   const [trashedBlogs, setTrashedBlog] = useState([]);
   const [draftedBlogs, setDraftedBlog] = useState([]);
+  const [searchString, setSearchString] = useState("");
+  const [filteredBlogs, setFilteredBlogs] = useState([]);
 
   const [blogs, setBlogs] = useState([]);
+  const [allBlogs, setAllBlogs] = useState([]);
   useEffect(() => {
     getBlogs();
   }, []);
@@ -172,6 +175,7 @@ const Food = () => {
         console.log('res.data.response');
         console.log(res.data.response);
         setBlogs(res.data.response.reverse());
+        setAllBlogs(res.data.response.reverse())
         setPublishedBlog(
           res.data.response.filter((blog) => blog.state == "published")
         );
@@ -186,6 +190,10 @@ const Food = () => {
         console.log(err);
       });
   }
+
+  useEffect(() => {
+    setBlogs(searchString ? allBlogs.filter(item => item.header.toLowerCase().startsWith(searchString)) : allBlogs)
+  },[searchString])
 
   function deleteHandler(id) {
     console.log(id);
@@ -236,6 +244,8 @@ const Food = () => {
                     type="text"
                     className="form-control"
                     placeholder="Search here..."
+                    value={searchString}
+                    onChange={(e) => setSearchString(e.target.value)}
                   />
                   <span className="input-group-text">
                     <Link to={"#"}>
