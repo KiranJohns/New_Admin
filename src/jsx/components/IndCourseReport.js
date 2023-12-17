@@ -11,11 +11,26 @@ import fetchData from "../../axios";
 const CourseIndReport = () => {
   const makeRequest = fetchData();
   const [exams, setExams] = useState([]);
+  const [allIndividualReport, setAllIndividualReport] = useState([]);
+  const [searchString, setSearchString] = useState("");
+
+  useEffect(() => {
+    setExams(
+      searchString
+        ? allIndividualReport.filter((item) =>
+            String(item.first_name)
+              .toLowerCase()
+              .startsWith(searchString.toLowerCase())
+          )
+        : allIndividualReport
+    );
+  }, [searchString]);
   useEffect(() => {
     makeRequest("GET", "/info/get-individual-report")
       .then((res) => {
         console.log(res.data.response);
         setExams(res.data.response);
+        setAllIndividualReport(res.data.response)
       })
       .catch((err) => {
         console.log(err);
@@ -33,6 +48,8 @@ const CourseIndReport = () => {
                 type="text"
                 className="form-control"
                 placeholder="Search here..."
+                value={searchString}
+                onChange={(e) => setSearchString(e.target.value)}
               />
               <span className="input-group-text">
                 <Link to={"#"}>
