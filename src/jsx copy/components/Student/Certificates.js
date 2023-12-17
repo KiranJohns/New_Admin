@@ -19,26 +19,19 @@ const ViewCertificates = () => {
   const makeRequest = fetchData();
   const [unchecked, setUnChecked] = useState(true);
 
-  // const handleChecked = (id) => {
-  //   let temp = checked.map((data) => {
-  //     if (id === data.id) {
-  //       return { ...data, inputchecked: !data.inputchecked };
-  //     }
-  //     return data;
-  //   });
-  //   setChecked(temp);
-  // };
-  // const handleCheckedAll = (value) => {
-  //   let temp = checked.map((data) => {
-  //     return { ...data, inputchecked: value };
-  //   });
-  //   setChecked(temp);
-  //   setUnChecked(!unchecked);
-  // };
+
+  const [searchString, setSearchString] = useState("");
+  const [allRecords, setAllRecords] = useState([]);
+
+  useEffect(() => {
+    setChecked(searchString ? allRecords.filter(item => item.user_name.toLowerCase().startsWith(searchString.toLowerCase())) : allRecords)
+  },[searchString])
 
   useEffect(() => {
     makeRequest("GET", "/certificate/get-all-certificates")
       .then((res) => {
+        console.log(res.data.Response);
+        setAllRecords(res.data.Response.reverse())
         setChecked(res.data.Response.reverse());
       })
       .catch((err) => {
@@ -77,6 +70,8 @@ const ViewCertificates = () => {
                     type="text"
                     className="form-control"
                     placeholder="Search here..."
+                    value={searchString}
+                    onChange={(e) => setSearchString(e.target.value)}
                   />
                   <span className="input-group-text">
                     <Link to={"#"}>
