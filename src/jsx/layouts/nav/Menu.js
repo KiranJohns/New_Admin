@@ -154,10 +154,10 @@ export const MenuList = [
                 title: 'Create Coupon',
                 to: 'create-coupon',					
             },
-            {
-                title: 'Volume Discount',
-                to: 'volume-discount',					
-            },
+            // {
+            //     title: 'Volume Discount',
+            //     to: 'volume-discount',					
+            // },
             {
                 title: 'Create Offer Text',
                 to: 'offer-text',					
