@@ -81,7 +81,7 @@ const AddBundle = () => {
     form.append("name", bundle.name);
     form.append("price", bundle.price);
     form.append("description", bundle.description);
-    form.append("courses", arr);
+    form.append("courses", JSON.stringify(arr));
     form.append("image", bundle.image);
     makeRequest("POST", "/bundle/create-bundle", form)
       .then((res) => {
