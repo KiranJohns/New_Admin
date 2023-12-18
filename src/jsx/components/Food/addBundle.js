@@ -71,14 +71,13 @@ const AddBundle = () => {
       swal("please add courses");
       return;
     }
-
-  
-
+    
     console.log(bundle);
 
     setLoading(true);
     const form = new FormData();
     form.append("name", bundle.name);
+    form.append("category", category);
     form.append("price", bundle.price);
     form.append("description", bundle.description);
     form.append("courses", JSON.stringify(arr));
