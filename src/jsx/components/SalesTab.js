@@ -344,7 +344,7 @@ const SalesTab = () => {
                                 {item.year}
                               </td>
                               <td style={{ textAlign: "center" }}>
-                                £ {item.total_amount}
+                                £ {parseFloat(item.total_amount).toFixed(2)}
                               </td>
                             </tr>
                           );
