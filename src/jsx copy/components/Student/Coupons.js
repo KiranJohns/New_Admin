@@ -50,26 +50,28 @@ const CouponList = () => {
   function handleDelete(id) {
     makeRequest("DELETE", `/coupon/delete-coupon/${id}`)
       .then((res) => {
-        setCoupons((prev) => {
-          return prev.filter((item) => item.id !== id);
-        });
         swal("Done!", "coupon deleted", "success");
+        getAllCoupons()
       })
       .catch((err) => console.log(err));
   }
 
-  useEffect(() => {
+  function getAllCoupons() {
     makeRequest("GET", "/coupon/list-coupons")
-      .then((res) => {
-        if (res?.data.response) {
-          console.log(res?.data.response);
-          setCoupons(res?.data.response.reverse());
-          setAllCoupons(res?.data.response.reverse());
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    .then((res) => {
+      if (res?.data.response) {
+        console.log(res?.data.response);
+        setCoupons(res?.data.response.reverse());
+        setAllCoupons(res?.data.response.reverse());
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
+  useEffect(() => {
+    getAllCoupons()
   }, []);
 
   function handelEdit(id) {
@@ -79,9 +81,7 @@ const CouponList = () => {
     })
       .then((res) => {
         setShowModal(false);
-        setCoupons((prev) => {
-          return prev.filter((item) => item.id !== id);
-        });
+        getAllCoupons()
         swal("Done!", "Coupon Updated", "success");
       })
       .catch((err) => console.log(err));
