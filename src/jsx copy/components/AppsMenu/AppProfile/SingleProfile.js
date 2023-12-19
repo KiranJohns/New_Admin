@@ -18,7 +18,7 @@ import LightGallery from "lightgallery/react";
 import Highlight from "react-highlight";
 import { BiSolidEdit } from "react-icons/bi";
 import swal from "sweetalert";
-import { Suspense } from 'react';
+import { Suspense } from "react";
 
 // import styles
 import "lightgallery/css/lightgallery.css";
@@ -205,7 +205,11 @@ const SingleProfile = () => {
       .catch((err) => {
         console.log(err);
       });
+    fetchQualifications();
+    fetchExperience();
+  }, []);
 
+  function fetchQualifications() {
     makeRequest("GET", "/info/get-qualification")
       .then((res) => {
         setQualifications(res.data.response);
@@ -213,7 +217,9 @@ const SingleProfile = () => {
       .catch((err) => {
         console.log(err);
       });
+  }
 
+  function fetchExperience() {
     makeRequest("GET", "/info/get-experience")
       .then((res) => {
         setExperiences(res.data.response);
@@ -222,7 +228,7 @@ const SingleProfile = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }
 
   function updateProfile(image) {
     const file = new FormData();
@@ -260,9 +266,12 @@ const SingleProfile = () => {
 
     makeRequest("POST", "/info/set-qualification", file)
       .then((res) => {
+        fetchQualifications();
+        swal("Done!", "Qualification created", "success");
         console.log(res);
       })
       .catch((err) => {
+        swal("Oops!", "Check your inputs", "error");
         console.log(err);
       });
   }
@@ -278,9 +287,12 @@ const SingleProfile = () => {
 
     makeRequest("POST", "/info/set-experience", file)
       .then((res) => {
+        fetchExperience();
+        swal("Done!", "Experience created", "success");
         console.log(res);
       })
       .catch((err) => {
+        swal("Oops!", "Check your inputs", "error");
         console.log(err);
       });
   }
@@ -289,6 +301,7 @@ const SingleProfile = () => {
     makeRequest("DELETE", `/info/delete-qualification/${id}`)
       .then((res) => {
         console.log(res);
+        fetchQualifications();
       })
       .catch((err) => {
         console.log(err);
@@ -299,6 +312,7 @@ const SingleProfile = () => {
     makeRequest("DELETE", `/info/delete-experience/${id}`)
       .then((res) => {
         console.log(res);
+        fetchExperience();
       })
       .catch((err) => {
         console.log(err);
@@ -308,7 +322,7 @@ const SingleProfile = () => {
   function profileOnChange(e) {
     setProfile(e.target.files[0]);
     setTimeout(() => {
-      updateProfile(e.target.files[0])
+      updateProfile(e.target.files[0]);
     }, 3000);
     setChangeProfile(true);
   }
@@ -316,68 +330,73 @@ const SingleProfile = () => {
     setBanner(e.target.files[0]);
     setChangeBanner(true);
     setTimeout(() => {
-      updateBanner(e.target.files[0])
+      updateBanner(e.target.files[0]);
     }, 3000);
   }
 
   // function profileOnMouse
   return (
-    
     <Fragment>
-
       <PageTitle activeMenu="Profile" motherMenu="App" />
       <div className="row">
         <div className="col-lg-12">
           <div className="profile card card-body px-3 pt-3 pb-0">
             <div className="profile-head">
               <div className="photo-content ">
-              <Suspense fallback={<Loading />}>
-                <div
-                  className="cover-photo rounded "
-                  style={{
-                    backgroundImage: changeBanner
-                      ? `url(${URL.createObjectURL(banner)})`
-                      : `url(${banner})`
-                  }}
-                >
-                  <Button
-                    className="me-2"
+                <Suspense fallback={<Loading />}>
+                  <div
+                    className="cover-photo rounded "
                     style={{
-                      position: "absolute",
-                      top: "20px",
-                      right: "20px",
+                      backgroundImage: changeBanner
+                        ? `url(${URL.createObjectURL(banner)})`
+                        : `url(${banner})`,
                     }}
-                    variant="primary btn-icon-xxs"
-                    onClick={() => bannerRef.current.click()}
                   >
-                    <BiSolidEdit />
-                  </Button>
-                  <input
-                    ref={bannerRef}
-                    style={{ display: "none" }}
-                    type="file"
-                    onChange={(e) => {
-                      bannerOnChange(e);
-                    }}
-                  />
-                </div>
+                    <Button
+                      className="me-2"
+                      style={{
+                        position: "absolute",
+                        top: "20px",
+                        right: "20px",
+                      }}
+                      variant="primary btn-icon-xxs"
+                      onClick={() => bannerRef.current.click()}
+                    >
+                      <BiSolidEdit />
+                    </Button>
+                    <input
+                      ref={bannerRef}
+                      style={{ display: "none" }}
+                      type="file"
+                      onChange={(e) => {
+                        bannerOnChange(e);
+                      }}
+                    />
+                  </div>
                 </Suspense>
               </div>
               <div className="profile-info">
-                <div  
-                style={{boxSizing:'border-box', padding:'.8rem .6rem .45rem .6rem',background:"white", borderRadius:".3rem"}}
+                <div
+                  style={{
+                    boxSizing: "border-box",
+                    padding: ".8rem .6rem .45rem .6rem",
+                    background: "white",
+                    borderRadius: ".3rem",
+                  }}
                   className="profile-photo "
                   onMouseOver={() => setShowEditProfileBtn(true)}
                   onMouseLeave={() => setShowEditProfileBtn(false)}
                 >
                   <Suspense fallback={<Loading />}>
-                  <img      
-                    style={{ width: "8.5rem", height: "7rem"   }}
-                    src={changeProfile ? URL.createObjectURL(profile) : profile}
-                    className="img-fluid rounded-circle"
-                    alt="profile"
-                  />
-                  </Suspense> 
+                    <img
+                      style={{ width: "8.5rem", height: "7rem" }}
+                      src={
+                        changeProfile ? URL.createObjectURL(profile) : profile
+                      }
+                      className="img-fluid rounded-circle"
+                      alt="profile"
+                    />
+                  </Suspense>
                   <input
                     type="file"
                     ref={profileRef}
@@ -398,17 +417,19 @@ const SingleProfile = () => {
                     variant="primary btn-icon-xxs"
                     onClick={() => profileRef.current.click()}
                   > */}
-                    <BiSolidEdit   style={{
-                      color:"#212a50",
-                      fontSize:"22px",
+                  <BiSolidEdit
+                    style={{
+                      color: "#212a50",
+                      fontSize: "22px",
                       // opacity: showEditProfileBtn ? "0.8" : "-1",
                       // transition: "0.5s",
                       position: "absolute",
                       top: "2px",
                       left: "85px",
-                      cursor:'pointer'
+                      cursor: "pointer",
                     }}
-                    onClick={() => profileRef.current.click()}/>
+                    onClick={() => profileRef.current.click()}
+                  />
                   {/* </Button> */}
                 </div>
                 <div className="profile-details">
@@ -419,14 +440,19 @@ const SingleProfile = () => {
                     {/* <p style={{ visibility: "hidden" }}>{userData.designation}</p> */}
                   </div>
                   <div className="profile-email px-2 pt-2">
-                    <h4 style={{ visibility: "hidden" }} className="text-muted mb-0">{userData.email}</h4>
+                    <h4
+                      style={{ visibility: "hidden" }}
+                      className="text-muted mb-0"
+                    >
+                      {userData.email}
+                    </h4>
                     <p style={{ visibility: "hidden" }}>Email</p>
                   </div>
                 </div>
               </div>
               <Col xl={12}>
                 <Tabs
-                // style={{backgroundColor:"#212A50", color:"white"}}
+                  // style={{backgroundColor:"#212A50", color:"white"}}
                   defaultActiveKey="profile"
                   id="fill-tab-example"
                   className="mb-3 mt-2"
@@ -438,20 +464,22 @@ const SingleProfile = () => {
                         display: "flex",
                         justifyContent: "flex-start",
                         alignItems: "center",
-                        marginBottom:'1rem',
-                    
+                        marginBottom: "1rem",
                       }}
                     >
                       <div>
                         <a href="/edit-profile">
                           {" "}
-                          <Button className="me-2" variant="primary btn-icon-xxs">
-                          <BiSolidEdit
-                            style={{
-                              fontSize: "1rem",
-                              // border: "solid 1px #212a50",
-                            }}
-                          />
+                          <Button
+                            className="me-2"
+                            variant="primary btn-icon-xxs"
+                          >
+                            <BiSolidEdit
+                              style={{
+                                fontSize: "1rem",
+                                // border: "solid 1px #212a50",
+                              }}
+                            />
                           </Button>
                         </a>
                       </div>
@@ -465,8 +493,8 @@ const SingleProfile = () => {
           <th>Username</th>
         </tr> */}
                       </thead>
-                      <tbody style={{color:"#212a50"}}>
-                        <tr >
+                      <tbody style={{ color: "#212a50" }}>
+                        <tr>
                           <td style={{ fontWeight: "500" }} className="col-5">
                             Employee ID
                           </td>
@@ -567,9 +595,7 @@ const SingleProfile = () => {
                           </td>
                         </tr>
                         <tr>
-                          <td style={{ fontWeight: "500" }}>
-                            Date of joining
-                          </td>
+                          <td style={{ fontWeight: "500" }}>Date of joining</td>
                           <td style={{ fontWeight: "500" }}>
                             {userData.date_of_joining}
                           </td>
@@ -649,28 +675,38 @@ const SingleProfile = () => {
           <th>Username</th>
         </tr> */}
                         </thead>
-                        <tbody style={{color:'#212a50'}}>
+                        <tbody style={{ color: "#212a50" }}>
                           <tr>
                             <td style={{ fontWeight: "500" }} className="col-5">
                               Bank Holder Name
                             </td>
-                            <td style={{ fontWeight: "500" }}>{userData.bank_holder_name}</td>
+                            <td style={{ fontWeight: "500" }}>
+                              {userData.bank_holder_name}
+                            </td>
                           </tr>
                           <tr>
                             <td style={{ fontWeight: "500" }}>Bank Name</td>
-                            <td style={{ fontWeight: "500" }}>{userData.bank_name}</td>
+                            <td style={{ fontWeight: "500" }}>
+                              {userData.bank_name}
+                            </td>
                           </tr>
                           <tr>
                             <td style={{ fontWeight: "500" }}>Accoount No</td>
-                            <td style={{ fontWeight: "500" }}>{userData.account_no}</td>
+                            <td style={{ fontWeight: "500" }}>
+                              {userData.account_no}
+                            </td>
                           </tr>
                           <tr>
                             <td style={{ fontWeight: "500" }}>Sort Code</td>
-                            <td style={{ fontWeight: "500" }}>{userData.sort_code}</td>
+                            <td style={{ fontWeight: "500" }}>
+                              {userData.sort_code}
+                            </td>
                           </tr>
                           <tr>
                             <td style={{ fontWeight: "500" }}>Roll Number</td>
-                            <td style={{ fontWeight: "500" }}>{userData.roll_number}</td>
+                            <td style={{ fontWeight: "500" }}>
+                              {userData.roll_number}
+                            </td>
                           </tr>
                         </tbody>
                       </Table>
@@ -761,7 +797,7 @@ const SingleProfile = () => {
                         Upload Document
                       </Button>
                     </div>
-                    <Table  responsive style={{ marginTop: "1rem" }}>
+                    <Table responsive style={{ marginTop: "1rem" }}>
                       <thead style={{ backgroundColor: "#212a50" }}>
                         <tr>
                           <th>Course Name</th>
@@ -904,7 +940,7 @@ const SingleProfile = () => {
                         Upload Document
                       </Button>
                     </div>
-                    <Table  responsive style={{ marginTop: "1rem" }}>
+                    <Table responsive style={{ marginTop: "1rem" }}>
                       <thead style={{ backgroundColor: "#212a50" }}>
                         <tr>
                           <th>Organization Name</th>
@@ -1031,7 +1067,6 @@ const SingleProfile = () => {
           </div>
         </div>
       </Modal>
-     
     </Fragment>
   );
 };
