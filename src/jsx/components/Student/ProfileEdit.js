@@ -49,7 +49,7 @@ const ProfileEdit = () => {
   const [staffCV, setStaffCV] = useState(null);
   function handleOnchange(e) {
     setUserData((prev) => {
-      console.log([e.target.name],e.target.value);
+      console.log([e.target.name], e.target.value);
       return {
         ...prev,
         [e.target.name]: e.target.value,
@@ -63,6 +63,7 @@ const ProfileEdit = () => {
       file.append("pdf", staffCV);
       makeRequest("POST", "/info/set-staff-cv", file)
         .then((res) => {
+          swal("Done!", "staff successfully updated", "success");
           console.log(res);
         })
         .catch((err) => {
@@ -76,12 +77,30 @@ const ProfileEdit = () => {
       .then((res) => {
         if (res?.data?.response[0]) {
           console.log(res?.data?.response[0]);
+
           if (res.data.response[0].date_of_joining) {
+            let date_of_joining =
+              res.data.response[0].date_of_joining.split("/");
+            let date_of_birth = res.data.response[0].date_of_birth.split("/");
+
+            let dateOfJoining =
+              date_of_joining[2] +
+              "-" +
+              date_of_joining[1] +
+              "-" +
+              date_of_joining[0];
+            let dateOfBirth =
+              date_of_birth[2] +
+              "-" +
+              date_of_birth[1] +
+              "-" +
+              date_of_birth[0];
+
+              console.log(dateOfJoining, dateOfBirth);
             setUserData({
               ...res.data.response[0],
-              date_of_joining: new Date(
-                res.data.response[0].date_of_joining
-              ).toISOString().substr(0, 10),
+              date_of_joining: dateOfJoining,
+              date_of_birth: dateOfBirth,
             });
           } else {
             setUserData({ ...res.data.response[0] });
@@ -107,7 +126,7 @@ const ProfileEdit = () => {
       national_insurance_number,
     })
       .then((res) => {
-        swal("Done!", "user successfully created", "success");
+        swal("Done!", "admin data successfully update", "success");
       })
       .catch((err) => {
         swal("Oops!", err.data.errors[0].error, "error");
@@ -325,15 +344,17 @@ const ProfileEdit = () => {
                       </div>
 
                       <div className="mb-3">
+                        staff CV
                         <div class="input-group mb-3">
                           <div class="input-group-prepend"></div>
-                          <label style={{visibility:'hidden'}}
-                          htmlFor="exampleFormControlInput4"
-                          className="form-label text-primary"
-                        >
-                          Recent Qualification
-                          <span className="required">*</span>
-                        </label>
+                          <label
+                            style={{ visibility: "hidden" }}
+                            htmlFor="exampleFormControlInput4"
+                            className="form-label text-primary"
+                          >
+                            staff CV
+                            <span className="required">*</span>
+                          </label>
                           <input
                             type="file"
                             class="form-control"

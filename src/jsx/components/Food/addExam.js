@@ -18,6 +18,7 @@ const AddExam = () => {
   const [exam, setExam] = useState([]);
   const [course, setCourse] = useState([]);
   const [courseId, setCourseId] = useState();
+  const [courseCode, setCourseCode] = useState(null);
   const [filteredCourse, setFilteredCourse] = useState([]);
   const makeRequest = fetchData();
   const [answer, setAnswer] = useState();
@@ -191,14 +192,17 @@ const AddExam = () => {
                     </h4>
                     <div className="form-group mb-3">
                       <select
-                        onChange={(e) => setCourseId("LFC"+e.target.value)}
+                        onChange={(e) => {
+                          setCourseId("LFC"+e.target.value?.id)
+                          setCourseCode(e.target.value?.course_code)
+                        }}
                         defaultValue={"option"}
                         className="form-control form-control-lg"
                       >
                         <option>Select</option>
                         {course &&
                           filteredCourse.map((item) => (
-                            <option key={item.name} value={item.id}>
+                            <option key={item.name} value={item}>
                               {item.name}
                             </option>
                           ))}
