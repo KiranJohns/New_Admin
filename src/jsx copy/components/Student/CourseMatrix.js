@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
 
-
 const ManCoursMatrix = () => {
   const matrixDataUser = [
     {
@@ -205,15 +204,23 @@ const ManCoursMatrix = () => {
     makeRequest("GET", "/info/get-all-users")
       .then((res) => {
         setUsers(res.data.response);
-        setCompanies(res.data.response.filter(item => item.type_of_account == "company"));
-        setManagers(res.data.response.filter(item => item.type_of_account == "manager"));
-        setManager(res.data.response.find(item => item.type_of_account == "manager")?.id);
+        setCompanies(
+          res.data.response.filter((item) => item.type_of_account == "company")
+        );
+        setManagers(
+          res.data.response.filter((item) => item.type_of_account == "manager")
+        );
+        setManager(
+          res.data.response.find((item) => item.type_of_account == "manager")
+            ?.id
+        );
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-  useEffect(() => {
+
+  function getMatrixData(manager) {
     const form = new FormData();
     form.append("manager_id", manager);
     makeRequest("POST", "/course/get-manager-matrix-course", form)
@@ -289,12 +296,18 @@ const ManCoursMatrix = () => {
       .catch((err) => {
         console.log(err);
       });
+  }
+  useEffect(() => {
+    getMatrixData(manager);
   }, [manager]);
   return (
     <div className="row p-3">
-      <div  style={{ position: "relative", background:"#fff" }} className="dash-neww ">
-      <div style={{ position: "absolute",marginLeft:".8rem"  }} className="">
-          <span className="m-2" style={{ display: "flex",}}>
+      <div
+        style={{ position: "relative", background: "#fff" }}
+        className="dash-neww "
+      >
+        <div style={{ position: "absolute", marginLeft: ".8rem" }} className="">
+          <span className="m-2" style={{ display: "flex" }}>
             <div
               style={{
                 height: "1.5rem",
@@ -317,7 +330,7 @@ const ManCoursMatrix = () => {
               }}
               className="redd"
             >
-             in progress
+              in progress
             </div>
             <div
               style={{
@@ -338,24 +351,24 @@ const ManCoursMatrix = () => {
             <div className="d-flex justify-content-center my-2 ">
               <h4>Course Matrix</h4>
             </div>
-           
-          
 
             <div
               style={{ position: "absolute", top: "0", right: "0" }}
               className="col-4 p-1 m- d-flex"
             >
-               
-              <select style={{background:"#5a9676", color:"#fff"}} className="form-control"
+              <select
+                style={{ background: "#5a9676", color: "#fff" }}
+                className="form-control"
                 onChange={(e) => {
-                  console.log(e.target.value);
-                  setManagers(users.filter(item => item.created_by == e.target.value));
+                  getMatrixData(e.target.value);
+                  setManagers(
+                    users.filter((item) => item.created_by == e.target.value)
+                  );
                 }}
                 size=""
-               
                 aria-label="Default select example"
               >
-                <option value={null}>Select Company</option>
+                <option value="">Select Company</option>
                 {companies.map((item) => (
                   <option value={item.id}>
                     {item.first_name + " " + item.last_name}
@@ -364,14 +377,16 @@ const ManCoursMatrix = () => {
               </select>
               <Form.Select
                 onChange={(e) => {
-                  console.log(e.target.value);
+                  getMatrixData(e.target.value);
                   setManager(e.target.value);
                 }}
                 size=""
-                select style={{background:"#5a9676", color:"#fff"}} className="form-control"
+                select
+                style={{ background: "#5a9676", color: "#fff" }}
+                className="form-control"
                 aria-label="Default select example"
               >
-                <option value={null}>Select Manager</option>
+                <option value="">Select Manager</option>
                 {managers.map((item) => (
                   <option value={item.id}>
                     {item.first_name + " " + item.last_name}
@@ -389,12 +404,10 @@ const ManCoursMatrix = () => {
           >
             <thead>
               <tr style={{ textAlign: "center" }}>
-              <th
+                <th
                   style={{ background: "#212a50", color: "white" }}
                   colSpan={1}
-                >
-                  
-                </th>
+                ></th>
                 <th
                   style={{ background: "#212a50", color: "white" }}
                   colSpan={60}
@@ -454,7 +467,10 @@ const ManCoursMatrix = () => {
                                 textAlign: "center",
                               }}
                             >
-                              {course?.color == "red" && "not started" || course?.color == "yellow" && "in progress" || course?.color == "green" && "finished" || course?.color == "gray" && "" }
+                              {(course?.color == "red" && "not started") ||
+                                (course?.color == "yellow" && "in progress") ||
+                                (course?.color == "green" && "finished") ||
+                                (course?.color == "gray" && "")}
                             </td>
                           </>
                         );
@@ -468,7 +484,10 @@ const ManCoursMatrix = () => {
                               textAlign: "center",
                             }}
                           >
-                            {course?.color == "red" && "not started" || course?.color == "yellow" && "in progress" || course?.color == "green" && "finished" || course?.color == "gray" && "" }
+                            {(course?.color == "red" && "not started") ||
+                              (course?.color == "yellow" && "in progress") ||
+                              (course?.color == "green" && "finished") ||
+                              (course?.color == "gray" && "")}
                           </td>
                         );
                       }

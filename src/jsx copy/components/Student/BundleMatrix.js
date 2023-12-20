@@ -37,7 +37,7 @@ const BundleMatrix = () => {
   useEffect(() => {
     const form = new FormData();
     form.append("manager_id", manager);
-    makeRequest("POST", "/course/get-manager-matrix-course", form)
+    makeRequest("POST", "/course/get-manager-matrix-bundle", form)
       .then((res) => {
         let temp = {
           color: "gray",
@@ -57,7 +57,7 @@ const BundleMatrix = () => {
           let allCourses = [...assigned, ...enrolled];
 
           let CNames = allCourses.map((course) => {
-            return course.course_name;
+            return course.bundle_name;
           });
 
           let courses = [];
@@ -71,9 +71,9 @@ const BundleMatrix = () => {
           }
 
           allCourses.forEach((course) => {
-            if (!courses.find((i) => i?.course_name == course?.course_name)) {
+            if (!courses.find((i) => i?.course_name == course?.bundle_name)) {
               course_name.forEach((item, id) => {
-                if (item == course?.course_name) {
+                if (item == course?.bundle_name) {
                   courses[id] = course;
                 }
               });
@@ -97,7 +97,7 @@ const BundleMatrix = () => {
           let course = item["course"];
           course_name.forEach((name, idx) => {
             course.forEach((c) => {
-              if (c.course_name === name) {
+              if (c.bundle_name === name) {
                 temp[idx] = c;
               }
             });
@@ -167,7 +167,7 @@ const BundleMatrix = () => {
             >
               <Form.Select
                 onChange={(e) => {
-                  console.log(e.target.value);
+                  setManager(e.target.value);
                   setManagers(users.filter(item => item.created_by == e.target.value));
                 }}
                 style={{background:"#5a9676", color:"#fff"}} className="form-control"

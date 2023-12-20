@@ -213,7 +213,9 @@ const ManCoursMatrix = () => {
         console.log(err);
       });
   }, []);
-  useEffect(() => {
+
+  function getMatrixData(manager) {
+    console.log('form course ',manager);
     const form = new FormData();
     form.append("manager_id", manager);
     makeRequest("POST", "/course/get-manager-matrix-course", form)
@@ -288,7 +290,9 @@ const ManCoursMatrix = () => {
       })
       .catch((err) => {
         console.log(err);
-      });
+      });}
+  useEffect(() => {
+    getMatrixData(manager)
   }, [manager]);
   return (
     <div className="row p-3">
@@ -336,7 +340,7 @@ const ManCoursMatrix = () => {
         <div className="col-12 p-2 m-2">
           <div style={{ position: "relative" }}>
             <div className="d-flex justify-content-center my-2 ">
-              <h4>Course Matrix</h4>
+              <h4>Course Matrix 1</h4>
             </div>
 
             <div
@@ -345,7 +349,7 @@ const ManCoursMatrix = () => {
             >
               <Form.Select
                 onChange={(e) => {
-                  console.log(e.target.value);
+                  getMatrixData(e.target.value)
                   setManagers(users.filter(item => item.created_by == e.target.value));
                 }}
                 size=""
@@ -362,6 +366,7 @@ const ManCoursMatrix = () => {
               <Form.Select
                 onChange={(e) => {
                   console.log(e.target.value);
+                  getMatrixData(e.target.value)
                   setManager(e.target.value);
                 }}
                 size=""

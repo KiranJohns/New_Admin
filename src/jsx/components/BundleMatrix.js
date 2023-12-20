@@ -6,9 +6,7 @@ import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { jwtDecode } from "jwt-decode";
 
-
 const BundleMatrix = () => {
-
   const makeRequest = fetchData();
   const [courseName, setCourseName] = useState([]);
   const [userName, setUserName] = useState([]);
@@ -26,15 +24,24 @@ const BundleMatrix = () => {
     makeRequest("GET", "/info/get-all-users")
       .then((res) => {
         setUsers(res.data.response);
-        setCompanies(res.data.response.filter(item => item.type_of_account == "company"));
-        setManagers(res.data.response.filter(item => item.type_of_account == "manager"));
-        setManager(res.data.response.find(item => item.type_of_account == "manager")?.id);
+        setCompanies(
+          res.data.response.filter((item) => item.type_of_account == "company")
+        );
+        setManagers(
+          res.data.response.filter((item) => item.type_of_account == "manager")
+        );
+        setManager(
+          res.data.response.find((item) => item.type_of_account == "manager")
+            ?.id
+        );
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-  useEffect(() => {
+
+  function getMatrixData(manager) {
+    console.log('from getMatrixData');
     const form = new FormData();
     form.append("manager_id", manager);
     makeRequest("POST", "/course/get-manager-matrix-course", form)
@@ -110,6 +117,9 @@ const BundleMatrix = () => {
       .catch((err) => {
         console.log(err);
       });
+  }
+  useEffect(() => {
+    getMatrixData(manager);
   }, [manager]);
   return (
     <div className="row p-3">
@@ -157,7 +167,7 @@ const BundleMatrix = () => {
         <div className="col-12 p-2 m-2">
           <div style={{ position: "relative" }}>
             <div className="d-flex justify-content-center my-2 ">
-              <h4>Course Matrix</h4>
+              <h4>Bundle Matrix</h4>
             </div>
 
             <div
@@ -166,8 +176,10 @@ const BundleMatrix = () => {
             >
               <Form.Select
                 onChange={(e) => {
-                  console.log(e.target.value);
-                  setManagers(users.filter(item => item.created_by == e.target.value));
+                  getMatrixData(e.target.value)
+                  setManagers(
+                    users.filter((item) => item.created_by == e.target.value)
+                  );
                 }}
                 size=""
                 style={{ border: ".1px solid #212a50" }}
@@ -182,8 +194,9 @@ const BundleMatrix = () => {
               </Form.Select>
               <Form.Select
                 onChange={(e) => {
-                  console.log(e.target.value);
-                  setManager(e.target.value);
+                  // console.log(e.target.value);
+                  getMatrixData(e.target.value)
+                  // setManager(e.target.value);
                 }}
                 size=""
                 style={{ border: ".1px solid #212a50" }}
