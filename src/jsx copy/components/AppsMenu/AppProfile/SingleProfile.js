@@ -236,7 +236,7 @@ const SingleProfile = () => {
     makeRequest("PATCH", "/info/update-admin-profile-image", file)
       .then((res) => {
         console.log(res);
-        swal("Done!", "Profile image updated", "success");
+        swal("Done!", "Profile Image Updated", "success");
       })
       .catch((err) => {
         console.log(err);
@@ -249,7 +249,7 @@ const SingleProfile = () => {
     makeRequest("POST", "/info/update-admin-profile-banner", file)
       .then((res) => {
         console.log(res);
-        swal("Done!", "banner image updated", "success");
+        swal("Done!", "Banner Image Updated", "success");
       })
       .catch((err) => {
         console.log(err);
@@ -267,11 +267,11 @@ const SingleProfile = () => {
     makeRequest("POST", "/info/set-qualification", file)
       .then((res) => {
         fetchQualifications();
-        swal("Done!", "Qualification created", "success");
+        swal("Done!", "Qualification Updated", "success");
         console.log(res);
       })
       .catch((err) => {
-        swal("Oops!", "Check your inputs", "error");
+        swal("Oops!", "Check Your Inputs", "error");
         console.log(err);
       });
   }
@@ -288,11 +288,11 @@ const SingleProfile = () => {
     makeRequest("POST", "/info/set-experience", file)
       .then((res) => {
         fetchExperience();
-        swal("Done!", "Experience created", "success");
+        swal("Done!", "Experience Updated", "success");
         console.log(res);
       })
       .catch((err) => {
-        swal("Oops!", "Check your inputs", "error");
+        swal("Oops!", "Check Your Inputs", "error");
         console.log(err);
       });
   }
@@ -302,6 +302,8 @@ const SingleProfile = () => {
       .then((res) => {
         console.log(res);
         fetchQualifications();
+        swal("Done!", "Qualification Successfully Deleted");
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
@@ -312,6 +314,8 @@ const SingleProfile = () => {
     makeRequest("DELETE", `/info/delete-experience/${id}`)
       .then((res) => {
         console.log(res);
+        swal("Done!", "Experience Successfully Deleted");
+        window.location.reload();
         fetchExperience();
       })
       .catch((err) => {
@@ -721,7 +725,7 @@ const SingleProfile = () => {
                       <div className="">
                         <div style={{ background: "#212A50" }} className="">
                           <h4 style={{ color: "#fff", padding: ".6rem" }}>
-                            Add Qualification
+                            Update Qualification
                           </h4>
                         </div>
                         <form type="button" action="">
@@ -847,7 +851,7 @@ const SingleProfile = () => {
                       <div className="">
                         <div style={{ background: "#212A50" }} className="">
                           <h4 style={{ color: "#fff", padding: ".6rem" }}>
-                            Add Experience
+                            Update Experience
                           </h4>
                         </div>
                         <form type="button" action="">

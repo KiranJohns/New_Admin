@@ -57,7 +57,7 @@ const CreateCoupon = () => {
     console.log(coupon);
     makeRequest("POST", "/coupon/create-coupon", coupon)
       .then((res) => {
-        swal("Done!", "coupon created", "success");
+        swal("Done!", "Coupon Created", "success");
         window.location="/coupon-list"
       })
       .catch((err) => {

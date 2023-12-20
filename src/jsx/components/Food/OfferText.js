@@ -47,13 +47,11 @@ const OfferText = () => {
     is_active: "",
   });
 
-  
-
   function deleteOfferText(id) {
     makeRequest("DELETE", `/coupon/delete-offer-text/${id}`)
       .then((res) => {
         setOfferTexts((prev) => prev.filter((item) => item.id !== id));
-        swal("Done!", "offer text deleted", "success");
+        swal("Done!", "Offer Text Deleted", "success");
       })
       .catch((err) => {
         let error = err?.data?.errors[0]?.error
@@ -68,10 +66,12 @@ const OfferText = () => {
   }, []);
 
   function getOfferText() {
-    setOfferText({
-      offer_text: "",
-      hight_light_text: "",
-      is_active: "",
+    setOfferText((prev) => {
+      return {
+        ...offerText,
+        offer_text: "",
+        hight_light_text: "",
+      };
     });
     makeRequest("GET", "/coupon/get-all-offer-text")
       .then((res) => {
@@ -93,7 +93,7 @@ const OfferText = () => {
     makeRequest("POST", "/coupon/create-offer-text", offerText)
       .then((res) => {
         getOfferText();
-        swal("Done!", "offer text created", "success");
+        swal("Done!", "Offer Text Created", "success");
       })
       .catch((err) => {
         let error = err?.data?.errors[0]?.error
@@ -157,7 +157,7 @@ const OfferText = () => {
                             <input
                               type="radio"
                               name="optradio"
-                            //   checked={}
+                              //   checked={}
                               onChange={() =>
                                 setOfferText({
                                   ...offerText,
@@ -171,7 +171,7 @@ const OfferText = () => {
                             <input
                               type="radio"
                               name="optradio"
-                            //   checked={}
+                              //   checked={}
                               onChange={() =>
                                 setOfferText({
                                   ...offerText,

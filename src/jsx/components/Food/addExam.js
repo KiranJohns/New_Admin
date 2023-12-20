@@ -116,7 +116,7 @@ const AddExam = () => {
       .then((res) => {
         setCourse(res.data);
         setExam([])
-        swal("Done!", "A new exam created", "success");
+        swal("Done!", "New Exam Created", "success")
         navigate('/view-exam')
       })
       .catch((err) => {

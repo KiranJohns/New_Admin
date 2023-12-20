@@ -127,7 +127,7 @@ const BundleMatrix = () => {
               }}
               className="redd"
             >
-              not started
+              Not started
             </div>
             <div
               style={{
@@ -139,7 +139,7 @@ const BundleMatrix = () => {
               }}
               className="redd"
             >
-             in progress
+             In progress
             </div>
             <div
               style={{
@@ -272,7 +272,7 @@ const BundleMatrix = () => {
                                 textAlign: "center",
                               }}
                             >
-                              {course?.color == "red" && "not started" || course?.color == "yellow" && "in progress" || course?.color == "green" && "finished" || course?.color == "gray" && "" }
+                              {/* {course?.color == "red" && "not started" || course?.color == "yellow" && "in progress" || course?.color == "green" && "finished" || course?.color == "gray" && "" } */}
                             </td>
                           </>
                         );
