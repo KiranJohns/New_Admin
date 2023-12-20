@@ -418,14 +418,17 @@ const EditCourse = () => {
                       Course Type:
                     </h4>
                     <div className=" mb-3 ">
-                      <input
-                        type="text"
-                        name="course_type"
+                      <select
                         value={course.course_type}
                         onChange={handleChange}
-                        className="form-control input-default "
-                        placeholder="Online"
-                      />
+                        defaultValue={"option"}
+                        name="course_type"
+                        className="form-control form-control"
+                      >
+                        <option>Select</option>
+                        <option value="online">Online</option>
+                        <option value="offline">Offline</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -436,14 +439,16 @@ const EditCourse = () => {
                       Duration:
                     </h4>
                     <div className=" mb-3 ">
-                      <input
-                        type="text"
-                        name="duration"
-                        value={course.duration}
+                      <select
                         onChange={handleChange}
-                        className="form-control input-default "
-                        placeholder="Time for completion"
-                      />
+                        value={course.duration}
+                        defaultValue={"option"}
+                        name="duration"
+                        className="form-control form-control"
+                      >
+                        <option>Select</option>
+                        <option value="variable">Variable</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -456,14 +461,17 @@ const EditCourse = () => {
                       Course Level:
                     </h4>
                     <div className=" mb-3 ">
-                      <input
-                        type="text"
-                        name="course_level"
-                        value={course.course_level}
+                      <select
                         onChange={handleChange}
-                        className="form-control input-default "
-                        placeholder="Advanced/Intermediate"
-                      />
+                        value={course.course_level}
+                        defaultValue={"option"}
+                        name="course_level"
+                        className="form-control form-control"
+                      >
+                        <option>Select</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -474,14 +482,18 @@ const EditCourse = () => {
                       Certificate
                     </h4>
                     <div className=" mb-3 ">
-                      <input
-                        type="text"
-                        name="certificate_line"
-                        value={course.certificate_line}
+                      <select
                         onChange={handleChange}
-                        className="form-control input-default "
-                        placeholder="Details"
-                      />
+                        value={course.certificate_line}
+                        defaultValue={"option"}
+                        name="certificate_line"
+                        className="form-control form-control"
+                      >
+                        <option>Select</option>
+                        <option value="certificate of completion">
+                          Certificate of completion
+                        </option>
+                      </select>
                     </div>
                   </div>
                 </div>

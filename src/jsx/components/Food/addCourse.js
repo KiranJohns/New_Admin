@@ -246,14 +246,6 @@ const AddCourse = () => {
                       Course Type:
                     </h4>
                     <div className=" mb-3 ">
-                      {/* <input
-                        type="text"
-                        name="course_type"
-                        value={course.course_type}
-                        onChange={handleChange}
-                        className="form-control input-default "
-                        placeholder="Online"
-                      /> */}
                       <select
                         onChange={handleChange}
                         defaultValue={"option"}
@@ -331,14 +323,6 @@ const AddCourse = () => {
                       Certificate
                     </h4>
                     <div className=" mb-3 ">
-                      {/* <input
-                        type="text"
-                        name="certificate_line"
-                        value={course.certificate_line}
-                        onChange={handleChange}
-                        className="form-control input-default "
-                        placeholder="Details"
-                      /> */}
                       <select
                         onChange={handleChange}
                         defaultValue={"option"}
