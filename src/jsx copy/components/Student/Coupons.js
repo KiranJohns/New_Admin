@@ -323,7 +323,7 @@ const CouponList = () => {
                           />
                         </th>
 
-                        <th>Code</th>
+                        <th>Coupon Code</th>
                         <th>Coupon Type</th>
                         <th>Minimum Purchased</th>
                         <th>Amount</th>
