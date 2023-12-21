@@ -162,7 +162,7 @@ const ViewCourse = () => {
   useEffect(() => {
     makeRequest("GET", "/course/get-all-course")
       .then((res) => {
-        setCourse(res.data.response.reverse());
+        setCourse(res.data.response);
       })
       .catch((err) => {
         console.log(err);
@@ -244,7 +244,7 @@ const ViewCourse = () => {
                     course.map((item, id) => (
                       <tr style={{ textAlign: "center" }}>
                         <td>
-                          <strong>{item?.course_code}</strong>
+                          <strong>LFC{item?.id}</strong>
                         </td>
                         <td>{item?.name}</td>
                         <td>{item?.category}</td>
