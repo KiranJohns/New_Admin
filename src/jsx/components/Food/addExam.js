@@ -193,8 +193,10 @@ const AddExam = () => {
                     <div className="form-group mb-3">
                       <select
                         onChange={(e) => {
-                          setCourseId("LFC"+e.target.value?.id)
-                          setCourseCode(e.target.value?.course_code)
+                          console.log(e.target.value);
+                          let selectedCourse = course.find(item => item.id == e.target.value)
+                          setCourseId("LFC"+selectedCourse.id)
+                          setCourseCode(selectedCourse?.course_code)
                         }}
                         defaultValue={"option"}
                         className="form-control form-control-lg"
@@ -202,7 +204,7 @@ const AddExam = () => {
                         <option>Select</option>
                         {course &&
                           filteredCourse.map((item) => (
-                            <option key={item.name} value={item}>
+                            <option key={item.name} value={item.id}>
                               {item.name}
                             </option>
                           ))}
