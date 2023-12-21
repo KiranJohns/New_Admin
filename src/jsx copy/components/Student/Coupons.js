@@ -194,7 +194,7 @@ const CouponList = () => {
                       <div className="col-6">
                         <div style={{}}>
                           <div className="card-body">
-                            <h4 className="">Code</h4>
+                            <h4 className="">Coupon Code</h4>
                             <div className="mb-3 ">
                               <input
                                 type="text"
@@ -323,7 +323,7 @@ const CouponList = () => {
                           />
                         </th>
 
-                        <th>Coupon Code</th>
+                        <th>Code</th>
                         <th>Coupon Type</th>
                         <th>Minimum Purchased</th>
                         <th>Amount</th>
