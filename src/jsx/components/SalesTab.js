@@ -310,7 +310,7 @@ const SalesTab = () => {
                     <thead>
                       <tr style={{ background: "#212a50" }}>
                         <th className="width80">
-                          <strong>SL No</strong>
+                          <strong>Sl No</strong>
                         </th>
                         <th style={{ textAlign: "center" }}>
                           <strong>Course Count</strong>
