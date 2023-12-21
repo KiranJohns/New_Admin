@@ -162,7 +162,7 @@ const ViewCourse = () => {
   useEffect(() => {
     makeRequest("GET", "/course/get-all-course")
       .then((res) => {
-        setCourse(res.data.response);
+        setCourse(res.data.response.reverse());
       })
       .catch((err) => {
         console.log(err);
