@@ -44,7 +44,7 @@ const AddNewStudent = () => {
     e.preventDefault();
     makeRequest("POST", "/info/create-user", userData)
       .then((res) => {
-        swal("Done!", "user successfully created", "success");
+        swal("Done!", "User Successfully Created", "success");
       })
       .catch((err) => {
         swal("Oops!", err.data.errors[0].error, "error");
