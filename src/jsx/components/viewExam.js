@@ -172,7 +172,7 @@ const ViewExam = () => {
               <thead>
                 <tr style={{background:"#212A50", textAlign:"center"}}>
                   <th className="width80">
-                    <strong>Course ID</strong>
+                    <strong>SL</strong>
                   </th>
                   <th>
                     <strong>Course Name</strong>

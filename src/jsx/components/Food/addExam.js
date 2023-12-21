@@ -195,6 +195,7 @@ const AddExam = () => {
                         onChange={(e) => {
                           console.log(e.target.value);
                           let selectedCourse = course.find(item => item.id == e.target.value)
+                          console.log(selectedCourse);
                           setCourseId("LFC"+selectedCourse.id)
                           setCourseCode(selectedCourse?.course_code)
                         }}
