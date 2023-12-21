@@ -95,7 +95,7 @@ const  CourseWiseManager = () => {
               <thead>
                 <tr style={{ textAlign: "center", background: "#212A50", color:"#fff" }}>
                   <th className="width80">
-                    <strong>Sl </strong>
+                    <strong>Sl No.</strong>
                   </th>
                   <th>
                     <strong>Course Name</strong>

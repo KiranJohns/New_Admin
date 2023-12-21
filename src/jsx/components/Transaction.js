@@ -100,7 +100,7 @@ const Transactions = () => {
                   }}
                 >
                   <th className="width80">
-                    <strong>SL No.</strong>
+                    <strong>Sl No.</strong>
                   </th>
                   <th>
                     <strong>Transaction ID</strong>
