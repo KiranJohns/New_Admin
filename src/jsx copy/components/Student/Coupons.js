@@ -61,8 +61,8 @@ const CouponList = () => {
     .then((res) => {
       if (res?.data.response) {
         console.log(res?.data.response);
-        setCoupons(res?.data.response);
-        setAllCoupons(res?.data.response);
+        setCoupons(res?.data.response.reverse());
+        setAllCoupons(res?.data.response.reverse());
       }
     })
     .catch((err) => {
