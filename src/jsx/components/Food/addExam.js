@@ -23,6 +23,7 @@ const AddExam = () => {
   const makeRequest = fetchData();
   const [answer, setAnswer] = useState();
   const [optionCount, setOptionCount] = useState(0);
+  const [index, setIndex] = useState(0);
   let navigate = useNavigate()
 
   const [data, setData] = useState({
@@ -194,21 +195,26 @@ const AddExam = () => {
                       <select
                         onChange={(e) => {
                           console.log(e.target.value);
-                          let selectedCourse = course.find(item => item.id == e.target.value)
-                          console.log(selectedCourse);
-                          setCourseId("LFC"+selectedCourse.id)
-                          setCourseCode(selectedCourse?.course_code)
+                          let selectedCourse = course.forEach((item,id) => {
+                            if(item.id == e.target.value) {
+                            console.log(selectedCourse);
+                            setIndex(id < 10 ? "0".concat(id) : id)
+                            setCourseId("LFC"+item.id)
+                            setCourseCode(item?.course_code)
+                            }
+                          })
                         }}
                         defaultValue={"option"}
                         className="form-control form-control-lg"
                       >
                         <option>Select</option>
                         {course &&
-                          filteredCourse.map((item) => (
+                          filteredCourse.map((item) => {
+                            return (
                             <option key={item.name} value={item.id}>
                               {item.name}
                             </option>
-                          ))}
+                          )})}
                       </select>
                     </div>
                   </div>
@@ -224,7 +230,7 @@ const AddExam = () => {
                         className="form-control form-control-lg"
                         type="text"
                         placeholder=""
-                        value={courseId}
+                        value={index}
                         disabled
                         />
                     </div>
