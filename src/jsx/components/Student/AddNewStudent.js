@@ -44,7 +44,13 @@ const AddNewStudent = () => {
     e.preventDefault();
     makeRequest("POST", "/info/create-user", userData)
       .then((res) => {
-        swal("Done!", "User Successfully Created", "success");
+        if(userData.type == "company") {
+          swal("Done!", "Manager Successfully Created", "success");
+          window.location.href = '/company'
+        } else {
+          swal("Done!", "User Successfully Created", "success");
+          window.location.href = '/manager'
+        }
       })
       .catch((err) => {
         swal("Oops!", err.data.errors[0].error, "error");
