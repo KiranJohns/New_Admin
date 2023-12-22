@@ -167,19 +167,14 @@ const Students = () => {
                         }}
                       >
                         <th>
-                          <input
-                            type="checkbox"
-                            className="form-check-input"
-                            id="checkAll"
-                            // onClick={()=>handleCheckedAll(unchecked)}
-                          />
+                        Sl No.
                         </th>
                         <th>ID</th>
                         <th>Name</th>
                         <th>email</th>
                         <th>phone</th>
                         <th>City</th>
-                        <th>Type</th>
+                        {/* <th>Type</th> */}
 
                         <th>Action</th>
                       </tr>
@@ -189,21 +184,7 @@ const Students = () => {
                         return (
                           <tr key={ind} style={{ textAlign: "center" }}>
                             <td>
-                              <div className="checkbox me-0 align-self-center">
-                                <div className="custom-control custom-checkbox ">
-                                  <input
-                                    type="checkbox"
-                                    className="form-check-input"
-                                    id={`stud-${item.id}`}
-                                    checked={item.inputchecked}
-                                    // onChange={() => handleChecked(item.id)}
-                                  />
-                                  <label
-                                    className="custom-control-label"
-                                    htmlFor={`stud-${item.id}`}
-                                  ></label>
-                                </div>
-                              </div>
+                            {++ind}
                             </td>
                             <td>
                               <span className="text-primary font-w600">
@@ -228,7 +209,7 @@ const Students = () => {
                               <h6 className="mb-0">{item.city}</h6>
                             </td>
 
-                            <td>
+                            {/* <td>
                               {item.type_of_account && (
                                 <div
                                   class={`badge bg-${
@@ -242,9 +223,10 @@ const Students = () => {
                                   Individual
                                 </div>
                               )}
-                            </td>
+                            </td> */}
                             <td>
                               <Button
+                              title="View"
                                 onClick={() => {
                                   navigate("/user-detail", {
                                     state: { id: item.id },
@@ -264,6 +246,7 @@ const Students = () => {
                                 </Button> */}
 
                               <Button
+                              title="Delete"
                                 className="me-2"
                                 variant="danger btn-icon-xxs"
                                 onClick={() => blockHandler(item.id)}

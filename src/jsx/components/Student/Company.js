@@ -156,19 +156,20 @@ const CompanyTable = () => {
                         }}
                       >
                         <th>
-                          <input
+                          Sl No.
+                          {/* <input
                             type="checkbox"
                             className="form-check-input"
                             id="checkAll"
-                            // onClick={()=>handleCheckedAll(unchecked)}
-                          />
+                            onClick={()=>handleCheckedAll(unchecked)}
+                          /> */}
                         </th>
                         <th>ID</th>
                         <th>Name</th>
                         <th>email</th>
                         <th>phone</th>
                         <th>City</th>
-                        <th>Type</th>
+                        {/* <th>Type</th> */}
 
                         <th>Action</th>
                       </tr>
@@ -178,21 +179,7 @@ const CompanyTable = () => {
                         return (
                           <tr key={ind} style={{ textAlign: "center" }}>
                             <td>
-                              <div className="checkbox me-0 align-self-center">
-                                <div className="custom-control custom-checkbox ">
-                                  <input
-                                    type="checkbox"
-                                    className="form-check-input"
-                                    id={`stud-${item.id}`}
-                                    checked={item.inputchecked}
-                                    // onChange={() => handleChecked(item.id)}
-                                  />
-                                  <label
-                                    className="custom-control-label"
-                                    htmlFor={`stud-${item.id}`}
-                                  ></label>
-                                </div>
-                              </div>
+                            {++ind}
                             </td>
                             <td>
                               <span className="text-primary font-w600">
@@ -217,7 +204,7 @@ const CompanyTable = () => {
                               <h6 className="mb-0">{item?.city}</h6>
                             </td>
 
-                            <td>
+                            {/* <td>
                               {item.type_of_account && (
                                 <div
                                   className={`badge bg-${
@@ -231,9 +218,10 @@ const CompanyTable = () => {
                                   Company
                                 </div>
                               )}
-                            </td>
+                            </td> */}
                             <td>
                               <Button
+                              title="View"
                                 onClick={() => {
                                   navigate("/user-detail", {
                                     state: { id: item.id },
@@ -246,6 +234,7 @@ const CompanyTable = () => {
                               </Button>
 
                               <Button
+                              title="Block"
                                 className="me-2"
                                 variant="danger btn-icon-xxs"
                                 onClick={() => blockHandler(item.id)}

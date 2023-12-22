@@ -11,7 +11,7 @@ import fetchData from "../../../axios";
 import swal from "sweetalert";
 import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
 
-const CouponList = () => {
+const  CouponList = () => {
   const [showModal, setShowModal] = useState(false);
   // const childRef = useRef();
   const [currentPage, setCurrentPage] = useState(1);
@@ -50,7 +50,7 @@ const CouponList = () => {
   function handleDelete(id) {
     makeRequest("DELETE", `/coupon/delete-coupon/${id}`)
       .then((res) => {
-        swal("Done!", "coupon deleted", "success");
+        swal("Done!", "Coupon Deleted", "success");
         getAllCoupons()
       })
       .catch((err) => console.log(err));
@@ -314,14 +314,15 @@ const CouponList = () => {
                           fontWeight: "bold",
                         }}
                       >
-                        <th>
+                        {/* <th>
                           <input
                             type="checkbox"
                             className="form-check-input"
                             id="checkAll"
-                            // onClick={() => handleCheckedAll(unchecked)}
+                            onClick={() => handleCheckedAll(unchecked)}
                           />
-                        </th>
+                        </th> */}
+                        <th>Sl No.</th>
 
                         <th>Coupon Code</th>
                         <th>Coupon Type</th>
@@ -338,7 +339,7 @@ const CouponList = () => {
                         coupons.map((item, ind) => {
                           return (
                             <tr style={{ textAlign: "center" }} key={ind}>
-                              <td>
+                              {/* <td>
                                 <div className="checkbox me-0 align-self-center">
                                   <div className="custom-control custom-checkbox ">
                                     <input
@@ -346,7 +347,7 @@ const CouponList = () => {
                                       className="form-check-input"
                                       id={`stud-${item.id}`}
                                       checked={item.inputchecked}
-                                      // onChange={() => handleChecked(item.id)}
+                                      onChange={() => handleChecked(item.id)}
                                     />
                                     <label
                                       className="custom-control-label"
@@ -354,7 +355,8 @@ const CouponList = () => {
                                     ></label>
                                   </div>
                                 </div>
-                              </td>
+                              </td> */}
+                              <td><span className="text-primary font-w600">{++ind}</span></td>
                               <td>
                                 <div className="">
                                   <h4>{item?.coupon_code}</h4>
@@ -367,11 +369,11 @@ const CouponList = () => {
                               </td>
                               <td>
                                 <div className="email">
-                                  {item?.minimum_purchase}
+                                <h6 className="mb-0"><span className=" font-w600">{item?.minimum_purchase}</span></h6>
                                 </div>
                               </td>
                               <td>
-                                <h6 className="mb-0">{item?.amount}</h6>
+                                <h6 className="mb-0"><span className="text-primary font-w600">{item?.amount}</span></h6>
                               </td>
                               <td>
                                 <h6 className="mb-0">{item?.date}</h6>
@@ -394,6 +396,7 @@ const CouponList = () => {
                                 <Button
                                   className="me-2"
                                   variant="primary btn-icon-xxs"
+                                  title="Edit"
                                   onClick={() => {
                                     setCoupon(
                                       coupons.find((c) => c.id === item.id)
@@ -407,6 +410,7 @@ const CouponList = () => {
                                   onClick={() => handleDelete(item.id)}
                                   className="me-2"
                                   variant="danger btn-icon-xxs"
+                                  title="Delete"
                                 >
                                   <RiChatDeleteFill />
                                 </Button>

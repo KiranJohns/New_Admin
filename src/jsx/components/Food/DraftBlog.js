@@ -296,7 +296,7 @@ const BlogDraft = ({ draftedBlogs, getBlogs }) => {
                       <Button
                         className="me-2"
                         variant="primary btn-icon-xxs"
-                        // title="to publish"
+                        title="Publish"
                         onClick={() => blogStatusHandler(item.id, "published")}
                       >
                         <MdPublish />
@@ -304,7 +304,7 @@ const BlogDraft = ({ draftedBlogs, getBlogs }) => {
 
                       <Button
                         className=""
-                        // title="to trash"
+                        title="Trash"
                         variant="secondary btn-icon-xxs"
                         onClick={() => blogStatusHandler(item.id, "trash")}
                       >

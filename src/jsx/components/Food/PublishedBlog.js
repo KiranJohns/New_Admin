@@ -347,7 +347,7 @@ const PublishedBlog = ({publishedBlog,getBlogs}) => {
                       <Button
                         className="me-2"
                         variant="primary btn-icon-xxs"
-                        // title="to draft"
+                        title="Draft"
                         // onClick={() => navigate("/edit-blog",{state:{id:item.id}})}
                         onClick={() => changeBlogState(item.id,"draft")}
                       >
@@ -357,7 +357,7 @@ const PublishedBlog = ({publishedBlog,getBlogs}) => {
                       <Button
                         className=""
                         variant="secondary btn-icon-xxs"
-                        // title="to trash"
+                        title="Trash"
                         onClick={() => changeBlogState(item.id,"trash")}
                       >
                         <FaTrash />

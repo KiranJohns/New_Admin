@@ -331,7 +331,7 @@ const Food = () => {
                                 <Button
                                   className="me-2"
                                   variant="success btn-icon-xxs"
-                                  // title="view"
+                                  title="View"
                                 >
                                   <FaEye />
                                 </Button>
@@ -339,7 +339,7 @@ const Food = () => {
                               <Button
                                 className="me-2"
                                 variant="primary btn-icon-xxs"
-                                // title="edit"
+                                title="Edit"
                                 onClick={() =>
                                   navigate("/edit-blog", {
                                     state: { id: item.id },
@@ -351,7 +351,7 @@ const Food = () => {
                               <Button
                                 className="me-2"
                                 variant="dark btn-icon-xxs"
-                                // title="to draft"
+                                title="Draft"
                                 onClick={() =>
                                   blogStatusHandler(item.id, "draft")
                                 }
@@ -361,7 +361,7 @@ const Food = () => {
                               <Button
                                 className="me-2"
                                 variant="secondary btn-icon-xxs"
-                                // title="to trash"
+                                title="Trash"
                                 onClick={() =>
                                   blogStatusHandler(item.id, "trash")
                                 }
@@ -370,7 +370,7 @@ const Food = () => {
                               </Button>
                               <Button
                                 className="btn btn-danger"
-                                // title="delete"
+                                title="Delete"
                                 onClick={() => deleteHandler(item.id)}
                                 variant="danger btn-icon-xxs"
                               >

@@ -169,7 +169,7 @@ const BlogTrash = ({ trashedBlogs, getBlogs }) => {
                         </a> */}
                       <Button
                         className="me-2"
-                        // title="to draft"
+                        title="Draft"
                         variant="primary btn-icon-xxs"
                         onClick={() => blogStatusHandler(item.id, "draft")}
                       >
@@ -178,7 +178,7 @@ const BlogTrash = ({ trashedBlogs, getBlogs }) => {
 
                       <Button
                         className=""
-                        // title="delete"
+                        title="Delete"
                         variant="secondary btn-icon-xxs"
                         onClick={() => deleteHandler(item.id)}
                       >

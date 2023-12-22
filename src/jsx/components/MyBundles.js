@@ -127,6 +127,7 @@ const MyBundle = () => {
                             <Button
                               className="me-2"
                               variant="success btn-icon-xxs"
+                              title="View"
                             >
                               <FaEye />
                             </Button>
@@ -134,6 +135,7 @@ const MyBundle = () => {
                           <Button
                             className="me-2"
                             variant="info btn-icon-xxs"
+                            title="Assign"
                             onClick={() => {
                               setBundleId(item.id)
                               setBundleName(item.name)
@@ -146,6 +148,7 @@ const MyBundle = () => {
                             className="me-2"
                             variant="danger btn-icon-xxs"
                             onClick={() => handleDelete(item.id)}
+                            title="Delete"
                           >
                             <RiChatDeleteFill
                             />

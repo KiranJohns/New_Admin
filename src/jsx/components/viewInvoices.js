@@ -217,6 +217,7 @@ const ViewInvoice = () => {
                       <td style={{ textAlign: "center" }}>
                         <a target="_blank" href={item.img}>
                           <Button
+                           title="View"
                             className="me-2"
                             variant="success btn-icon-xxs"
                           >

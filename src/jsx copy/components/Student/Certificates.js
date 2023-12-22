@@ -131,12 +131,7 @@ const ViewCertificates = () => {
                         }}
                       >
                         <th>
-                          <input
-                            type="checkbox"
-                            className="form-check-input"
-                            id="checkAll"
-                            // onClick={() => handleCheckedAll(unchecked)}
-                          />
+                         Sl No.
                         </th>
                         <th>ID</th>
                         <th>User Name</th>
@@ -150,21 +145,7 @@ const ViewCertificates = () => {
                       {records.map((item, ind) => (
                         <tr key={ind} style={{ textAlign: "center" }}>
                           <td style={{ textAlign: "center" }}>
-                            <div className="checkbox me-0 align-self-center">
-                              <div className="custom-control custom-checkbox ">
-                                <input
-                                  type="checkbox"
-                                  className="form-check-input"
-                                  id={`stud-${item.id}`}
-                                  checked={item.inputchecked}
-                                  // onChange={() => handleChecked(item.id)}
-                                />
-                                <label
-                                  className="custom-control-label"
-                                  htmlFor={`stud-${item.id}`}
-                                ></label>
-                              </div>
-                            </div>
+                           {++ind}
                           </td>
                           <td>
                             <span className="text-primary font-w600">
@@ -192,6 +173,7 @@ const ViewCertificates = () => {
                           <td>
                             <a href={item.image} target="_blank" style={{color: 'white'}}>
                               <Button
+                              title="View"
                                 className="me-2"
                                 variant="success btn-icon-xxs"
                               >
