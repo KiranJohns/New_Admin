@@ -44,9 +44,9 @@ const AddNewStudent = () => {
     e.preventDefault();
     makeRequest("POST", "/info/create-user", userData)
       .then((res) => {
-        if(userData.type == "company") {
+        if(userData.type == "individual") {
           swal("Done!", "Manager Successfully Created", "success");
-          window.location.href = '/company'
+          window.location.href = '/individual'
         } else {
           swal("Done!", "User Successfully Created", "success");
           window.location.href = '/manager'
