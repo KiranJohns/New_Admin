@@ -24,7 +24,7 @@ const AddExam = () => {
   const [answer, setAnswer] = useState();
   const [optionCount, setOptionCount] = useState(0);
   const [index, setIndex] = useState(0);
-  let navigate = useNavigate()
+  let navigate = useNavigate();
 
   const [data, setData] = useState({
     question: "",
@@ -46,7 +46,7 @@ const AddExam = () => {
   }
 
   function handleDelete(id) {
-    setExam(prev => prev.filter(item => item.id != id))
+    setExam((prev) => prev.filter((item) => item.id != id));
   }
 
   function add() {
@@ -82,7 +82,6 @@ const AddExam = () => {
       return [...prev, question];
     });
 
-
     setData({
       question: "",
       option1: "",
@@ -109,16 +108,15 @@ const AddExam = () => {
   }, []);
 
   function submit() {
-    console.log(exam,courseId);
-    let form = new FormData()
-    form.append("course_id",courseId.slice(3,courseId.length))
-    form.append("questions",JSON.stringify([...exam]))
+    let form = new FormData();
+    form.append("course_id", courseId.slice(3, courseId.length));
+    form.append("questions", JSON.stringify([...exam]));
     makeRequest("POST", "/exam/create-exam", form)
       .then((res) => {
         setCourse(res.data);
-        setExam([])
-        swal("Done!", "New Exam Created", "success")
-        navigate('/view-exam')
+        setExam([]);
+        swal("Done!", "New Exam Created", "success");
+        navigate("/view-exam");
       })
       .catch((err) => {
         console.log(err);
@@ -157,8 +155,10 @@ const AddExam = () => {
                           console.log(course);
                           setFilteredCourse(() => {
                             return course.filter((item) => {
-                              console.log(item.category,e.target.value);
-                              if (item.category == e.target.value) {
+                              if (
+                                item.category == e.target.value &&
+                                item.exam_id == null
+                              ) {
                                 return item;
                               }
                             });
@@ -195,14 +195,13 @@ const AddExam = () => {
                       <select
                         onChange={(e) => {
                           console.log(e.target.value);
-                          let selectedCourse = course.forEach((item,id) => {
-                            if(item.id == e.target.value) {
-                            console.log(selectedCourse);
-                            setIndex(id < 10 ? "0".concat(id) : id)
-                            setCourseId("LFC"+item.id)
-                            setCourseCode(item?.course_code)
+                          let selectedCourse = course.forEach((item, id) => {
+                            if (item.id == e.target.value) {
+                              setIndex(id < 10 ? "0".concat(id) : id);
+                              setCourseId("LFC" + item.id);
+                              setCourseCode(item?.course_code);
                             }
-                          })
+                          });
                         }}
                         defaultValue={"option"}
                         className="form-control form-control-lg"
@@ -211,10 +210,11 @@ const AddExam = () => {
                         {course &&
                           filteredCourse.map((item) => {
                             return (
-                            <option key={item.name} value={item.id}>
-                              {item.name}
-                            </option>
-                          )})}
+                              <option key={item.name} value={item.id}>
+                                {item.name}
+                              </option>
+                            );
+                          })}
                       </select>
                     </div>
                   </div>
@@ -230,9 +230,9 @@ const AddExam = () => {
                         className="form-control form-control-lg"
                         type="text"
                         placeholder=""
-                        value={index}
+                        value={courseCode}
                         disabled
-                        />
+                      />
                     </div>
                   </div>
                 </div>
@@ -375,54 +375,58 @@ const AddExam = () => {
                     </div>
                   </div>
                   <div className="row" style={{ display: "flex" }}>
-                    {optionCount >= 1 && <div className="col-6">
-                      <div className="p-3">
-                        <h4 className="" style={{ textAlign: "center" }}>
-                        Option E
-                        </h4>
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                          }}
-                        >
-                          <input
-                            value={data.option5}
-                            onChange={handleOnchange}
-                            name="option5"
-                            style={{ width: "80%" }}
-                            className="form-control"
-                            type="text"
-                            placeholder="Option E"
-                          />
+                    {optionCount >= 1 && (
+                      <div className="col-6">
+                        <div className="p-3">
+                          <h4 className="" style={{ textAlign: "center" }}>
+                            Option E
+                          </h4>
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                            }}
+                          >
+                            <input
+                              value={data.option5}
+                              onChange={handleOnchange}
+                              name="option5"
+                              style={{ width: "80%" }}
+                              className="form-control"
+                              type="text"
+                              placeholder="Option E"
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>}
-                    {optionCount >= 2 &&<div className="col-6">
-                      <div className="p-3">
-                        <h4 className="" style={{ textAlign: "center" }}>
-                          Option F
-                        </h4>
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                          }}
-                        >
-                          <input
-                            value={data.option6}
-                            onChange={handleOnchange}
-                            name="option6"
-                            style={{ width: "80%" }}
-                            className="form-control"
-                            type="text"
-                            placeholder="Option F"
-                          />
+                    )}
+                    {optionCount >= 2 && (
+                      <div className="col-6">
+                        <div className="p-3">
+                          <h4 className="" style={{ textAlign: "center" }}>
+                            Option F
+                          </h4>
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                            }}
+                          >
+                            <input
+                              value={data.option6}
+                              onChange={handleOnchange}
+                              name="option6"
+                              style={{ width: "80%" }}
+                              className="form-control"
+                              type="text"
+                              placeholder="Option F"
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>}
+                    )}
                   </div>
                   <div
                     style={{
@@ -431,7 +435,11 @@ const AddExam = () => {
                       margin: "1rem 0",
                     }}
                   >
-                    <Button className="me-2" variant="primary btn-icon-xxs" onClick={() => setOptionCount(prev => ++prev)}>
+                    <Button
+                      className="me-2"
+                      variant="primary btn-icon-xxs"
+                      onClick={() => setOptionCount((prev) => ++prev)}
+                    >
                       Add Option
                     </Button>
                   </div>
@@ -472,7 +480,7 @@ const AddExam = () => {
                   <Card.Body>
                     <Table responsive>
                       <thead>
-                        <tr style={{background:"#212A50"}}>
+                        <tr style={{ background: "#212A50" }}>
                           <th className="width80">
                             <strong>No</strong>
                           </th>
@@ -499,7 +507,11 @@ const AddExam = () => {
                               </td>
                               <td>{item.question.slice(0, 30)}</td>
                               <td>{item.options.length}</td>
-                              <td>{String.fromCharCode(65 + item.options.indexOf(item.answer))}</td>
+                              <td>
+                                {String.fromCharCode(
+                                  65 + item.options.indexOf(item.answer)
+                                )}
+                              </td>
                               <td>
                                 <Button
                                   className="me-2"

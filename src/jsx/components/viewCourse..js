@@ -244,7 +244,7 @@ const ViewCourse = () => {
                     course.map((item, id) => (
                       <tr style={{ textAlign: "center" }}>
                         <td>
-                          <strong>LFC{id < 10 ? "0".concat(id) : id}</strong>
+                          <strong>{item.course_code}</strong>
                         </td>
                         <td>{item?.name}</td>
                         <td>{item?.category}</td>
