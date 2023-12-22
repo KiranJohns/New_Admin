@@ -36,34 +36,36 @@ const CompanyTable = () => {
   //   setChecked(temp);
   // };
 
+  const getData = async () => {
+    try {
+      const response = await makeRequest("GET", "/info/get-all-users");
+      console.log(response);
+      setUsers(response.data.response.reverse().filter((item) => item.type_of_account == "company"));
+      setAllUsers(response.data.response.reverse().filter((item) => item.type_of_account == "company"));
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await makeRequest("GET", "/info/get-all-users");
-        console.log(response);
-        setUsers(
-          response.data.response
-            .reverse()
-            .filter((item) => !item.block && item.type_of_account == "company")
-        );
-        setAllUsers(
-          response.data.response
-            .reverse()
-            .filter((item) => !item.block && item.type_of_account == "company")
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    };
 
-    fetchData();
+    getData();
   }, []);
 
   async function blockHandler(id) {
     try {
       const response = await makeRequest("GET", `/info/block-user/${id}`);
-      setUsers(users.reverse().filter((item) => item.id != id));
-      swal("Done!", "user successfully deleted", "success");
+      getData()
+      swal("Done!", "User Successfully Blocked", "success");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function unBlockHandler(id) {
+    try {
+      const response = await makeRequest("GET", `/info/unblock-user/${id}`);
+      getData()
+      swal("Done!", "User Successfully Unblocked", "success");
     } catch (error) {
       console.log(error);
     }
@@ -104,7 +106,9 @@ const CompanyTable = () => {
                       if (e.target.value != "") {
                         return setUsers(
                           allUsers.filter((user) => {
-                            return user.first_name.toLocaleLowerCase().startsWith(e.target.value.toLocaleLowerCase());
+                            return user.first_name
+                              .toLocaleLowerCase()
+                              .startsWith(e.target.value.toLocaleLowerCase());
                           })
                         );
                       } else {
@@ -178,9 +182,7 @@ const CompanyTable = () => {
                       {users.map((item, ind) => {
                         return (
                           <tr key={ind} style={{ textAlign: "center" }}>
-                            <td>
-                            {++ind}
-                            </td>
+                            <td>{++ind}</td>
                             <td>
                               <span className="text-primary font-w600">
                                 {item?.id}
@@ -221,7 +223,7 @@ const CompanyTable = () => {
                             </td> */}
                             <td>
                               <Button
-                              title="View"
+                                title="View"
                                 onClick={() => {
                                   navigate("/user-detail", {
                                     state: { id: item.id },
@@ -234,12 +236,12 @@ const CompanyTable = () => {
                               </Button>
 
                               <Button
-                              title="Block"
+                                title="Block"
                                 className="me-2"
                                 variant="danger btn-icon-xxs"
-                                onClick={() => blockHandler(item.id)}
+                                onClick={() => item.block ? unBlockHandler(item.id) : blockHandler(item.id)}
                               >
-                                <RiChatDeleteFill />
+                                {item.block ? "unblock" : "block"}
                               </Button>
                             </td>
                           </tr>

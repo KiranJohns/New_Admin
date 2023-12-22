@@ -11,7 +11,6 @@ import { Button, ButtonGroup } from "react-bootstrap";
 import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
 import swal from "sweetalert2";
 
-
 const ManagerTable = () => {
   const childRef = useRef();
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,22 +35,6 @@ const ManagerTable = () => {
   //   });
   //   setChecked(temp);
   // };
-
-  useEffect(() => {
-    makeRequest("GET", "/info/get-all-users")
-      .then((res) => {
-        console.log(res);
-        setUsers(
-          res.data.response.filter((item) => item.type_of_account == "manager").reverse().filter(item => !item.block)
-        );
-        setAllUsers(
-          res.data.response.filter((item) => item.type_of_account == "manager").reverse().filter(item => !item.block)
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
   const recordsPage = 15;
   const lastIndex = currentPage * recordsPage;
   const firstIndex = lastIndex - recordsPage;
@@ -72,11 +55,63 @@ const ManagerTable = () => {
     }
   }
 
+  // useEffect(() => {
+  //   makeRequest("GET", "/info/get-all-users")
+  //     .then((res) => {
+  //       console.log(res);
+  //       setUsers(
+  //         res.data.response
+  //           .filter((item) => item.type_of_account == "manager")
+  //           .reverse()
+  //       );
+  //       setAllUsers(
+  //         res.data.response
+  //           .filter((item) => item.type_of_account == "manager")
+  //           .reverse()
+  //       );
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
+
+  const getData = async () => {
+    try {
+      const response = await makeRequest("GET", "/info/get-all-users");
+      console.log(response);
+      setUsers(
+        response.data.response
+          .filter((item) => item.type_of_account == "manager")
+          .reverse()
+      );
+      setAllUsers(
+        response.data.response
+          .filter((item) => item.type_of_account == "manager")
+          .reverse()
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+
   async function blockHandler(id) {
     try {
       const response = await makeRequest("GET", `/info/block-user/${id}`);
-      setUsers(users.reverse().filter(item => item.id != id));
-      swal("Done!", "user successfully deleted", "success");
+      getData();
+      swal("Done!", "User Successfully Blocked", "success");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function unBlockHandler(id) {
+    try {
+      const response = await makeRequest("GET", `/info/unblock-user/${id}`);
+      getData();
+      swal("Done!", "User Successfully Unblocked", "success");
     } catch (error) {
       console.log(error);
     }
@@ -98,7 +133,9 @@ const ManagerTable = () => {
                       if (e.target.value != "") {
                         return setUsers(
                           allUsers.filter((user) => {
-                            return user.first_name.toLocaleLowerCase().startsWith(e.target.value.toLocaleLowerCase());
+                            return user.first_name
+                              .toLocaleLowerCase()
+                              .startsWith(e.target.value.toLocaleLowerCase());
                           })
                         );
                       } else {
@@ -150,15 +187,16 @@ const ManagerTable = () => {
                   id="example-student_wrapper"
                   className="dataTables_wrapper no-footer"
                 >
-                  <Table
-                   responsive
-                   id="example-student"
-                  >
+                  <Table responsive id="example-student">
                     <thead>
-                      <tr style={{ textAlign: "center", background: "#212A50", color:"#fff" }}>
-                        <th>
-                        Sl No.
-                        </th>
+                      <tr
+                        style={{
+                          textAlign: "center",
+                          background: "#212A50",
+                          color: "#fff",
+                        }}
+                      >
+                        <th>Sl No.</th>
                         <th>ID</th>
                         <th>Name</th>
                         <th>email</th>
@@ -169,13 +207,11 @@ const ManagerTable = () => {
                         <th>Action</th>
                       </tr>
                     </thead>
-                    <tbody style={{background:"white"}}>
+                    <tbody style={{ background: "white" }}>
                       {users.map((item, ind) => {
                         return (
                           <tr key={ind} style={{ textAlign: "center" }}>
-                            <td>
-                            {++ind}
-                            </td>
+                            <td>{++ind}</td>
                             <td>
                               <span className="text-primary font-w600">
                                 {item.id}
@@ -206,7 +242,7 @@ const ManagerTable = () => {
                             </td> */}
                             <td>
                               <Button
-                              title="View"
+                                title="View"
                                 onClick={() => {
                                   navigate("/user-detail", {
                                     state: { id: item.id },
@@ -226,12 +262,16 @@ const ManagerTable = () => {
                               </Button> */}
 
                               <Button
-                              title="Block"
+                                title="Block"
                                 className="me-2"
                                 variant="danger btn-icon-xxs"
-                                onClick={() => blockHandler(item.id)}
+                                onClick={() =>
+                                  item.block
+                                    ? unBlockHandler(item.id)
+                                    : blockHandler(item.id)
+                                }
                               >
-                                <RiChatDeleteFill />
+                                {item.block ? "unblock" : "block"}
                               </Button>
                               {/* <Dropdown className="custom-dropdown float-end">
                               <Dropdown.Toggle
@@ -269,10 +309,8 @@ const ManagerTable = () => {
                   <div className="d-sm-flex text-center justify-content-between align-items-center">
                     <div className="dataTables_info">
                       Showing {lastIndex - recordsPage + 1} to{" "}
-                      {users.length < lastIndex
-                        ? users.length
-                        : lastIndex}{" "}
-                      of {users.length} entries
+                      {users.length < lastIndex ? users.length : lastIndex} of{" "}
+                      {users.length} entries
                     </div>
                     <div
                       className="dataTables_paginate paging_simple_numbers justify-content-center"

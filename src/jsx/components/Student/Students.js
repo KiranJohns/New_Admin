@@ -35,29 +35,6 @@ const Students = () => {
   //   });
   //   setChecked(temp);
   // };
-
-  useEffect(() => {
-    makeRequest("GET", "/info/get-all-users")
-      .then((res) => {
-        setUsers(
-          res.data.response
-            .reverse()
-            .filter(
-              (item) => !item.block && item.type_of_account == "individual"
-            )
-        );
-        setAllUsers(
-          res.data.response
-            .reverse()
-            .filter(
-              (item) => !item.block && item.type_of_account == "individual"
-            )
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
   const recordsPage = 15;
   const lastIndex = currentPage * recordsPage;
   const firstIndex = lastIndex - recordsPage;
@@ -78,11 +55,76 @@ const Students = () => {
     }
   }
 
+  // useEffect(() => {
+  //   makeRequest("GET", "/info/get-all-users")
+  //     .then((res) => {
+  //       setUsers(
+  //         res.data.response
+  //           .reverse()
+  //           .filter(
+  //             (item) => !item.block && item.type_of_account == "individual"
+  //           )
+  //       );
+  //       setAllUsers(
+  //         res.data.response
+  //           .reverse()
+  //           .filter(
+  //             (item) => !item.block && item.type_of_account == "individual"
+  //           )
+  //       );
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
+
+  // async function blockHandler(id) {
+  //   try {
+  //     const response = await makeRequest("GET", `/info/block-user/${id}`);
+  //     setUsers(users.reverse().filter((item) => item.id != id));
+  //     swal("Done!", "user successfully deleted", "success");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+
+  const getData = async () => {
+    try {
+      const response = await makeRequest("GET", "/info/get-all-users");
+      console.log(response);
+      setUsers(
+        response.data.response
+          .filter((item) => item.type_of_account == "manager")
+          .reverse()
+      );
+      setAllUsers(
+        response.data.response
+          .filter((item) => item.type_of_account == "manager")
+          .reverse()
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+
   async function blockHandler(id) {
     try {
       const response = await makeRequest("GET", `/info/block-user/${id}`);
-      setUsers(users.reverse().filter((item) => item.id != id));
-      swal("Done!", "user successfully deleted", "success");
+      getData();
+      swal("Done!", "User Successfully Blocked", "success");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function unBlockHandler(id) {
+    try {
+      const response = await makeRequest("GET", `/info/unblock-user/${id}`);
+      getData();
+      swal("Done!", "User Successfully Unblocked", "success");
     } catch (error) {
       console.log(error);
     }
@@ -166,9 +208,7 @@ const Students = () => {
                           color: "#fff",
                         }}
                       >
-                        <th>
-                        Sl No.
-                        </th>
+                        <th>Sl No.</th>
                         <th>ID</th>
                         <th>Name</th>
                         <th>email</th>
@@ -183,9 +223,7 @@ const Students = () => {
                       {users.map((item, ind) => {
                         return (
                           <tr key={ind} style={{ textAlign: "center" }}>
-                            <td>
-                            {++ind}
-                            </td>
+                            <td>{++ind}</td>
                             <td>
                               <span className="text-primary font-w600">
                                 {item.id}
@@ -226,7 +264,7 @@ const Students = () => {
                             </td> */}
                             <td>
                               <Button
-                              title="View"
+                                title="View"
                                 onClick={() => {
                                   navigate("/user-detail", {
                                     state: { id: item.id },
@@ -246,12 +284,16 @@ const Students = () => {
                                 </Button> */}
 
                               <Button
-                              title="Delete"
+                                title="Delete"
                                 className="me-2"
                                 variant="danger btn-icon-xxs"
-                                onClick={() => blockHandler(item.id)}
+                                onClick={() =>
+                                  item.block
+                                    ? unBlockHandler(item.id)
+                                    : blockHandler(item.id)
+                                }
                               >
-                                <RiChatDeleteFill />
+                                {item.block ? "unblock" : "block"}
                               </Button>
                               {/* <Dropdown className="custom-dropdown float-end">
                               <Dropdown.Toggle
