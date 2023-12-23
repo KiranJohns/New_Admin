@@ -267,6 +267,13 @@ const SingleProfile = () => {
     makeRequest("POST", "/info/set-qualification", file)
       .then((res) => {
         fetchQualifications();
+        setQualificationInfo({
+          course_name: "",
+          university: "",
+          content: "",
+        });
+
+        setOpenModalForQualification(false);
         swal("Done!", "Qualification Updated", "success");
         console.log(res);
       })
@@ -287,7 +294,14 @@ const SingleProfile = () => {
 
     makeRequest("POST", "/info/set-experience", file)
       .then((res) => {
+        setOpenModalForWorkExp(false);
         fetchExperience();
+        setExperienceInfo({
+          organization: "",
+          designation: "",
+          no_of_years: "",
+          content: "",
+        });
         swal("Done!", "Experience Updated", "success");
         console.log(res);
       })
