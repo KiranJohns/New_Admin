@@ -258,6 +258,7 @@ const ViewCourse = () => {
                         <td>
                           <a href={`https://test.learnforcare.co.uk/course/${item.id}`}>
                             <Button
+                            title="View"
                               className="me-2"
                               variant="success btn-icon-xxs"
                             >
@@ -265,6 +266,7 @@ const ViewCourse = () => {
                             </Button>
                           </a>
                           <Button
+                          title="Assign"
                             onClick={() => {
                               setBundleId(item.id);
                               setCourseName(item.name)
@@ -277,6 +279,7 @@ const ViewCourse = () => {
                           </Button>
 
                           <Button
+                          title="Edit"
                             className="me-2"
                             variant="primary btn-icon-xxs"
                             onClick={() =>
@@ -288,6 +291,7 @@ const ViewCourse = () => {
                             <BiSolidEdit />
                           </Button>
                           <Button
+                          title="Delete"
                             className="me-2"
                             variant="danger btn-icon-xxs"
                           >

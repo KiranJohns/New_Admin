@@ -201,7 +201,10 @@ const ViewExam = () => {
                   <td>{item?.course_description.slice(0,30)}</td>
                   <td>{item?.exam_id}</td>
                   <td>
-                    <Button className="me-2" variant="danger btn-icon-xxs" onClick={() => deleteExam(item.exam_id)}>
+                    <Button
+                    title="Delete"
+                     className="me-2" variant="danger btn-icon-xxs"
+                      onClick={() => deleteExam(item.exam_id)}>
                       <RiChatDeleteFill />
                     </Button>
                   </td>

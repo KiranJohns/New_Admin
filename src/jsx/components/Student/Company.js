@@ -10,6 +10,9 @@ import { RiChatDeleteFill } from "react-icons/ri";
 import { Button, ButtonGroup } from "react-bootstrap";
 import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
 import swal from "sweetalert2";
+import { FaLock } from "react-icons/fa";
+import { FaUnlock } from "react-icons/fa";
+import { FaLockOpen } from "react-icons/fa";
 
 const CompanyTable = () => {
   const childRef = useRef();
@@ -236,12 +239,12 @@ const CompanyTable = () => {
                               </Button>
 
                               <Button
-                                title="Block"
+                                title={item.block ? "Unblock": "Block"}
                                 className="me-2"
                                 variant="danger btn-icon-xxs"
                                 onClick={() => item.block ? unBlockHandler(item.id) : blockHandler(item.id)}
                               >
-                                {item.block ? "unblock" : "block"}
+                                {item.block ? <FaLockOpen /> : <FaLock />}
                               </Button>
                             </td>
                           </tr>
