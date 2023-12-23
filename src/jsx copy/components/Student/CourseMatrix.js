@@ -318,7 +318,7 @@ const ManCoursMatrix = () => {
               }}
               className="redd"
             >
-              not started
+              Not started
             </div>
             <div
               style={{
@@ -330,7 +330,7 @@ const ManCoursMatrix = () => {
               }}
               className="redd"
             >
-              in progress
+              In progress
             </div>
             <div
               style={{

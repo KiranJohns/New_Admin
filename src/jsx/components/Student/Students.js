@@ -10,6 +10,9 @@ import { RiChatDeleteFill } from "react-icons/ri";
 import { Button, ButtonGroup } from "react-bootstrap";
 import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
 import swal from "sweetalert2";
+import { FaLock } from "react-icons/fa";
+import { FaLockOpen } from "react-icons/fa";
+
 
 const Students = () => {
   const childRef = useRef();
@@ -284,7 +287,7 @@ const Students = () => {
                                 </Button> */}
 
                               <Button
-                                title="Delete"
+                                title={item.block ? "Unblock": "Block"}
                                 className="me-2"
                                 variant="danger btn-icon-xxs"
                                 onClick={() =>
@@ -293,7 +296,7 @@ const Students = () => {
                                     : blockHandler(item.id)
                                 }
                               >
-                                {item.block ? "unblock" : "block"}
+                                {item.block ? <FaLockOpen /> : <FaLock />}
                               </Button>
                               {/* <Dropdown className="custom-dropdown float-end">
                               <Dropdown.Toggle
