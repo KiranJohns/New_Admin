@@ -45,11 +45,11 @@ const AddNewStudent = () => {
     makeRequest("POST", "/info/create-user", userData)
       .then((res) => {
         if(userData.type == "individual") {
-          swal("Done!", "Manager Successfully Created", "success");
+          swal("Done!", "Individual Successfully Created", "success");
           window.location.href = '/individual'
         } else {
-          swal("Done!", "User Successfully Created", "success");
-          window.location.href = '/manager'
+          swal("Done!", "Company Successfully Created", "success");
+          window.location.href = '/company'
         }
       })
       .catch((err) => {

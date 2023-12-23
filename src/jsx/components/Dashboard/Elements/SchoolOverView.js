@@ -59,8 +59,8 @@ const SchoolOverView = () => {
             "Dec",
           ];
           // console.log("graph_data ", res?.data?.response?.graph_data);
-          let graph_data = res?.data?.response?.graph_data?.reverse().slice(0, 12);
-          let month1 = month.splice(month.indexOf(graph_data[0].month_name.slice(0,3),month.length))
+          let graph_data = res?.data?.response?.graph_data?.reverse()?.slice(0, 12);
+          let month1 = month.splice(month.indexOf(graph_data[0]?.month_name?.slice(0,3),month.length))
           let newMonth = [...month1,...month]
           graph_data?.map((item, i) => {
             data[i] = parseInt(item?.total_purchases);
