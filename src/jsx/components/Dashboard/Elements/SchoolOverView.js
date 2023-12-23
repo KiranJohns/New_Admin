@@ -35,41 +35,43 @@ const SchoolOverView = () => {
     {
       name: "Revenue",
       type: "column",
-      data: graphData||[],
+      data: graphData || [],
     },
   ];
   useEffect(() => {
     makeRequest("GET", "/info/super-admin-dashboard-data")
       .then((res) => {
         try {
-          
           setPurchaseList(res?.data?.response?.graph_data.reverse());
-        let data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-        let month = [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec",
-        ];
-        console.log(res?.data?.response?.graph_data);
-        res?.data?.response?.graph_data
-          ?.reverse()?.slice(0, 12)?.map((item, i) => {
-            data[data?.length - 1+i] = parseInt(item?.total_purchases);
-            month[month?.length - 1+i] = item?.month_name.slice(0,3);
+          let data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+          let month = [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+          ];
+          // console.log("graph_data ", res?.data?.response?.graph_data);
+          let graph_data = res?.data?.response?.graph_data?.reverse().slice(0, 12);
+          let month1 = month.splice(month.indexOf(graph_data[0].month_name.slice(0,3),month.length))
+          let newMonth = [...month1,...month]
+          graph_data?.map((item, i) => {
+            data[i] = parseInt(item?.total_purchases);
+            month[i] = item?.month_name.slice(0, 3);
           });
+          console.log('graph_data ',data);
           setGraphData(data);
-        setGraphMonth(month);
-      } catch (error) {
-        console.log(error)
-      }
+          setGraphMonth(month);
+        } catch (error) {
+          console.log(error);
+        }
       })
       .catch((err) => {
         console.log(err);
