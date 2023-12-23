@@ -131,14 +131,38 @@ const AddBundle = () => {
                       Bundle Name:
                     </h4>
                     <div className=" mb-3 ">
-                      <input
+                      {/* <input
                         type="text"
                         name="name"
                         value={bundle.name}
                         onChange={handleChange}
                         className="form-control"
                         placeholder="bundle name"
-                      />
+                      /> */}
+                      <select
+                       
+                      
+                        name="category"
+                        className="form-control form-control"
+                      >
+                        <option value="">Select</option>
+                        <option value="Care Bundle">Care Bundle</option>
+                        <option value="Mandatory Care Bundle">
+                        Mandatory Care Bundle
+                        </option>
+                        <option value="Specialised Care Bundle">
+                        Specialised Care Bundle
+                        </option>
+                        <option value="Recovery Care Bundle">
+                        Recovery Care Bundle
+                        </option>
+                        <option value="Child Care Bundle">
+                        Child Care Bundle
+                        </option>
+                        <option value="Online Care Bundle">
+                        Online Care Bundle
+                        </option>
+                      </select>
                     </div>
                   </div>
                 </div>
