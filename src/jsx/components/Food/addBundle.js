@@ -71,7 +71,6 @@ const AddBundle = () => {
       swal("please add courses");
       return;
     }
-    
 
     setLoading(true);
     const form = new FormData();
@@ -139,25 +138,33 @@ const AddBundle = () => {
                       /> */}
                       <select
                         name="name"
-                        onChange={handleChange}
+                        onChange={(e) =>
+                          setBundle((prev) => {
+                            console.log(e.target.value);
+                            return {
+                              ...prev,
+                              name: e.target.value,
+                            };
+                          })
+                        }
                         className="form-control form-control"
                       >
                         <option value="">Select</option>
                         <option value="Care Bundle">Care Bundle</option>
                         <option value="Mandatory Care Bundle">
-                        Mandatory Care Bundle
+                          Mandatory Care Bundle
                         </option>
                         <option value="Specialised Care Bundle">
-                        Specialised Care Bundle
+                          Specialised Care Bundle
                         </option>
                         <option value="Recovery Care Bundle">
-                        Recovery Care Bundle
+                          Recovery Care Bundle
                         </option>
                         <option value="Child Care Bundle">
-                        Child Care Bundle
+                          Child Care Bundle
                         </option>
                         <option value="Online Care Bundle">
-                        Online Care Bundle
+                          Online Care Bundle
                         </option>
                       </select>
                     </div>
