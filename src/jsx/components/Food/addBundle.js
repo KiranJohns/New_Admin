@@ -133,15 +133,13 @@ const AddBundle = () => {
                     <div className=" mb-3 ">
                       {/* <input
                         type="text"
-                        name="name"
                         value={bundle.name}
-                        onChange={handleChange}
                         className="form-control"
                         placeholder="bundle name"
                       /> */}
                       <select
-                       
-                      
+                        name="name"
+                        onChange={handleChange}
                         name="category"
                         className="form-control form-control"
                       >
