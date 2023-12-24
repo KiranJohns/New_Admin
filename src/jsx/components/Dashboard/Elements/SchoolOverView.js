@@ -58,15 +58,10 @@ const SchoolOverView = () => {
             "Nov",
             "Dec",
           ];
-          // console.log("graph_data ", res?.data?.response?.graph_data);
           let graph_data = res?.data?.response?.graph_data?.reverse()?.slice(0, 12);
-          let month1 = month.splice(month.indexOf(graph_data[0]?.month_name?.slice(0,3),month.length))
-          let newMonth = [...month1,...month]
           graph_data?.map((item, i) => {
-            data[i] = parseInt(item?.total_purchases);
-            month[i] = item?.month_name.slice(0, 3);
-          });
-          console.log('graph_data ',data);
+            data[item.month_number - 1] = parseInt(item?.total_purchases);
+            });
           setGraphData(data);
           setGraphMonth(month);
         } catch (error) {
@@ -249,7 +244,7 @@ const SchoolOverView = () => {
     <>
       <Tab.Container defaultActiveKey={"Week"}>
         <div className="card-header border-0 pb-0 flex-wrap">
-          <h4 className="heading mb-0">Revenue Overview</h4>
+          <h4 className="heading mb-0">Revenue {new Date().getFullYear()}</h4>
           <Nav as="ul" className="nav nav-pills mix-chart-tab">
             {chartHeaderData?.map((item, index) => (
               <Nav.Item as="li" className="nav-item" key={index}>
