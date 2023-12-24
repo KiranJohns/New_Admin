@@ -140,7 +140,6 @@ const AddBundle = () => {
                       <select
                         name="name"
                         onChange={handleChange}
-                        name="category"
                         className="form-control form-control"
                       >
                         <option value="">Select</option>
