@@ -398,7 +398,7 @@ const AddCourse = () => {
                           placeholder="Content"
                         ></textarea>
                         <small style={{ padding: ".1rem" }}>
-                          press add button after adding each point
+                          Press add button after adding each point
                         </small>
                       </div>
                       <div
@@ -464,7 +464,7 @@ const AddCourse = () => {
                           placeholder="Content"
                         ></textarea>
                         <small style={{ padding: ".1rem" }}>
-                          press add button after adding each point
+                          Press add button after adding each point
                         </small>
                       </div>
                       <div
@@ -554,6 +554,7 @@ const AddCourse = () => {
                             })
                           }
                         />
+                        <small>Width*Height-760*460, size{"<"}100kb, format-jpg, png, jpeg, webp*(preffered)</small>
                       </div>
                     </div>
                   </div>
@@ -576,6 +577,7 @@ const AddCourse = () => {
                           }
                           id="formFile"
                         />
+                        <small>Format-mp4, mkv, webm</small>
                       </div>
                     </div>
                   </div>
@@ -602,7 +604,7 @@ const AddCourse = () => {
                           placeholder="Content"
                         ></textarea>
                         <small style={{ padding: ".1rem" }}>
-                          press add button after adding each point
+                          Press add button after adding each point
                         </small>
                       </div>
                       <div
@@ -668,7 +670,7 @@ const AddCourse = () => {
                           placeholder="Content"
                         ></textarea>
                         <small style={{ padding: ".1rem" }}>
-                          press add button after adding each point
+                          Press add button after adding each point
                         </small>
                       </div>
                       <div
@@ -756,6 +758,7 @@ const AddCourse = () => {
                           type="file"
                           id="formFile"
                         />
+                        <small>Size{"<"}100kb, format-jpg, png, jpeg, webp*(preffered)</small>
                       </div>
                     </div>
                   </div>
@@ -779,6 +782,7 @@ const AddCourse = () => {
                           id="formFileMultiple"
                           multiple
                         />
+                          <small>Format-pdf, mp4, mkv, webm, txt, docx, jpg, jpeg, webp, png</small>
                       </div>
                     </div>
                   </div>
