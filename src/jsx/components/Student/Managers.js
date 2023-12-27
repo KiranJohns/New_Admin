@@ -16,6 +16,7 @@ import { FaLockOpen } from "react-icons/fa";
 const ManagerTable = () => {
   const childRef = useRef();
   const [currentPage, setCurrentPage] = useState(1);
+  const [rowNumber, setRowNumber] = useState(1);
   // const [checked, setChecked] = useState(tableData);
   const [users, setUsers] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
@@ -37,7 +38,7 @@ const ManagerTable = () => {
   //   });
   //   setChecked(temp);
   // };
-  const recordsPage = 15;
+  const recordsPage = 10;
   const lastIndex = currentPage * recordsPage;
   const firstIndex = lastIndex - recordsPage;
   const records = users.slice(firstIndex, lastIndex);
@@ -46,14 +47,18 @@ const ManagerTable = () => {
   function prePage() {
     if (currentPage !== 1) {
       setCurrentPage(currentPage - 1);
+      setRowNumber((10 * (currentPage - 1)) - 9);
     }
   }
   function changeCPage(id) {
+    console.log(id);
+    setRowNumber(10 * id - 9);
     setCurrentPage(id);
   }
   function nextPage() {
     if (currentPage !== npage) {
       setCurrentPage(currentPage + 1);
+      setRowNumber(10 * (currentPage + 1) - 9);
     }
   }
 
@@ -210,10 +215,10 @@ const ManagerTable = () => {
                       </tr>
                     </thead>
                     <tbody style={{ background: "white" }}>
-                      {users.map((item, ind) => {
+                      {records.map((item, ind) => {
                         return (
                           <tr key={ind} style={{ textAlign: "center" }}>
-                            <td>{++ind}</td>
+                            <td>{rowNumber+ind}</td>
                             <td>
                               <span className="text-primary font-w600">
                                 {item.id}

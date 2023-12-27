@@ -13,10 +13,10 @@ import swal from "sweetalert2";
 import { FaLock } from "react-icons/fa";
 import { FaLockOpen } from "react-icons/fa";
 
-
 const Students = () => {
   const childRef = useRef();
   const [currentPage, setCurrentPage] = useState(1);
+  const [rowNumber, setRowNumber] = useState(1);
   // const [checked, setChecked] = useState(tableData);
   const [users, setUsers] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
@@ -38,7 +38,7 @@ const Students = () => {
   //   });
   //   setChecked(temp);
   // };
-  const recordsPage = 15;
+  const recordsPage = 10;
   const lastIndex = currentPage * recordsPage;
   const firstIndex = lastIndex - recordsPage;
   const records = users.slice(firstIndex, lastIndex);
@@ -47,14 +47,18 @@ const Students = () => {
   function prePage() {
     if (currentPage !== 1) {
       setCurrentPage(currentPage - 1);
+      setRowNumber(10 * (currentPage - 1) - 9);
     }
   }
   function changeCPage(id) {
+    console.log(id);
+    setRowNumber(10 * id - 9);
     setCurrentPage(id);
   }
   function nextPage() {
     if (currentPage !== npage) {
       setCurrentPage(currentPage + 1);
+      setRowNumber(10 * (currentPage + 1) - 9);
     }
   }
 
@@ -97,12 +101,12 @@ const Students = () => {
       console.log(response);
       setUsers(
         response.data.response
-          .filter((item) => item.type_of_account == "manager")
+          .filter((item) => item.type_of_account == "individual")
           .reverse()
       );
       setAllUsers(
         response.data.response
-          .filter((item) => item.type_of_account == "manager")
+          .filter((item) => item.type_of_account == "individual")
           .reverse()
       );
     } catch (error) {
@@ -223,10 +227,10 @@ const Students = () => {
                       </tr>
                     </thead>
                     <tbody style={{ background: "white" }}>
-                      {users.map((item, ind) => {
+                      {records.map((item, ind) => {
                         return (
                           <tr key={ind} style={{ textAlign: "center" }}>
-                            <td>{++ind}</td>
+                            <td>{rowNumber + ind}</td>
                             <td>
                               <span className="text-primary font-w600">
                                 {item.id}
@@ -287,7 +291,7 @@ const Students = () => {
                                 </Button> */}
 
                               <Button
-                                title={item.block ? "Unblock": "Block"}
+                                title={item.block ? "Unblock" : "Block"}
                                 className="me-2"
                                 variant="danger btn-icon-xxs"
                                 onClick={() =>

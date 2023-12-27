@@ -17,6 +17,7 @@ import { FaLockOpen } from "react-icons/fa";
 const CompanyTable = () => {
   const childRef = useRef();
   const [currentPage, setCurrentPage] = useState(1);
+  const [rowNumber, setRowNumber] = useState(1);
   // const [checked, setChecked] = useState(tableData);
   const [users, setUsers] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
@@ -43,21 +44,28 @@ const CompanyTable = () => {
     try {
       const response = await makeRequest("GET", "/info/get-all-users");
       console.log(response);
-      setUsers(response.data.response.reverse().filter((item) => item.type_of_account == "company"));
-      setAllUsers(response.data.response.reverse().filter((item) => item.type_of_account == "company"));
+      setUsers(
+        response.data.response
+          .reverse()
+          .filter((item) => item.type_of_account == "company")
+      );
+      setAllUsers(
+        response.data.response
+          .reverse()
+          .filter((item) => item.type_of_account == "company")
+      );
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
-
     getData();
   }, []);
 
   async function blockHandler(id) {
     try {
       const response = await makeRequest("GET", `/info/block-user/${id}`);
-      getData()
+      getData();
       swal("Done!", "User Successfully Blocked", "success");
     } catch (error) {
       console.log(error);
@@ -67,14 +75,14 @@ const CompanyTable = () => {
   async function unBlockHandler(id) {
     try {
       const response = await makeRequest("GET", `/info/unblock-user/${id}`);
-      getData()
+      getData();
       swal("Done!", "User Successfully Unblocked", "success");
     } catch (error) {
       console.log(error);
     }
   }
 
-  const recordsPage = 15;
+  const recordsPage = 10;
   const lastIndex = currentPage * recordsPage;
   const firstIndex = lastIndex - recordsPage;
   const records = users.slice(firstIndex, lastIndex);
@@ -83,14 +91,18 @@ const CompanyTable = () => {
   function prePage() {
     if (currentPage !== 1) {
       setCurrentPage(currentPage - 1);
+      setRowNumber((10 * (currentPage - 1)) - 9);
     }
   }
   function changeCPage(id) {
+    console.log(id);
+    setRowNumber(10 * id - 9);
     setCurrentPage(id);
   }
   function nextPage() {
     if (currentPage !== npage) {
       setCurrentPage(currentPage + 1);
+      setRowNumber(10 * (currentPage + 1) - 9);
     }
   }
   return (
@@ -182,10 +194,10 @@ const CompanyTable = () => {
                       </tr>
                     </thead>
                     <tbody style={{ background: "white" }}>
-                      {users.map((item, ind) => {
+                      {records.map((item, ind) => {
                         return (
                           <tr key={ind} style={{ textAlign: "center" }}>
-                            <td>{++ind}</td>
+                            <td>{rowNumber + ind}</td>
                             <td>
                               <span className="text-primary font-w600">
                                 {item?.id}
@@ -239,10 +251,14 @@ const CompanyTable = () => {
                               </Button>
 
                               <Button
-                                title={item.block ? "Unblock": "Block"}
+                                title={item.block ? "Unblock" : "Block"}
                                 className="me-2"
                                 variant="danger btn-icon-xxs"
-                                onClick={() => item.block ? unBlockHandler(item.id) : blockHandler(item.id)}
+                                onClick={() =>
+                                  item.block
+                                    ? unBlockHandler(item.id)
+                                    : blockHandler(item.id)
+                                }
                               >
                                 {item.block ? <FaLockOpen /> : <FaLock />}
                               </Button>
