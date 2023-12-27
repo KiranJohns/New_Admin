@@ -45,13 +45,14 @@ const OfferText = () => {
     offer_text: "",
     hight_light_text: "",
     is_active: "",
+    image: ""
   });
 
   function deleteOfferText(id) {
     makeRequest("DELETE", `/coupon/delete-offer-text/${id}`)
       .then((res) => {
         setOfferTexts((prev) => prev.filter((item) => item.id !== id));
-        swal("Done!", "Offer Text Deleted", "success");
+        swal("Done!", "Offer Text Deleted", "Success");
       })
       .catch((err) => {
         let error = err?.data?.errors[0]?.error
@@ -93,7 +94,8 @@ const OfferText = () => {
     makeRequest("POST", "/coupon/create-offer-text", offerText)
       .then((res) => {
         getOfferText();
-        swal("Done!", "Offer Text Created", "success");
+        window.location.reload()
+        swal("Done!", "Offer Text Created", "Success");
       })
       .catch((err) => {
         let error = err?.data?.errors[0]?.error
@@ -151,7 +153,7 @@ const OfferText = () => {
 
                   <div style={{}}>
                     <div className="card-body">
-                      <h4 className="" style={{ textAlign: "center" }}>
+                      <h4 className="">
                         Upload Offer Image:
                       </h4>
                       <div className="">
@@ -162,6 +164,9 @@ const OfferText = () => {
                         <input
                           className="form-control"
                           type="file"
+                          onChange={(e) => setOfferText((prev) => {
+                            return { ...prev, image: e.target.files[0] }
+                          })}
                           id="formFile"
                        
                         />
