@@ -392,6 +392,8 @@ const AddBundle = () => {
                             })
                           }
                         />
+                        <small>Width*Height-760*460, size{"<"}100kb, format-jpg, png, jpeg, webp*(preffered)
+</small>
                       </div>
                     </div>
                   </div>
