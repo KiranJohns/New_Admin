@@ -77,6 +77,7 @@ const OfferText = () => {
     makeRequest("GET", "/coupon/get-all-offer-text")
       .then((res) => {
         setOfferTexts(res.data.response);
+        console.log(res.data.response);
       })
       .catch((err) => {
         console.log(err?.data);
@@ -239,7 +240,7 @@ const OfferText = () => {
                           style={{ background: "#212A50", textAlign: "center" }}
                         >
                           <th>
-                            <strong>Offer Text </strong>
+                            <strong>Offer Text/image</strong>
                           </th>
                           <th>
                             <strong>Highlight </strong>
@@ -255,7 +256,14 @@ const OfferText = () => {
                           offerTexts.map((item) => (
                             <tr style={{ textAlign: "center" }}>
                               <td style={{ textAlign: "center" }}>
-                                {item.offer_text}
+                                {item.image != "" ? 
+                                <>
+                                  <img style={{width: '7rem'}} src={item.image} />
+                                </>: 
+                                <>
+                                  {item.offer_text}
+                                </>
+                                }
                               </td>
                               <td style={{ textAlign: "center" }}>
                                 {item.hight_light_text}
