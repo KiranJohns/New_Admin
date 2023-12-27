@@ -463,8 +463,8 @@ const AddExam = () => {
                         <option value="option2">Option B</option>
                         <option value="option3">Option C</option>
                         <option value="option4">Option D</option>
-                        <option value="option5">Option E</option>
-                        <option value="option6">Option F</option>
+                        {optionCount == 1 && <option value="option5">Option E</option>}
+                        {optionCount == 2 && <option value="option6">Option F</option>}
                       </select>
                     </div>
                   </div>
