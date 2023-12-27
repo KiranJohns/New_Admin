@@ -129,6 +129,7 @@ const OfferText = () => {
                           value={offerText.offer_text}
                           onChange={handleChange}
                         ></textarea>
+                        <small>Highlight should be included with offer text. Don't add both Offer text & image at the same time</small>
                       </div>
                     </div>
                   </div>
@@ -144,6 +145,27 @@ const OfferText = () => {
                           value={offerText.hight_light_text}
                           onChange={handleChange}
                         />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{}}>
+                    <div className="card-body">
+                      <h4 className="" style={{ textAlign: "center" }}>
+                        Upload Offer Image:
+                      </h4>
+                      <div className="">
+                        <label
+                          htmlFor="formFile"
+                          className="form-label"
+                        ></label>
+                        <input
+                          className="form-control"
+                          type="file"
+                          id="formFile"
+                       
+                        />
+                        <small>Width*Height-375*75, size{"<"}100kb, format-jpg, png, jpeg, webp</small>
                       </div>
                     </div>
                   </div>
@@ -252,8 +274,10 @@ const OfferText = () => {
                           ))}
                       </tbody>
                     </Table>
+                 
                   </Card.Body>
                 </Card>
+               
               </div>
             </div>
           </div>
