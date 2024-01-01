@@ -1,103 +1,70 @@
-import React,{useState} from "react";
-import { Link,useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
-import { connect, useDispatch } from 'react-redux';
+import { connect, useDispatch } from "react-redux";
 import {
-    loadingToggleAction,
-    signupAction,
-} from '../../store/actions/AuthActions';
+  loadingToggleAction,
+  signupAction,
+} from "../../store/actions/AuthActions";
 // image
 
-import careLogo from "../../images/activity-img/logo7.png"
+import careLogo from "../../images/activity-img/logo7.png";
 
-import ReactDOM from 'react-dom';
-import Modal from 'react-modal';
+import ReactDOM from "react-dom";
+import Modal from "react-modal";
+import fetchData from "../../axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const customStyles = {
   content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
   },
 };
 
-Modal.setAppElement('#root');
-
 function Register(props) {
-    const [email, setEmail] = useState('');
-    let errorsObj = { email: '', password: '' };
-    const [errors, setErrors] = useState(errorsObj);
-    const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState("");
+  let errorsObj = { email: "", password: "" };
+  const [errors, setErrors] = useState(errorsObj);
+  const [password, setPassword] = useState("");
+  const makeRequest = fetchData();
 
-    //modal
-
-    let subtitle;
-    let button;
-    const [modalIsOpen, setIsOpen] = React.useState(false);
-  
-    function openModal() {
-      setIsOpen(true);
+  function onSignUp(e) {
+    e.preventDefault();
+    if(password != confirmPassword) {
+      toast.warn("Password Is Not Matching");
+      return;
     }
-  
-    function afterOpenModal() {
-  
-      subtitle.style.color = '#f00';
-      button.style.background ="red"
-      button.style.padding ="1rem"
-    }
-  
-    function closeModal() {
-      setIsOpen(false);
-    }
-  
-    //modal end
-
-    const dispatch = useDispatch();
-    const navigate = useNavigate()
-    function onSignUp(e) {
-        e.preventDefault();
-        let error = false;
-        const errorObj = { ...errorsObj };
-        if (email === '') {
-            errorObj.email = 'Email is Required';
-            error = true;
-			swal('Oops', errorObj.email, "error");
-        }
-        if (password === '') {
-            errorObj.password = 'Password is Required';
-            error = true;
-			swal('Oops', errorObj.password, "error");
-        }
-        setErrors(errorObj);
-        if (error) return;
-        dispatch(loadingToggleAction(true));
-        dispatch(signupAction(email, password, navigate));
-    }
+    makeRequest("PATCH", "/auth/update-password",{
+      password
+    })
+      .then((res) => {
+        console.log(res);
+        window.location.href = "/login";
+      })
+      .catch((err) => {
+        toast.warn("Please Check Your Password");
+        console.log(err);
+      });
+  }
   return (
     <div className="authincation h-100 p-meddle">
-
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-        <button onClick={closeModal}>close</button>
-        <div>I am a modal</div>
-        <form>
-          <input />
-          <button ref={(_button) => (button = _button)}>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
-        </form>
-      </Modal>
-
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={true}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="container h-100">
         <div className="row justify-content-center h-100 align-items-center">
           <div className="col-md-6">
@@ -106,23 +73,19 @@ function Register(props) {
                 <div className="col-xl-12">
                   <div className="auth-form">
                     <div className="text-center mb-3">
-                      <Link to="/login" >
-                        <img style={{width:'17rem'}} src={careLogo} alt="" />
+                      <Link to="/login">
+                        <img style={{ width: "17rem" }} src={careLogo} alt="" />
                       </Link>
                     </div>
                     <h4 className="text-center mb-4 ">Change your password</h4>
-                      {props.errorMessage && (
-                        <div className=''>
-                          {props.errorMessage}
-                        </div>
-                      )}
-                      {props.successMessage && (
-                        <div className=''>
-                          {props.successMessage}
-                        </div>
-                      )}
+                    {props.errorMessage && (
+                      <div className="">{props.errorMessage}</div>
+                    )}
+                    {props.successMessage && (
+                      <div className="">{props.successMessage}</div>
+                    )}
                     <form onSubmit={onSignUp}>
-                      <div className="form-group mb-3">
+                      {/* <div className="form-group mb-3">
                         <label className="mb-1 ">
                           <strong>Email</strong>
                         </label>
@@ -131,41 +94,39 @@ function Register(props) {
                           className="form-control"
                           placeholder="Enter Registered Email"
                         />
-                      </div>
+                      </div> */}
                       <div className="form-group mb-3">
                         <label className="mb-1">
-                          <strong>OTP</strong>
+                          <strong>Password</strong>
                         </label>
                         <input
-							defaultValue={email}
-							onChange={(e) => setEmail(e.target.value)}
-							className="form-control"
-							placeholder="Enter OTP"
-                        />
-                      </div>
-					  {errors.email && <div>{errors.email}</div>}
-                      <div className="form-group mb-3">
-                        <label className="mb-1 ">
-                          <strong>New Password</strong>
-                        </label>
-                        <input
-							defaultValue={password}
-							onChange={(e) =>
-								setPassword(e.target.value)
-							}
-							className="form-control"
-							placeholder="Enter New Password"
+                          defaultValue={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          className="form-control"
+                          placeholder="Enter New Password"
                           //defaultValue="Password"
                         />
                       </div>
-					  {errors.password && <div>{errors.password}</div>}
+                      {/* {errors.password && <div>{errors.password}</div>} */}
+                      <div className="form-group mb-3">
+                        <label className="mb-1 ">
+                          <strong>Confirm Password</strong>
+                        </label>
+                        <input
+                          defaultValue={confirmPassword}
+                          onChange={(e) => setConfirmPassword(e.target.value)}
+                          className="form-control"
+                          placeholder="Confirm Password"
+                        />
+                      </div>
+                      {errors.password && <div>{errors.password}</div>}
                       <div className="text-center mt-4">
                         <button
                           type="submit"
                           className="btn btn-primary btn-block"
                           // onClick={openModal}
                         >
-                         Change Password
+                          Change Password
                         </button>
                       </div>
                     </form>
@@ -186,15 +147,14 @@ function Register(props) {
       </div>
     </div>
   );
-};
+}
 
-const mapStateToProps = (state) => {
-    return {
-        errorMessage: state.auth.errorMessage,
-        successMessage: state.auth.successMessage,
-        showLoading: state.auth.showLoading,
-    };
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     errorMessage: state.auth.errorMessage,
+//     successMessage: state.auth.successMessage,
+//     showLoading: state.auth.showLoading,
+//   };
+// };
 
-export default connect(mapStateToProps)(Register);
-
+export default Register;

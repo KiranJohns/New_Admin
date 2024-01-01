@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import {  Routes, Route, Outlet } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 /// Css
@@ -8,7 +8,7 @@ import "./chart.css";
 import "./step.css";
 import SingleCourse from "./components/Food/SingleCoursePage";
 import ViewCourse from "./components/viewCourse.";
-import AddCourse from "./components/Food/addCourse"; 
+import AddCourse from "./components/Food/addCourse";
 import AddExam from "./components/Food/addExam";
 import ViewExam from "./components/viewExam";
 import ViewCertificates from "../jsx copy/components/Student/Certificates";
@@ -50,7 +50,7 @@ import Nav2 from "./layouts/nav/index2";
 import Footer from "./layouts/Footer";
 import ScrollToTop from "./layouts/ScrollToTop";
 // import Main from './layouts/Main';
-import WalletBar from './layouts/WalletBar';
+import WalletBar from "./layouts/WalletBar";
 /// Dashboard
 import Home from "./components/Dashboard/Home";
 import Finance from "./components/Dashboard/Finance";
@@ -62,21 +62,19 @@ import StudentDetails from "./components/Student/StudentDetails";
 import AddNewStudent from "./components/Student/AddNewStudent";
 
 //Teacher
-import Teachers from './components/Teacher/Teachers';
-import TeachersDetail from './components/Teacher/TeachersDetail';
-import AddNewTeacher from './components/Teacher/AddNewTeacher';
+import Teachers from "./components/Teacher/Teachers";
+import TeachersDetail from "./components/Teacher/TeachersDetail";
+import AddNewTeacher from "./components/Teacher/AddNewTeacher";
 //Food
-import Food from './components/Food/Food';
-import FoodDetails from './components/Food/FoodDetails';
+import Food from "./components/Food/Food";
+import FoodDetails from "./components/Food/FoodDetails";
 
 /// File Manager
-import FileManager from './components/FileManager/FileManager';
+import FileManager from "./components/FileManager/FileManager";
 // import User from './components/FileManager/User';
-import HomeCalendar from './components/FileManager/HomeCalendar';
-import Activity from './components/FileManager/Activity';
-import FileChat from './components/FileManager/FileChat';
-
-
+import HomeCalendar from "./components/FileManager/HomeCalendar";
+import Activity from "./components/FileManager/Activity";
+import FileChat from "./components/FileManager/FileChat";
 
 /// App
 import AppProfile from "./components/AppsMenu/AppProfile/AppProfile";
@@ -131,7 +129,6 @@ import Toastr from "./components/PluginsMenu/Toastr/Toastr";
 // import JqvMap from "./components/PluginsMenu/JqvMap/JqvMap";
 import Lightgallery from "./components/PluginsMenu/Lightgallery/Lightgallery";
 
-
 /// Widget
 import Widget from "./pages/Widget";
 
@@ -157,230 +154,257 @@ import Error500 from "./pages/Error500";
 import Error503 from "./pages/Error503";
 import { ThemeContext } from "../context/ThemeContext";
 
-
 const Markup = () => {
   const routhPath = [
-    {url:"Individual-Course", component:<CourseWiseInd/>}, 
-    {url:"Manager-Course", component:<CourseWiseManager/>}, 
-    {url:"Transactions", component:<Transactions/>},
-    {url:"individual-reports", component:<CourseIndReport/>},
-    {url:"manager-reports", component:<CourseManReport/>},
-    {url:"course-matrix", component:<CourseMatrix/>},
-    {url:"bundle-matrix", component:<BundleMatrix/>},
-    {url:"manager", component:<ManagerTable/>},
-    {url:"view-bundles", component:<MyBundle/>},
-    {url:"purchased-bundles", component:<PurchasedBundles/>},
-     {url:"purchased-courses", component:<PurchasedCourses/>},
-    {url:'course-details',component: <SingleCourse />},
-    {url:'add-details',component: <AddDetails />},
-    {url:'profile',component: <SingleProfile />},
-    {url:'view-certificate', component: <ViewCertificates /> },
-     {url:'view-exam', component: <ViewExam /> },
+    { url: "Individual-Course", component: <CourseWiseInd /> },
+    { url: "Manager-Course", component: <CourseWiseManager /> },
+    { url: "Transactions", component: <Transactions /> },
+    { url: "individual-reports", component: <CourseIndReport /> },
+    { url: "manager-reports", component: <CourseManReport /> },
+    { url: "course-matrix", component: <CourseMatrix /> },
+    { url: "bundle-matrix", component: <BundleMatrix /> },
+    { url: "manager", component: <ManagerTable /> },
+    { url: "view-bundles", component: <MyBundle /> },
+    { url: "purchased-bundles", component: <PurchasedBundles /> },
+    { url: "purchased-courses", component: <PurchasedCourses /> },
+    { url: "course-details", component: <SingleCourse /> },
+    { url: "add-details", component: <AddDetails /> },
+    { url: "profile", component: <SingleProfile /> },
+    { url: "view-certificate", component: <ViewCertificates /> },
+    { url: "view-exam", component: <ViewExam /> },
     { url: "add-exam", component: <AddExam /> },
-    {url:"add-course", component:<AddCourse/>},
-    {url:"edit-course", component:<EditCourse/>},
-    {url:"view-course",component:<ViewCourse/>},
-    {url: "finance", component: <Finance/>},
-    {url: "individual", component: <Students/>},
-    {url: "user-detail", component: <StudentDetails/>},
-    {url: "add-user", component: <AddNewStudent/>},
-    {url: "admins", component: <Teachers/>},
-    {url: "teacher-detail", component: <TeachersDetail/>},
-    {url: "add-teacher", component: <AddNewTeacher/>},
-    {url: "view-blog", component: <Food/>},    
-    {url: "add-blog", component: <FoodDetails/>},
-    {url:'invoices',component: <ViewInvoice />},
-    {url:'reports',component: <ViewReports />},
-    {url:'sales',component: <SalesTab />},
-    {url:'edit-profile',component: <ProfileEdit />},
-    {url:'create-coupon',component: <CreateCoupon/>},
-    {url:'coupon-list',component: <CouponList/>},
-    {url:'volume-discount',component: <VolumeDiscount/>},
-    {url:'company',component: <CompanyTable/>},
-    {url:'offer-text',component: <OfferText/>},
-    {url:'edit-blog',component: <EditBlog/>},
-    {url:'trash',component: <BlogTrash/>},
-    {url:'draft',component: <DraftBlog/>},
-    {url:'published',component: <PublishedBlog/>},
-    {url:'add-bundle',component: <AddBundle/>},
-    {url:'assign-course',component: <AssignCourses/>},
+    { url: "add-course", component: <AddCourse /> },
+    { url: "edit-course", component: <EditCourse /> },
+    { url: "view-course", component: <ViewCourse /> },
+    { url: "finance", component: <Finance /> },
+    { url: "individual", component: <Students /> },
+    { url: "user-detail", component: <StudentDetails /> },
+    { url: "add-user", component: <AddNewStudent /> },
+    { url: "admins", component: <Teachers /> },
+    { url: "teacher-detail", component: <TeachersDetail /> },
+    { url: "add-teacher", component: <AddNewTeacher /> },
+    { url: "view-blog", component: <Food /> },
+    { url: "add-blog", component: <FoodDetails /> },
+    { url: "invoices", component: <ViewInvoice /> },
+    { url: "reports", component: <ViewReports /> },
+    { url: "sales", component: <SalesTab /> },
+    { url: "edit-profile", component: <ProfileEdit /> },
+    { url: "create-coupon", component: <CreateCoupon /> },
+    { url: "coupon-list", component: <CouponList /> },
+    { url: "volume-discount", component: <VolumeDiscount /> },
+    { url: "company", component: <CompanyTable /> },
+    { url: "offer-text", component: <OfferText /> },
+    { url: "edit-blog", component: <EditBlog /> },
+    { url: "trash", component: <BlogTrash /> },
+    { url: "draft", component: <DraftBlog /> },
+    { url: "published", component: <PublishedBlog /> },
+    { url: "add-bundle", component: <AddBundle /> },
+    { url: "assign-course", component: <AssignCourses /> },
     //AddBundle {url:'draft',component: <DraftBlog/>},
-    {url:'create-certificate',component: <AddCertificate/>},
-     //BlogTrash {url:'company',component: <CompanyAdmin />},
+    { url: "create-certificate", component: <AddCertificate /> },
+    //BlogTrash {url:'company',component: <CompanyAdmin />},
     // {url: "user", component: <User/>},
-    {url: "activity", component: <Activity/>},
-    {url: "calendar", component: <HomeCalendar/>},
-    {url: "view-employee", component: <EmployeeView/>},
+    { url: "activity", component: <Activity /> },
+    { url: "calendar", component: <HomeCalendar /> },
+    { url: "view-employee", component: <EmployeeView /> },
     //App Profile
-    {url: "app-profile", component: <AppProfile/>},
-    {url: "post-details", component: <PostDetails/>},
-    {url: "edit-profile", component: <EditProfile/>},
-    {url: "app-calender", component: <Calendar/>},
+    { url: "app-profile", component: <AppProfile /> },
+    { url: "post-details", component: <PostDetails /> },
+    { url: "edit-profile", component: <EditProfile /> },
+    { url: "app-calender", component: <Calendar /> },
     //App -> shops
-    {url: "ecom-product-grid", component: <ProductGrid/>},
-    {url: "ecom-product-list", component: <ProductList/>},
-    {url: "ecom-product-detail", component: <ProductDetail/>},
-    {url: "ecom-product-order", component: <ProductOrder/>},
-    {url: "ecom-checkout", component: <Checkout/>},
-    {url: "ecom-invoice", component: <Invoice/>},
-    {url: "ecom-customers", component: <Customers/>},
+    { url: "ecom-product-grid", component: <ProductGrid /> },
+    { url: "ecom-product-list", component: <ProductList /> },
+    { url: "ecom-product-detail", component: <ProductDetail /> },
+    { url: "ecom-product-order", component: <ProductOrder /> },
+    { url: "ecom-checkout", component: <Checkout /> },
+    { url: "ecom-invoice", component: <Invoice /> },
+    { url: "ecom-customers", component: <Customers /> },
     //Charts
-    {url: "chart-apexchart", component: <ApexChart/>},
-    {url: "chart-rechart", component: <RechartJs/>},
-    {url: "chart-chartjs", component: <ChartJs/>},
-    {url: "chart-sparkline", component: <SparklineChart/>},    
+    { url: "chart-apexchart", component: <ApexChart /> },
+    { url: "chart-rechart", component: <RechartJs /> },
+    { url: "chart-chartjs", component: <ChartJs /> },
+    { url: "chart-sparkline", component: <SparklineChart /> },
 
     //bootstrap
-    {url: "ui-modal", component: <UiModal/>},   
-    {url :'ui-popover', component:<UiPopOver/>}, 
-    {url: "ui-typography", component: <UiTypography/> },
-    {url: "ui-grid", component: <UiGrid/> },
+    { url: "ui-modal", component: <UiModal /> },
+    { url: "ui-popover", component: <UiPopOver /> },
+    { url: "ui-typography", component: <UiTypography /> },
+    { url: "ui-grid", component: <UiGrid /> },
 
     //Plugins
-    { url: "uc-select2", component: <Select2/> },
-    { url: "uc-toastr", component: <Toastr/> },  
-    { url: "uc-lightgallery", component: <Lightgallery/> }, 
-    { url: "uc-sweetalert", component: <MainSweetAlert/> }, 
-    { url: "form-element", component: <Element/> },
-    { url: "form-wizard", component: <Wizard/> },
-    { url: "form-ckeditor", component: <CkEditor/> },
-    { url: "form-validation", component: <FormValidation/> },
+    { url: "uc-select2", component: <Select2 /> },
+    { url: "uc-toastr", component: <Toastr /> },
+    { url: "uc-lightgallery", component: <Lightgallery /> },
+    { url: "uc-sweetalert", component: <MainSweetAlert /> },
+    { url: "form-element", component: <Element /> },
+    { url: "form-wizard", component: <Wizard /> },
+    { url: "form-ckeditor", component: <CkEditor /> },
+    { url: "form-validation", component: <FormValidation /> },
     //widget
-    { url: "widget", component: <Widget/> },  
+    { url: "widget", component: <Widget /> },
     /// table
-	  { url: 'table-filtering', component: <FilteringTable/> },
-    { url: 'table-sorting', component: <SortingTable/> },
-    { url: "table-bootstrap-basic", component: <BootstrapTable/> },  
-    { url: "form-pickers", component: <Pickers/> },  
-    
-  ] 
-  const routhPath2 =  [
-    //Bootstrap
-    {url: "ui-accordion", component: <UiAccordion/>},  
-    {url :"ui-alert", component:<UiAlert/>},                       
-    {url :"ui-badge", component:<UiBadge/>},                       
-    {url :"ui-button", component:<UiButton/>},                       
-    {url :"ui-button-group", component:<UiButtonGroup/>},                       
-    {url :"ui-list-group", component:<UiListGroup/>},                       
-    {url :"ui-card", component:<UiCards/>},      
-    {url :'/ui-carousel', component:<UiCarousel/>}, 
-    {url :'/ui-dropdown', component:<UiDropDown/>},
-    {url :'/ui-progressbar', component:<UiProgressBar/>},
-    {url :'/ui-tab', component:<UiTab/>},  
-    {url :'/ui-pagination', component:<UiPagination/>},        
+    { url: "table-filtering", component: <FilteringTable /> },
+    { url: "table-sorting", component: <SortingTable /> },
+    { url: "table-bootstrap-basic", component: <BootstrapTable /> },
+    { url: "form-pickers", component: <Pickers /> },
   ];
-  
+  const routhPath2 = [
+    //Bootstrap
+    { url: "ui-accordion", component: <UiAccordion /> },
+    { url: "ui-alert", component: <UiAlert /> },
+    { url: "ui-badge", component: <UiBadge /> },
+    { url: "ui-button", component: <UiButton /> },
+    { url: "ui-button-group", component: <UiButtonGroup /> },
+    { url: "ui-list-group", component: <UiListGroup /> },
+    { url: "ui-card", component: <UiCards /> },
+    { url: "/ui-carousel", component: <UiCarousel /> },
+    { url: "/ui-dropdown", component: <UiDropDown /> },
+    { url: "/ui-progressbar", component: <UiProgressBar /> },
+    { url: "/ui-tab", component: <UiTab /> },
+    { url: "/ui-pagination", component: <UiPagination /> },
+  ];
+
   return (
     <>
-      <Routes>                    
-          <Route path='/page-error-400' element={<Error400 />} />
-          <Route path='/page-error-403' element={<Error403 />} />
-          <Route path='/page-error-404' element={<Error404 />} />
-          <Route path='/page-error-500' element={<Error500 />} />
-          <Route path='/page-error-503' element={<Error503 />} />     
-          <Route path='/page-lock-screen' element={<LockScreen />} />     
-            <Route element={<Layout1 />}>
-              <Route path='/' exact element={<Home/>} />
-              <Route path='/dashboard' exact element={<Home/>} />              
-              <Route path='/dashboard-dark' exact element={<DashboardDark/>} />                            
-            </Route>           
-            <Route element={<Layout2 />}>							        
-                { routhPath.map((data, i) => (
-                  <Route key={i} exact path={`/${data.url}`} element={data.component} />
-                ))}  
-            </Route>                              
-            <Route element={<Layout5 />}>	    
-              <Route path='/file-manager' exact element={<FileManager/>} />               
-              <Route path='/chat' exact element={<FileChat/>} />
-              <Route path='/email-compose' exact element={<Compose/>} />
-              <Route path='/email-inbox' exact element={<Inbox/>} />
-              <Route path='/email-read' exact element={<Read/>} />  
-            </Route> 
-            <Route element={<Layout6 />}>	      
-                {routhPath2.map((data, i) => (
-                  <Route key={i} exact path={`/${data.url}`} element={data.component} />
-                ))} 
-            </Route>  
-				</Routes>        
-	    <ScrollToTop />
+      <Routes>
+        <Route path="/page-error-400" element={<Error400 />} />
+        <Route path="/page-error-403" element={<Error403 />} />
+        <Route path="/page-error-404" element={<Error404 />} />
+        <Route path="/page-error-500" element={<Error500 />} />
+        <Route path="/page-error-503" element={<Error503 />} />
+        <Route path="/page-lock-screen" element={<LockScreen />} />
+        <Route element={<Layout1 />}>
+          <Route path="/" exact element={<Home />} />
+          <Route path="/dashboard" exact element={<Home />} />
+          <Route path="/dashboard-dark" exact element={<DashboardDark />} />
+        </Route>
+        <Route element={<Layout2 />}>
+          {routhPath.map((data, i) => (
+            <Route
+              key={i}
+              exact
+              path={`/${data.url}`}
+              element={data.component}
+            />
+          ))}
+        </Route>
+        <Route element={<Layout5 />}>
+          <Route path="/file-manager" exact element={<FileManager />} />
+          <Route path="/chat" exact element={<FileChat />} />
+          <Route path="/email-compose" exact element={<Compose />} />
+          <Route path="/email-inbox" exact element={<Inbox />} />
+          <Route path="/email-read" exact element={<Read />} />
+        </Route>
+        <Route element={<Layout6 />}>
+          {routhPath2.map((data, i) => (
+            <Route
+              key={i}
+              exact
+              path={`/${data.url}`}
+              element={data.component}
+            />
+          ))}
+        </Route>
+      </Routes>
+      <ScrollToTop />
     </>
   );
 };
 
-function Layout1(){
-  const {  sidebariconHover } = useContext(ThemeContext);
-  const sideMenu = useSelector(state => state.sideMenu);
+function Layout1() {
+  const { sidebariconHover } = useContext(ThemeContext);
+  const sideMenu = useSelector((state) => state.sideMenu);
   let windowsize = window.innerWidth;
   // console.log(windowsize, 'size')
-  return(
-    
-      <div id="main-wrapper" className={` show  ${sidebariconHover ? "iconhover-toggle": ""} ${ sideMenu ? "menu-toggle" : ""}`}>                
-          <div className={`wallet-open  ${windowsize > 1199 ? 'active' : ''}`}>
-           <Nav2 />
-            <div className="content-body" style={{ minHeight: window.screen.height + 20 }}>
-              <div className="container-fluid"> 
-                <Outlet />
-              </div>  
-            </div> 
-            <div className="row">
-            
-            <Footer className="col-12" changeFooter="footer-outer"/> 
-     
-            </div>
-            <WalletBar />           
-          </div>
-      </div>            
-    
-  )
-}
-
-function Layout2(){
-  const sideMenu = useSelector(state => state.sideMenu);
-  const {  sidebariconHover } = useContext(ThemeContext);
-  return(    
-    <div id="main-wrapper" className={`show ${sidebariconHover ? "iconhover-toggle": ""} ${ sideMenu ? "menu-toggle" : ""}`}>           
+  return (
+    <div
+      id="main-wrapper"
+      className={` show  ${sidebariconHover ? "iconhover-toggle" : ""} ${
+        sideMenu ? "menu-toggle" : ""
+      }`}
+    >
+      <div className={`wallet-open  ${windowsize > 1199 ? "active" : ""}`}>
         <Nav2 />
-        <div className="content-body" style={{ minHeight: window.screen.height + 20 }}>
-          <div className="container-fluid">							        
-            <Outlet />							        
-          </div>                        
-        </div>  
-        <Footer  changeFooter="out-footer style-2"/>           
-    </div>  
-    
-  )
-}
-
-
-
-function Layout5(){
-  const sideMenu = useSelector(state => state.sideMenu);
-  const {  sidebariconHover } = useContext(ThemeContext);
-  return(
-    <div id="main-wrapper" className={`show ${sidebariconHover ? "iconhover-toggle": ""} ${ sideMenu ? "menu-toggle" : ""}`}>  	      
-          <Nav />
-          <div className="content-body message-body mh-auto">
-            <div className="container-fluid mh-auto p-0">   
-              <Outlet />
-            </div>
-          </div>
-    </div>
-  )
-}
-function Layout6(){
-  const sideMenu = useSelector(state => state.sideMenu);
-  const {  sidebariconHover } = useContext(ThemeContext);
-  return(
-    <div id="main-wrapper" className={`show ${sidebariconHover ? "iconhover-toggle": ""} ${ sideMenu ? "menu-toggle" : ""}`}>  
-        <Nav />
-        <div className="content-body">
-          <div className="container-fluid">       
+        <div
+          className="content-body"
+          style={{ minHeight: window.screen.height + 20 }}
+        >
+          <div className="container-fluid">
             <Outlet />
           </div>
         </div>
-        <Footer  changeFooter="out-footer style-1"/>
+        <div className="row">
+          <Footer className="col-12" changeFooter="footer-outer" />
+        </div>
+        <WalletBar />
       </div>
-  )
+    </div>
+  );
+}
+
+function Layout2() {
+  const sideMenu = useSelector((state) => state.sideMenu);
+  const { sidebariconHover } = useContext(ThemeContext);
+  return (
+    <div
+      id="main-wrapper"
+      className={`show ${sidebariconHover ? "iconhover-toggle" : ""} ${
+        sideMenu ? "menu-toggle" : ""
+      }`}
+    >
+      <Nav2 />
+      <div
+        className="content-body"
+        style={{ minHeight: window.screen.height + 20 }}
+      >
+        <div className="container-fluid">
+          <Outlet />
+        </div>
+      </div>
+      <Footer changeFooter="out-footer style-2" />
+    </div>
+  );
+}
+
+function Layout5() {
+  const sideMenu = useSelector((state) => state.sideMenu);
+  const { sidebariconHover } = useContext(ThemeContext);
+  return (
+    <div
+      id="main-wrapper"
+      className={`show ${sidebariconHover ? "iconhover-toggle" : ""} ${
+        sideMenu ? "menu-toggle" : ""
+      }`}
+    >
+      <Nav />
+      <div className="content-body message-body mh-auto">
+        <div className="container-fluid mh-auto p-0">
+          <Outlet />
+        </div>
+      </div>
+    </div>
+  );
+}
+function Layout6() {
+  const sideMenu = useSelector((state) => state.sideMenu);
+  const { sidebariconHover } = useContext(ThemeContext);
+  return (
+    <div
+      id="main-wrapper"
+      className={`show ${sidebariconHover ? "iconhover-toggle" : ""} ${
+        sideMenu ? "menu-toggle" : ""
+      }`}
+    >
+      <Nav />
+      <div className="content-body">
+        <div className="container-fluid">
+          <Outlet />
+        </div>
+      </div>
+      <Footer changeFooter="out-footer style-1" />
+    </div>
+  );
 }
 
 export default Markup;
