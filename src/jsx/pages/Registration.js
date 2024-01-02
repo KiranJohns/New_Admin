@@ -35,15 +35,16 @@ function Register(props) {
 
   function onSignUp(e) {
     e.preventDefault();
-    if(password != confirmPassword) {
+    if (password != confirmPassword) {
       toast.warn("Password Is Not Matching");
       return;
     }
-    makeRequest("PATCH", "/auth/update-password",{
+    let email = localStorage.getItem("adminEmail");
+    makeRequest("PATCH", "/auth/update-password", {
+      email,
       password
     })
       .then((res) => {
-        console.log(res);
         window.location.href = "/login";
       })
       .catch((err) => {

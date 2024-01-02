@@ -111,12 +111,12 @@ function Login(props) {
   }
 
   function Reset() {
-    clearTimer(getDeadTime());
+    // clearTimer(getDeadTime());
   }
 
   function resend(event) {
-    event.preventDefault();
-    makeRequest("PATCH", "/auth/resend-otp")
+    event?.preventDefault();
+    makeRequest("PATCH", "/auth/resend-otp", { email })
       .then(() => {
         Reset();
         setTimerValue({ seconds: 45 });
@@ -124,18 +124,22 @@ function Login(props) {
         toast.success("A new OTP send to your email");
       })
       .catch((error) => {
-        toast(error.errors[0].message);
+        toast(error.data.errors[0].error);
       });
   }
   const handleOtp = (event) => {
     event.persist();
     event.preventDefault();
     makeRequest("POST", "/auth/validate-otp", {
+      email,
       otp: otp,
     })
       .then((res) => {
         toast("OTP is Accepted");
-        navRef.current.click();
+        localStorage.setItem("adminEmail", email);
+        setTimeout(() => {
+          navRef?.current?.click();
+        }, 100);
         // window.location.href = "/reset-password";
       })
       .catch((err) => {
@@ -147,10 +151,7 @@ function Login(props) {
   const element = document.querySelector("body");
   let dataTheme = element.getAttribute("data-theme-version");
   const onOpenModal = () => {
-    // setOpen(true);
     setOpen((prev) => !prev);
-    resend()
-    clearTimer(getDeadTime());
   };
 
   const onCloseModal = () => {
@@ -216,7 +217,48 @@ function Login(props) {
                     </div>
                     <div className="py-3">
                       <div className="form-group">
-                        <label htmlFor="otp">Enter OTP</label>
+                        <div class="input-group mb-3">
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Email"
+                            aria-label="Recipient's username"
+                            aria-describedby="basic-addon2"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                          />
+                          <div class="input-group-append">
+                            <button
+                              class="btn btn-outline-success"
+                              type="button"
+                              onClick={resend}
+                            >
+                              Submit
+                            </button>
+                          </div>
+                        </div>
+                        <div class="input-group mb-3">
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="OTP"
+                            aria-label="Recipient's username"
+                            aria-describedby="basic-addon2"
+                            value={otp}
+                            onKeyUp={(e) => e.key == "Enter" && handleOtp(e)}
+                            onChange={(e) => setOtp(e.target.value)}
+                          />
+                          <div class="input-group-append">
+                            <button
+                              class="btn btn-outline-success"
+                              type="button"
+                              onClick={handleOtp}
+                            >
+                              Submit
+                            </button>
+                          </div>
+                        </div>
+                        {/* <label htmlFor="otp">Enter OTP</label>
                         <input
                           type="text"
                           className="form-control"
@@ -225,20 +267,20 @@ function Login(props) {
                           onKeyUp={(e) => e.key == "Enter" && handleOtp(e)}
                           onChange={(e) => setOtp(e.target.value)}
                           id="otp"
-                        />
+                        /> */}
                         <div className="d-flex justify-content-between">
-                          <div className="">
+                          {/* <div className="">
                             <button
                               type="button"
                               className="my-4 width-100 btn btn-primary"
                               onClick={handleOtp}
-                              disabled={!timerValue.seconds >= 0 ? false : true}
+                              // disabled={!timerValue.seconds >= 0 ? false : true}
                             >
                               Submit
                             </button>
-                          </div>
+                          </div> */}
 
-                          <div className="mt-4">
+                          {/* <div className="mt-4">
                             {timerValue.seconds <= 0 ? (
                               <>
                                 <span>Didn't recieve? </span>
@@ -253,12 +295,9 @@ function Login(props) {
                             ) : (
                               <div className="my-4">
                                 <h5>{timer}</h5>
-                                {/* <button className="btn btn-primary" onClick={}>
-                          Reset
-                        </button> */}
                               </div>
                             )}
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </div>
