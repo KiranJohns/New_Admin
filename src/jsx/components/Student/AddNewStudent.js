@@ -224,7 +224,7 @@ const AddNewStudent = () => {
                             htmlFor="exampleFormControlInput1"
                             className="form-label text-primary"
                           >
-                            Type Of Account<span className="required"> *Default (individual)</span>
+                            Type Of Account<span className="required"> *Default (Individual)</span>
                           </label>
                           <select
                             name="type"
@@ -234,10 +234,10 @@ const AddNewStudent = () => {
                           >
                             <option>Select</option>
                             <option value="individual">
-                              individual
+                              Individual
                             </option>
                             <option value="company">
-                              company
+                              Company
                             </option>
                             {/* <option value="manager">
                               manager

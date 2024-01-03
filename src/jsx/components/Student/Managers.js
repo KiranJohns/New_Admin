@@ -178,13 +178,13 @@ const ManagerTable = () => {
                                             <Dropdown.Item>Recent</Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>                                     */}
-                  <Button
-                    // type="button"
+                  {/* <Button
+                    type="button"
                     className="btn btn-primary"
                     onClick={() => navigate("/add-user")}
                   >
                     + New Company
-                  </Button>
+                  </Button> */}
                 </div>
               </div>
             </div>

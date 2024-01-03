@@ -178,7 +178,7 @@ export const TeacherDetails = ({ companies }) => {
               <th>Name</th>
               <th>Email</th>
               <th>City</th>
-              <th>Phone</th>
+              <th style={{textAlign:"center"}}>Phone</th>
               {/* <th>Individuals</th> */}
               {/* <th className="text-end">Performance</th> */}
             </tr>
@@ -191,7 +191,7 @@ export const TeacherDetails = ({ companies }) => {
                   <td>{item.first_name + " " + item.last_name}</td>
                   <td>{item.email}</td>
                   <td>{item.city}</td>
-                  <td>{item.phone}</td>
+                  <td style={{textAlign:"center"}}>{item.phone}</td>
                   {/* <td>${item.fee}</td>
                                 <td>${item.fee}</td>
                                 <td>${item.fee}</td> */}
