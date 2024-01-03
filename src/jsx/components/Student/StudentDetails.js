@@ -125,7 +125,7 @@ const StudentDetails = () => {
                   <h2 className="mb-0">
                     {userData.first_name + " " + userData.last_name}
                   </h2>
-                  <p className="text-primary font-w600">
+                  <p className="text-primary font-w600" style={{textTransform: 'capitalize'}}>
                     {userData.type_of_account}
                   </p>
                 </div>

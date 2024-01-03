@@ -204,7 +204,7 @@ const Header2 = ({ onNote }) => {
 						</i>
 					</Link> */}
 					<h4>
-						{user ? user : ""} 
+						{user ? user : ""}
 					</h4>
 				</li>
 
