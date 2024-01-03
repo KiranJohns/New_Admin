@@ -60,7 +60,7 @@ const StudentDetails = () => {
             title: "Date of Join",
             image: IMAGES.avat3,
             color: "schedule-card-2",
-            count: new Date(res.data.response[0].joined).toLocaleDateString(),
+            count: res.data.response[0].joined,
           },
         ]);
       })
