@@ -149,7 +149,7 @@ const ViewCertificates = () => {
                           </td>
                           <td>
                             <span className="text-primary font-w600">
-                              ID {item.id}
+                              ID {ind}
                             </span>
                           </td>
                           <td>
@@ -199,7 +199,7 @@ const ViewCertificates = () => {
                       {records.length < lastIndex
                         ? records.length
                         : lastIndex}{" "}
-                      of {records.length} entries
+                      of {allRecords && allRecords?.length} entries
                     </div>
                     <div
                       className="dataTables_paginate paging_simple_numbers justify-content-center"

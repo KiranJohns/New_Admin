@@ -201,7 +201,7 @@ const ViewInvoice = () => {
                       <td>
                         <strong>{++id}</strong>
                       </td>
-                      <td style={{ textAlign: "center" }}>{id}</td>
+                      <td style={{ textAlign: "center" }}>{item.id}</td>
                       <td style={{ textAlign: "center" }}>
                         {item.time}
                       </td>
