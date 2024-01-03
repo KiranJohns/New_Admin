@@ -138,7 +138,7 @@ const AddCourse = () => {
                         value={course.name}
                         onChange={handleChange}
                         className="form-control input-default "
-                        placeholder="course name"
+                        placeholder="Course Name"
                       />
                     </div>
                   </div>
