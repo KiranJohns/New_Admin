@@ -31,8 +31,8 @@ const ViewCertificates = () => {
     makeRequest("GET", "/certificate/get-all-certificates")
       .then((res) => {
         console.log(res.data.Response);
-        setAllRecords(res.data.Response.reverse())
-        setChecked(res.data.Response.reverse());
+        setAllRecords(res.data.Response);
+        setChecked(res.data.Response);
       })
       .catch((err) => {
         console.log(err);
