@@ -415,6 +415,7 @@ const SingleProfile = () => {
                       alt="profile"
                     />
                   </Suspense>
+                  {/* #212A50 */}
                   <input
                     type="file"
                     ref={profileRef}

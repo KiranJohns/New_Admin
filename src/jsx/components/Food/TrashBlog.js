@@ -50,10 +50,10 @@ const BlogTrash = ({ trashedBlogs, getBlogs }) => {
       .then((res) => {
         getBlogs();
         console.log(res);
-        swal("Done!", `blog moved to ${status}`, "success");
+        swal("Done!", `Blog Moved To ${status.toUpperCase()}`, "Success");
       })
       .catch((err) => {
-        swal("Oops!", err?.errors[0]?.error, "error");
+        swal("Oops!", err?.errors[0]?.error, "Error");
         console.log(err);
       });
   }
@@ -66,10 +66,10 @@ const BlogTrash = ({ trashedBlogs, getBlogs }) => {
       .then((res) => {
         console.log(res);
         getBlogs();
-        swal("Done!", "blog deleted", "success");
+        swal("Done!", "Blog Deleted", "Success");
       })
       .catch((err) => {
-        swal("Done!", err?.errors[0]?.error, "success");
+        swal("Done!", err?.errors[0]?.error, "Success");
         console.log(err);
       });
   }
@@ -129,7 +129,7 @@ const BlogTrash = ({ trashedBlogs, getBlogs }) => {
                 <strong>Views</strong>
               </th>
               <th>
-                <strong>Status</strong>
+                <strong>Tags</strong>
               </th>
               <th>
                 {" "}

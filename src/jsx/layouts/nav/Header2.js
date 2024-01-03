@@ -14,6 +14,7 @@ import avatar3 from "../../../images/avatar/3.jpg";
 import avatar4 from "../../../images/avatar/4.jpg";
 import avatar5 from "../../../images/squareprofile.jpg";
 import { ThemeContext } from "../../../context/ThemeContext";
+import fetchData from "../../../axios";
 
 const searchList = [
 	{image: avatar, title:'Benjamin'},
@@ -58,6 +59,12 @@ const Header2 = ({ onNote }) => {
 
 			walletopen?.classList?.remove("active");
 	}, [])
+	const makeRequest = fetchData()
+	const [user, setUser] = useState(() => {
+		makeRequest("GET", "/info/get-admin-info").then(res => {
+			setUser(res.data.response[0].employee_name)
+		})
+	})
 	
 
   //For header fixed 
@@ -186,7 +193,7 @@ const Header2 = ({ onNote }) => {
                     </Link>
                 </li>
 				<li className="nav-item dropdown notification_dropdown">
-					<Link to={"#"} className={`nav-link bell dz-theme-mode ${background.value === "dark" ? "active" : ""}`}
+					{/* <Link to={"#"} className={`nav-link bell dz-theme-mode ${background.value === "dark" ? "active" : ""}`}
 						onClick={()=>handleThemeMode()}
 					>
 						<i id="icon-light-1">
@@ -195,7 +202,10 @@ const Header2 = ({ onNote }) => {
 						<i id="icon-dark-1">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
 						</i>
-					</Link>
+					</Link> */}
+					<h4>
+						{user ? user : ""} 
+					</h4>
 				</li>
 
 				{/* <li className="nav-item dropdown notification_dropdown">
@@ -413,7 +423,7 @@ const Header2 = ({ onNote }) => {
 						</Dropdown.Toggle>
 						<Dropdown.Menu align="end" className="mt-1 dropdown-menu dropdown-menu-end" >
 							<div className="card mb-0">
-								<div className="card-header p-3">
+								{/* <div className="card-header p-3">
 									<ul className="d-flex align-items-center">
 										<li>
 											<img src={avatar5} className="ms-0" alt="" />
@@ -424,7 +434,7 @@ const Header2 = ({ onNote }) => {
 										</li>
 									</ul>
 
-								</div>
+								</div> */}
 								<div className="card-body p-3">
 									<Link to="/profile" className="dropdown-item ai-icon">
 										<svg xmlns="http://www.w3.org/2000/svg"  width="24px" height="24px" viewBox="0 0 24 24" version="1.1" className="svg-main-icon">

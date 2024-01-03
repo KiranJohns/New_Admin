@@ -225,7 +225,7 @@ const Food = () => {
       .then((res) => {
         getBlogs();
         console.log(res);
-        swal("Done!", `Blog Moved to ${status}`, "success");
+        swal("Done!", `Blog Moved to ${status.toUpperCase()}`, "success");
       })
       .catch((err) => {
         swal("Oops!", err?.errors[0]?.error, "error");
@@ -319,7 +319,7 @@ const Food = () => {
                             <td>{item.date}</td>
                             <td>{item.views}</td>
                             <td>
-                              <span className="badge badge-primary">
+                              <span className="badge badge-primary" style={{textTransform: 'capitalize'}}>
                                 {item.state}
                               </span>
                             </td>

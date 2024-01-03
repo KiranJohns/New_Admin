@@ -176,10 +176,10 @@ const BlogDraft = ({ draftedBlogs, getBlogs }) => {
         // setBlogs((prev) => {
         //   return prev.filter((item) => item.id != id);
         // });
-        swal("Done!", "blog deleted", "success");
+        swal("Done!", "Blog Deleted", "Success");
       })
       .catch((err) => {
-        swal("Done!", err?.errors[0]?.error, "success");
+        swal("Done!", err?.errors[0]?.error, "Success");
         console.log(err);
       });
   }
@@ -191,7 +191,7 @@ const BlogDraft = ({ draftedBlogs, getBlogs }) => {
       .then((res) => {
         getBlogs();
         console.log(res);
-        swal("Done!", `blog moved to ${status}`, "success");
+        swal("Done!", ` Blog Moved To ${status.toUpperCase()}`, "Success");
       })
       .catch((err) => {
         swal("Oops!", err?.errors[0]?.error, "error");
@@ -255,7 +255,7 @@ const BlogDraft = ({ draftedBlogs, getBlogs }) => {
                 <strong>Views</strong>
               </th>
               <th>
-                <strong>Status</strong>
+                <strong>Tags</strong>
               </th>
               <th>
                 {" "}

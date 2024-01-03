@@ -174,10 +174,10 @@ const PublishedBlog = ({publishedBlog,getBlogs}) => {
     })
       .then((res) => {
         getBlogs()
-        swal("Done!", `blog moved to ${state}`, "success");
+        swal("Done!", `Blog Moved To ${state.toUpperCase()}`, "Success");
       })
       .catch((err) => {
-        swal("Oops!", err?.errors[0]?.error, "error");
+        swal("Oops!", err?.errors[0]?.error, "Error");
         console.log(err);
       });
   }
@@ -189,10 +189,10 @@ const PublishedBlog = ({publishedBlog,getBlogs}) => {
     })
       .then((res) => {
         console.log(res);
-        swal("Done!", "blog deleted", "success");
+        swal("Done!", "Blog Deleted", "Success");
       })
       .catch((err) => {
-        swal("Done!", err?.errors[0]?.error, "success");
+        swal("Done!", err?.errors[0]?.error, "Success");
         console.log(err);
       });
   }
@@ -306,7 +306,7 @@ const PublishedBlog = ({publishedBlog,getBlogs}) => {
                 <strong>Views</strong>
               </th>
               <th>
-                <strong>Status</strong>
+                <strong>Tags</strong>
               </th>
               <th>
                 {" "}
