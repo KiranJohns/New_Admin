@@ -4,7 +4,7 @@ export const getToken = () => localStorage.getItem(`admin-learnforcare_access`);
 export const getAdminType = () => localStorage.getItem("adminType");
 export default function fetchData() {
   let BASEURL = "";
-  BASEURL = "https://www.testkiran.online/api/admin";
+  BASEURL = "https://backend.learnforcare.co.uk/api/admin";
   // BASEURL = "http://localhost:3002/api/user";
 
   // /www.learnforcare.co.uk
