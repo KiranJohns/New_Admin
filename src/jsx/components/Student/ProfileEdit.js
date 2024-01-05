@@ -63,7 +63,7 @@ const ProfileEdit = () => {
       file.append("pdf", staffCV);
       makeRequest("POST", "/info/set-staff-cv", file)
         .then((res) => {
-          swal("Done!", "staff successfully updated", "success");
+          // swal("Done!", "staff successfully updated", "success");
           console.log(res);
         })
         .catch((err) => {
@@ -126,6 +126,7 @@ const ProfileEdit = () => {
       national_insurance_number,
     })
       .then((res) => {
+        handleStaffCVSubmit()
         swal("Done!", "admin data successfully update", "success");
       })
       .catch((err) => {
@@ -363,13 +364,13 @@ const ProfileEdit = () => {
                             aria-describedby="basic-addon1"
                             onChange={(e) => setStaffCV(e.target.files[0])}
                           />
-                          <button
+                          {/* <button
                             onClick={handleStaffCVSubmit}
                             class=" btn btn-primary input-group-text"
                             id="basic-addon1"
                           >
                             upload
-                          </button>
+                          </button> */}
                         </div>
                         <label
                           htmlFor="exampleFormControlInput4"
