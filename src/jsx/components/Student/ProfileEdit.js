@@ -347,7 +347,7 @@ const ProfileEdit = () => {
                       <div className="mb-3">
                         staff CV
                         <div class="input-group mb-3">
-                          <div class="input-group-prepend"></div>
+                          {/* <div class="input-group-prepend"></div> */}
                           <label
                             style={{ visibility: "hidden" }}
                             htmlFor="exampleFormControlInput4"
@@ -357,6 +357,7 @@ const ProfileEdit = () => {
                             <span className="required">*</span>
                           </label>
                           <input
+                          style={{width: '100%'}}
                             type="file"
                             class="form-control"
                             placeholder="Username"
