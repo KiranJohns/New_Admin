@@ -410,7 +410,7 @@ const AddCourse = () => {
                           placeholder="Content"
                         ></textarea>
                         <small style={{ padding: ".1rem" }}>
-                          Press add button after adding each point
+                          Press add button after adding each point <span>(*optional)</span>
                         </small>
                       </div>
                       <div
@@ -476,7 +476,7 @@ const AddCourse = () => {
                           placeholder="Content"
                         ></textarea>
                         <small style={{ padding: ".1rem" }}>
-                          Press add button after adding each point
+                          Press add button after adding each point <span>(*optional)</span>
                         </small>
                       </div>
                       <div
@@ -541,6 +541,9 @@ const AddCourse = () => {
                           id="comment"
                           placeholder="Content"
                         ></textarea>
+                         <small style={{ padding: ".1rem" }}>
+                          <span>(*optional)</span>
+                        </small>
                       </div>
                     </div>
                   </div>
@@ -616,7 +619,7 @@ const AddCourse = () => {
                           placeholder="Content"
                         ></textarea>
                         <small style={{ padding: ".1rem" }}>
-                          Press add button after adding each point
+                          Press add button after adding each point<span>(*optional)</span>
                         </small>
                       </div>
                       <div
@@ -682,7 +685,7 @@ const AddCourse = () => {
                           placeholder="Content"
                         ></textarea>
                         <small style={{ padding: ".1rem" }}>
-                          Press add button after adding each point
+                          Press add button after adding each point  <span>(*optional)</span>
                         </small>
                       </div>
                       <div
@@ -747,6 +750,9 @@ const AddCourse = () => {
                           id="comment"
                           placeholder="Content"
                         ></textarea>
+                         <small style={{ padding: ".1rem" }}>
+                          <span>(*optional)</span>
+                        </small>
                       </div>
                     </div>
                   </div>
