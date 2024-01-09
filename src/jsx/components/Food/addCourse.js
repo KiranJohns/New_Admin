@@ -85,11 +85,11 @@ const AddCourse = () => {
     console.log(objectives_point);
     console.log(aims);
 
-    if(Number.isInteger(course.price)) {
+    if(!Number.isInteger(course.price)) {
       swal("Oops!","Please provide valid price", "error");
       return
     }
-    if(Number.isInteger(course.RRP)) {
+    if(!Number.isInteger(course.RRP)) {
       swal("Oops!","Please provide valid RRP", "error");
       return
     }
