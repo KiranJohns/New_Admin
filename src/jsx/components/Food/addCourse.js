@@ -102,10 +102,9 @@ const AddCourse = () => {
         navigate("/view-course");
       })
       .catch((err) => {
-        console.log(err);
-        let message = err?.data?.errors[0]?.error || "Please check your inputs"
-        swal("Oops!",`${message ? message : "Please check your inputs"}`, "error");
         setLoading(false);
+        let message = err?.data?.errors[0]?.error || "Please check your inputs"
+        swal("Oops!",`${typeof message === "string" ? message : "Please check your inputs"}`, "error");
       });
   }
   return (
