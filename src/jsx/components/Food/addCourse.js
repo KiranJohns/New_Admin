@@ -84,6 +84,16 @@ const AddCourse = () => {
     console.log(what_you_will_learn);
     console.log(objectives_point);
     console.log(aims);
+
+    if(Number.isInteger(course.price)) {
+      swal("Oops!","Please provide valid price", "error");
+      return
+    }
+    if(Number.isInteger(course.RRP)) {
+      swal("Oops!","Please provide valid RRP", "error");
+      return
+    }
+
     setCourse({ ...newData });
 
     setLoading(true);
@@ -102,6 +112,7 @@ const AddCourse = () => {
         navigate("/view-course");
       })
       .catch((err) => {
+        console.log(err);
         setLoading(false);
         let message = err?.data?.errors[0]?.error || "Please check your inputs"
         swal("Oops!",`${typeof message === "string" ? message : "Please check your inputs"}`, "error");
