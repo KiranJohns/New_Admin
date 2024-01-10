@@ -87,7 +87,7 @@ const FoodDetails = () => {
     content: "",
     author: "",
     tags: "",
-    image: null,
+    image: "",
     state: "",
   });
 
@@ -102,6 +102,16 @@ const FoodDetails = () => {
   }
   function submit() {
     console.log(blog);
+    for (const key in blog) {
+      if (blog[key] == "") {
+        let title = key
+        if(key == "header") {
+            title = "title"
+        }
+        swal("Oops!", `Please provide ${title}`, "error");
+        return;
+      }
+    }
     setLoading(true);
     makeRequest("POST", "/blog/create-blog", blog)
       .then((res) => {
