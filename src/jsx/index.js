@@ -182,6 +182,7 @@ const Markup = () => {
     { url: "add-user", component: <AddNewStudent /> },
     { url: "admins", component: <Teachers /> },
     { url: "teacher-detail", component: <TeachersDetail /> },
+    
     { url: "add-teacher", component: <AddNewTeacher /> },
     { url: "view-blog", component: <Food /> },
     { url: "add-blog", component: <FoodDetails /> },
