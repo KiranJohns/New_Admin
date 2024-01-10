@@ -92,6 +92,42 @@ const OfferText = () => {
     });
   }
   function Submit() {
+    // offer_text
+    // hight_light_text
+    // is_active
+    // image
+    console.log(offerText);
+    if(offerText.offer_text != "") {
+      if(offerText.hight_light_text == "") {
+        swal("Oops!", "Please provide hight light text","error")
+        return
+      } else {
+        console.log(offerText.is_active);
+        if(typeof offerText.is_active == "boolean") {
+          createOfferText()
+          return
+        } else {
+          swal("Oops!", "Please provide is active","error")
+          return
+        }
+      }
+    }
+
+    if(offerText.image == "") {
+      swal("Oops!", "Please provide is active","error")
+    } else {
+      if(typeof offerText.is_active == "boolean") {
+        createOfferText()
+        return
+      } else {
+        swal("Oops!", "Please provide is active","error")
+        return
+      }
+    }
+
+    swal("Oops!", "Check your inputs","error")
+  }
+  function createOfferText() {
     makeRequest("POST", "/coupon/create-offer-text", offerText)
       .then((res) => {
         getOfferText();

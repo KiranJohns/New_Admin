@@ -54,11 +54,16 @@ const CreateCoupon = () => {
     });
   }
   function Submit() {
-    console.log(coupon);
+    for (const key in coupon) {
+      if (coupon[key] == "") {
+        swal("Oops!", `Please provide ${key.replace('_'," ")}`, "error")
+        return;
+      }
+    }
     makeRequest("POST", "/coupon/create-coupon", coupon)
       .then((res) => {
         swal("Done!", "Coupon Created", "success");
-        window.location="/coupon-list"
+        window.location = "/coupon-list";
       })
       .catch((err) => {
         let error = err?.data?.errors[0]?.error
