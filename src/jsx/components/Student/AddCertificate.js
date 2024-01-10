@@ -25,7 +25,7 @@ const AddCertificate = () => {
     course_name: "",
     user_name: "",
     percentage: "",
-    date: ""
+    date: "",
   });
   const [courses, setCourses] = useState([]);
   const [category, setCategory] = useState("");
@@ -54,13 +54,19 @@ const AddCertificate = () => {
   function submit(e) {
     e.preventDefault();
     console.log(userData);
-    let form = new FormData()
-    form.append("user_id", userData.user_id)
-    form.append("course_name", userData.course_name)
-    form.append("user_name", userData.user_name)
-    form.append("percentage", Number(userData.percentage))
-    form.append("category", category)
-    form.append("date", userData.date)
+    let form = new FormData();
+    form.append("user_id", userData.user_id);
+    form.append("course_name", userData.course_name);
+    form.append("user_name", userData.user_name);
+    form.append("percentage", Number(userData.percentage));
+    form.append("category", category);
+    form.append("date", userData.date);
+    for (const key in userData) {
+      if (userData[key] == "") {
+        swal("Oops!", `Please provide ${key.replace("_"," ")}`, "error");
+        return
+      }
+    }
     makeRequest("POST", "/certificate/create-certificate", form)
       .then((res) => {
         swal("Done!", "user successfully created", "success");
@@ -130,9 +136,11 @@ const AddCertificate = () => {
                             name="category"
                             onChange={(e) => {
                               setFilteredCourses(() => {
-                                return courses.filter(c => c.category == e.target.value)
-                              })
-                              setCategory(e.target.value)
+                                return courses.filter(
+                                  (c) => c.category == e.target.value
+                                );
+                              });
+                              setCategory(e.target.value);
                             }}
                             className="form-control"
                           >
@@ -186,11 +194,11 @@ const AddCertificate = () => {
                         >
                           <option>Select</option>
                           {courses &&
-                          filteredCourses.map((item) => (
-                            <option key={item.name} value={item.name}>
-                              {item.name}
-                            </option>
-                          ))}
+                            filteredCourses.map((item) => (
+                              <option key={item.name} value={item.name}>
+                                {item.name}
+                              </option>
+                            ))}
                         </select>
                       </div>
                       <div className="mb-3">
