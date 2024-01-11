@@ -52,12 +52,7 @@ function Login(props) {
       return;
     }
 
-    let url = "";
-    if (!superAdmin) {
-      url = "/auth/login";
-    } else {
-      url = "/sub-admin/login";
-    }
+    let url = "/auth/login";
     dispatch(loadingToggleAction(true));
     dispatch(loginAction(url, email, password, navigate));
   }
@@ -413,7 +408,7 @@ function Login(props) {
                         <div className="row d-flex justify-content-between mt-4 mb-2">
                           <div className="mb-3"></div>
 
-                          <div className="form-group mb-3">
+                          {/* <div className="form-group mb-3">
                             <div className="form-check form-check-inline">
                               <label className="form-check-label">
                                 <input
@@ -427,7 +422,7 @@ function Login(props) {
                                 Super-Admin
                               </label>
                             </div>
-                          </div>
+                          </div> */}
                         </div>
                         <div className="text-center mb-4 ">
                           <button
