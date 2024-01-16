@@ -114,7 +114,7 @@ const BlogTrash = ({ trashedBlogs, getBlogs }) => {
           <thead>
             <tr style={{ background: "#212A50", textAlign: "center" }}>
               <th className="width80">
-                <strong>ID</strong>
+                <strong>SL.NO</strong>
               </th>
               <th>
                 <strong>Heading</strong>
