@@ -333,7 +333,7 @@ const PublishedBlog = ({publishedBlog,getBlogs}) => {
                     </td>
                     <td>{item.author}</td>
                     <td>{item.date}</td>
-                    <td>0</td>
+                    <td>{item.views}</td>
                     <td>{item?.tags ? JSON.parse(item.tags).join(",") : ""}</td>
                     <td>
                       {/* <a target="_blank" href={`https://test.learnforcare.co.uk/blog/${item.id}`}>
