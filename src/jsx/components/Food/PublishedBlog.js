@@ -316,11 +316,11 @@ const PublishedBlog = ({publishedBlog,getBlogs}) => {
           </thead>
           <tbody>
             {blogs &&
-              blogs.map((item) => {
+              blogs.map((item,i) => {
                 return (
                   <tr style={{ textAlign: "center" }}>
                     <td>
-                      <strong>01</strong>
+                      <strong>{++i}</strong>
                     </td>
                     <td>
                       {" "}
