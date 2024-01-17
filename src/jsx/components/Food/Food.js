@@ -275,7 +275,7 @@ const Food = () => {
                   <thead>
                     <tr style={{ background: "#212A50", textAlign: "center" }}>
                       <th className="width80">
-                        <strong>SL.NO</strong>
+                        <strong>Sl. No.</strong>
                       </th>
                       <th>
                         <strong>Heading</strong>

@@ -166,6 +166,7 @@ const FoodDetails = () => {
                               setBlog({ ...blog, image: e.target.files[0] })
                             }
                           />
+                           <small>Width*Height-760*460, size{"<"}200kb, format-jpg, png, jpeg, webp*(preffered)</small>
                         </div>
                       </div>
                     </div>
