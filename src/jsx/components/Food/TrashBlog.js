@@ -50,10 +50,10 @@ const BlogTrash = ({ trashedBlogs, getBlogs }) => {
       .then((res) => {
         getBlogs();
         console.log(res);
-        swal("Done!", `Blog Moved To ${status.toUpperCase()}`, "Success");
+        swal("Done!", `Blog Moved To ${status.toUpperCase()}`, );
       })
       .catch((err) => {
-        swal("Oops!", err?.errors[0]?.error, "Error");
+        swal("Oops!", err?.errors[0]?.error, );
         console.log(err);
       });
   }
@@ -66,10 +66,10 @@ const BlogTrash = ({ trashedBlogs, getBlogs }) => {
       .then((res) => {
         console.log(res);
         getBlogs();
-        swal("Done!", "Blog Deleted", "Success");
+        swal("Done!", "Blog Deleted", );
       })
       .catch((err) => {
-        swal("Done!", err?.errors[0]?.error, "Success");
+        swal("Done!", err?.errors[0]?.error, );
         console.log(err);
       });
   }
@@ -114,7 +114,7 @@ const BlogTrash = ({ trashedBlogs, getBlogs }) => {
           <thead>
             <tr style={{ background: "#212A50", textAlign: "center" }}>
               <th className="width80">
-                <strong>SL.NO</strong>
+                <strong>Sl. No.</strong>
               </th>
               <th>
                 <strong>Heading</strong>
