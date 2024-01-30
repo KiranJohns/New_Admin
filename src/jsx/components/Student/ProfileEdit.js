@@ -127,7 +127,7 @@ const ProfileEdit = () => {
     })
       .then((res) => {
         handleStaffCVSubmit()
-        swal("Done!", "admin data successfully update", "success");
+        swal("Done!", "Data successfully updated", "success");
       })
       .catch((err) => {
         swal("Oops!", err.data.errors[0].error, "error");
