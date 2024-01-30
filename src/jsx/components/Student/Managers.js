@@ -251,7 +251,7 @@ const ManagerTable = () => {
                               <Button
                                 title="View"
                                 onClick={() => {
-                                  navigate("/user-detail", {
+                                  navigate("/manager-detail", {
                                     state: { id: item.id },
                                   });
                                 }}

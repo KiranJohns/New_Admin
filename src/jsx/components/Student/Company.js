@@ -240,7 +240,7 @@ const CompanyTable = () => {
                               <Button
                                 title="View"
                                 onClick={() => {
-                                  navigate("/user-detail", {
+                                  navigate("/company-detail", {
                                     state: { id: item.id },
                                   });
                                 }}

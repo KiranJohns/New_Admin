@@ -120,6 +120,8 @@ import UiTypography from "./components/bootstrap/Typography";
 import Transactions from "./components/Transaction";
 import CourseWiseInd from "./components/CourseWiseInd";
 import CourseWiseManager from "./components/CourseWiseManager";
+import ManagerDetails from "./components/Student/ManagerDetails";
+import CompanyDetails from "./components/Student/CompanyDetails";
 
 /// Plugins
 import Select2 from "./components/PluginsMenu/Select2/Select2";
@@ -179,6 +181,9 @@ const Markup = () => {
     { url: "finance", component: <Finance /> },
     { url: "individual", component: <Students /> },
     { url: "user-detail", component: <StudentDetails /> },
+    { url: "manager-detail", component: <ManagerDetails /> },
+    { url: "company-detail", component: <CompanyDetails /> },
+
     { url: "add-user", component: <AddNewStudent /> },
     { url: "admins", component: <Teachers /> },
     { url: "teacher-detail", component: <TeachersDetail /> },
@@ -194,6 +199,7 @@ const Markup = () => {
     { url: "coupon-list", component: <CouponList /> },
     { url: "volume-discount", component: <VolumeDiscount /> },
     { url: "company", component: <CompanyTable /> },
+    
     { url: "offer-text", component: <OfferText /> },
     { url: "edit-blog", component: <EditBlog /> },
     { url: "trash", component: <BlogTrash /> },
