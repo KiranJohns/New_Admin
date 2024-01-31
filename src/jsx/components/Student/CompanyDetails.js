@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { IMAGES, SVGICON } from "../Dashboard/Content";
 import { Dropdown } from "react-bootstrap";
 import PaymentHistoryTable from "./PaymentHistoryTable";
+import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
 
 import profile from "./../../../images/profile.svg";
 import location from "./../../../images/svg/location.svg";
@@ -121,6 +122,7 @@ const CompanyDetails = () => {
                     className="avatar avatar-xxl"
                   />
                 </div>
+              
                 <div>
                   <h2 className="mb-0">
                     {userData.first_name + " " + userData.last_name}
@@ -190,6 +192,118 @@ const CompanyDetails = () => {
           ))}
         </div>
       </div>
+      <div className="card">
+      <Col lg={12}>
+        <Card>
+          <Card.Header>
+            <Card.Title>Users</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <Table responsive>
+              <thead>
+                <tr style={{ background: "#212a50" }}>
+                  <th className="width80">
+                    <strong>SL No</strong>
+                  </th>
+                  <th style={{ textAlign: "center" }}>
+                    <strong>Name</strong>
+                  </th>
+                  {/* <th style={{ textAlign: "center" }}>
+                    <strong>Code</strong>
+                  </th> */}
+                  <th style={{ textAlign: "center" }}>
+                    <strong>Email</strong>
+                  </th>
+                  <th style={{ textAlign: "center" }}>
+                    <strong>Assigned Courses</strong>
+                  </th>
+                  <th className="width80">
+                    <strong>Type</strong>
+                  </th>
+                  <th style={{ textAlign: "center" }}>
+                    {" "}
+                    <strong>Action</strong>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+               
+                    <tr>
+                      <td>
+                        <strong></strong>
+                      </td>
+                      <td style={{ textAlign: "center" }}></td>
+                      <td style={{ textAlign: "center" }}>
+                        
+                      </td>
+                    
+              
+                    </tr>
+            
+              </tbody>
+            </Table>
+          </Card.Body>
+        </Card>
+      </Col>
+    </div>
+
+    <div className="card">
+      <Col lg={12}>
+        <Card>
+          <Card.Header>
+            <Card.Title>Invoices</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <Table responsive>
+              <thead>
+                <tr style={{ background: "#212a50" }}>
+                  <th className="width80">
+                    <strong>SL No</strong>
+                  </th>
+                  <th style={{ textAlign: "center" }}>
+                    <strong>Invoice No</strong>
+                  </th>
+                  {/* <th style={{ textAlign: "center" }}>
+                    <strong>Code</strong>
+                  </th> */}
+                  <th style={{ textAlign: "center" }}>
+                    <strong>Date</strong>
+                  </th>
+                  <th style={{ textAlign: "center" }}>
+                    <strong>Time</strong>
+                  </th>
+                  <th className="width80">
+                    <strong>Transaction ID</strong>
+                  </th>
+                  <th className="width80">
+                    <strong>Amount</strong>
+                  </th>
+                  <th style={{ textAlign: "center" }}>
+                    {" "}
+                    <strong>Action</strong>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+               
+                    <tr>
+                      <td>
+                        <strong></strong>
+                      </td>
+                      <td style={{ textAlign: "center" }}></td>
+                      <td style={{ textAlign: "center" }}>
+                        
+                      </td>
+                    
+              
+                    </tr>
+            
+              </tbody>
+            </Table>
+          </Card.Body>
+        </Card>
+      </Col>
+    </div>
     </div>
   );
 };
