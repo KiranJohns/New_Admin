@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IMAGES, SVGICON } from "../Dashboard/Content";
-import { Dropdown } from "react-bootstrap";
+import { Button, Dropdown } from "react-bootstrap";
 import PaymentHistoryTable from "./PaymentHistoryTable";
 import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
 
@@ -11,16 +11,18 @@ import phone from "./../../../images/svg/phone.svg";
 import email from "./../../../images/svg/email.svg";
 import WalletBar from "../../layouts/WalletBar";
 import fetchData from "../../../axios";
+import { FaEye } from "react-icons/fa";
 
 const CompanyDetails = () => {
   let { state } = useLocation();
   const [userData, setUserData] = useState({});
   const [basicDetail, setBasicDetail] = useState([]);
   const [scheduleList, setScheduleList] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [invoice, setInvoice] = useState([]);
 
   const makeRequest = fetchData();
-
-  console.log(state);
+  const navigate = useNavigate();
   useEffect(() => {
     makeRequest("GET", `/info/get-user-data-by-id/${state.id}`)
       .then((res) => {
@@ -64,6 +66,18 @@ const CompanyDetails = () => {
             count: res.data.response[0].joined,
           },
         ]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    makeRequest("GET", `/course/assigned-items/${state.id}`).then((res) => {
+      setUsers(res.data.response);
+    }).catch(err => {});
+    makeRequest("GET", `/invoice/get-invoice/${state.id}`)
+      .then((res) => {
+        console.log(res);
+        setInvoice(res.data.response);
       })
       .catch((err) => {
         console.log(err);
@@ -122,12 +136,15 @@ const CompanyDetails = () => {
                     className="avatar avatar-xxl"
                   />
                 </div>
-              
+
                 <div>
                   <h2 className="mb-0">
                     {userData.first_name + " " + userData.last_name}
                   </h2>
-                  <p className="text-primary font-w600" style={{textTransform: 'capitalize'}}>
+                  <p
+                    className="text-primary font-w600"
+                    style={{ textTransform: "capitalize" }}
+                  >
                     {userData.type_of_account}
                   </p>
                 </div>
@@ -193,117 +210,149 @@ const CompanyDetails = () => {
         </div>
       </div>
       <div className="card">
-      <Col lg={12}>
-        <Card>
-          <Card.Header>
-            <Card.Title>Users</Card.Title>
-          </Card.Header>
-          <Card.Body>
-            <Table responsive>
-              <thead>
-                <tr style={{ background: "#212a50" }}>
-                  <th className="width80">
-                    <strong>SL No</strong>
-                  </th>
-                  <th style={{ textAlign: "center" }}>
-                    <strong>Name</strong>
-                  </th>
-                  {/* <th style={{ textAlign: "center" }}>
+        <Col lg={12}>
+          <Card>
+            <Card.Header>
+              <Card.Title>Users</Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <Table responsive>
+                <thead>
+                  <tr style={{ background: "#212a50" }}>
+                    <th className="width80">
+                      <strong>SL No</strong>
+                    </th>
+                    <th style={{ textAlign: "center" }}>
+                      <strong>Name</strong>
+                    </th>
+                    {/* <th style={{ textAlign: "center" }}>
                     <strong>Code</strong>
                   </th> */}
-                  <th style={{ textAlign: "center" }}>
-                    <strong>Email</strong>
-                  </th>
-                  <th style={{ textAlign: "center" }}>
-                    <strong>Assigned Courses</strong>
-                  </th>
-                  <th className="width80">
-                    <strong>Type</strong>
-                  </th>
-                  <th style={{ textAlign: "center" }}>
-                    {" "}
-                    <strong>Action</strong>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-               
+                    <th style={{ textAlign: "center" }}>
+                      <strong>Email</strong>
+                    </th>
+                    <th style={{ textAlign: "center" }}>
+                      <strong>Assigned Courses</strong>
+                    </th>
+                    <th className="width80">
+                      <strong>Assigned Bundles</strong>
+                    </th>
+                    <th style={{ textAlign: "center" }}>
+                      {" "}
+                      <strong>Action</strong>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {users.map((item, idx) => (
                     <tr>
                       <td>
-                        <strong></strong>
+                        <strong>{++idx}</strong>
                       </td>
-                      <td style={{ textAlign: "center" }}></td>
                       <td style={{ textAlign: "center" }}>
-                        
+                        {item.first_name + " " + item.last_name}
                       </td>
-                    
-              
+                      <td style={{ textAlign: "center" }}>{item.email}</td>
+                      <td style={{ textAlign: "center" }}>
+                        {item.corse_Count + item.man_corse_Count}
+                      </td>
+                      <td style={{ textAlign: "center" }}>
+                        {item.bundle_Count + item.man_bundle_Count}
+                      </td>
+                      <td style={{ textAlign: "center" }}>
+                        <Button
+                          title="View"
+                          onClick={() => {
+                            let url = "";
+                            if (item.type_of_account == "individual") {
+                              url = "/user-detail";
+                            } else {
+                              url = "/manager-detail";
+                            }
+                            navigate(url, {
+                              state: { id: item.id },
+                            });
+                          }}
+                          className="me-2"
+                          variant="success btn-icon-xxs"
+                        >
+                          <FaEye />
+                        </Button>
+                      </td>
                     </tr>
-            
-              </tbody>
-            </Table>
-          </Card.Body>
-        </Card>
-      </Col>
-    </div>
+                  ))}
+                </tbody>
+              </Table>
+            </Card.Body>
+          </Card>
+        </Col>
+      </div>
 
-    <div className="card">
-      <Col lg={12}>
-        <Card>
-          <Card.Header>
-            <Card.Title>Invoices</Card.Title>
-          </Card.Header>
-          <Card.Body>
-            <Table responsive>
-              <thead>
-                <tr style={{ background: "#212a50" }}>
-                  <th className="width80">
-                    <strong>SL No</strong>
-                  </th>
-                  <th style={{ textAlign: "center" }}>
-                    <strong>Invoice No</strong>
-                  </th>
-                  {/* <th style={{ textAlign: "center" }}>
+      <div className="card">
+        <Col lg={12}>
+          <Card>
+            <Card.Header>
+              <Card.Title>Invoices</Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <Table responsive>
+                <thead>
+                  <tr style={{ background: "#212a50" }}>
+                    <th className="width80">
+                      <strong>SL No</strong>
+                    </th>
+                    <th style={{ textAlign: "center" }}>
+                      <strong>Invoice No</strong>
+                    </th>
+                    {/* <th style={{ textAlign: "center" }}>
                     <strong>Code</strong>
                   </th> */}
-                  <th style={{ textAlign: "center" }}>
-                    <strong>Date</strong>
-                  </th>
-                  <th style={{ textAlign: "center" }}>
-                    <strong>Time</strong>
-                  </th>
-                  <th className="width80">
-                    <strong>Transaction ID</strong>
-                  </th>
-                  <th className="width80">
-                    <strong>Amount</strong>
-                  </th>
-                  <th style={{ textAlign: "center" }}>
-                    {" "}
-                    <strong>Action</strong>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-               
+                    <th style={{ textAlign: "center" }}>
+                      <strong>Date</strong>
+                    </th>
+                    <th style={{ textAlign: "center" }}>
+                      <strong>Time</strong>
+                    </th>
+                    <th className="width80">
+                      <strong>Transaction ID</strong>
+                    </th>
+                    <th className="width80">
+                      <strong>Amount</strong>
+                    </th>
+                    <th style={{ textAlign: "center" }}>
+                      {" "}
+                      <strong>Action</strong>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {invoice.map((item, idx) => (
                     <tr>
                       <td>
-                        <strong></strong>
+                        <strong>{++idx}</strong>
                       </td>
-                      <td style={{ textAlign: "center" }}></td>
+                      <td style={{ textAlign: "center" }}>{item.id}</td>
+                      <td style={{ textAlign: "center" }}>{item.date}</td>
+                      <td style={{ textAlign: "center" }}>{item.time}</td>
                       <td style={{ textAlign: "center" }}>
-                        
+                        {item.transaction_id}
                       </td>
-                    
-              
+                      <td style={{ textAlign: "center" }}>
+                        {item.total_price}
+                      </td>
+                      <td style={{ textAlign: "center" }}>
+                        <a target="_blank" href={item.img} className="btn btn-success">
+                          <FaEye />
+                        </a>
+                      </td>
                     </tr>
-            
-              </tbody>
-            </Table>
-          </Card.Body>
-        </Card>
-      </Col>
-    </div>
+                  ))}
+                </tbody>
+              </Table>
+            </Card.Body>
+          </Card>
+        </Col>
+      </div>
     </div>
   );
 };

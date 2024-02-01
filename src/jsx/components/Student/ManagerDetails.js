@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IMAGES, SVGICON } from "../Dashboard/Content";
-import { Dropdown } from "react-bootstrap";
+import { Button, Dropdown } from "react-bootstrap";
 import PaymentHistoryTable from "./PaymentHistoryTable";
 import { Row, Col, Card, Table, Badge, ProgressBar } from "react-bootstrap";
 
@@ -11,14 +11,18 @@ import phone from "./../../../images/svg/phone.svg";
 import email from "./../../../images/svg/email.svg";
 import WalletBar from "../../layouts/WalletBar";
 import fetchData from "../../../axios";
+import { FaEye } from "react-icons/fa";
 
 const ManagerDetails = () => {
   let { state } = useLocation();
   const [userData, setUserData] = useState({});
   const [basicDetail, setBasicDetail] = useState([]);
   const [scheduleList, setScheduleList] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [invoice, setInvoice] = useState([]);
 
   const makeRequest = fetchData();
+  const navigate = useNavigate();
 
   console.log(state);
   useEffect(() => {
@@ -64,6 +68,19 @@ const ManagerDetails = () => {
             count: res.data.response[0].joined,
           },
         ]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+      makeRequest("GET", `/course/assigned-items/${state.id}`).then((res) => {
+        console.log('users ', res.data.response);
+        setUsers(res.data.response);
+      }).catch(err => {});
+      makeRequest("GET", `/invoice/get-invoice/${state.id}`)
+      .then((res) => {
+        console.log(res);
+        setInvoice(res.data.response);
       })
       .catch((err) => {
         console.log(err);
@@ -121,23 +138,32 @@ const ManagerDetails = () => {
                     alt=""
                     className="avatar avatar-xxl"
                   />
-                 
                 </div>
-                <div style={{display:"flex",justifyContent:"space-between"}}>
-                <div>
-                  <h2 className="mb-0">
-                    {userData.first_name + " " + userData.last_name}
-                  </h2>
-                  <p className="text-primary font-w600" style={{textTransform: 'capitalize'}}>
-                    {userData.type_of_account}
-                  </p>
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <div>
+                    <h2 className="mb-0">
+                      {userData.first_name + " " + userData.last_name}
+                    </h2>
+                    <p
+                      className="text-primary font-w600"
+                      style={{ textTransform: "capitalize" }}
+                    >
+                      {userData.type_of_account}
+                    </p>
+                  </div>
+                  <div style={{ marginLeft: "23rem" }}>
+                    {userData?.created_by && (
+                      <h3 className="mb-0">
+                        Created by:{" "}
+                        {(userData?.created_by?.first_name || "") +
+                          " " +
+                          (userData?.created_by?.last_name || "")}
+                      </h3>
+                    )}
+                  </div>
                 </div>
-                <div style={{marginLeft:"23rem"}}>
-                    <h3 className="mb-0">
-                      Created by:
-                    </h3>
-                  </div>
-                  </div>
               </div>
               {/* <Dropdown className="custom-dropdown">
                 <Dropdown.Toggle as="div" className="i-false btn sharp tp-btn ">
@@ -200,116 +226,144 @@ const ManagerDetails = () => {
         </div>
       </div>
       <div className="card">
-      <Col lg={12}>
-        <Card>
-          <Card.Header>
-            <Card.Title>Users</Card.Title>
-          </Card.Header>
-          <Card.Body>
-            <Table responsive>
-              <thead>
-                <tr style={{ background: "#212a50" }}>
-                  <th className="width80">
-                    <strong>SL No</strong>
-                  </th>
-                  <th style={{ textAlign: "center" }}>
-                    <strong>Name</strong>
-                  </th>
-                  {/* <th style={{ textAlign: "center" }}>
-                    <strong>Code</strong>
-                  </th> */}
-                  <th style={{ textAlign: "center" }}>
-                    <strong>Email</strong>
-                  </th>
-                  <th style={{ textAlign: "center" }}>
-                    <strong>Assigned Courses</strong>
-                  </th>
-                  <th className="width80">
-                    <strong>Type</strong>
-                  </th>
-                  <th style={{ textAlign: "center" }}>
-                    {" "}
-                    <strong>Action</strong>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-               
+        <Col lg={12}>
+          <Card>
+            <Card.Header>
+              <Card.Title>Users</Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <Table responsive>
+                <thead>
+                  <tr style={{ background: "#212a50" }}>
+                    <th className="width80">
+                      <strong>SL No</strong>
+                    </th>
+                    <th style={{ textAlign: "center" }}>
+                      <strong>Name</strong>
+                    </th>
+                    {/* <th style={{ textAlign: "center" }}>
+                      <strong>Code</strong>
+                    </th> */}
+                    <th style={{ textAlign: "center" }}>
+                      <strong>Email</strong>
+                    </th>
+                    <th style={{ textAlign: "center" }}>
+                      <strong>Assigned Courses</strong>
+                    </th>
+                    <th style={{ textAlign: "center" }}>
+                      <strong>Assigned Bundles</strong>
+                    </th>
+                    <th style={{ textAlign: "center" }}>
+                      {" "}
+                      <strong>Action</strong>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                {users.map((item, idx) => (
                     <tr>
                       <td>
-                        <strong></strong>
+                        <strong>{++idx}</strong>
                       </td>
-                      <td style={{ textAlign: "center" }}></td>
                       <td style={{ textAlign: "center" }}>
-                        
+                        {item.first_name + " " + item.last_name}
                       </td>
-                    
-              
+                      <td style={{ textAlign: "center" }}>{item.email}</td>
+                      <td style={{ textAlign: "center" }}>
+                        {(item.corse_Count) +
+                          (item.man_corse_Count)}
+                      </td>
+                      <td style={{ textAlign: "center" }}>
+                        {(item.bundle_Count) +
+                          (item.man_bundle_Count)}
+                      </td>
+                      <td style={{ textAlign: "center" }}>
+                        <Button
+                          title="View"
+                          onClick={() => {
+                            navigate("/user-detail", {
+                              state: { id: item.id },
+                            });
+                          }}
+                          className="me-2"
+                          variant="success btn-icon-xxs"
+                        >
+                          <FaEye />
+                        </Button>
+                      </td>
                     </tr>
-            
-              </tbody>
-            </Table>
-          </Card.Body>
-        </Card>
-      </Col>
-    </div>
+                  ))}
+                </tbody>
+              </Table>
+            </Card.Body>
+          </Card>
+        </Col>
+      </div>
       <div className="card">
-      <Col lg={12}>
-        <Card>
-          <Card.Header>
-            <Card.Title>Invoices</Card.Title>
-          </Card.Header>
-          <Card.Body>
-            <Table responsive>
-              <thead>
-                <tr style={{ background: "#212a50" }}>
-                  <th className="width80">
-                    <strong>SL No</strong>
-                  </th>
-                  <th style={{ textAlign: "center" }}>
-                    <strong>Invoice No</strong>
-                  </th>
-                  {/* <th style={{ textAlign: "center" }}>
+        <Col lg={12}>
+          <Card>
+            <Card.Header>
+              <Card.Title>Invoices</Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <Table responsive>
+                <thead>
+                  <tr style={{ background: "#212a50" }}>
+                    <th className="width80">
+                      <strong>SL No</strong>
+                    </th>
+                    <th style={{ textAlign: "center" }}>
+                      <strong>Invoice No</strong>
+                    </th>
+                    {/* <th style={{ textAlign: "center" }}>
                     <strong>Code</strong>
                   </th> */}
-                  <th style={{ textAlign: "center" }}>
-                    <strong>Date</strong>
-                  </th>
-                  <th style={{ textAlign: "center" }}>
-                    <strong>Time</strong>
-                  </th>
-                  <th className="width80">
-                    <strong>Transaction ID</strong>
-                  </th>
-                  <th className="width80">
-                    <strong>Amount</strong>
-                  </th>
-                  <th style={{ textAlign: "center" }}>
-                    {" "}
-                    <strong>Action</strong>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-               
+                    <th style={{ textAlign: "center" }}>
+                      <strong>Date</strong>
+                    </th>
+                    <th style={{ textAlign: "center" }}>
+                      <strong>Time</strong>
+                    </th>
+                    <th className="width80">
+                      <strong>Transaction ID</strong>
+                    </th>
+                    <th className="width80">
+                      <strong>Amount</strong>
+                    </th>
+                    <th style={{ textAlign: "center" }}>
+                      {" "}
+                      <strong>Action</strong>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                {invoice.map((item, idx) => (
                     <tr>
                       <td>
-                        <strong></strong>
+                        <strong>{++idx}</strong>
                       </td>
-                      <td style={{ textAlign: "center" }}></td>
+                      <td style={{ textAlign: "center" }}>{item.id}</td>
+                      <td style={{ textAlign: "center" }}>{item.date}</td>
+                      <td style={{ textAlign: "center" }}>{item.time}</td>
                       <td style={{ textAlign: "center" }}>
-                        
+                        {item.transaction_id}
                       </td>
-                    
-              
+                      <td style={{ textAlign: "center" }}>
+                        {item.total_price}
+                      </td>
+                      <td style={{ textAlign: "center" }}>
+                        <a target="_blank" href={item.img} className="btn btn-success">
+                          <FaEye />
+                        </a>
+                      </td>
                     </tr>
-            
-              </tbody>
-            </Table>
-          </Card.Body>
-        </Card>
-      </Col>
-    </div>
+                  ))}
+                </tbody>
+              </Table>
+            </Card.Body>
+          </Card>
+        </Col>
+      </div>
     </div>
   );
 };

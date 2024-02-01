@@ -180,7 +180,7 @@ const StudentDetails = () => {
                     <div>
                       <ul>
                         <li className="mb-2"></li>
-                        <li> {data.count}</li>
+                        <li>{data.count}</li>
                       </ul>
                     </div>
                   </div>
