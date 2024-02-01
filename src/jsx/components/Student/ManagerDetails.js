@@ -73,11 +73,13 @@ const ManagerDetails = () => {
         console.log(err);
       });
 
-      makeRequest("GET", `/course/assigned-items/${state.id}`).then((res) => {
-        console.log('users ', res.data.response);
+    makeRequest("GET", `/course/assigned-items/${state.id}`)
+      .then((res) => {
+        console.log("users ", res.data.response);
         setUsers(res.data.response);
-      }).catch(err => {});
-      makeRequest("GET", `/invoice/get-invoice/${state.id}`)
+      })
+      .catch((err) => {});
+    makeRequest("GET", `/invoice/get-invoice/${state.id}`)
       .then((res) => {
         console.log(res);
         setInvoice(res.data.response);
@@ -260,7 +262,7 @@ const ManagerDetails = () => {
                   </tr>
                 </thead>
                 <tbody>
-                {users.map((item, idx) => (
+                  {users.map((item, idx) => (
                     <tr>
                       <td>
                         <strong>{++idx}</strong>
@@ -270,12 +272,10 @@ const ManagerDetails = () => {
                       </td>
                       <td style={{ textAlign: "center" }}>{item.email}</td>
                       <td style={{ textAlign: "center" }}>
-                        {(item.corse_Count) +
-                          (item.man_corse_Count)}
+                        {item.corse_Count + item.man_corse_Count}
                       </td>
                       <td style={{ textAlign: "center" }}>
-                        {(item.bundle_Count) +
-                          (item.man_bundle_Count)}
+                        {item.bundle_Count + item.man_bundle_Count}
                       </td>
                       <td style={{ textAlign: "center" }}>
                         <Button
@@ -337,7 +337,7 @@ const ManagerDetails = () => {
                   </tr>
                 </thead>
                 <tbody>
-                {invoice.map((item, idx) => (
+                  {invoice.map((item, idx) => (
                     <tr>
                       <td>
                         <strong>{++idx}</strong>
@@ -352,8 +352,13 @@ const ManagerDetails = () => {
                         {item.total_price}
                       </td>
                       <td style={{ textAlign: "center" }}>
-                        <a target="_blank" href={item.img} className="btn btn-success">
-                          <FaEye />
+                        <a target="_blank" href={item.img}>
+                          <Button
+                            className="me-2"
+                            variant="success btn-icon-xxs"
+                          >
+                            <FaEye />
+                          </Button>
                         </a>
                       </td>
                     </tr>

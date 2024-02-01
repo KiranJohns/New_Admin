@@ -71,9 +71,11 @@ const CompanyDetails = () => {
         console.log(err);
       });
 
-    makeRequest("GET", `/course/assigned-items/${state.id}`).then((res) => {
-      setUsers(res.data.response);
-    }).catch(err => {});
+    makeRequest("GET", `/course/assigned-items/${state.id}`)
+      .then((res) => {
+        setUsers(res.data.response);
+      })
+      .catch((err) => {});
     makeRequest("GET", `/invoice/get-invoice/${state.id}`)
       .then((res) => {
         console.log(res);
@@ -341,8 +343,13 @@ const CompanyDetails = () => {
                         {item.total_price}
                       </td>
                       <td style={{ textAlign: "center" }}>
-                        <a target="_blank" href={item.img} className="btn btn-success">
-                          <FaEye />
+                        <a target="_blank" href={item.img}>
+                          <Button
+                            className="me-2"
+                            variant="success btn-icon-xxs"
+                          >
+                            <FaEye />
+                          </Button>
                         </a>
                       </td>
                     </tr>
