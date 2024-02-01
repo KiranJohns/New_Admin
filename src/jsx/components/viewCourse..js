@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { RiChatDeleteFill } from "react-icons/ri";
-import { Nav, Tab, Dropdown } from "react-bootstrap";
+import { Nav, Tab, Dropdown, Spinner } from "react-bootstrap";
 import { IMAGES, SVGICON } from "./Dashboard/Content";
 import { FaEye } from "react-icons/fa";
 import { Button, ButtonGroup } from "react-bootstrap";
@@ -152,6 +152,7 @@ const ViewCourse = () => {
   const makeRequest = fetchData();
   const [course, setCourse] = useState([]);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true)
 
   const [openModalForWorkExp, setOpenModalForWorkExp] = useState(false);
 
@@ -160,11 +161,14 @@ const ViewCourse = () => {
   const [courseName,setCourseName] = useState("");
 
   useEffect(() => {
-    makeRequest("GET", "/course/get-all-course")
-      .then((res) => {
-        setCourse(res.data.response.reverse());
+    setLoading(true)
+    makeRequest("GET", "/course/get-all-course-info")
+    .then((res) => {
+        setLoading(false)
+        setCourse(res.data.response);
       })
       .catch((err) => {
+        setLoading(false)
         console.log(err);
       });
   }, []);
@@ -240,7 +244,8 @@ const ViewCourse = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {course &&
+                  {/* {loading && <Spinner animation="border" variant="primary" />} */}
+                  {course && !loading &&
                     course.map((item, id) => (
                       <tr style={{ textAlign: "center" }}>
                         <td>
