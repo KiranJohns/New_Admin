@@ -256,10 +256,10 @@ const AddBundle = () => {
                             </tr>
                           </thead>
                           <tbody>
-                            {selectedCourse.map((item) => (
+                            {selectedCourse.map((item,idx) => (
                               <tr>
                                 <td style={{ textAlign: "center" }}>
-                                  <strong>{item?.id}</strong>
+                                  <strong>{++idx}</strong>
                                 </td>
 
                                 <td style={{ textAlign: "center" }}>
