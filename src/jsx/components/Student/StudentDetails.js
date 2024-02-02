@@ -21,15 +21,23 @@ const StudentDetails = () => {
   const [scheduleList, setScheduleList] = useState([]);
   const [invoice, setInvoice] = useState([]);
   const [certificate, setCertificate] = useState([]);
+  const [courses, setCourses] = useState([]);
 
   const makeRequest = fetchData();
 
-  console.log(state);
   useEffect(() => {
     makeRequest("GET", `/info/get-user-data-by-id/${state.id}`)
       .then((res) => {
-        console.log(res.data.response);
         setUserData(res.data.response[0]);
+        console.log(res.data.response);
+        console.log(
+          res.data.response[0]?.course,
+          res.data.response[0]?.purchased_course
+        );
+        setCourses(
+          [...res.data.response[0]?.course,
+          ...res.data.response[0]?.purchased_course]
+        );
         setBasicDetail([
           { title: "ID", subtitle: res.data.response[0]?.id, image: profile },
           {
@@ -82,7 +90,6 @@ const StudentDetails = () => {
 
     makeRequest("GET", `/certificate/get-certificate-by-user-id/${state.id}`)
       .then((res) => {
-        console.log(res);
         setCertificate(res.data.Response);
       })
       .catch((err) => {
@@ -249,27 +256,28 @@ const StudentDetails = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {certificate && certificate.map((item, idx) => (
-                    <tr style={{textAlign: 'center'}}>
-                      <td>
-                        <strong>{++idx}</strong>
-                      </td>
-                      <td>{item.course_name}</td>
-                      <td>{item.date}</td>
-                      <td>{item.time}</td>
-                      <td>{item.percentage}</td>
-                      <td>
-                        <a target="_blank" href={item.image}>
-                          <Button
-                            className="me-2"
-                            variant="success btn-icon-xxs"
-                          >
-                            <FaEye />
-                          </Button>
-                        </a>
-                      </td>
-                    </tr>
-                  ))}
+                  {certificate &&
+                    certificate.map((item, idx) => (
+                      <tr style={{ textAlign: "center" }}>
+                        <td>
+                          <strong>{++idx}</strong>
+                        </td>
+                        <td>{item.course_name}</td>
+                        <td>{item.date}</td>
+                        <td>{item.time}</td>
+                        <td>{item.percentage}</td>
+                        <td>
+                          <a target="_blank" href={item.image}>
+                            <Button
+                              className="me-2"
+                              variant="success btn-icon-xxs"
+                            >
+                              <FaEye />
+                            </Button>
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </Table>
             </Card.Body>
@@ -341,6 +349,60 @@ const StudentDetails = () => {
                       </td>
                     </tr>
                   ))}
+                </tbody>
+              </Table>
+            </Card.Body>
+          </Card>
+        </Col>
+      </div>
+
+      <div className="card">
+        <Col lg={12}>
+          <Card>
+            <Card.Header>
+              <Card.Title>Courses</Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <Table responsive>
+                <thead>
+                  <tr style={{ background: "#212a50" }}>
+                    <th className="width80">
+                      <strong>SL No</strong>
+                    </th>
+                    <th style={{ textAlign: "center" }}>
+                      <strong>Course Name</strong>
+                    </th>
+                    {/* <th style={{ textAlign: "center" }}>
+            <strong>Code</strong>
+          </th> */}
+                    <th style={{ textAlign: "center" }}>
+                      <strong>Category</strong>
+                    </th>
+                    <th style={{ textAlign: "center" }}>
+                      <strong>Count</strong>
+                    </th>
+                    <th className="width80">
+                      <strong>Validity</strong>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Array.isArray(courses) &&
+                    courses.map((item, idx) => (
+                      <tr>
+                        <td>
+                          <strong>{++idx}</strong>
+                        </td>
+                        <td style={{ textAlign: "center" }}>
+                          {item.name || item.Name}
+                        </td>
+                        <td style={{ textAlign: "center" }}>{item.category}</td>
+                        <td style={{ textAlign: "center" }}>
+                          {item.fake_course_count || item.fake_count}
+                        </td>
+                        <td style={{ textAlign: "center" }}>{item.validity}</td>
+                      </tr>
+                    ))}
                 </tbody>
               </Table>
             </Card.Body>
