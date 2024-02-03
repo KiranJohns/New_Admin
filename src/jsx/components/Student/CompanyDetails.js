@@ -73,12 +73,12 @@ const CompanyDetails = () => {
 
     makeRequest("GET", `/course/assigned-items/${state.id}`)
       .then((res) => {
+        console.log(res);
         setUsers(res.data.response);
       })
       .catch((err) => {});
     makeRequest("GET", `/invoice/get-invoice/${state.id}`)
       .then((res) => {
-        console.log(res);
         setInvoice(res.data.response);
       })
       .catch((err) => {
@@ -227,6 +227,9 @@ const CompanyDetails = () => {
                     <th style={{ textAlign: "center" }}>
                       <strong>Name</strong>
                     </th>
+                    <th style={{ textAlign: "center" }}>
+                      <strong>Type</strong>
+                    </th>
                     {/* <th style={{ textAlign: "center" }}>
                     <strong>Code</strong>
                   </th> */}
@@ -253,6 +256,9 @@ const CompanyDetails = () => {
                       </td>
                       <td style={{ textAlign: "center" }}>
                         {item.first_name + " " + item.last_name}
+                      </td>
+                      <td style={{ textAlign: "center" }}>
+                        {item.type_of_account}
                       </td>
                       <td style={{ textAlign: "center" }}>{item.email}</td>
                       <td style={{ textAlign: "center" }}>
