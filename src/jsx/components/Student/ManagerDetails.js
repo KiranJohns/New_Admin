@@ -237,24 +237,33 @@ const ManagerDetails = () => {
               <Table responsive>
                 <thead>
                   <tr style={{ background: "#212a50" }}>
-                    <th className="width80">
+                  <th className="width80">
                       <strong>SL No</strong>
                     </th>
                     <th style={{ textAlign: "center" }}>
                       <strong>Name</strong>
                     </th>
+                    <th style={{ textAlign: "center" }}>
+                      <strong>Course Type</strong>
+                    </th>
                     {/* <th style={{ textAlign: "center" }}>
-                      <strong>Code</strong>
+                    <strong>Code</strong>
+                  </th> */}
+                    {/* <th style={{ textAlign: "center" }}>
+                      <strong>Email</strong>
                     </th> */}
                     <th style={{ textAlign: "center" }}>
-                      <strong>Email</strong>
+                      <strong>Count</strong>
                     </th>
                     <th style={{ textAlign: "center" }}>
-                      <strong>Assigned Courses</strong>
+                      <strong>Date</strong>
                     </th>
                     <th style={{ textAlign: "center" }}>
+                      <strong>Time</strong>
+                    </th>
+                    {/* <th className="width80">
                       <strong>Assigned Bundles</strong>
-                    </th>
+                    </th> */}
                     <th style={{ textAlign: "center" }}>
                       {" "}
                       <strong>Action</strong>
@@ -264,34 +273,44 @@ const ManagerDetails = () => {
                 <tbody>
                   {users.map((item, idx) => (
                     <tr>
-                      <td>
-                        <strong>{++idx}</strong>
-                      </td>
-                      <td style={{ textAlign: "center" }}>
-                        {item.first_name + " " + item.last_name}
-                      </td>
-                      <td style={{ textAlign: "center" }}>{item.email}</td>
-                      <td style={{ textAlign: "center" }}>
-                        {item.corse_Count + item.man_corse_Count}
-                      </td>
-                      <td style={{ textAlign: "center" }}>
-                        {item.bundle_Count + item.man_bundle_Count}
-                      </td>
-                      <td style={{ textAlign: "center" }}>
-                        <Button
-                          title="View"
-                          onClick={() => {
-                            navigate("/user-detail", {
-                              state: { id: item.id },
-                            });
-                          }}
-                          className="me-2"
-                          variant="success btn-icon-xxs"
-                        >
-                          <FaEye />
-                        </Button>
-                      </td>
-                    </tr>
+                    <td>
+                      <strong>{++idx}</strong>
+                    </td>
+                    <td style={{ textAlign: "center" }}>{item.user_name}</td>
+                    <td style={{ textAlign: "center" }}>
+                      {item.course_type}
+                    </td>
+                    {/* <td style={{ textAlign: "center" }}>{item.email}</td> */}
+                    <td style={{ textAlign: "center" }}>
+                      {item.course_count}
+                    </td>
+                    <td style={{ textAlign: "center" }}>{item.date}</td>
+                    {/* <td style={{ textAlign: "center" }}>{item.email}</td> */}
+                    <td style={{ textAlign: "center" }}>{item.time}</td>
+                    {/* <td style={{ textAlign: "center" }}>
+                      {item.bundle_Count + item.man_bundle_Count}
+                    </td> */}
+                    <td style={{ textAlign: "center" }}>
+                      <Button
+                        title="View"
+                        onClick={() => {
+                          let url = "";
+                          if (item.type_of_account == "individual") {
+                            url = "/user-detail";
+                          } else {
+                            url = "/manager-detail";
+                          }
+                          navigate(url, {
+                            state: { id: item.id },
+                          });
+                        }}
+                        className="me-2"
+                        variant="success btn-icon-xxs"
+                      >
+                        <FaEye />
+                      </Button>
+                    </td>
+                  </tr>
                   ))}
                 </tbody>
               </Table>
