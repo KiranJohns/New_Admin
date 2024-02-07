@@ -215,7 +215,7 @@ const CompanyDetails = () => {
         <Col lg={12}>
           <Card>
             <Card.Header>
-              <Card.Title>Users</Card.Title>
+              <Card.Title>Assigned Course</Card.Title>
             </Card.Header>
             <Card.Body>
               <Table responsive>
@@ -228,7 +228,7 @@ const CompanyDetails = () => {
                       <strong>Name</strong>
                     </th>
                     <th style={{ textAlign: "center" }}>
-                      <strong>Course Type</strong>
+                      <strong>Course Name</strong>
                     </th>
                     {/* <th style={{ textAlign: "center" }}>
                     <strong>Code</strong>
@@ -262,7 +262,7 @@ const CompanyDetails = () => {
                       </td>
                       <td style={{ textAlign: "center" }}>{item.user_name}</td>
                       <td style={{ textAlign: "center" }}>
-                        {item.course_type}
+                        {item.course_name}
                       </td>
                       {/* <td style={{ textAlign: "center" }}>{item.email}</td> */}
                       <td style={{ textAlign: "center" }}>

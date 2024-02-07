@@ -34,10 +34,10 @@ const StudentDetails = () => {
           res.data.response[0]?.course,
           res.data.response[0]?.purchased_course
         );
-        setCourses(
-          [...res.data.response[0]?.course,
-          ...res.data.response[0]?.purchased_course]
-        );
+        setCourses([
+          ...res.data.response[0]?.course,
+          ...res.data.response[0]?.purchased_course,
+        ]);
         setBasicDetail([
           { title: "ID", subtitle: res.data.response[0]?.id, image: profile },
           {
@@ -149,16 +149,30 @@ const StudentDetails = () => {
                     className="avatar avatar-xxl"
                   />
                 </div>
-                <div>
-                  <h2 className="mb-0">
-                    {userData.first_name + " " + userData.last_name}
-                  </h2>
-                  <p
-                    className="text-primary font-w600"
-                    style={{ textTransform: "capitalize" }}
-                  >
-                    {userData.type_of_account}
-                  </p>
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <div>
+                    <h2 className="mb-0">
+                      {userData.first_name + " " + userData.last_name}
+                    </h2>
+                    <p
+                      className="text-primary font-w600"
+                      style={{ textTransform: "capitalize" }}
+                    >
+                      {userData.type_of_account}
+                    </p>
+                  </div>
+                  <div style={{ marginLeft: "23rem" }}>
+                    {userData?.created_by && (
+                      <h3 className="mb-0">
+                        Created by:{" "}
+                        {(userData?.created_by?.first_name || "") +
+                          " " +
+                          (userData?.created_by?.last_name || "")}
+                      </h3>
+                    )}
+                  </div>
                 </div>
               </div>
               {/* <Dropdown className="custom-dropdown">
