@@ -228,20 +228,26 @@ const CompanyDetails = () => {
                       <strong>Name</strong>
                     </th>
                     <th style={{ textAlign: "center" }}>
-                      <strong>Type</strong>
+                      <strong>Course Type</strong>
                     </th>
                     {/* <th style={{ textAlign: "center" }}>
                     <strong>Code</strong>
                   </th> */}
-                    <th style={{ textAlign: "center" }}>
+                    {/* <th style={{ textAlign: "center" }}>
                       <strong>Email</strong>
+                    </th> */}
+                    <th style={{ textAlign: "center" }}>
+                      <strong>Count</strong>
                     </th>
                     <th style={{ textAlign: "center" }}>
-                      <strong>Assigned Courses</strong>
+                      <strong>Date</strong>
                     </th>
-                    <th className="width80">
+                    <th style={{ textAlign: "center" }}>
+                      <strong>Time</strong>
+                    </th>
+                    {/* <th className="width80">
                       <strong>Assigned Bundles</strong>
-                    </th>
+                    </th> */}
                     <th style={{ textAlign: "center" }}>
                       {" "}
                       <strong>Action</strong>
@@ -254,19 +260,20 @@ const CompanyDetails = () => {
                       <td>
                         <strong>{++idx}</strong>
                       </td>
+                      <td style={{ textAlign: "center" }}>{item.user_name}</td>
                       <td style={{ textAlign: "center" }}>
-                        {item.first_name + " " + item.last_name}
+                        {item.course_type}
                       </td>
+                      {/* <td style={{ textAlign: "center" }}>{item.email}</td> */}
                       <td style={{ textAlign: "center" }}>
-                        {item.type_of_account}
+                        {item.course_count}
                       </td>
-                      <td style={{ textAlign: "center" }}>{item.email}</td>
-                      <td style={{ textAlign: "center" }}>
-                        {item.corse_Count + item.man_corse_Count}
-                      </td>
-                      <td style={{ textAlign: "center" }}>
+                      <td style={{ textAlign: "center" }}>{item.date}</td>
+                      {/* <td style={{ textAlign: "center" }}>{item.email}</td> */}
+                      <td style={{ textAlign: "center" }}>{item.time}</td>
+                      {/* <td style={{ textAlign: "center" }}>
                         {item.bundle_Count + item.man_bundle_Count}
-                      </td>
+                      </td> */}
                       <td style={{ textAlign: "center" }}>
                         <Button
                           title="View"
