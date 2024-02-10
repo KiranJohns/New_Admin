@@ -44,6 +44,7 @@ import AddBundle from "./components/Food/addBundle";
 import AssignCourses from "./components/Food/assignCourses";
 import BundleMatrix from "../jsx copy/components/Student/BundleMatrix";
 import CourseMatrix from "../jsx copy/components/Student/CourseMatrix";
+import EditBundle from "./components/Food/editBundle";
 /// Layout
 import Nav from "./layouts/nav";
 import Nav2 from "./layouts/nav/index2";
@@ -123,6 +124,7 @@ import CourseWiseManager from "./components/CourseWiseManager";
 import ManagerDetails from "./components/Student/ManagerDetails";
 import CompanyDetails from "./components/Student/CompanyDetails";
 
+
 /// Plugins
 import Select2 from "./components/PluginsMenu/Select2/Select2";
 // import MainNouiSlider from "./components/PluginsMenu/NouiSlider/MainNouiSlider";
@@ -183,6 +185,7 @@ const Markup = () => {
     { url: "user-detail", component: <StudentDetails /> },
     { url: "manager-detail", component: <ManagerDetails /> },
     { url: "company-detail", component: <CompanyDetails /> },
+    {url:'edit-bundle', component:<EditBundle/>},
 
     { url: "add-user", component: <AddNewStudent /> },
     { url: "admins", component: <Teachers /> },
@@ -270,6 +273,7 @@ const Markup = () => {
     { url: "/ui-progressbar", component: <UiProgressBar /> },
     { url: "/ui-tab", component: <UiTab /> },
     { url: "/ui-pagination", component: <UiPagination /> },
+   
   ];
 
   return (
