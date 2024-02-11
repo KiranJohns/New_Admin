@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { RiChatDeleteFill } from "react-icons/ri";
+import { RiChatDeleteFill, RiEdit2Fill } from "react-icons/ri";
 import { Nav, Tab, Dropdown } from "react-bootstrap";
 import { IMAGES, SVGICON } from "./Dashboard/Content";
 import { FaEye } from "react-icons/fa";
@@ -21,7 +21,6 @@ const MyBundle = () => {
   const navigate = useNavigate();
 
   const [openModalForWorkExp, setOpenModalForWorkExp] = useState(false);
-
 
   const [bundles, setBundles] = useState([]);
   const [bundleId, setBundleId] = useState();
@@ -47,8 +46,8 @@ const MyBundle = () => {
         console.log(err);
       });
   }
-  function assignBundle(userId,count) {
-    console.log(bundleId,userId,count);
+  function assignBundle(userId, count) {
+    console.log(bundleId, userId, count);
     let form = new FormData();
     form.append("type", "bundle");
     form.append("count", count);
@@ -67,8 +66,12 @@ const MyBundle = () => {
 
   return (
     <div>
-     
-     <BundleModal  name={bundleName} setOpenModalForWorkExp={setOpenModalForWorkExp} openModalForWorkExp={openModalForWorkExp} assignBundle={assignBundle} />
+      <BundleModal
+        name={bundleName}
+        setOpenModalForWorkExp={setOpenModalForWorkExp}
+        openModalForWorkExp={openModalForWorkExp}
+        assignBundle={assignBundle}
+      />
 
       <div className="card">
         <Col lg={12}>
@@ -123,7 +126,9 @@ const MyBundle = () => {
                           {/* <Button className="me-2" variant="success btn-icon-xxs">
                       <FaEye />
                     </Button> */}
-                          <a href={`https://test.learnforcare.co.uk/bundle/bundle-all`}>
+                          <a
+                            href={`https://test.learnforcare.co.uk/bundle/bundle-all`}
+                          >
                             <Button
                               className="me-2"
                               variant="success btn-icon-xxs"
@@ -137,12 +142,23 @@ const MyBundle = () => {
                             variant="info btn-icon-xxs"
                             title="Assign"
                             onClick={() => {
-                              setBundleId(item.id)
-                              setBundleName(item.name)
-                              setOpenModalForWorkExp(true)
+                              setBundleId(item.id);
+                              setBundleName(item.name);
+                              setOpenModalForWorkExp(true);
                             }}
                           >
                             <MdAssignmentAdd />
+                          </Button>
+                          <Button
+                            className="me-2"
+                            variant="info btn-icon-xxs"
+                            onClick={() => {
+                              navigate("/edit-bundle",{state:{ id: item.id }});
+                              // location.href = ?id=${item.id}`
+                            }}
+                            title="Edit"
+                          >
+                            <RiEdit2Fill />
                           </Button>
                           <Button
                             className="me-2"
@@ -150,8 +166,7 @@ const MyBundle = () => {
                             onClick={() => handleDelete(item.id)}
                             title="Delete"
                           >
-                            <RiChatDeleteFill
-                            />
+                            <RiChatDeleteFill />
                           </Button>
                         </td>
                       </tr>

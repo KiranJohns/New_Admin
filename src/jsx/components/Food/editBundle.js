@@ -7,7 +7,7 @@ import quotes from "./../../../images/quotes.svg";
 import { RiChatDeleteFill } from "react-icons/ri";
 import fetchData from "../../../axios";
 import swal from "sweetalert";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const EditBundle = () => {
   const [course, setCourse] = useState({
@@ -23,17 +23,23 @@ const EditBundle = () => {
   });
   const [filteredCourse, setFilteredCourse] = useState([]);
   const [allCourse, setAllCourse] = useState([]);
+  const [selectBundle, setSelectBundle] = useState({});
+  const [image, setImage] = useState({});
+  
+  const [imageLoading, setImageLoading] = useState(false);
   const [loading, setLoading] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState([]);
   const categoryRef = useRef();
   const courseRef = useRef();
   const navigate = useNavigate();
+  const location = useLocation();
   const [category, setCAtegory] = useState(null);
   const [bundle, setBundle] = useState({
     name: "",
     price: "",
     description: "",
     image: "",
+    id: ""
   });
   const [sub, setSub] = useState(false);
 
@@ -63,10 +69,6 @@ const EditBundle = () => {
       swal("please provide description");
       return;
     }
-    if (!bundle.image) {
-      swal("please provide image");
-      return;
-    }
     if (arr?.length <= 0) {
       swal("please add courses");
       return;
@@ -78,16 +80,39 @@ const EditBundle = () => {
     form.append("price", bundle.price);
     form.append("description", bundle.description);
     form.append("courses", JSON.stringify(arr));
-    form.append("image", bundle.image);
-    makeRequest("POST", "/bundle/create-bundle", form)
+    form.append("id", bundle.id);
+    makeRequest("POST", "/bundle/update-bundle-data", form)
       .then((res) => {
         setLoading(false);
         console.log(res);
-        swal("Bundle Added");
-        navigate("/view-bundles");
+        swal("Bundle Updated");
+        // navigate("/view-bundles");
       })
       .catch((err) => {
         setLoading(false);
+        console.log(err);
+      });
+  }
+
+  function updatedImage() {
+    if (!image) {
+      swal("please add courses");
+      return;
+    }
+
+    setImageLoading(true);
+    const form = new FormData();
+    form.append("id", bundle.id);
+    form.append("image", image);
+    makeRequest("POST", "/bundle/update-bundle-image", form)
+      .then((res) => {
+        setImageLoading(false);
+        console.log(res);
+        swal("Bundle Updated");
+        // navigate("/view-bundles");
+      })
+      .catch((err) => {
+        setImageLoading(false);
         console.log(err);
       });
   }
@@ -100,6 +125,23 @@ const EditBundle = () => {
       })
       .catch((err) => {
         console.log(err?.data);
+      });
+
+    console.log(location.state);
+    makeRequest("GET", `/bundle/get-bundle-by-id/${location.state.id}`)
+      .then((res) => {
+        console.log(res.data.response[0]);
+        setBundle({
+          id: res.data.response[0].id,
+          name: res.data.response[0].name,
+          price: res.data.response[0].price,
+          description: res.data.response[0].description,
+        });
+        setSelectBundle(res.data.response[0] || {});
+        setSelectedCourse(res.data.response[0].courses);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }, []);
   return (
@@ -138,9 +180,9 @@ const EditBundle = () => {
                       /> */}
                       <select
                         name="name"
+                        value={bundle.name}
                         onChange={(e) =>
                           setBundle((prev) => {
-                            console.log(e.target.value);
                             return {
                               ...prev,
                               name: e.target.value,
@@ -149,7 +191,7 @@ const EditBundle = () => {
                         }
                         className="form-control form-control"
                       >
-                        <option value="">Select</option>
+                        <option value="">Name</option>
                         <option value="Care Bundle">Care Bundle</option>
                         <option value="Mandatory Care Bundle">
                           Mandatory Care Bundle
@@ -256,7 +298,7 @@ const EditBundle = () => {
                             </tr>
                           </thead>
                           <tbody>
-                            {selectedCourse.map((item,idx) => (
+                            {selectedCourse.map((item, idx) => (
                               <tr>
                                 <td style={{ textAlign: "center" }}>
                                   <strong>{++idx}</strong>
@@ -387,13 +429,31 @@ const EditBundle = () => {
                           type="file"
                           id="formFile"
                           onChange={(e) =>
-                            setBundle((prev) => {
-                              return { ...prev, image: e.target.files[0] };
-                            })
+                            setImage(e.target.files[0] || {})
                           }
                         />
-                        <small>Width*Height-760*460, size{"<"}100kb, format-jpg, png, jpeg, webp*(preffered)
-</small>
+                        <small>
+                          Width*Height-760*460, size{"<"}100kb, format-jpg, png,
+                          jpeg, webp*(preffered)
+                        </small>
+                        {!imageLoading ? (
+                    <Button
+                      class="btn btn-primary"
+                      type="button"
+                      variant="primary"
+                      onClick={updatedImage}
+                    >
+                      Submit
+                    </Button>
+                  ) : (
+                    <button class="btn btn-primary" type="button" disabled>
+                      <span
+                        class="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
+                    </button>
+                  )}
                       </div>
                     </div>
                   </div>
