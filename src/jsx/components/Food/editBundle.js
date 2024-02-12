@@ -271,7 +271,60 @@ const EditBundle = () => {
                   </div>
                 </div>
 
-                <div className="col-8 mt-4 ">
+                <div className="col-4"></div>
+
+                <div className="col-4" style={{}}>
+                  <div className="card-body">
+                    <h4 className="" style={{ textAlign: "center" }}>
+                      Add Course:
+                    </h4>
+                    <div className="form-group mb-3">
+                      <select
+                        ref={courseRef}
+                        onChange={(e) => {
+                          setSub(true);
+                          if (!e.target.value) return;
+                          if (
+                            selectedCourse.find(
+                              (item) => item.id == e.target.value
+                            )
+                          )
+                            return;
+                          setSelectedCourse((prev) => {
+                            return [
+                              ...prev,
+                              filteredCourse.find(
+                                (item) => item.id == e.target.value
+                              ),
+                            ];
+                          });
+                          categoryRef.current.selectedIndex = 0;
+                        }}
+                        defaultValue={"option"}
+                        name="category"
+                        className="form-control form-control"
+                      >
+                        <option value="">Select</option>
+                        {filteredCourse.map((item) => (
+                          <option value={item.id}>{item.name}</option>
+                        ))}
+                      </select>
+                      {sub && (
+                        <small
+                          style={{
+                            textAlign: "center",
+                            marginLeft: "1.5rem",
+                            color: "#5a9676",
+                          }}
+                        >
+                          select again to add more courses
+                        </small>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-12 mt-4 ">
                   <div style={{ display: "flex", justifyContent: "center" }}>
                     <Card>
                       <Card.Body>
@@ -341,56 +394,7 @@ const EditBundle = () => {
                   </div>
                 </div>
 
-                <div className="col-4" style={{}}>
-                  <div className="card-body">
-                    <h4 className="" style={{ textAlign: "center" }}>
-                      Add Course:
-                    </h4>
-                    <div className="form-group mb-3">
-                      <select
-                        ref={courseRef}
-                        onChange={(e) => {
-                          setSub(true);
-                          if (!e.target.value) return;
-                          if (
-                            selectedCourse.find(
-                              (item) => item.id == e.target.value
-                            )
-                          )
-                            return;
-                          setSelectedCourse((prev) => {
-                            return [
-                              ...prev,
-                              filteredCourse.find(
-                                (item) => item.id == e.target.value
-                              ),
-                            ];
-                          });
-                          categoryRef.current.selectedIndex = 0;
-                        }}
-                        defaultValue={"option"}
-                        name="category"
-                        className="form-control form-control"
-                      >
-                        <option value="">Select</option>
-                        {filteredCourse.map((item) => (
-                          <option value={item.id}>{item.name}</option>
-                        ))}
-                      </select>
-                      {sub && (
-                        <small
-                          style={{
-                            textAlign: "center",
-                            marginLeft: "1.5rem",
-                            color: "#5a9676",
-                          }}
-                        >
-                          select again to add more courses
-                        </small>
-                      )}
-                    </div>
-                  </div>
-                </div>
+             
               </div>
 
               <div style={{ display: "flex", justifyContent: "center" }}>
