@@ -109,7 +109,7 @@ const EditBundle = () => {
         setImageLoading(false);
         console.log(res);
         swal("Bundle Updated");
-        // navigate("/view-bundles");
+        navigate("/view-bundles");
       })
       .catch((err) => {
         setImageLoading(false);
