@@ -82,7 +82,7 @@ const StudentDetails = () => {
       });
     makeRequest("GET", `/invoice/get-invoice/${state.id}`)
       .then((res) => {
-        setInvoice(res.data.response);
+        setInvoice(res.data.response.result);
       })
       .catch((err) => {
         console.log(err);

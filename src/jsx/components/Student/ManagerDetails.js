@@ -19,6 +19,7 @@ const ManagerDetails = () => {
   const [basicDetail, setBasicDetail] = useState([]);
   const [scheduleList, setScheduleList] = useState([]);
   const [users, setUsers] = useState([]);
+  const [newUsers, setNewUsers] = useState([]);
   const [invoice, setInvoice] = useState([]);
 
   const makeRequest = fetchData();
@@ -75,8 +76,8 @@ const ManagerDetails = () => {
 
     makeRequest("GET", `/course/assigned-items/${state.id}`)
       .then((res) => {
-        console.log("users ", res.data.response);
-        setUsers(res.data.response);
+        setUsers(res.data.response.result);
+        setNewUsers(res.data.response.res);
       })
       .catch((err) => {});
     makeRequest("GET", `/invoice/get-invoice/${state.id}`)
@@ -227,6 +228,99 @@ const ManagerDetails = () => {
           ))}
         </div>
       </div>
+
+      <div className="card">
+        <Col lg={12}>
+          <Card>
+            <Card.Header>
+              <Card.Title>Users</Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <Table responsive>
+                <thead>
+                  <tr style={{ background: "#212a50" }}>
+                    <th className="width80">
+                      <strong>SL No</strong>
+                    </th>
+                    <th className="width80">
+                      <strong>Id</strong>
+                    </th>
+                    <th style={{ textAlign: "center" }}>
+                      <strong>Name</strong>
+                    </th>
+                    <th style={{ textAlign: "center" }}>
+                      <strong>Type</strong>
+                    </th>
+                    {/* <th style={{ textAlign: "center" }}>
+                    <strong>Code</strong>
+                  </th> */}
+                    <th style={{ textAlign: "center" }}>
+                      <strong>Email</strong>
+                    </th>
+                    <th className="width80">
+                      <strong>Phone</strong>
+                    </th>
+                    <th style={{ textAlign: "center" }}>
+                      {" "}
+                      <strong>Action</strong>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {newUsers.map((item, idx) => (
+                    <tr>
+                      <td>
+                        <strong>{++idx}</strong>
+                      </td>
+                      <td>
+                        <strong>{item.id}</strong>
+                      </td>
+                      <td style={{ textAlign: "center" }}>
+                        {item.first_name + " " + item.last_name}
+                      </td>
+                      <td style={{ textAlign: "center" }}>
+                        {item.type_of_account}
+                      </td>
+                      <td style={{ textAlign: "center" }}>{item.email}</td>
+                      {/* <td style={{ textAlign: "center" }}>
+                        {item.corse_Count + item.man_corse_Count}
+                      </td>
+                      <td style={{ textAlign: "center" }}>
+                        {item.bundle_Count + item.man_bundle_Count}
+                      </td> */}
+                      <td style={{ textAlign: "center" }}>
+                        {item.phone}
+                      </td>
+                      <td style={{ textAlign: "center" }}>
+                        <Button
+                          title="View"
+                          onClick={() => {
+                            let url = "";
+                            if (item.type_of_account == "individual") {
+                              url = "/user-detail";
+                            } else {
+                              url = "/manager-detail";
+                            }
+                            navigate(url, {
+                              state: { id: item.id },
+                            });
+                          }}
+                          className="me-2"
+                          variant="success btn-icon-xxs"
+                        >
+                          <FaEye />
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </Card.Body>
+          </Card>
+        </Col>
+      </div>
+
+
       <div className="card">
         <Col lg={12}>
           <Card>
