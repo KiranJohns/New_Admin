@@ -147,7 +147,9 @@ const ManagerDetails = () => {
                 >
                   <div>
                     <h2 className="mb-0">
-                      {userData.first_name + " " + userData.last_name}
+                      {userData.first_name &&
+                        userData.last_name &&
+                        userData.first_name + " " + userData.last_name}
                     </h2>
                     <p
                       className="text-primary font-w600"
@@ -288,9 +290,7 @@ const ManagerDetails = () => {
                       <td style={{ textAlign: "center" }}>
                         {item.bundle_Count + item.man_bundle_Count}
                       </td> */}
-                      <td style={{ textAlign: "center" }}>
-                        {item.phone}
-                      </td>
+                      <td style={{ textAlign: "center" }}>{item.phone}</td>
                       <td style={{ textAlign: "center" }}>
                         <Button
                           title="View"
@@ -320,7 +320,6 @@ const ManagerDetails = () => {
         </Col>
       </div>
 
-
       <div className="card">
         <Col lg={12}>
           <Card>
@@ -331,7 +330,7 @@ const ManagerDetails = () => {
               <Table responsive>
                 <thead>
                   <tr style={{ background: "#212a50" }}>
-                  <th className="width80">
+                    <th className="width80">
                       <strong>SL No</strong>
                     </th>
                     <th style={{ textAlign: "center" }}>
@@ -367,45 +366,45 @@ const ManagerDetails = () => {
                 <tbody>
                   {users.map((item, idx) => (
                     <tr>
-                    <td>
-                      <strong>{++idx}</strong>
-                    </td>
-                    <td style={{ textAlign: "center" }}>{item.user_name}</td>
-                    <td style={{ textAlign: "center" }}>
-                      {item.course_name}
-                    </td>
-                    {/* <td style={{ textAlign: "center" }}>{item.email}</td> */}
-                    <td style={{ textAlign: "center" }}>
-                      {item.course_count}
-                    </td>
-                    <td style={{ textAlign: "center" }}>{item.date}</td>
-                    {/* <td style={{ textAlign: "center" }}>{item.email}</td> */}
-                    <td style={{ textAlign: "center" }}>{item.time}</td>
-                    {/* <td style={{ textAlign: "center" }}>
+                      <td>
+                        <strong>{++idx}</strong>
+                      </td>
+                      <td style={{ textAlign: "center" }}>{item.user_name}</td>
+                      <td style={{ textAlign: "center" }}>
+                        {item.course_name}
+                      </td>
+                      {/* <td style={{ textAlign: "center" }}>{item.email}</td> */}
+                      <td style={{ textAlign: "center" }}>
+                        {item.course_count}
+                      </td>
+                      <td style={{ textAlign: "center" }}>{item.date}</td>
+                      {/* <td style={{ textAlign: "center" }}>{item.email}</td> */}
+                      <td style={{ textAlign: "center" }}>{item.time}</td>
+                      {/* <td style={{ textAlign: "center" }}>
                       {item.bundle_Count + item.man_bundle_Count}
                     </td> */}
-                    <td style={{ textAlign: "center" }}>
-                      <Button
-                        title="View"
-                        onClick={() => {
-                          // let url = "";
-                          // if (item.type_of_account == "individual") {
-                          //   url = "/user-detail";
-                          // } else {
-                          //   url = "/manager-detail";
-                          // }
-                          // navigate(url, {
-                          //   state: { id: item.id },
-                          // });
-                          window.location.href = `https://learnforcare.co.uk/course/${item.course_id}`
-                        }}
-                        className="me-2"
-                        variant="success btn-icon-xxs"
-                      >
-                        <FaEye />
-                      </Button>
-                    </td>
-                  </tr>
+                      <td style={{ textAlign: "center" }}>
+                        <Button
+                          title="View"
+                          onClick={() => {
+                            // let url = "";
+                            // if (item.type_of_account == "individual") {
+                            //   url = "/user-detail";
+                            // } else {
+                            //   url = "/manager-detail";
+                            // }
+                            // navigate(url, {
+                            //   state: { id: item.id },
+                            // });
+                            window.location.href = `https://learnforcare.co.uk/course/${item.course_id}`;
+                          }}
+                          className="me-2"
+                          variant="success btn-icon-xxs"
+                        >
+                          <FaEye />
+                        </Button>
+                      </td>
+                    </tr>
                   ))}
                 </tbody>
               </Table>

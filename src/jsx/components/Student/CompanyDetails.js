@@ -144,7 +144,9 @@ const CompanyDetails = () => {
 
                 <div>
                   <h2 className="mb-0">
-                    {userData.first_name + " " + userData.last_name}
+                    {userData.first_name &&
+                      userData.last_name &&
+                      userData.first_name + " " + userData.last_name}
                   </h2>
                   <p
                     className="text-primary font-w600"
@@ -274,9 +276,7 @@ const CompanyDetails = () => {
                       <td style={{ textAlign: "center" }}>
                         {item.bundle_Count + item.man_bundle_Count}
                       </td> */}
-                      <td style={{ textAlign: "center" }}>
-                        {item.phone}
-                      </td>
+                      <td style={{ textAlign: "center" }}>{item.phone}</td>
                       <td style={{ textAlign: "center" }}>
                         <Button
                           title="View"
@@ -379,7 +379,7 @@ const CompanyDetails = () => {
                             // } else {
                             //   url = "/manager-detail";
                             // }
-                            window.location.href = `https://learnforcare.co.uk/course/${item.course_id}`
+                            window.location.href = `https://learnforcare.co.uk/course/${item.course_id}`;
                             // navigate("url", {
                             //   state: { id: item.id },
                             // });
