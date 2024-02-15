@@ -241,7 +241,7 @@ const ManagerDetails = () => {
               <Table responsive>
                 <thead>
                   <tr style={{ background: "#212a50" }}>
-                    <th className="width80">
+                    <th style={{ textAlign: "center" }} className="width80">
                       <strong>SL No</strong>
                     </th>
                     <th className="width80">
@@ -271,7 +271,7 @@ const ManagerDetails = () => {
                 <tbody>
                   {newUsers.map((item, idx) => (
                     <tr>
-                      <td>
+                      <td style={{ textAlign: "center" }}>
                         <strong>{++idx}</strong>
                       </td>
                       <td>
@@ -330,7 +330,7 @@ const ManagerDetails = () => {
               <Table responsive>
                 <thead>
                   <tr style={{ background: "#212a50" }}>
-                    <th className="width80">
+                    <th style={{ textAlign: "center" }} className="width80">
                       <strong>SL No</strong>
                     </th>
                     <th style={{ textAlign: "center" }}>
@@ -366,7 +366,7 @@ const ManagerDetails = () => {
                 <tbody>
                   {users.map((item, idx) => (
                     <tr>
-                      <td>
+                      <td style={{ textAlign: "center" }}>
                         <strong>{++idx}</strong>
                       </td>
                       <td style={{ textAlign: "center" }}>{item.user_name}</td>
@@ -423,7 +423,7 @@ const ManagerDetails = () => {
               <Table responsive>
                 <thead>
                   <tr style={{ background: "#212a50" }}>
-                    <th className="width80">
+                    <th style={{ textAlign: "center" }} className="width80">
                       <strong>SL No</strong>
                     </th>
                     <th style={{ textAlign: "center" }}>
@@ -453,7 +453,7 @@ const ManagerDetails = () => {
                 <tbody>
                   {invoice.map((item, idx) => (
                     <tr>
-                      <td>
+                      <td style={{ textAlign: "center" }}>
                         <strong>{++idx}</strong>
                       </td>
                       <td style={{ textAlign: "center" }}>{item.id}</td>

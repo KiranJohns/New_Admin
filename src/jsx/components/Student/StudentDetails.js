@@ -247,7 +247,7 @@ const StudentDetails = () => {
               <Table responsive>
                 <thead>
                   <tr style={{ background: "#212a50" }}>
-                    <th className="width80">
+                    <th style={{ textAlign: "center" }} className="width80">
                       <strong>SL No</strong>
                     </th>
                     <th style={{ textAlign: "center" }}>
@@ -275,13 +275,13 @@ const StudentDetails = () => {
                   {certificate &&
                     certificate.map((item, idx) => (
                       <tr style={{ textAlign: "center" }}>
-                        <td>
+                        <td style={{ textAlign: "center" }}>
                           <strong>{++idx}</strong>
                         </td>
-                        <td>{item.course_name}</td>
-                        <td>{item.date}</td>
-                        <td>{item.time}</td>
-                        <td>{item.percentage}</td>
+                        <td style={{ textAlign: "center" }}>{item.course_name}</td>
+                        <td style={{ textAlign: "center" }}>{item.date}</td>
+                        <td style={{ textAlign: "center" }}>{item.time}</td>
+                        <td style={{ textAlign: "center" }}>{item.percentage}</td>
                         <td>
                           <a target="_blank" href={item.image}>
                             <Button
@@ -311,7 +311,7 @@ const StudentDetails = () => {
               <Table responsive>
                 <thead>
                   <tr style={{ background: "#212a50" }}>
-                    <th className="width80">
+                    <th className="width80" style={{ textAlign: "center" }}>
                       <strong>SL No</strong>
                     </th>
                     <th style={{ textAlign: "center" }}>
@@ -341,7 +341,7 @@ const StudentDetails = () => {
                 <tbody>
                   {invoice.map((item, idx) => (
                     <tr>
-                      <td>
+                      <td style={{ textAlign: "center" }}>
                         <strong>{++idx}</strong>
                       </td>
                       <td style={{ textAlign: "center" }}>{item.id}</td>
@@ -382,7 +382,7 @@ const StudentDetails = () => {
               <Table responsive>
                 <thead>
                   <tr style={{ background: "#212a50" }}>
-                    <th className="width80">
+                    <th className="width80" style={{ textAlign: "center" }}>
                       <strong>SL No</strong>
                     </th>
                     <th style={{ textAlign: "center" }}>
@@ -406,7 +406,7 @@ const StudentDetails = () => {
                   {Array.isArray(courses) &&
                     courses.map((item, idx) => (
                       <tr>
-                        <td>
+                        <td style={{ textAlign: "center" }}>
                           <strong>{++idx}</strong>
                         </td>
                         <td style={{ textAlign: "center" }}>
