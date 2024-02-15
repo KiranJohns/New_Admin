@@ -58,7 +58,7 @@ const StudentDetails = () => {
         ]);
         setScheduleList([
           {
-            title: "Number of Courses",
+            title: "Total Number of Courses",
             image: IMAGES.avat1,
             color: "schedule-card",
             count: res.data.response[0].course_count,
