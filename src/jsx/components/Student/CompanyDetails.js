@@ -49,7 +49,7 @@ const CompanyDetails = () => {
         ]);
         setScheduleList([
           {
-            title: "Number of Courses",
+            title: "Total Number of Courses",
             image: IMAGES.avat1,
             color: "schedule-card",
             count: res.data.response[0].course_count,
@@ -227,7 +227,7 @@ const CompanyDetails = () => {
               <Table responsive>
                 <thead>
                   <tr style={{ background: "#212a50" }}>
-                    <th className="width80">
+                    <th className="width80" style={{ textAlign: "center" }}>
                       <strong>SL No</strong>
                     </th>
                     <th className="width80">
@@ -257,7 +257,7 @@ const CompanyDetails = () => {
                 <tbody>
                   {newUsers.map((item, idx) => (
                     <tr>
-                      <td>
+                      <td style={{ textAlign: "center" }}>
                         <strong>{++idx}</strong>
                       </td>
                       <td>
@@ -316,7 +316,7 @@ const CompanyDetails = () => {
               <Table responsive>
                 <thead>
                   <tr style={{ background: "#212a50" }}>
-                    <th className="width80">
+                    <th className="width80" style={{ textAlign: "center" }}>
                       <strong>SL No</strong>
                     </th>
                     <th style={{ textAlign: "center" }}>
@@ -352,7 +352,7 @@ const CompanyDetails = () => {
                 <tbody>
                   {users.map((item, idx) => (
                     <tr>
-                      <td>
+                      <td style={{ textAlign: "center" }}>
                         <strong>{++idx}</strong>
                       </td>
                       <td style={{ textAlign: "center" }}>{item.user_name}</td>
@@ -413,7 +413,7 @@ const CompanyDetails = () => {
               <Table responsive>
                 <thead>
                   <tr style={{ background: "#212a50" }}>
-                    <th className="width80">
+                    <th className="width80" style={{ textAlign: "center" }}>
                       <strong>SL No</strong>
                     </th>
                     <th style={{ textAlign: "center" }}>
@@ -443,7 +443,7 @@ const CompanyDetails = () => {
                 <tbody>
                   {invoice.map((item, idx) => (
                     <tr>
-                      <td>
+                      <td style={{ textAlign: "center" }}>
                         <strong>{++idx}</strong>
                       </td>
                       <td style={{ textAlign: "center" }}>{item.id}</td>
