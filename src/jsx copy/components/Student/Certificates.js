@@ -21,6 +21,7 @@ const ViewCertificates = () => {
 
 
   const [searchString, setSearchString] = useState("");
+  const [rowNumber, setRowNumber] = useState(1);
   const [allRecords, setAllRecords] = useState([]);
 
   useEffect(() => {
@@ -39,25 +40,29 @@ const ViewCertificates = () => {
       });
   }, []);
 
-  const recordsPage = 15;
-  const lastIndex = currentPage * recordsPage;
-  const firstIndex = lastIndex - recordsPage;
-  const records = checked.slice(firstIndex, lastIndex);
-  const npage = Math.ceil(checked.length / recordsPage);
-  const number = [...Array(npage + 1).keys()].slice(1);
-  function prePage() {
-    if (currentPage !== 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  }
-  function changeCPage(id) {
-    setCurrentPage(id);
-  }
-  function nextPage() {
-    if (currentPage !== npage) {
-      setCurrentPage(currentPage + 1);
-    }
-  }
+  // const recordsPage = 10;
+  // const lastIndex = currentPage * recordsPage;
+  // const firstIndex = lastIndex - recordsPage;
+  // const records = allRecords.slice(firstIndex, lastIndex);
+  // const npage = Math.ceil(allRecords.length / recordsPage);
+  // const number = [...Array(npage + 1).keys()].slice(1);
+  // function prePage() {
+  //   if (currentPage !== 1) {
+  //     setCurrentPage(currentPage - 1);
+  //     setRowNumber((10 * (currentPage - 1)) - 9);
+  //   }
+  // }
+  // function changeCPage(id) {
+  //   console.log(id);
+  //   setRowNumber(10 * id - 9);
+  //   setCurrentPage(id);
+  // }
+  // function nextPage() {
+  //   if (currentPage !== npage) {
+  //     setCurrentPage(currentPage + 1);
+  //     setRowNumber(10 * (currentPage + 1) - 9);
+  //   }
+  // }
   return (
     <>
       <div className="row">
@@ -142,7 +147,7 @@ const ViewCertificates = () => {
                       </tr>
                     </thead>
                     <tbody style={{ background: "white" }}>
-                      {records.map((item, ind) => (
+                      {allRecords.map((item, ind) => (
                         <tr key={ind} style={{ textAlign: "center" }}>
                           <td style={{ textAlign: "center" }}>
                            {++ind}
@@ -173,7 +178,6 @@ const ViewCertificates = () => {
                           <td>
                             <a href={item.image} target="_blank" style={{color: 'white'}}>
                               <Button
-                              onClick={item.image}
                               title="View"
                                 className="me-2"
                                 variant="success btn-icon-xxs"
@@ -195,14 +199,14 @@ const ViewCertificates = () => {
                     </tbody>
                   </Table>
                   <div className="d-sm-flex text-center justify-content-between align-items-center">
-                    <div className="dataTables_info">
+                    {/* <div className="dataTables_info">
                       Showing {lastIndex - recordsPage + 1} to{" "}
                       {records.length < lastIndex
                         ? records.length
                         : lastIndex}{" "}
                       of {allRecords && allRecords?.length} entries
-                    </div>
-                    <div
+                    </div> */}
+                    {/* <div
                       className="dataTables_paginate paging_simple_numbers justify-content-center"
                       id="example-student_wrapper"
                     >
@@ -233,7 +237,7 @@ const ViewCertificates = () => {
                       >
                         <i className="fa-solid fa-angle-right" />
                       </Link>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
