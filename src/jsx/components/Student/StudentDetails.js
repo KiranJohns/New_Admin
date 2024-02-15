@@ -154,7 +154,9 @@ const StudentDetails = () => {
                 >
                   <div>
                     <h2 className="mb-0">
-                      {userData.first_name + " " + userData.last_name}
+                      {userData.first_name &&
+                        userData.last_name &&
+                        userData.first_name + " " + userData.last_name}
                     </h2>
                     <p
                       className="text-primary font-w600"
