@@ -145,11 +145,11 @@ const ViewCertificates = () => {
                       {records.map((item, ind) => (
                         <tr key={ind} style={{ textAlign: "center" }}>
                           <td style={{ textAlign: "center" }}>
-                           {item.id}
+                           {++ind}
                           </td>
                           <td>
                             <span className="text-primary font-w600">
-                              ID {ind}
+                              {item.sl}
                             </span>
                           </td>
                           <td>
