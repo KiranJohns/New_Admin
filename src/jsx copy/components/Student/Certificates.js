@@ -173,6 +173,7 @@ const ViewCertificates = () => {
                           <td>
                             <a href={item.image} target="_blank" style={{color: 'white'}}>
                               <Button
+                              onClick={item.image}
                               title="View"
                                 className="me-2"
                                 variant="success btn-icon-xxs"
