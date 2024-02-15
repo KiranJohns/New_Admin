@@ -77,7 +77,7 @@ const CompanyDetails = () => {
         console.log(res);
         setUsers(res.data.response.result.reverse());
         setNewUsers(res.data.response.res);
-        console.log(res.data.response.res);
+        console.log(res.data.response);
       })
       .catch((err) => {});
     makeRequest("GET", `/invoice/get-invoice/${state.id}`)
@@ -370,25 +370,29 @@ const CompanyDetails = () => {
                         {item.bundle_Count + item.man_bundle_Count}
                       </td> */}
                       <td style={{ textAlign: "center" }}>
-                        <Button
-                          title="View"
-                          onClick={() => {
+                        <a
+                          href={`https://learnforcare.co.uk/course/${item.course_id}`}
+                        >
+                          <Button
+                            title="View"
+                            // onClick={() => {
                             // let url = "";
                             // if (item.type_of_account == "individual") {
                             //   url = "/user-detail";
                             // } else {
                             //   url = "/manager-detail";
                             // }
-                            window.location.href = `https://learnforcare.co.uk/course/${item.course_id}`;
+                            // window.location.href = `https://learnforcare.co.uk/course/${item.course_id}`;
                             // navigate("url", {
                             //   state: { id: item.id },
                             // });
-                          }}
-                          className="me-2"
-                          variant="success btn-icon-xxs"
-                        >
-                          <FaEye />
-                        </Button>
+                            // }}
+                            className="me-2"
+                            variant="success btn-icon-xxs"
+                          >
+                            <FaEye />
+                          </Button>
+                        </a>
                       </td>
                     </tr>
                   ))}

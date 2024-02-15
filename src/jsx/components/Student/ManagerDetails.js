@@ -384,9 +384,10 @@ const ManagerDetails = () => {
                       {item.bundle_Count + item.man_bundle_Count}
                     </td> */}
                       <td style={{ textAlign: "center" }}>
+                        <a href={`https://learnforcare.co.uk/course/${item.course_id}`}>
                         <Button
                           title="View"
-                          onClick={() => {
+                          // onClick={() => {
                             // let url = "";
                             // if (item.type_of_account == "individual") {
                             //   url = "/user-detail";
@@ -396,13 +397,13 @@ const ManagerDetails = () => {
                             // navigate(url, {
                             //   state: { id: item.id },
                             // });
-                            window.location.href = `https://learnforcare.co.uk/course/${item.course_id}`;
-                          }}
+                          // }}
                           className="me-2"
                           variant="success btn-icon-xxs"
                         >
                           <FaEye />
                         </Button>
+                        </a>
                       </td>
                     </tr>
                   ))}

@@ -28,6 +28,7 @@ const AddCertificate = () => {
     date: "",
   });
   const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [category, setCategory] = useState("");
   const [selectedCourse, setSelectedCourse] = useState("");
   const [filteredCourses, setFilteredCourses] = useState([]);
@@ -67,11 +68,15 @@ const AddCertificate = () => {
         return
       }
     }
+
+    setLoading(true)
     makeRequest("POST", "/certificate/create-certificate", form)
-      .then((res) => {
+    .then((res) => {
+        setLoading(false)
         swal("Done!", "Certificate Successfully Created", "success");
       })
       .catch((err) => {
+        setLoading(false)
         swal("Oops!", err.data.errors[0].error, "error");
         console.log(err);
       });
@@ -220,14 +225,20 @@ const AddCertificate = () => {
                       </div>
                     </div>
                     <div className="mb-3 d-flex justify-content-center mt-5 ml-4">
-                      <Button
+                      {!loading ? <Button
                         className=""
                         variant="primary"
                         type="button"
                         onClick={submit}
                       >
                         Generate Certificate
-                      </Button>
+                      </Button> : <button class="btn btn-primary" type="button" disabled>
+                      <span
+                        class="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
+                    </button>}
                     </div>
                   </div>
                 </div>
