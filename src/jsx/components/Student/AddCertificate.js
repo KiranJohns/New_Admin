@@ -69,7 +69,7 @@ const AddCertificate = () => {
     }
     makeRequest("POST", "/certificate/create-certificate", form)
       .then((res) => {
-        swal("Done!", "user successfully created", "success");
+        swal("Done!", "Certificate Successfully Created", "success");
       })
       .catch((err) => {
         swal("Oops!", err.data.errors[0].error, "error");
