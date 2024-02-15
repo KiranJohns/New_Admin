@@ -75,7 +75,7 @@ const CompanyDetails = () => {
     makeRequest("GET", `/course/assigned-items/${state.id}`)
       .then((res) => {
         console.log(res);
-        setUsers(res.data.response.result);
+        setUsers(res.data.response.result.reverse());
         setNewUsers(res.data.response.res);
         console.log(res.data.response.res);
       })
@@ -373,15 +373,16 @@ const CompanyDetails = () => {
                         <Button
                           title="View"
                           onClick={() => {
-                            let url = "";
-                            if (item.type_of_account == "individual") {
-                              url = "/user-detail";
-                            } else {
-                              url = "/manager-detail";
-                            }
-                            navigate(url, {
-                              state: { id: item.id },
-                            });
+                            // let url = "";
+                            // if (item.type_of_account == "individual") {
+                            //   url = "/user-detail";
+                            // } else {
+                            //   url = "/manager-detail";
+                            // }
+                            window.location.href = `https://learnforcare.co.uk/course/${item.course_id}`
+                            // navigate("url", {
+                            //   state: { id: item.id },
+                            // });
                           }}
                           className="me-2"
                           variant="success btn-icon-xxs"
