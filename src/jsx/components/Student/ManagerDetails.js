@@ -384,7 +384,7 @@ const ManagerDetails = () => {
                       {item.bundle_Count + item.man_bundle_Count}
                     </td> */}
                       <td style={{ textAlign: "center" }}>
-                        <a href={`https://learnforcare.co.uk/course/${item.course_id}`}>
+                        <a target="_blank" href={`https://learnforcare.co.uk/course/${item.course_id}`}>
                         <Button
                           title="View"
                           // onClick={() => {

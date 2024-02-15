@@ -370,7 +370,7 @@ const CompanyDetails = () => {
                         {item.bundle_Count + item.man_bundle_Count}
                       </td> */}
                       <td style={{ textAlign: "center" }}>
-                        <a
+                        <a target="_blank"
                           href={`https://learnforcare.co.uk/course/${item.course_id}`}
                         >
                           <Button
