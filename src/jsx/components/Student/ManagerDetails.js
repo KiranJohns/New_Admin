@@ -388,15 +388,16 @@ const ManagerDetails = () => {
                       <Button
                         title="View"
                         onClick={() => {
-                          let url = "";
-                          if (item.type_of_account == "individual") {
-                            url = "/user-detail";
-                          } else {
-                            url = "/manager-detail";
-                          }
-                          navigate(url, {
-                            state: { id: item.id },
-                          });
+                          // let url = "";
+                          // if (item.type_of_account == "individual") {
+                          //   url = "/user-detail";
+                          // } else {
+                          //   url = "/manager-detail";
+                          // }
+                          // navigate(url, {
+                          //   state: { id: item.id },
+                          // });
+                          window.location.href = `https://learnforcare.co.uk/course/${item.course_id}`
                         }}
                         className="me-2"
                         variant="success btn-icon-xxs"
