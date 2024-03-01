@@ -39,6 +39,7 @@ const SalesTab = () => {
   const [groupByDay, setGroupByDay] = useState([]);
   const [filteredGroupByDay, setFilteredGroupByDay] = useState([]);
   const [daily, setDaily] = useState([]);
+  const [years, setYears] = useState([]);
   const [groupByYear, setGroupByYear] = useState([]);
   const [filteredGroupByYear, setFilteredGroupByYear] = useState([]);
   const [type, setType] = useState("day");
@@ -59,13 +60,20 @@ const SalesTab = () => {
   const makeRequest = fetchData();
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
+  function removeDup(arr) {
+    return arr.filter((value, index, self) => self.indexOf(value) === index);
+  }
   useEffect(() => {
     makeRequest("GET", "/course/get-all-purchased-course-group-by")
       .then((res) => {
         setDaily(res.data.response.dailyReport.reverse());
         setFilteredGroupByDay(res.data.response.groupByDay.reverse());
         setGroupByDay(res.data.response.groupByDay);
-        setFilteredGroupByYear(res.data.response.groupByYear);
+        setFilteredGroupByYear(res.data.response.groupByYear.reverse());
+        let year = res.data.response.groupByYear.map(item => {
+          return item.year;
+        })
+        setYears(removeDup(year));
         setGroupByYear(res.data.response.groupByYear);
       })
       .catch((err) => {
@@ -221,9 +229,9 @@ const SalesTab = () => {
                       aria-label="Default select example"
                     >
                       <option value="">Select Year</option>
-                      {groupByYear &&
-                        groupByYear.map((item) => (
-                          <option value={item.year}>{item.year}</option>
+                      {years &&
+                        years.map((item) => (
+                          <option value={item}>{item}</option>
                         ))}
                     </select>
                   </div>
@@ -297,9 +305,9 @@ const SalesTab = () => {
                         aria-label="Default select example"
                       >
                         <option value="">Select Year</option>
-                        {groupByYear &&
-                          groupByYear.map((item) => (
-                            <option value={item.year}>{item.year}</option>
+                        {years &&
+                          years.map((item) => (
+                            <option value={item}>{item}</option>
                           ))}
                       </select>
                     </div>
