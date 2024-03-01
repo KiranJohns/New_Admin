@@ -370,10 +370,26 @@ const CompanyDetails = () => {
                         {item.bundle_Count + item.man_bundle_Count}
                       </td> */}
                       <td style={{ textAlign: "center" }}>
-                        <a target="_blank"
-                          href={`https://learnforcare.co.uk/course/${item.course_id}`}
+                        <a
+                        // target="_blank"
+                        // href={`https://learnforcare.co.uk/course/${}`}
                         >
                           <Button
+                            onClick={() => {
+                              let url = "/company-detail";
+                              if (item.user_type == "company") {
+                                url = "/company-detail";
+                              }
+                              if (item.user_type == "manager") {
+                                url = "/manager-detail";
+                              }
+                              if (item.user_type == "individual") {
+                                url = "/user-detail";
+                              }
+                              navigate(url, {
+                                state: { id: item.user_id },
+                              });
+                            }}
                             title="View"
                             // onClick={() => {
                             // let url = "";
