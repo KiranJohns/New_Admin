@@ -5,8 +5,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
 
-
-
 const BundleMatrix = () => {
 
   const makeRequest = fetchData();
@@ -43,7 +41,7 @@ const BundleMatrix = () => {
           color: "gray",
           progress: "",
         };
-        console.log(res.data.response);
+        // console.log(res.data.response);
         // console.log(res.data.response);
         let users = res.data.response;
         let course_name = [];
@@ -69,6 +67,18 @@ const BundleMatrix = () => {
           } else if (course_name.length <= 0) {
             course_name = newCName;
           }
+
+          allCourses.map(item => {
+            if(item.progress == 0) {
+              item['color'] = 'red'
+            }
+            if(item.progress > 0) {
+              item['color'] = 'yellow'
+            }
+            if(item.progress == 100) {
+              item['color'] = 'green'
+            }
+          })
 
           allCourses.forEach((course) => {
             if (!courses.find((i) => i?.course_name == course?.bundle_name)) {
@@ -107,6 +117,7 @@ const BundleMatrix = () => {
         setCourseName(course_name);
         setUserName(user_name);
         setCourse(users);
+        console.log('users ',users);
       })
       .catch((err) => {
         console.log(err);

@@ -113,6 +113,7 @@ const BundleMatrix = () => {
         setCourseName(course_name);
         setUserName(user_name);
         setCourse(users);
+        console.log('users ',users);
       })
       .catch((err) => {
         console.log(err);
