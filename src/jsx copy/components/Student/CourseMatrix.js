@@ -6,187 +6,6 @@ import { useState } from "react";
 import Form from "react-bootstrap/Form";
 
 const ManCoursMatrix = () => {
-  const matrixDataUser = [
-    {
-      id: 1,
-      name: "Stark",
-    },
-    {
-      id: 2,
-      name: "Miles",
-    },
-    {
-      id: 3,
-      name: "Aloshy",
-    },
-    {
-      id: 4,
-      name: "Alba",
-    },
-  ];
-
-  const matrixDataCourse = [
-    [
-      {
-        id: 1,
-        userId: 1,
-        course: {
-          name: "some of the people",
-          color: "#ae0000",
-          progress: "0%",
-        },
-      },
-      {
-        id: 1,
-        userId: 1,
-        course: {
-          name: "of the people",
-          color: "#549C30",
-          progress: "100%",
-        },
-      },
-      {
-        id: 1,
-        userId: 1,
-        course: {
-          name: "by the people",
-          color: "#f7b500",
-          progress: "50%",
-        },
-      },
-      {
-        id: 1,
-        userId: 1,
-        course: {
-          name: "for the people",
-          color: "#549C30",
-          progress: "100%",
-        },
-      },
-    ],
-    [
-      {
-        id: 1,
-        userId: 2,
-        course: {
-          name: "by the people",
-          color: "#f7b500",
-          progress: "50%",
-        },
-      },
-      {
-        id: 2,
-        userId: 2,
-        course: {
-          name: "some of the people",
-          color: "#ae0000",
-          progress: "0%",
-        },
-      },
-      {
-        id: 3,
-        userId: 2,
-        course: {
-          name: "of the people",
-          color: "#549C30",
-          progress: "100%",
-        },
-      },
-      {
-        id: 4,
-        userId: 2,
-        course: {
-          name: "for the people",
-          color: "#f7b500",
-          progress: "50%",
-        },
-      },
-    ],
-    [
-      {
-        id: 1,
-        userId: 3,
-        course: {
-          name: "some of the people",
-          color: "#ae0000",
-          progress: "0%",
-        },
-      },
-      {
-        id: 1,
-        userId: 3,
-        course: {
-          name: "for the people",
-          color: "#f7b500",
-          progress: "50%",
-        },
-      },
-      {
-        id: 1,
-        userId: 3,
-        course: {
-          name: "of the people",
-          color: "#549C30",
-          progress: "100%",
-        },
-      },
-      {
-        id: 1,
-        userId: 3,
-        course: {
-          name: "by the people",
-          color: "#549C30",
-          progress: "100%",
-        },
-      },
-    ],
-    [
-      {
-        id: 1,
-        userId: 4,
-        course: {
-          name: "by the people",
-          color: "#f7b500",
-          progress: "50%",
-        },
-      },
-      {
-        id: 1,
-        userId: 4,
-        course: {
-          name: "some of the people",
-          color: "#ae0000",
-          progress: "0%",
-        },
-      },
-      {
-        id: 1,
-        userId: 4,
-        course: {
-          name: "of the people",
-          color: "#549C30",
-          progress: "100%",
-        },
-      },
-      {
-        id: 1,
-        userId: 4,
-        course: {
-          name: "for the people",
-          color: "#549C30",
-          progress: "100%",
-        },
-      },
-    ],
-  ];
-
-  // const courseName = [
-  //   "some of the people",
-  //   "by the people",
-  //   "of the people",
-  //   "for the people",
-  // ];
-
   const makeRequest = fetchData();
   const [courseName, setCourseName] = useState([]);
   const [userName, setUserName] = useState([]);
@@ -229,17 +48,27 @@ const ManCoursMatrix = () => {
           color: "gray",
           progress: "",
         };
-        // console.log(res.data.response);
         let users = res.data.response;
         let course_name = [];
         let user_name = [];
-        users.forEach((item) => {
+
+        let newUsers = users.map((item) => {
           let assigned = item.matrix_assigned.reverse();
           let enrolled = item.matrix.reverse();
 
           user_name.push(item.first_name + " " + item.last_name);
 
           let allCourses = [...assigned, ...enrolled];
+
+          allCourses.forEach((item) => {
+            if (Number(item.progress) >= 80) {
+              console.log('green');
+              item["color"] = "green";
+            } else {
+              console.log('red');
+              item["color"] = "red";
+            }
+          });
 
           let CNames = allCourses.map((course) => {
             return course.course_name;
@@ -265,19 +94,16 @@ const ManCoursMatrix = () => {
             }
           });
 
-          item["course"] = courses;
-
-          // delete item.matrix_assigned;
-          // delete item.matrix;
+          // item["course"] = courses;
+          return { ...item, course: allCourses };
         });
 
         let tempCourses = [];
         course_name.forEach(() => {
           tempCourses.push(temp);
         });
-        console.log(users);
 
-        users.forEach((item) => {
+        newUsers.forEach((item) => {
           let temp = [...tempCourses];
           let course = item["course"];
           course_name.forEach((name, idx) => {
@@ -291,7 +117,7 @@ const ManCoursMatrix = () => {
         });
         setCourseName(course_name);
         setUserName(user_name);
-        setCourse(users);
+        setCourse(newUsers);
       })
       .catch((err) => {
         console.log(err);

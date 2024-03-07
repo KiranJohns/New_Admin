@@ -6,7 +6,6 @@ import { useState } from "react";
 import Form from "react-bootstrap/Form";
 
 const BundleMatrix = () => {
-
   const makeRequest = fetchData();
   const [courseName, setCourseName] = useState([]);
   const [userName, setUserName] = useState([]);
@@ -24,14 +23,21 @@ const BundleMatrix = () => {
     makeRequest("GET", "/info/get-all-users")
       .then((res) => {
         setUsers(res.data.response);
-        setCompanies(res.data.response.filter(item => item.type_of_account == "company"));
-        setManagers(res.data.response.filter(item => item.type_of_account == "manager"));
-        setManager(res.data.response.find(item => item.type_of_account == "manager")?.id);
+        setCompanies(
+          res.data.response.filter((item) => item.type_of_account == "company")
+        );
+        setManagers(
+          res.data.response.filter((item) => item.type_of_account == "manager")
+        );
+        setManager(
+          res.data.response.find((item) => item.type_of_account == "manager")
+            ?.id
+        );
       })
       .catch((err) => {
         console.log(err);
       });
-    }, []);
+  }, []);
   useEffect(() => {
     const form = new FormData();
     form.append("manager_id", manager);
@@ -50,6 +56,14 @@ const BundleMatrix = () => {
           let assigned = item.matrix_assigned.reverse();
           let enrolled = item.matrix.reverse();
 
+          if (item.type_of_account != "Individual") {
+            assigned = assigned.filter((course) => {
+              console.log("course ", course);
+              if (course.owner == item.id) {
+                return course;
+              }
+            });
+          }
           user_name.push(item.first_name + " " + item.last_name);
 
           let allCourses = [...assigned, ...enrolled];
@@ -68,17 +82,17 @@ const BundleMatrix = () => {
             course_name = newCName;
           }
 
-          allCourses.map(item => {
-            if(item.progress == 0) {
-              item['color'] = 'red'
+          allCourses.map((item) => {
+            if (item.progress == 0) {
+              item["color"] = "red";
             }
-            if(item.progress > 0) {
-              item['color'] = 'yellow'
+            if (item.progress > 0) {
+              item["color"] = "yellow";
             }
-            if(item.progress == 100) {
-              item['color'] = 'green'
+            if (item.progress == 100) {
+              item["color"] = "green";
             }
-          })
+          });
 
           allCourses.forEach((course) => {
             if (!courses.find((i) => i?.course_name == course?.bundle_name)) {
@@ -117,7 +131,7 @@ const BundleMatrix = () => {
         setCourseName(course_name);
         setUserName(user_name);
         setCourse(users);
-        console.log('users ',users);
+        console.log("users ", users);
       })
       .catch((err) => {
         console.log(err);
@@ -125,9 +139,12 @@ const BundleMatrix = () => {
   }, [manager]);
   return (
     <div className="row p-3">
-      <div style={{ position: "relative", background:"#fff" }} className="dash-neww ">
-        <div style={{ position: "absolute",marginLeft:".8rem"  }} className="">
-          <span className="m-2" style={{ display: "flex",}}>
+      <div
+        style={{ position: "relative", background: "#fff" }}
+        className="dash-neww "
+      >
+        <div style={{ position: "absolute", marginLeft: ".8rem" }} className="">
+          <span className="m-2" style={{ display: "flex" }}>
             <div
               style={{
                 height: "1.5rem",
@@ -150,7 +167,7 @@ const BundleMatrix = () => {
               }}
               className="redd"
             >
-             In progress
+              In progress
             </div>
             <div
               style={{
@@ -179,9 +196,12 @@ const BundleMatrix = () => {
               <Form.Select
                 onChange={(e) => {
                   setManager(e.target.value);
-                  setManagers(users.filter(item => item.created_by == e.target.value));
+                  setManagers(
+                    users.filter((item) => item.created_by == e.target.value)
+                  );
                 }}
-                style={{background:"#5a9676", color:"#fff"}} className="form-control"
+                style={{ background: "#5a9676", color: "#fff" }}
+                className="form-control"
                 aria-label="Default select example"
               >
                 <option value={null}>Select Company</option>
@@ -197,7 +217,8 @@ const BundleMatrix = () => {
                   setManager(e.target.value);
                 }}
                 size=""
-                style={{background:"#5a9676", color:"#fff"}} className="form-control"
+                style={{ background: "#5a9676", color: "#fff" }}
+                className="form-control"
                 aria-label="Default select example"
               >
                 <option value={null}>Select Manager</option>
@@ -218,12 +239,10 @@ const BundleMatrix = () => {
           >
             <thead>
               <tr style={{ textAlign: "center" }}>
-              <th
+                <th
                   style={{ background: "#212a50", color: "white" }}
                   colSpan={1}
-                >
-                 
-                </th>
+                ></th>
                 <th
                   style={{ background: "#212a50", color: "white" }}
                   colSpan={60}
@@ -297,7 +316,10 @@ const BundleMatrix = () => {
                               textAlign: "center",
                             }}
                           >
-                       {course?.color == "red" && "not started" || course?.color == "yellow" && "in progress" || course?.color == "green" && "finished" || course?.color == "gray" && "" }
+                            {(course?.color == "red" && "not started") ||
+                              (course?.color == "yellow" && "in progress") ||
+                              (course?.color == "green" && "finished") ||
+                              (course?.color == "gray" && "")}
                           </td>
                         );
                       }
