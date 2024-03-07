@@ -59,7 +59,7 @@ const BundleMatrix = () => {
           if (item.type_of_account != "Individual") {
             assigned = assigned.filter((course) => {
               console.log("course ", course);
-              if (course.owner == item.id) {
+              if (course.count >= 1 && course.owner == item.id) {
                 return course;
               }
             });
@@ -302,7 +302,7 @@ const BundleMatrix = () => {
                                 textAlign: "center",
                               }}
                             >
-                              {/* {course?.color == "red" && "not started" || course?.color == "yellow" && "in progress" || course?.color == "green" && "finished" || course?.color == "gray" && "" } */}
+                              {course?.color == "red" && "Not Started" || course?.color == "yellow" && "In Progress" || course?.color == "green" && "Finished" || course?.color == "gray" && "" }
                             </td>
                           </>
                         );
@@ -316,9 +316,9 @@ const BundleMatrix = () => {
                               textAlign: "center",
                             }}
                           >
-                            {(course?.color == "red" && "not started") ||
-                              (course?.color == "yellow" && "in progress") ||
-                              (course?.color == "green" && "finished") ||
+                            {(course?.color == "red" && "Not Started") ||
+                              (course?.color == "yellow" && "In Progress") ||
+                              (course?.color == "green" && "Finished") ||
                               (course?.color == "gray" && "")}
                           </td>
                         );
