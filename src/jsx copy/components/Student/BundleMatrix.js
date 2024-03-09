@@ -302,7 +302,7 @@ const BundleMatrix = () => {
                                 textAlign: "center",
                               }}
                             >
-                              {course?.color == "red" && "Not Started" || course?.color == "yellow" && "In Progress" || course?.color == "green" && "Finished" || course?.color == "gray" && "" }
+                              {course?.color == "red" && "Not Started" || course?.color == "yellow" && "In Progress" || course?.color == "green" && "Completed" || course?.color == "gray" && "" }
                             </td>
                           </>
                         );
@@ -318,7 +318,7 @@ const BundleMatrix = () => {
                           >
                             {(course?.color == "red" && "Not Started") ||
                               (course?.color == "yellow" && "In Progress") ||
-                              (course?.color == "green" && "Finished") ||
+                              (course?.color == "green" && "Completed") ||
                               (course?.color == "gray" && "")}
                           </td>
                         );

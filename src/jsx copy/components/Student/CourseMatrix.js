@@ -293,9 +293,9 @@ const ManCoursMatrix = () => {
                                 textAlign: "center",
                               }}
                             >
-                              {(course?.color == "red" && "not started") ||
-                                (course?.color == "yellow" && "in progress") ||
-                                (course?.color == "green" && "finished") ||
+                              {(course?.color == "red" && "Not Started") ||
+                                (course?.color == "yellow" && "In Progress") ||
+                                (course?.color == "green" && "Completed") ||
                                 (course?.color == "gray" && "")}
                             </td>
                           </>
@@ -310,9 +310,9 @@ const ManCoursMatrix = () => {
                               textAlign: "center",
                             }}
                           >
-                            {(course?.color == "red" && "not started") ||
-                              (course?.color == "yellow" && "in progress") ||
-                              (course?.color == "green" && "finished") ||
+                            {(course?.color == "red" && "Not Started") ||
+                              (course?.color == "yellow" && "In Progress") ||
+                              (course?.color == "green" && "Completed") ||
                               (course?.color == "gray" && "")}
                           </td>
                         );
