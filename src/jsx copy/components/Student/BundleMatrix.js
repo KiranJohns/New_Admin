@@ -29,10 +29,10 @@ const BundleMatrix = () => {
         setManagers(
           res.data.response.filter((item) => item.type_of_account == "manager")
         );
-        setManager(
-          res.data.response.find((item) => item.type_of_account == "manager")
-            ?.id
-        );
+        // setManager(
+        //   res.data.response.find((item) => item.type_of_account == "manager")
+        //     ?.id
+        // );
       })
       .catch((err) => {
         console.log(err);
