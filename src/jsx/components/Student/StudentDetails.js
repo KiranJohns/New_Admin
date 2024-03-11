@@ -25,6 +25,13 @@ const StudentDetails = () => {
 
   const makeRequest = fetchData();
 
+  function compareDates(a, b) {
+    var dateA = a.validity.split("/").reverse().join("/");
+    var dateB = b.validity.split("/").reverse().join("/");
+    return dateB.localeCompare(dateA); // Reverse the comparison
+  }
+
+  // Sort the array of objects
   useEffect(() => {
     makeRequest("GET", `/info/get-user-data-by-id/${state.id}`)
       .then((res) => {
@@ -34,10 +41,12 @@ const StudentDetails = () => {
           res.data.response[0]?.course,
           res.data.response[0]?.purchased_course
         );
-        setCourses([
+        let data = [
           ...res.data.response[0]?.course,
           ...res.data.response[0]?.purchased_course,
-        ]);
+        ];
+        data.sort(compareDates);
+        setCourses(data);
         setBasicDetail([
           { title: "ID", subtitle: res.data.response[0]?.id, image: profile },
           {
@@ -278,10 +287,14 @@ const StudentDetails = () => {
                         <td style={{ textAlign: "center" }}>
                           <strong>{++idx}</strong>
                         </td>
-                        <td style={{ textAlign: "center" }}>{item.course_name}</td>
+                        <td style={{ textAlign: "center" }}>
+                          {item.course_name}
+                        </td>
                         <td style={{ textAlign: "center" }}>{item.date}</td>
                         <td style={{ textAlign: "center" }}>{item.time}</td>
-                        <td style={{ textAlign: "center" }}>{item.percentage}</td>
+                        <td style={{ textAlign: "center" }}>
+                          {item.percentage}
+                        </td>
                         <td>
                           <a target="_blank" href={item.image}>
                             <Button
