@@ -36,16 +36,17 @@ const StudentDetails = () => {
     makeRequest("GET", `/info/get-user-data-by-id/${state.id}`)
       .then((res) => {
         setUserData(res.data.response[0]);
-        console.log(res.data.response);
-        console.log(
-          res.data.response[0]?.course,
-          res.data.response[0]?.purchased_course
-        );
+        // console.log(res.data.response);
+        // console.log(
+        //   res.data.response[0]?.course,
+        //   res.data.response[0]?.purchased_course
+        // );
         let data = [
           ...res.data.response[0]?.course,
           ...res.data.response[0]?.purchased_course,
         ];
         data.sort(compareDates);
+        console.log('data ',data);
         setCourses(data);
         setBasicDetail([
           { title: "ID", subtitle: res.data.response[0]?.id, image: profile },
