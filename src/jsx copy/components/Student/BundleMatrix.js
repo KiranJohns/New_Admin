@@ -197,7 +197,10 @@ const BundleMatrix = () => {
                 onChange={(e) => {
                   setManager(e.target.value);
                   setManagers(
-                    users.filter((item) => item.created_by == e.target.value)
+                    [
+                      users.find(item => item.id == e.target.value),
+                      ...users.filter((item) => (item.created_by == e.target.value && item.type_of_account == "manager")),
+                    ]
                   );
                 }}
                 style={{ background: "#5a9676", color: "#fff" }}
