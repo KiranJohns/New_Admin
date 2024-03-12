@@ -32,6 +32,7 @@ const StudentDetails = () => {
   }
 
   // Sort the array of objects
+  
   useEffect(() => {
     makeRequest("GET", `/info/get-user-data-by-id/${state.id}`)
       .then((res) => {
@@ -45,6 +46,7 @@ const StudentDetails = () => {
           ...res.data.response[0]?.course,
           ...res.data.response[0]?.purchased_course,
         ];
+
         data.sort(compareDates);
         console.log('data ',data);
         setCourses(data);
