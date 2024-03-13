@@ -76,7 +76,7 @@ const ManagerDetails = () => {
 
     makeRequest("GET", `/course/assigned-items/${state.id}`)
       .then((res) => {
-        setUsers(res.data.response.result);
+        setUsers(res.data.response.result.reverse());
         setNewUsers(res.data.response.res);
       })
       .catch((err) => {});
