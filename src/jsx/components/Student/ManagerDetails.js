@@ -83,7 +83,7 @@ const ManagerDetails = () => {
     makeRequest("GET", `/invoice/get-invoice/${state.id}`)
       .then((res) => {
         console.log(res);
-        setInvoice(res.data.response);
+        setInvoice(res.data.response.reverse());
       })
       .catch((err) => {
         console.log(err);
