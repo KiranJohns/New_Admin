@@ -24,6 +24,11 @@ const CompanyDetails = () => {
 
   const makeRequest = fetchData();
   const navigate = useNavigate();
+  function compareDates(a, b) {
+    var dateA = a.date.split("/").reverse().join("/");
+    var dateB = b.date.split("/").reverse().join("/");
+    return dateB.localeCompare(dateA); // Reverse the comparison
+  }
   useEffect(() => {
     makeRequest("GET", `/info/get-user-data-by-id/${state.id}`)
       .then((res) => {
@@ -82,7 +87,9 @@ const CompanyDetails = () => {
       .catch((err) => {});
     makeRequest("GET", `/invoice/get-invoice/${state.id}`)
       .then((res) => {
-        setInvoice(res.data.response.reverse());
+        let date = res.data.response
+        date.sort(compareDates)
+        setInvoice(res.data.response);
       })
       .catch((err) => {
         console.log(err);

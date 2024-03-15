@@ -50,6 +50,11 @@ const StudentDetails = () => {
         data.sort(compareDates);
         console.log('data ',data);
         setCourses(data);
+        function compareDates(a, b) {
+          var dateA = a.date.split("/").reverse().join("/");
+          var dateB = b.date.split("/").reverse().join("/");
+          return dateB.localeCompare(dateA); // Reverse the comparison
+        }
         setBasicDetail([
           { title: "ID", subtitle: res.data.response[0]?.id, image: profile },
           {
@@ -94,7 +99,9 @@ const StudentDetails = () => {
       });
     makeRequest("GET", `/invoice/get-invoice/${state.id}`)
       .then((res) => {
-        setInvoice(res.data.response.reverse());
+        let date = res.data.response
+        date.sort(compareDates)
+        setInvoice(res.data.response);
       })
       .catch((err) => {
         console.log(err);
