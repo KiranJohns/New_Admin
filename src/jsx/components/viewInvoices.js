@@ -149,7 +149,7 @@ const ViewInvoice = () => {
   useEffect(() => {
     makeRequest("GET", "/invoice/get-all-invoice")
       .then((res) => {
-        console.log(res);
+        console.log(res.data.response);
         setInvoice(res.data.response.reverse());
       })
       .catch((err) => {
@@ -212,7 +212,7 @@ const ViewInvoice = () => {
                         {item.transaction_id}
                       </td>
                       <td style={{ textAlign: "center" }}>
-                        {Number(item.total_price).toFixed(2)}
+                        {parseFloat(item.total_price).toFixed(2)}
                       </td>
                       <td style={{ textAlign: "center" }}>
                         <a target="_blank" href={item.img}>

@@ -82,7 +82,7 @@ const CompanyDetails = () => {
       .catch((err) => {});
     makeRequest("GET", `/invoice/get-invoice/${state.id}`)
       .then((res) => {
-        setInvoice(res.data.response);
+        setInvoice(res.data.response.reverse());
       })
       .catch((err) => {
         console.log(err);
@@ -469,7 +469,7 @@ const CompanyDetails = () => {
                         {item.transaction_id}
                       </td>
                       <td style={{ textAlign: "center" }}>
-                        {Number(item.total_price).toFixed(2)}
+                        {Number.parseFloat(item.total_price).toFixed(2)}
                       </td>
                       <td style={{ textAlign: "center" }}>
                         <a target="_blank" href={item.img}>
