@@ -25,6 +25,11 @@ const Transactions = () => {
   const [allIndividualReport, setAllIndividualReport] = useState([]);
   const [searchString, setSearchString] = useState("");
 
+  function compareDates(a, b) {
+    var dateA = a?.date?.split("/")?.reverse()?.join("/");
+    var dateB = b?.date?.split("/")?.reverse()?.join("/");
+    return dateB.localeCompare(dateA); // Reverse the comparison
+  }
   useEffect(() => {
     setExams(
       searchString
@@ -39,8 +44,10 @@ const Transactions = () => {
   useEffect(() => {
     makeRequest("GET", "/info/get-all-transactions")
       .then((res) => {
-        console.log(res.data.response);
-        setExams(res.data.response);
+        let data = res.data.response
+        // console.log(data[101]);
+        // data.sort(compareDates)
+        setExams(data.reverse());
         setAllIndividualReport(res.data.response)
       })
       .catch((err) => {
@@ -131,7 +138,7 @@ const Transactions = () => {
                         {item.date}
                       </td>
                       <td>{item?.count}</td>
-                      <td>{item?.amount}</td>
+                      <td>{Number(item?.amount).toFixed(2)}</td>
                       <td>Active</td>
                     </tr>
                   ))}
