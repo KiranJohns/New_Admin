@@ -261,7 +261,7 @@ const ViewCourse = () => {
                           </Badge>
                         </td>
                         <td>
-                          <a href={`https://test.learnforcare.co.uk/course/${item.id}`}>
+                          <a href={`https://learnforcare.co.uk/course/${item.name.split(" ")?.join("_")}`}>
                             <Button
                             title="View"
                               className="me-2"
