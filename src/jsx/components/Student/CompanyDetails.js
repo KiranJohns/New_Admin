@@ -469,7 +469,7 @@ const CompanyDetails = () => {
                         {item.transaction_id}
                       </td>
                       <td style={{ textAlign: "center" }}>
-                        {item.total_price}
+                        {Number(item.total_price).toFixed(2)}
                       </td>
                       <td style={{ textAlign: "center" }}>
                         <a target="_blank" href={item.img}>
