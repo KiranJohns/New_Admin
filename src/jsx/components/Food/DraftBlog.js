@@ -275,7 +275,7 @@ const BlogDraft = ({ draftedBlogs, getBlogs }) => {
                       {" "}
                       <a
                         target="_blank"
-                        href={`https://test.learnforcare.co.uk/blog/${item.id}`}
+                        href={`https://learnforcare.co.uk/blog/${item.header.split(" ").join("_")}`}
                       >
                         {item.header}{" "}
                       </a>
@@ -285,7 +285,7 @@ const BlogDraft = ({ draftedBlogs, getBlogs }) => {
                     <td>{item.views}</td>
                     <td>{item?.tags ? JSON.parse(item.tags).join(",") : ""}</td>
                     <td>
-                      {/* <a target="_blank" href={`https://test.learnforcare.co.uk/blog/${item.id}`}>
+                      {/* <a target="_blank" href={`https://learnforcare.co.uk/blog/${}`}>
                           <Button
                           className="me-2"
                             variant="success btn-icon-xxs"

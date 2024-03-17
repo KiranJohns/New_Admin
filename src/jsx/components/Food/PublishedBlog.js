@@ -326,7 +326,7 @@ const PublishedBlog = ({publishedBlog,getBlogs}) => {
                       {" "}
                       <a
                         target="_blank"
-                        href={`https://test.learnforcare.co.uk/blog/${item.id}`}
+                        href={`https://learnforcare.co.uk/blog/${item.header.split(" ").join("_")}`}
                       >
                         {item.header}{" "}
                       </a>
